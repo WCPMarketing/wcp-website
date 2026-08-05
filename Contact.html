@@ -1,263 +1,111 @@
-/* ===== WCP Wireless — Shared Stylesheet ===== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Wireless Communications Plus | Rogers Authorized Dealer</title>
+<meta name="description" content="Contact WCP, a Rogers Authorized Dealer serving the GTA. Upload your current Rogers bill and we'll review it for savings and upgrade opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-:root {
-  --red: #C8102E;
-  --red-dark: #A30D25;
-  --dark: #1A1A1A;
-  --text: #222222;
-  --text-muted: #5B5B5B;
-  --border: #E3E3E3;
-  --surface: #F6F6F4;
-  --white: #FFFFFF;
-  --radius: 8px;
-  --max-width: 1120px;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
+<div class="top-bar">
+  <div class="container">
+    <a href="tel:+18338441977" aria-label="Call 1-833-844-1977">📞 1-833-844-1977</a>
+    <nav>
+      <a href="business.html">Small Business</a>
+      <a href="#">Enterprise</a>
+    </nav>
+  </div>
+</div>
 
-* { box-sizing: border-box; }
+<header class="site-header">
+  <div class="container">
+    <div class="logo-block">
+      <img src="images/wcp-logo.png" alt="Wireless Communications Plus" class="wcp-logo">
+      <img src="images/rogers-dealer-black.png" alt="Rogers Authorized Dealer" class="dealer-badge">
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="business.html">Business Solutions</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  color: var(--text);
-  line-height: 1.6;
-  background: var(--white);
-}
+<section class="hero" style="padding:56px 0;">
+  <div class="container">
+    <h1 style="font-size:30px;">Let's see where you can save</h1>
+    <p>Send us a message, or upload your current Rogers bill and we'll review it for savings and upgrade opportunities — no obligation.</p>
+  </div>
+</section>
 
-img { max-width: 100%; display: block; }
+<section class="section">
+  <div class="container" style="display:grid; grid-template-columns: 1.1fr 1fr; gap:48px;">
 
-a { color: inherit; text-decoration: none; }
+    <div>
+      <h2>Get In Touch</h2>
+      <p class="lede">Fill out the form and we'll get back to you, usually within one business day.</p>
 
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 24px;
-}
+      <!--
+        FORM SETUP REQUIRED:
+        1. File uploads require a paid Formspree plan (Starter, $10/mo) — the free plan does not support attachments.
+        2. Max file size 25MB, accepted types limited to PDF/JPG/PNG below.
+        3. Replace the form ID below if this is a different Formspree form than your other pages.
+      -->
+      <form class="lead-form" action="https://formspree.io/f/xvkppvjl" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="business_name" placeholder="Business name (if applicable)">
+        <input type="tel" name="phone" placeholder="Phone number" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <textarea name="message" placeholder="How can we help?" rows="4" style="padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius); font-family:inherit; font-size:15px; resize:vertical;"></textarea>
 
-/* ---- Top utility bar ---- */
-.top-bar {
-  background: var(--red);
-  color: var(--white);
-}
-.top-bar .container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 28px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 13px;
-}
-.top-bar a { display: flex; align-items: center; gap: 6px; font-weight: 600; }
-.top-bar nav { display: flex; gap: 20px; }
-.top-bar nav a:hover { text-decoration: underline; }
+        <div>
+          <label for="bill-upload" style="display:block; font-size:14px; font-weight:600; margin-bottom:6px;">
+            Upload your current Rogers bill <span style="font-weight:400; color:var(--text-muted);">(optional)</span>
+          </label>
+          <input type="file" id="bill-upload" name="attachment" accept=".pdf,.jpg,.jpeg,.png">
+          <p style="font-size:12px; color:var(--text-muted); margin-top:6px; line-height:1.5;">
+            Accepted formats: PDF, JPG, PNG (max 25MB). Your bill is used only to review your account for savings — feel free to black out or crop full account numbers if you prefer. See our privacy note below.
+          </p>
+        </div>
 
-/* ---- Header ---- */
-header.site-header {
-  border-bottom: 1px solid var(--border);
-}
-header.site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-.logo-block { line-height: 1.3; }
-.logo-block .company { font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; text-transform: uppercase; }
-.logo-block .rogers { font-size: 17px; font-weight: 700; color: var(--red); }
-.main-nav { display: flex; gap: 28px; font-size: 15px; }
-.main-nav a:hover { color: var(--red); }
+        <button type="submit" class="btn btn-primary">Send My Message</button>
+      </form>
+    </div>
 
-/* ---- Hero ---- */
-.hero {
-  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)), var(--dark);
-  color: var(--white);
-  padding: 72px 0;
-}
-.hero .container { max-width: 640px; }
-.hero h1 {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.25;
-  margin: 0 0 16px;
-}
-.hero p {
-  font-size: 17px;
-  color: #DDDDDD;
-  margin: 0 0 28px;
-}
-.hero .actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    <div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="margin-top:0;">Contact Details</h3>
+        <p style="margin-bottom:6px;">📞 <a href="tel:+18338441977">1-833-844-1977</a></p>
+        <p style="margin-bottom:6px;">✉️ <a href="mailto:admin1@wcpwireless.com">admin1@wcpwireless.com</a></p>
+        <p style="margin-bottom:0;">📍 Serving businesses across the Greater Toronto Area</p>
+      </div>
 
-.btn {
-  display: inline-block;
-  padding: 14px 26px;
-  border-radius: var(--radius);
-  font-weight: 600;
-  font-size: 15px;
-  border: none;
-  cursor: pointer;
-}
-.btn-primary { background: var(--red); color: var(--white); }
-.btn-primary:hover { background: var(--red-dark); }
-.btn-outline {
-  background: transparent;
-  color: var(--white);
-  border: 1px solid var(--white);
-}
-.btn-outline:hover { background: rgba(255,255,255,0.1); }
-.link-inline { color: var(--white); text-decoration: underline; font-size: 15px; }
+      <div class="card">
+        <h3 style="margin-top:0;">A Note on Your Privacy</h3>
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:0;">
+          Any bill or document you upload is used only by our team to review your current plan and identify potential savings or upgrades. We don't share your information with anyone outside WCP and Rogers for the purpose of servicing your account. If you'd rather not upload a full bill, you're welcome to call us directly instead.
+        </p>
+      </div>
+    </div>
 
-/* ---- Trust bar ---- */
-.trust-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 18px 0;
-}
-.trust-bar .container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  font-size: 14px;
-  color: var(--text-muted);
-}
-.trust-bar span { display: flex; align-items: center; gap: 8px; }
+  </div>
+</section>
 
-/* ---- Section ---- */
-.section { padding: 64px 0; }
-.section h2 { font-size: 28px; margin: 0 0 8px; }
-.section .lede { color: var(--text-muted); margin: 0 0 32px; font-size: 16px; }
+<div class="footer-cta">
+  <div class="container">
+    <p>Prefer to talk now? Call <strong>1-833-844-1977</strong> — we're happy to help.</p>
+  </div>
+</div>
 
-/* ---- Card grid ---- */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-.card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  background: var(--white);
-}
-.card.featured {
-  border: 2px solid var(--red);
-  position: relative;
-}
-.badge {
-  display: inline-block;
-  background: #FCEBEB;
-  color: var(--red-dark);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-bottom: 12px;
-}
-.card h3 { font-size: 17px; color: var(--red); margin: 0 0 8px; }
-.card p { font-size: 14px; color: var(--text-muted); margin: 0 0 18px; }
-.btn-card {
-  display: inline-block;
-  padding: 9px 16px;
-  border: 1px solid var(--red);
-  color: var(--red);
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-}
-.btn-card:hover { background: var(--red); color: var(--white); }
+<footer class="site-footer">
+  <div class="container">
+    &copy; 2026 Wireless Communications Plus — Rogers Authorized Dealer
+  </div>
+</footer>
 
-/* ---- Why WCP ---- */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
-.why-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--text-muted); }
-.why-item .icon { color: var(--red); font-weight: 700; font-size: 18px; line-height: 1; }
-
-/* ---- Lead form ---- */
-.form-section { background: var(--surface); }
-.lead-form {
-  max-width: 460px;
-  display: grid;
-  gap: 14px;
-  margin-top: 24px;
-}
-.lead-form input,
-.lead-form select {
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 15px;
-  font-family: inherit;
-  width: 100%;
-}
-.lead-form input:focus,
-.lead-form select:focus {
-  outline: 2px solid var(--red);
-  outline-offset: 1px;
-}
-.lead-form button {
-  margin-top: 4px;
-}
-
-/* ---- Footer CTA ---- */
-.footer-cta {
-  background: var(--red);
-  color: var(--white);
-  text-align: center;
-  padding: 40px 0;
-}
-.footer-cta p { margin: 0; font-size: 15px; }
-.footer-cta strong { font-weight: 700; }
-
-footer.site-footer {
-  background: var(--dark);
-  color: #BBBBBB;
-  font-size: 13px;
-  text-align: center;
-  padding: 20px 0;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 700px) {
-  header.site-header .container { flex-direction: column; gap: 12px; align-items: flex-start; }
-  .main-nav { gap: 16px; flex-wrap: wrap; }
-  .hero { padding: 48px 0; }
-  .hero h1 { font-size: 28px; }
-  .top-bar .container { justify-content: center; text-align: center; gap: 14px; }
-}
-
-/* ---- Reduced motion / focus visibility ---- */
-a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
-}
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}
-
-/* ---- Real logo images ---- */
-.logo-block img.wcp-logo {
-  height: 34px;
-  width: auto;
-  display: block;
-}
-.dealer-badge {
-  height: 16px;
-  width: auto;
-  display: block;
-  margin-top: 4px;
-}
-@media (max-width: 700px) {
-  .logo-block img.wcp-logo { height: 28px; }
-}
-
-/* ---- Contact page responsive ---- */
-@media (max-width: 800px) {
-  .section .container[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-}
+</body>
+</html>
