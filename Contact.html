@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
 <div class="top-bar">
   <div class="container">
     <a href="tel:+18338441977" aria-label="Call 1-833-844-1977">📞 1-833-844-1977</a>
@@ -20,7 +20,7 @@
     </nav>
   </div>
 </div>
-
+ 
 <header class="site-header">
   <div class="container">
     <div class="logo-block">
@@ -34,48 +34,38 @@
     </nav>
   </div>
 </header>
-
+ 
 <section class="hero" style="padding:56px 0;">
   <div class="container">
     <h1 style="font-size:30px;">Let's see where you can save</h1>
     <p>Send us a message, or upload your current Rogers bill and we'll review it for savings and upgrade opportunities — no obligation.</p>
   </div>
 </section>
-
+ 
 <section class="section">
   <div class="container" style="display:grid; grid-template-columns: 1.1fr 1fr; gap:48px;">
-
+ 
     <div>
       <h2>Get In Touch</h2>
       <p class="lede">Fill out the form and we'll get back to you, usually within one business day.</p>
-
+ 
       <!--
         FORM SETUP REQUIRED:
         1. File uploads require a paid Formspree plan (Starter, $10/mo) — the free plan does not support attachments.
         2. Max file size 25MB, accepted types limited to PDF/JPG/PNG below.
         3. Replace the form ID below if this is a different Formspree form than your other pages.
       -->
-      <form class="lead-form" action="https://formspree.io/f/xvkppvjl" method="POST" enctype="multipart/form-data">
+      <form class="lead-form" action="https://formspree.io/f/xvkppvjl" method="POST">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="business_name" placeholder="Business name (if applicable)">
         <input type="tel" name="phone" placeholder="Phone number" required>
         <input type="email" name="email" placeholder="Email address" required>
         <textarea name="message" placeholder="How can we help?" rows="4" style="padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius); font-family:inherit; font-size:15px; resize:vertical;"></textarea>
-
-        <div>
-          <label for="bill-upload" style="display:block; font-size:14px; font-weight:600; margin-bottom:6px;">
-            Upload your current Rogers bill <span style="font-weight:400; color:var(--text-muted);">(optional)</span>
-          </label>
-          <input type="file" id="bill-upload" name="attachment" accept=".pdf,.jpg,.jpeg,.png">
-          <p style="font-size:12px; color:var(--text-muted); margin-top:6px; line-height:1.5;">
-            Accepted formats: PDF, JPG, PNG (max 25MB). Your bill is used only to review your account for savings — feel free to black out or crop full account numbers if you prefer. See our privacy note below.
-          </p>
-        </div>
-
+ 
         <button type="submit" class="btn btn-primary">Send My Message</button>
       </form>
     </div>
-
+ 
     <div>
       <div class="card" style="margin-bottom:20px;">
         <h3 style="margin-top:0;">Contact Details</h3>
@@ -83,7 +73,7 @@
         <p style="margin-bottom:6px;">✉️ <a href="mailto:admin1@wcpwireless.com">admin1@wcpwireless.com</a></p>
         <p style="margin-bottom:0;">📍 Serving businesses across the Greater Toronto Area</p>
       </div>
-
+ 
       <div class="card">
         <h3 style="margin-top:0;">A Note on Your Privacy</h3>
         <p style="font-size:14px; color:var(--text-muted); margin-bottom:0;">
@@ -91,21 +81,22 @@
         </p>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <div class="footer-cta">
   <div class="container">
     <p>Prefer to talk now? Call <strong>1-833-844-1977</strong> — we're happy to help.</p>
   </div>
 </div>
-
+ 
 <footer class="site-footer">
   <div class="container">
     &copy; 2026 Wireless Communications Plus — Rogers Authorized Dealer
   </div>
 </footer>
-
+ 
 </body>
 </html>
+ 
