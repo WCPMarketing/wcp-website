@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
 <div class="top-bar">
   <div class="container">
     <a href="tel:+18338441977" aria-label="Call 1-833-844-1977">📞 1-833-844-1977</a>
@@ -20,21 +20,24 @@
     </nav>
   </div>
 </div>
-
+ 
 <header class="site-header">
   <div class="container">
     <div class="logo-block">
       <img src="images/wcp-logo.png" alt="Wireless Communications Plus" class="wcp-logo">
       <img src="images/rogers-dealer-black.png" alt="Rogers Authorized Dealer" class="dealer-badge">
     </div>
-    <nav class="main-nav">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
       <a href="index.html">Home</a>
       <a href="business.html">Business Solutions</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
-
+ 
 <section class="hero">
   <div class="container">
     <h1>Mobile plans made for your business</h1>
@@ -45,11 +48,11 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="section">
   <div class="container">
-
-    <div class="feature-strip">
+ 
+    <div class="feature-strip reveal">
       <div>
         <div class="feature-icon">📶</div>
         <h4>5G+</h4>
@@ -71,9 +74,9 @@
         <p>Save more when you add business internet to your plan.</p>
       </div>
     </div>
-
+ 
     <h2 style="text-align:center; margin-top:48px;">Choose the plan that's right for your team</h2>
-
+ 
     <div class="card-grid" style="margin-top:24px;">
       <div class="card">
         <h3>Small teams: 1&ndash;9 lines</h3>
@@ -91,25 +94,25 @@
         <a href="contact.html" class="btn-card">View Devices</a>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <!-- ============ SMALL TEAMS ============ -->
-<section id="small-teams" class="section" style="background:var(--surface);">
+<section id="small-teams" class="section reveal" style="background:var(--surface);">
   <div class="container">
     <h2>Small teams: 1&ndash;9 lines</h2>
     <p class="lede">Bring your own device — plans built for small teams that want simple, predictable pricing.</p>
-
+ 
     <ul class="include-strip">
       <li>✓ Unlimited Canada-wide calling &amp; text</li>
       <li>✓ 5G/5G+ access</li>
       <li>✓ Call display, voicemail, call forwarding, group calling</li>
       <li>✓ HD streaming with high-speed data</li>
     </ul>
-
+ 
     <div class="plan-grid">
-
+ 
       <div class="plan-card">
         <h4>5G+ Lite Online</h4>
         <p class="device-note">Bring your own device</p>
@@ -121,7 +124,7 @@
           <li>Unlimited international texts</li>
         </ul>
       </div>
-
+ 
       <div class="plan-card">
         <h4>5G+ Essentials Online</h4>
         <p class="device-note">Bring your own device</p>
@@ -133,7 +136,7 @@
           <li>Unlimited international texts</li>
         </ul>
       </div>
-
+ 
       <div class="plan-card">
         <h4>5G+ Popular Online</h4>
         <p class="device-note">Bring your own device</p>
@@ -146,7 +149,7 @@
           <li>Unlimited international texting</li>
         </ul>
       </div>
-
+ 
       <div class="plan-card">
         <h4>5G+ Ultimate Online</h4>
         <p class="device-note">Bring your own device</p>
@@ -160,24 +163,24 @@
           <li>Unlimited calling to 27 countries</li>
         </ul>
       </div>
-
+ 
     </div>
     <p style="font-size:12px; color:var(--text-muted); margin-top:16px;">Pricing and plan details shown are current as of publishing and subject to change. Contact us for the latest offers.</p>
   </div>
 </section>
-
+ 
 <!-- ============ LARGE TEAMS ============ -->
-<section id="large-teams" class="section">
+<section id="large-teams" class="section reveal">
   <div class="container">
     <h2>Large teams: 10+ lines</h2>
     <p class="lede">Optimized business solutions for growing teams, with data sharing and flexible plan types.</p>
-
+ 
     <div class="team-tabs">
       <button class="team-tab-btn active" onclick="showTab('voice-data')">Voice &amp; Data</button>
       <button class="team-tab-btn" onclick="showTab('data-only')">Data Only</button>
       <button class="team-tab-btn" onclick="showTab('voice-only')">Voice Only</button>
     </div>
-
+ 
     <div id="voice-data" class="team-tab-panel active">
       <div class="plan-card" style="max-width:320px;">
         <h4>Data + 5G</h4>
@@ -187,7 +190,7 @@
         <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Contact Sales</a>
       </div>
     </div>
-
+ 
     <div id="data-only" class="team-tab-panel">
       <div class="plan-card" style="max-width:320px;">
         <h4>Shared Data</h4>
@@ -195,7 +198,7 @@
         <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block; margin-top:14px;">Contact Sales</a>
       </div>
     </div>
-
+ 
     <div id="voice-only" class="team-tab-panel">
       <div class="plan-card" style="max-width:320px;">
         <h4>Talk Only</h4>
@@ -203,7 +206,7 @@
         <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block; margin-top:14px;">Contact Sales</a>
       </div>
     </div>
-
+ 
     <ul class="include-strip">
       <li>✓ Unlimited Canada-wide calling, SMS &amp; MMS</li>
       <li>✓ Call display &amp; name display</li>
@@ -212,7 +215,7 @@
       <li>✓ VoLTE</li>
       <li>✓ Call waiting, forwarding &amp; group calling</li>
     </ul>
-
+ 
     <h3>Extra features available</h3>
     <div class="addon-grid">
       <div class="addon-card">
@@ -228,7 +231,7 @@
         <a href="contact.html">Learn more →</a>
       </div>
     </div>
-
+ 
     <h3 style="margin-top:40px; text-align:center;">Business add-ons</h3>
     <div class="addon-grid">
       <div class="addon-card" style="text-align:center;">
@@ -250,22 +253,23 @@
         <a href="contact.html">View solution →</a>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <div class="footer-cta">
   <div class="container">
     <p>Prefer to talk now? Call <strong>1-833-844-1977</strong> — we're happy to help.</p>
   </div>
 </div>
-
+ 
 <footer class="site-footer">
   <div class="container">
     &copy; 2026 Wireless Communications Plus — Rogers Authorized Dealer
   </div>
 </footer>
-
+ 
+<script src="script.js"></script>
 <script>
 function showTab(id) {
   document.querySelectorAll('.team-tab-panel').forEach(function(el) { el.classList.remove('active'); });
@@ -274,6 +278,7 @@ function showTab(id) {
   event.target.classList.add('active');
 }
 </script>
-
+ 
 </body>
 </html>
+ 
