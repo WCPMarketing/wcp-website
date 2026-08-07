@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
 <div class="top-bar">
   <div class="container">
     <a href="tel:+18338441977" aria-label="Call 1-833-844-1977">📞 1-833-844-1977</a>
@@ -20,21 +20,24 @@
     </nav>
   </div>
 </div>
-
+ 
 <header class="site-header">
   <div class="container">
     <div class="logo-block">
       <img src="images/wcp-logo.png" alt="Wireless Communications Plus" class="wcp-logo">
       <img src="images/rogers-dealer-black.png" alt="Rogers Authorized Dealer" class="dealer-badge">
     </div>
-    <nav class="main-nav">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
       <a href="index.html">Home</a>
       <a href="business.html">Business Solutions</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
-
+ 
 <section class="hero">
   <div class="container">
     <h1>Every connectivity product Rogers offers, sold by a local team that answers the phone</h1>
@@ -44,42 +47,42 @@
     </div>
   </div>
 </section>
-
-<section class="section">
+ 
+<section class="section reveal">
   <div class="container">
     <h2>Business Solutions</h2>
     <p class="lede">Everything your business needs to stay connected, in one place.</p>
     <div class="card-grid">
-
+ 
       <div class="card">
         <h3>Business Wireless</h3>
         <p>Data plans, device financing, and BYOD options for teams of any size. We'll match you to the right plan instead of the most expensive one.</p>
         <a href="business-wireless.html" class="btn-card">See Wireless Options</a>
       </div>
-
+ 
       <div class="card">
         <h3>Business Internet</h3>
         <p>Reliable, fast internet built for day-to-day operations — from single-location offices to multi-site businesses that need dependable uptime.</p>
         <a href="#contact" class="btn-card">See Internet Options</a>
       </div>
-
+ 
       <div class="card">
         <h3>Business Phone</h3>
         <p>Keep your team connected with landline and cloud-based phone solutions that scale as you grow.</p>
         <a href="#contact" class="btn-card">See Phone Options</a>
       </div>
-
+ 
       <div class="card">
         <h3>Security & Monitoring</h3>
         <p>Protect your location with monitored security solutions, bundled seamlessly with your existing Rogers services.</p>
         <a href="#contact" class="btn-card">See Security Options</a>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
-<section class="section" style="background:var(--surface);">
+ 
+<section class="section reveal" style="background:var(--surface);">
   <div class="container">
     <h2>Why Work With a Local Rogers Dealer</h2>
     <div class="why-grid" style="margin-top:24px;">
@@ -90,12 +93,12 @@
     </div>
   </div>
 </section>
-
-<section id="contact" class="section form-section">
+ 
+<section id="contact" class="section form-section reveal">
   <div class="container">
     <h2>Let's Find the Right Plan for Your Business</h2>
     <p class="lede">Fill this in and we'll call you back — or reach us directly at 1-833-844-1977.</p>
-
+ 
     <form class="lead-form" action="https://formspree.io/f/xvkppvjl" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
       <input type="text" name="business_name" placeholder="Business name" required>
@@ -112,18 +115,20 @@
     </form>
   </div>
 </section>
-
+ 
 <div class="footer-cta">
   <div class="container">
     <p>Prefer to talk now? Call <strong>1-833-844-1977</strong> — we're happy to help.</p>
   </div>
 </div>
-
+ 
 <footer class="site-footer">
   <div class="container">
     &copy; 2026 Wireless Communications Plus — Rogers Authorized Dealer
   </div>
 </footer>
-
+ 
+<script src="script.js"></script>
 </body>
 </html>
+ 
