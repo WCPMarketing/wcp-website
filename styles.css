@@ -472,3 +472,37 @@ header.site-header.scrolled {
   /* Ensure comfortable tap targets on mobile */
   .btn, .btn-card { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 }
+
+/* ---- Business Internet page ---- */
+.term-note {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 16px 0 24px;
+}
+.bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.bundle-card {
+  border-radius: 12px;
+  padding: 18px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+}
+.bundle-card.b1 { background: #333333; }
+.bundle-card.b2 { background: #1a1a1a; }
+.bundle-card.b3 { background: var(--red); }
+.plan-card .plan-tier-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+.plan-card.popular { border: 2px solid var(--red); position: relative; }
