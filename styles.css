@@ -581,3 +581,39 @@ header.site-header.scrolled {
 .testimonial-quote::after { content: "”"; color: var(--red); font-weight: 700; }
 .testimonial-attribution { font-size: 13px; font-weight: 600; color: var(--text); margin: 0; }
 .testimonial-role { font-size: 12px; color: var(--text-muted); margin: 2px 0 0; }
+
+/* ---- Country list disclosure ---- */
+.country-toggle {
+  margin-top: 10px;
+}
+.country-toggle summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  list-style: none;
+}
+.country-toggle summary::-webkit-details-marker { display: none; }
+.country-toggle summary::after { content: " ▾"; }
+.country-toggle[open] summary::after { content: " ▴"; }
+.country-list {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  columns: 2;
+  column-gap: 16px;
+  line-height: 1.7;
+}
+@media (max-width: 500px) {
+  .country-list { columns: 1; }
+}
+
+/* ---- Coming soon placeholder ---- */
+.tier-placeholder {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
