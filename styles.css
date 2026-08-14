@@ -657,3 +657,48 @@ header.site-header.scrolled {
 .award-card .icon { font-size: 40px; }
 .award-card h3 { margin: 0 0 6px; }
 .award-card p { margin: 0; font-size: 14px; color: var(--text-muted); }
+
+/* ---- Footer social icons ---- */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.footer-social a:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+.footer-social svg {
+  width: 16px;
+  height: 16px;
+  fill: #BBBBBB;
+}
+.footer-social a:hover svg {
+  fill: #FFFFFF;
+}
+
+/* ---- Google review CTA ---- */
+.review-cta {
+  margin-top: 24px;
+  text-align: center;
+}
+.review-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red);
+}
+.review-cta a:hover { text-decoration: underline; }
