@@ -617,3 +617,11 @@ header.site-header.scrolled {
   color: var(--text-muted);
   font-size: 14px;
 }
+
+/* ---- Hero with photo background ---- */
+.hero.hero-photo {
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)), var(--hero-img);
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
