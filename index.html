@@ -3,6 +3,1483 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wireless Communications Plus | Rogers Authorized Dealer | Canada-Wide Business Services</title>
+
+<meta name="description" content="WCP is a Rogers Authorized Dealer serving businesses of every size across Canada since 1990. Get a free business wireless review from a local account manager.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+
+<style>
+
+/* =========================================================
+   HOMEPAGE SALES / BILL REVIEW
+   ========================================================= */
+
+
+/* ---------- Sales Hero ---------- */
+
+.hero-sales {
+  padding: 72px 0;
+}
+
+.hero-sales .container {
+  max-width: var(--max-width, 1180px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.8fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.hero-copy {
+  max-width: 650px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 7px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero-sales h1 {
+  font-size: clamp(36px, 4.5vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
+}
+
+.hero-sales .hero-copy > p {
+  max-width: 620px;
+
+  font-size: 18px;
+  line-height: 1.65;
+
+  margin-bottom: 28px;
+}
+
+.hero-checks {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px 22px;
+
+  margin-top: 24px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* ---------- Bill Review Hero Card ---------- */
+
+.bill-review-card {
+  background: #ffffff;
+
+  color: var(--text, #222222);
+
+  border-radius: 16px;
+
+  padding: 30px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+}
+
+.bill-card-label {
+  display: inline-block;
+
+  color: var(--red, #da291c);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  margin-bottom: 12px;
+}
+
+.bill-review-card h2 {
+  color: var(--text, #222222);
+
+  font-size: 24px;
+  line-height: 1.25;
+
+  letter-spacing: -0.02em;
+
+  margin: 0 0 12px;
+}
+
+.bill-review-card > p {
+  color: var(--text-muted, #666666);
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  margin: 0 0 22px;
+}
+
+.bill-review-steps {
+  display: grid;
+
+  gap: 14px;
+
+  margin: 22px 0 24px;
+}
+
+.bill-step {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--text, #222222);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.step-number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 28px;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #fcebeb;
+
+  color: var(--red, #da291c);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bill-card-button {
+  width: 100%;
+
+  text-align: center;
+}
+
+.bill-review-card .bill-card-note {
+  margin: 12px 0 0;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  color: var(--text-muted, #666666);
+}
+
+
+/* ---------- Bill Review Form Section ---------- */
+
+.review-form-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(420px, 1.1fr);
+
+  gap: 72px;
+
+  align-items: start;
+}
+
+.review-form-intro {
+  max-width: 480px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+
+  color: var(--red, #da291c);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  margin-bottom: 10px;
+}
+
+.review-form-intro h2 {
+  font-size: 34px;
+  line-height: 1.2;
+
+  letter-spacing: -0.025em;
+
+  margin-bottom: 14px;
+}
+
+.review-benefits {
+  display: grid;
+
+  gap: 22px;
+
+  margin-top: 32px;
+}
+
+.review-benefit {
+  display: flex;
+
+  gap: 14px;
+
+  align-items: flex-start;
+}
+
+.review-benefit > span {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 28px;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #fcebeb;
+
+  color: var(--red, #da291c);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.review-benefit strong {
+  display: block;
+
+  font-size: 14px;
+
+  margin-bottom: 3px;
+}
+
+.review-benefit p {
+  margin: 0;
+
+  color: var(--text-muted, #666666);
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+
+/* ---------- Form Card ---------- */
+
+.bill-review-form {
+  max-width: none;
+
+  margin-top: 0;
+
+  background: #ffffff;
+
+  padding: 30px;
+
+  border: 1px solid var(--border, #dddddd);
+
+  border-radius: 16px;
+
+  box-shadow: 0 12px 36px rgba(0,0,0,0.07);
+}
+
+.form-heading {
+  margin-bottom: 4px;
+}
+
+.form-heading h3 {
+  margin: 0 0 4px;
+
+  font-size: 21px;
+}
+
+.form-heading p {
+  margin: 0;
+
+  color: var(--text-muted, #666666);
+
+  font-size: 13px;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+}
+
+.bill-review-form textarea {
+  padding: 12px 14px;
+
+  border: 1px solid var(--border, #dddddd);
+
+  border-radius: var(--radius, 8px);
+
+  font-size: 15px;
+
+  font-family: inherit;
+
+  width: 100%;
+
+  resize: vertical;
+}
+
+.bill-review-form textarea:focus {
+  outline: 2px solid var(--red, #da291c);
+
+  outline-offset: 1px;
+}
+
+
+/* ---------- Bill Upload ---------- */
+
+.bill-upload {
+  border: 1px dashed #bbbbbb;
+
+  border-radius: 10px;
+
+  background: var(--surface, #f7f7f7);
+
+  padding: 16px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.bill-upload:hover {
+  border-color: var(--red, #da291c);
+
+  background: #fffafa;
+}
+
+.bill-upload label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  cursor: pointer;
+}
+
+.upload-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  border-radius: 8px;
+
+  background: #fcebeb;
+
+  color: var(--red, #da291c);
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.upload-copy {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.upload-copy strong {
+  font-size: 14px;
+}
+
+.upload-copy small {
+  margin-top: 2px;
+
+  color: var(--text-muted, #666666);
+
+  font-size: 11px;
+}
+
+.bill-upload input[type="file"] {
+  width: 100%;
+
+  color: var(--text-muted, #666666);
+
+  font-family: inherit;
+
+  font-size: 12px;
+}
+
+.bill-upload input[type="file"]::file-selector-button {
+  border: 1px solid var(--red, #da291c);
+
+  background: #ffffff;
+
+  color: var(--red, #da291c);
+
+  border-radius: 6px;
+
+  padding: 8px 12px;
+
+  margin-right: 10px;
+
+  font-family: inherit;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.bill-upload input[type="file"]::file-selector-button:hover {
+  background: var(--red, #da291c);
+
+  color: #ffffff;
+}
+
+
+/* ---------- Form Button ---------- */
+
+.bill-review-form .btn-primary {
+  width: 100%;
+
+  font-size: 15px;
+}
+
+.form-disclaimer {
+  text-align: center;
+
+  margin: 2px 0 0;
+
+  font-size: 11px;
+
+  color: var(--text-muted, #666666);
+}
+
+.form-disclaimer a {
+  color: var(--red, #da291c);
+
+  font-weight: 600;
+}
+
+.form-disclaimer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+  .hero-sales .container {
+    grid-template-columns: 1fr;
+
+    gap: 36px;
+  }
+
+  .hero-copy {
+    max-width: 700px;
+  }
+
+  .bill-review-card {
+    max-width: 520px;
+  }
+
+  .review-form-layout {
+    grid-template-columns: 1fr;
+
+    gap: 36px;
+  }
+
+  .review-form-intro {
+    max-width: 600px;
+  }
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+  .hero-sales {
+    padding: 48px 0;
+  }
+
+  .hero-sales .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero-sales h1 {
+    font-size: 34px;
+  }
+
+  .hero-sales .hero-copy > p {
+    font-size: 16px;
+  }
+
+  .hero-checks {
+    display: grid;
+
+    gap: 8px;
+  }
+
+  .bill-review-card {
+    padding: 24px;
+  }
+
+  .bill-review-card h2 {
+    font-size: 21px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bill-review-form {
+    padding: 22px;
+  }
+
+  .review-form-intro h2 {
+    font-size: 28px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="top-bar">
+  <div class="container">
+
+    <a
+      href="tel:+18338441977"
+      aria-label="Call 1-833-844-1977"
+    >
+      📞 1-833-844-1977
+    </a>
+
+  </div>
+</div>
+
+
+<header class="site-header">
+
+  <div class="container">
+
+    <div class="logo-block">
+
+      <img
+        src="images/wcp-logo.png"
+        alt="Wireless Communications Plus"
+        class="wcp-logo"
+      >
+
+      <img
+        src="images/rogers-dealer-black.png"
+        alt="Rogers Authorized Dealer"
+        class="dealer-badge"
+      >
+
+    </div>
+
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+
+    <nav class="main-nav" id="mainNav">
+
+      <a href="index.html">Home</a>
+
+      <a href="business.html">
+        Rogers Business Services
+      </a>
+
+      <a href="about.html">About</a>
+
+      <a href="contact.html">Contact</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section
+  class="hero hero-photo hero-sales"
+  style="--hero-img: url('images/hero-professional-call.jpg');"
+>
+
+  <div class="container">
+
+
+    <div class="hero-copy">
+
+      <span class="hero-eyebrow">
+        Rogers Authorized Dealer • Serving Canadian Businesses Since 1990
+      </span>
+
+
+      <h1>
+        Business wireless and connectivity,
+        handled by local experts
+      </h1>
+
+
+      <p>
+        Get business wireless, internet and phone solutions
+        backed by a dedicated account manager who knows your business.
+      </p>
+
+
+      <div class="actions">
+
+        <a
+          href="#contact"
+          class="btn btn-primary"
+        >
+          Upload My Bill for a Free Review
+        </a>
+
+
+        <a
+          href="tel:+18338441977"
+          class="link-inline"
+        >
+          Or call 1-833-844-1977
+        </a>
+
+      </div>
+
+
+      <div class="hero-checks">
+
+        <span>✓ No obligation</span>
+
+        <span>✓ Local account manager</span>
+
+        <span>✓ Canada-wide service</span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Bill Review Card -->
+
+    <div class="bill-review-card">
+
+      <div class="bill-card-label">
+        FREE BUSINESS BILL REVIEW
+      </div>
+
+
+      <h2>
+        Think you're paying too much
+        for business wireless?
+      </h2>
+
+
+      <p>
+        Send us a recent wireless bill and we'll review
+        your current services, pricing and available
+        Rogers Business options.
+      </p>
+
+
+      <div class="bill-review-steps">
+
+
+        <div class="bill-step">
+
+          <span class="step-number">
+            1
+          </span>
+
+          <span>
+            Upload your current bill
+          </span>
+
+        </div>
+
+
+        <div class="bill-step">
+
+          <span class="step-number">
+            2
+          </span>
+
+          <span>
+            We review your services
+          </span>
+
+        </div>
+
+
+        <div class="bill-step">
+
+          <span class="step-number">
+            3
+          </span>
+
+          <span>
+            We show you your options
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <a
+        href="#contact"
+        class="btn btn-primary bill-card-button"
+      >
+        Upload My Bill
+      </a>
+
+
+      <p class="bill-card-note">
+        No obligation • Reviewed by a WCP business specialist
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TRUST BAR
+     ========================================================= -->
+
+<div class="trust-bar reveal">
+
+  <div class="container">
+
+    <span>
+      🕐 Serving Businesses Since 1990
+    </span>
+
+    <span>
+      🏢 500+ Business Accounts Supported
+    </span>
+
+    <span>
+      🌎 10,000+ Clients Across Canada
+    </span>
+
+    <span>
+      ✅ Official Rogers Authorized Dealer
+    </span>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+
+<section class="section reveal">
+
+  <div class="container">
+
+    <h2>
+      Our Services
+    </h2>
+
+
+    <p class="lede">
+      Built around what your business needs most.
+    </p>
+
+
+    <div class="card-grid">
+
+
+      <div class="card featured">
+
+        <span class="badge">
+          Most Popular
+        </span>
+
+
+        <h3>
+          Business Wireless
+        </h3>
+
+
+        <p>
+          Custom wireless, internet and phone solutions
+          for businesses of all sizes — with a dedicated
+          account manager who knows your business by name.
+        </p>
+
+
+        <a
+          href="#contact"
+          class="btn-card"
+        >
+          Get My Free Bill Review
+        </a>
+
+      </div>
+
+
+
+      <div class="card">
+
+        <h3>
+          Rogers Preferred Program
+        </h3>
+
+
+        <p>
+          Exclusive employer and association pricing on
+          the latest phones and plans. Check in seconds
+          if your business qualifies.
+        </p>
+
+
+        <a
+          href="https://wcpwireless.com/lookup#Home"
+          class="btn-card"
+        >
+          Check Eligibility
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TESTIMONIALS
+     ========================================================= -->
+
+<section class="section reveal">
+
+  <div class="container">
+
+
+    <h2>
+      What Our Clients Say
+    </h2>
+
+
+    <p class="lede">
+      Real feedback from businesses we've worked with.
+    </p>
+
+
+    <div class="testimonial-grid">
+
+
+      <div class="testimonial-card">
+
+        <p class="testimonial-quote">
+          The WCP team made switching to Rogers Business
+          very painless. I'd definitely work with them again.
+        </p>
+
+        <p class="testimonial-attribution">
+          Rob N.
+        </p>
+
+        <p class="testimonial-role">
+          President, Simcoe IT Solutions Inc.
+        </p>
+
+      </div>
+
+
+
+      <div class="testimonial-card">
+
+        <p class="testimonial-quote">
+          I highly recommend the WCP team. During recent
+          contract negotiations with Rogers, they demonstrated
+          strong professionalism and expertise, ensuring a fair
+          and efficient outcome. They're approachable, responsive,
+          and always willing to help — and their problem-solving
+          ability means they quickly find practical solutions.
+          Overall, a great experience.
+        </p>
+
+        <p class="testimonial-attribution">
+          Debbie B.
+        </p>
+
+        <p class="testimonial-role">
+          Deals Desk Manager / Sales Operations Specialist, Avaya
+        </p>
+
+      </div>
+
+
+
+      <div class="testimonial-card">
+
+        <p class="testimonial-quote">
+          I've worked with the WCP team for over 9 years now.
+          They've looked after our corporate plan for our employees
+          at Markham Stouffville Hospital, keeping our staff up to
+          date with current offers and promotions. Very knowledgeable
+          at what they do.
+        </p>
+
+        <p class="testimonial-attribution">
+          Lee E.
+        </p>
+
+        <p class="testimonial-role">
+          Network Analyst, OVH
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="review-cta">
+
+      <a
+        href="https://g.page/r/CX3o5GNSAmziEAE/review"
+        target="_blank"
+        rel="noopener"
+      >
+        ⭐ Had a great experience with us?
+        Leave us a review on Google →
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FREE BILL REVIEW
+     ========================================================= -->
+
+<section
+  id="contact"
+  class="section form-section reveal"
+>
+
+  <div class="container">
+
+
+    <div class="review-form-layout">
+
+
+      <!-- Left Column -->
+
+      <div class="review-form-intro">
+
+
+        <span class="section-eyebrow">
+          FREE BUSINESS BILL REVIEW
+        </span>
+
+
+        <h2>
+          Upload your bill.
+          We'll do the homework.
+        </h2>
+
+
+        <p class="lede">
+          Send us a recent wireless bill and a WCP business
+          specialist will review your current services and
+          available options.
+        </p>
+
+
+
+        <div class="review-benefits">
+
+
+          <div class="review-benefit">
+
+            <span>
+              ✓
+            </span>
+
+
+            <div>
+
+              <strong>
+                Review your current costs
+              </strong>
+
+              <p>
+                We'll look at what you're currently paying
+                and what services you have.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="review-benefit">
+
+            <span>
+              ✓
+            </span>
+
+
+            <div>
+
+              <strong>
+                Identify opportunities
+              </strong>
+
+              <p>
+                We'll check available Rogers Business options
+                that may better fit your needs.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="review-benefit">
+
+            <span>
+              ✓
+            </span>
+
+
+            <div>
+
+              <strong>
+                Talk to a real person
+              </strong>
+
+              <p>
+                Your review is handled by a WCP
+                business specialist.
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- Form -->
+
+      <form
+        class="lead-form bill-review-form"
+        action="https://formspree.io/f/xvkppvjl"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+
+
+        <div class="form-heading">
+
+          <h3>
+            Get My Free Bill Review
+          </h3>
+
+          <p>
+            Tell us a little about your business.
+          </p>
+
+        </div>
+
+
+
+        <div class="form-row">
+
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            autocomplete="name"
+            required
+          >
+
+
+          <input
+            type="text"
+            name="business_name"
+            placeholder="Business name"
+            autocomplete="organization"
+            required
+          >
+
+
+        </div>
+
+
+
+        <div class="form-row">
+
+
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone number"
+            autocomplete="tel"
+            required
+          >
+
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          >
+
+
+        </div>
+
+
+
+        <select
+          name="interest"
+          required
+        >
+
+
+          <option
+            value=""
+            disabled
+            selected
+          >
+            What can we help you with?
+          </option>
+
+
+          <option value="Current bill review">
+            Review my current wireless bill
+          </option>
+
+
+          <option value="New business wireless">
+            New business wireless plans
+          </option>
+
+
+          <option value="Switching carrier">
+            Switching from another carrier
+          </option>
+
+
+          <option value="Internet and phone">
+            Business internet &amp; phone
+          </option>
+
+
+          <option value="Not sure">
+            I'm not sure yet
+          </option>
+
+
+        </select>
+
+
+
+        <!-- Bill Upload -->
+
+        <div class="bill-upload">
+
+
+          <label for="bill-upload">
+
+
+            <span class="upload-icon">
+              ↑
+            </span>
+
+
+            <span class="upload-copy">
+
+              <strong>
+                Upload your current bill
+              </strong>
+
+              <small>
+                Optional — PDF, JPG or PNG
+              </small>
+
+            </span>
+
+
+          </label>
+
+
+
+          <input
+            type="file"
+            id="bill-upload"
+            name="current_bill"
+            accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+          >
+
+
+        </div>
+
+
+
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Anything else you'd like us to know? (optional)"
+        ></textarea>
+
+
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Get My Free Bill Review
+        </button>
+
+
+
+        <p class="form-disclaimer">
+
+          No obligation. Prefer to talk?
+
+          <a href="tel:+18338441977">
+            Call 1-833-844-1977
+          </a>
+
+        </p>
+
+
+      </form>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER CTA
+     ========================================================= -->
+
+<div class="footer-cta">
+
+  <div class="container">
+
+    <p>
+      Prefer to talk now?
+      Call <strong>1-833-844-1977</strong>
+      — we're happy to help.
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+  <div class="container">
+
+
+    <div class="footer-social">
+
+
+      <!-- Facebook -->
+
+      <a
+        href="https://www.facebook.com/wcpwireless/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+        >
+
+          <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06C2 17.06 5.66 21.2 10.44 21.95V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.21 5.96C15.31 5.96 16.46 6.16 16.46 6.16V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.95C18.34 21.2 22 17.06 22 12.06Z"/>
+
+        </svg>
+
+      </a>
+
+
+
+      <!-- Instagram -->
+
+      <a
+        href="https://www.instagram.com/wcpwireless/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+        >
+
+          <path d="M12 2C14.72 2 15.06 2.01 16.12 2.06C17.18 2.11 17.9 2.28 18.53 2.52C19.19 2.77 19.74 3.11 20.29 3.66C20.79 4.16 21.18 4.76 21.43 5.42C21.67 6.05 21.84 6.77 21.89 7.83C21.94 8.89 21.95 9.23 21.95 11.95C21.95 14.67 21.94 15.01 21.89 16.07C21.84 17.13 21.67 17.85 21.43 18.48C21.18 19.14 20.79 19.69 20.29 20.24C19.74 20.79 19.19 21.13 18.53 21.38C17.9 21.62 17.18 21.79 16.12 21.84C15.06 21.89 14.72 21.9 12 21.9C9.28 21.9 8.94 21.89 7.88 21.84C6.82 21.79 6.1 21.62 5.47 21.38C4.81 21.13 4.26 20.79 3.71 20.24C3.21 19.69 2.82 19.14 2.57 18.48C2.33 17.85 2.16 17.13 2.11 16.07C2.06 15.01 2.05 14.67 2.05 11.95C2.05 9.23 2.06 8.89 2.11 7.83C2.16 6.77 2.33 6.05 2.57 5.42C2.82 4.76 3.21 4.16 3.71 3.66C4.26 3.11 4.81 2.77 5.47 2.52C6.1 2.28 6.82 2.11 7.88 2.06C8.94 2.01 9.28 2 12 2ZM12 7.38C9.44 7.38 7.38 9.44 7.38 12C7.38 14.56 9.44 16.62 12 16.62C14.56 16.62 16.62 14.56 16.62 12C16.62 9.44 14.56 7.38 12 7.38ZM12 15C10.34 15 9 13.66 9 12C9 10.34 10.34 9 12 9C13.66 9 15 10.34 15 12C15 13.66 13.66 15 12 15ZM18.4 7.2C18.4 7.86 17.86 8.4 17.2 8.4C16.54 8.4 16 7.86 16 7.2C16 6.54 16.54 6 17.2 6C17.86 6 18.4 6.54 18.4 7.2Z"/>
+
+        </svg>
+
+      </a>
+
+
+
+      <!-- LinkedIn -->
+
+      <a
+        href="https://www.linkedin.com/company/wirelesscommunicationsplus/"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+        >
+
+          <path d="M20.45 20.45H16.9V14.88C16.9 13.55 16.87 11.85 15.05 11.85C13.2 11.85 12.92 13.29 12.92 14.79V20.45H9.36V9H12.77V10.56H12.82C13.3 9.66 14.46 8.71 16.19 8.71C19.79 8.71 20.45 11.08 20.45 14.17V20.45ZM5.34 7.43C4.19 7.43 3.26 6.5 3.26 5.34C3.26 4.19 4.19 3.26 5.34 3.26C6.49 3.26 7.43 4.19 7.43 5.34C7.43 6.5 6.49 7.43 5.34 7.43ZM7.12 20.45H3.56V9H7.12V20.45Z"/>
+
+        </svg>
+
+      </a>
+
+
+    </div>
+
+
+    &copy; 2026 Wireless Communications Plus
+    — Rogers Authorized Dealer
+
+
+  </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
+
+Paul Youm
+Inventory Manager
+(416) 419-7229
+Wireless Communication Plus
+
+On Aug 14, 2026, at 2:52 PM, WCP marketing <marketing@wcpwireless.com> wrote:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wireless Communications Plus | Rogers Authorized Dealer | Canada-Wide Business Services</title>
 <meta name="description" content="WCP is a Rogers Authorized Dealer serving businesses of every size across Canada since 1990. Get a free business wireless review from a local account manager.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
