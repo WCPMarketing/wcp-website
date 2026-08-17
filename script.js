@@ -23,6 +23,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ---- Plan tier tabs (Business Wireless page) ----
+  var planTabBtns = document.querySelectorAll('.plan-tab-btn');
+  var planTabPanels = document.querySelectorAll('.plan-tab-panel');
+
+  function activatePlanTab(targetId) {
+    planTabBtns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.target === targetId);
+    });
+    planTabPanels.forEach(function (panel) {
+      panel.classList.toggle('active', panel.id === targetId);
+    });
+  }
+
+  if (planTabBtns.length && planTabPanels.length) {
+    planTabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        activatePlanTab(btn.dataset.target);
+      });
+    });
+
+    // "View Plans" links at the top of the page should switch tabs, not just scroll
+    document.querySelectorAll('a[href="#small-business"], a[href="#corporate-5"], a[href="#corporate-10"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        activatePlanTab(link.getAttribute('href').slice(1));
+      });
+    });
+  }
+
   // ---- Header shadow on scroll ----
   var header = document.querySelector('header.site-header');
   if (header) {
