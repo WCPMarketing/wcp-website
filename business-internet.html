@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Business Internet | Wireless Communications Plus | Rogers Authorized Dealer</title>
-<meta name="description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Advantage WiFi, Business Internet, 5G Business Internet, and Dedicated Fibre.">
+<meta name="description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Business Internet, Business Fibre, Dedicated Fibre, and 5G Business Internet.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
@@ -13,17 +13,17 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wireless Communications Plus">
 <meta property="og:title" content="Business Internet | Wireless Communications Plus | Rogers Authorized Dealer">
-<meta property="og:description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Advantage WiFi, Business Internet, 5G Business Internet, and Dedicated Fibre.">
+<meta property="og:description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Business Internet, Business Fibre, Dedicated Fibre, and 5G Business Internet.">
 <meta property="og:image" content="https://wcpmarketing.github.io/wcp-website/images/og-image.jpg">
 <meta property="og:url" content="https://wcpmarketing.github.io/wcp-website/business-internet.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Business Internet | Wireless Communications Plus | Rogers Authorized Dealer">
-<meta name="twitter:description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Advantage WiFi, Business Internet, 5G Business Internet, and Dedicated Fibre.">
+<meta name="twitter:description" content="Business internet options from WCP, a Rogers Authorized Dealer serving businesses across Canada — Business Internet, Business Fibre, Dedicated Fibre, and 5G Business Internet.">
 <meta name="twitter:image" content="https://wcpmarketing.github.io/wcp-website/images/og-image.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -68,22 +68,22 @@
 
     <div class="feature-strip reveal">
       <div>
-        <div class="feature-icon">⚡</div>
+        <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
         <h4>Fast internet</h4>
         <p>From everyday to blazing fast, scaling with you as your business grows.</p>
       </div>
       <div>
-        <div class="feature-icon">🔗</div>
+        <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
         <h4>Reliable connection</h4>
         <p>Keep productivity on track with wireless backup and 24/7 business support.</p>
       </div>
       <div>
-        <div class="feature-icon">📊</div>
+        <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
         <h4>Predictable cost</h4>
         <p>Choose from term, monthly, and bundled plans with unlimited usage.</p>
       </div>
       <div>
-        <div class="feature-icon">🔒</div>
+        <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/></svg></div>
         <h4>Advanced security</h4>
         <p>Keep your data safe with automatic, network-level security.</p>
       </div>
@@ -113,19 +113,23 @@
         <p>Get online in locations without wired connectivity using the Rogers 5G network — self-setup in minutes.</p>
         <a href="#5g-internet" class="btn-card">See Plans</a>
       </div>
-      <div class="card">
-        <h3>Advantage WiFi</h3>
-        <p>Fully managed, wall-to-wall WiFi with 24/7 support, wireless backup, and separate business and guest networks.</p>
-        <a href="#advantage-wifi" class="btn-card">See Plans</a>
-      </div>
     </div>
 
   </div>
 </section>
 
 <!-- ============ BUSINESS INTERNET ============ -->
-<section id="business-internet" class="section reveal">
+<section class="section" style="padding-top:0;">
   <div class="container">
+
+    <div class="plan-tabs">
+      <button class="plan-tab-btn active" data-target="business-internet">Business Internet</button>
+      <button class="plan-tab-btn" data-target="business-fibre-internet">Business Fibre</button>
+      <button class="plan-tab-btn" data-target="dedicated-fibre">Dedicated Fibre</button>
+      <button class="plan-tab-btn" data-target="5g-internet">5G Business Internet</button>
+    </div>
+
+    <div id="business-internet" class="plan-tab-panel active">
     <h2>Rogers Business Internet</h2>
     <p class="lede">Experience reliable internet performance with unlimited usage and 24/7 support.</p>
 
@@ -205,11 +209,9 @@
       <div class="bundle-card b3">Save an additional $45/mo/line when you bundle internet with an Advantage Mobility plan.</div>
     </div>
   </div>
-</section>
 
-<!-- ============ DEDICATED SHARED FIBRE ============ -->
-<section id="business-fibre-internet" class="section reveal" style="background:var(--surface);">
-  <div class="container">
+    <!-- ============ BUSINESS FIBRE ============ -->
+    <div id="business-fibre-internet" class="plan-tab-panel">
     <h2>Business Fibre Internet</h2>
     <p class="lede">Symmetrical upload and download speeds on a 60-month term — consistent performance for businesses that depend on their connection.</p>
 
@@ -263,12 +265,10 @@
         </ul>
       </div>
     </div>
-  </div>
-</section>
+    </div>
 
-<!-- ============ DEDICATED FIBRE ============ -->
-<section id="dedicated-fibre" class="section reveal">
-  <div class="container">
+    <!-- ============ DEDICATED FIBRE ============ -->
+    <div id="dedicated-fibre" class="plan-tab-panel">
     <h2>Dedicated Fibre Internet</h2>
     <p class="lede">Experience our fastest, most reliable internet with a static IP address, IPv4 support, and optional DDoS protection.</p>
 
@@ -321,12 +321,10 @@
         </ul>
       </div>
     </div>
-  </div>
-</section>
+    </div>
 
-<!-- ============ 5G BUSINESS INTERNET ============ -->
-<section id="5g-internet" class="section reveal" style="background:var(--surface);">
-  <div class="container">
+    <!-- ============ 5G BUSINESS INTERNET ============ -->
+    <div id="5g-internet" class="plan-tab-panel">
     <h2>5G Business Internet</h2>
     <p class="lede">Built for remote businesses, seasonal stores, and work that moves.</p>
 
@@ -378,62 +376,8 @@
       </div>
     </div>
     <p class="term-note">Need more than one device, or have questions? Contact us and we'll help you find the right fit.</p>
-  </div>
-</section>
-
-<!-- ============ ADVANTAGE WIFI ============ -->
-<section id="advantage-wifi" class="section reveal" style="background:var(--surface);">
-  <div class="container">
-    <h2>Advantage WiFi</h2>
-    <p class="lede">Wall-to-wall WiFi with enterprise-grade access points, separate staff &amp; guest networks, and built-in customer insights.</p>
-
-    <ul class="include-strip">
-      <li>✓ Cisco Meraki access points</li>
-      <li>✓ Modem included</li>
-    </ul>
-
-    <div class="plan-grid">
-      <div class="plan-card">
-        <p class="plan-tier-label">Advantage WiFi</p>
-        <h4>300 Mbps</h4>
-        <p class="price">$109<span>.99/mo on a 3-yr term</span></p>
-        <p style="font-size:11px; color:var(--text-muted); margin:-10px 0 14px;">$99 installation fee applies. Price subject to change per contract terms.</p>
-        <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Contact Sales</a>
-        <ul>
-          <li>Up to 300 Mbps download</li>
-          <li>Up to 125 Mbps upload</li>
-          <li>Includes up to 3 network access points</li>
-        </ul>
-      </div>
-
-      <div class="plan-card popular">
-        <span class="badge">Most Popular</span>
-        <p class="plan-tier-label">Advantage WiFi</p>
-        <h4>Gigabit</h4>
-        <p class="price">$129<span>.99/mo on a 3-yr term</span></p>
-        <p style="font-size:11px; color:var(--text-muted); margin:-10px 0 14px;">$99 installation fee applies. Price subject to change per contract terms.</p>
-        <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Contact Sales</a>
-        <ul>
-          <li>Up to 1 Gbps download</li>
-          <li>Up to 150 Mbps upload</li>
-          <li>Includes up to 3 network access points</li>
-        </ul>
-      </div>
-
-      <div class="plan-card">
-        <p class="plan-tier-label">Advantage WiFi</p>
-        <h4>2 Gigabit</h4>
-        <p class="price">$144<span>.99/mo on a 3-yr term</span></p>
-        <p style="font-size:11px; color:var(--text-muted); margin:-10px 0 14px;">$99 installation fee applies. Price subject to change per contract terms.</p>
-        <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Contact Sales</a>
-        <ul>
-          <li>Up to 2 Gbps download</li>
-          <li>Up to 200 Mbps upload, in select areas</li>
-          <li>Includes up to 3 network access points</li>
-        </ul>
-      </div>
     </div>
-    <p class="term-note">Additional plans and wireless backup add-ons are available — contact us for the full list and current pricing.</p>
+
   </div>
 </section>
 
