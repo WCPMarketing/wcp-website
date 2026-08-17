@@ -44,7 +44,7 @@
     }
   };
 
-  var GREETING = "Hi! I'm here to help with Rogers business wireless, internet, and phone plans. What can I help you with?";
+  var GREETING = "Hi, I'm Bob! I'm here to help with Rogers business wireless, internet, and phone plans. What can I help you with?";
 
   // ---------- Inject styles ----------
   var style = document.createElement('style');
@@ -82,14 +82,14 @@
   // ---------- Inject markup ----------
   var launcher = document.createElement('button');
   launcher.className = 'wcp-chat-launcher';
-  launcher.setAttribute('aria-label', 'Open chat');
+  launcher.setAttribute('aria-label', 'Chat with Bob');
   launcher.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
 
   var panel = document.createElement('div');
   panel.className = 'wcp-chat-panel';
   panel.innerHTML =
     '<div class="wcp-chat-header">' +
-      '<div><div class="wcp-chat-header-title">WCP Assistant</div><div class="wcp-chat-header-sub">Rogers Authorized Dealer</div></div>' +
+      '<div><div class="wcp-chat-header-title">Bob · WCP Assistant</div><div class="wcp-chat-header-sub">Rogers Authorized Dealer</div></div>' +
       '<button class="wcp-chat-close" aria-label="Close chat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
     '</div>' +
     '<div class="wcp-chat-messages"></div>' +
