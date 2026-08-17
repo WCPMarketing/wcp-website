@@ -334,7 +334,7 @@ a:focus-visible, button:focus-visible {
   text-align: left;
   margin: 40px 0;
 }
-.feature-strip .feature-icon { font-size: 26px; margin-bottom: 10px; }
+.feature-strip .feature-icon { color: var(--red); margin-bottom: 12px; }
 .feature-strip h4 { font-size: 15px; margin: 0 0 4px; }
 .feature-strip p { font-size: 13px; color: var(--text-muted); margin: 0; }
 
@@ -398,7 +398,7 @@ a:focus-visible, button:focus-visible {
   margin-top: 20px;
 }
 .addon-card { text-align: left; }
-.addon-card .addon-icon { font-size: 22px; margin-bottom: 10px; }
+.addon-card .addon-icon { color: var(--red); margin-bottom: 12px; }
 .addon-card h4 { font-size: 15px; margin: 0 0 6px; }
 .addon-card p { font-size: 13px; color: var(--text-muted); margin: 0 0 8px; }
 .addon-card a { font-size: 13px; font-weight: 600; color: var(--red); }
