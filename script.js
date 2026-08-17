@@ -43,11 +43,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // "View Plans" links at the top of the page should switch tabs, not just scroll
-    document.querySelectorAll('a[href="#small-business"], a[href="#corporate-5"], a[href="#corporate-10"]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        activatePlanTab(link.getAttribute('href').slice(1));
-      });
+    // Any link pointing to a tab panel (e.g. "See Plans" cards) should switch tabs, not just scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      var targetId = link.getAttribute('href').slice(1);
+      var targetPanel = document.getElementById(targetId);
+      if (targetPanel && targetPanel.classList.contains('plan-tab-panel')) {
+        link.addEventListener('click', function () {
+          activatePlanTab(targetId);
+        });
+      }
     });
   }
 
