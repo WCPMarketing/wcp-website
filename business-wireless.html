@@ -113,18 +113,25 @@
   </div>
 </section>
 
-<!-- ============ SMALL BUSINESS ============ -->
-<section id="small-business" class="section reveal" style="background:var(--surface);">
+<section class="section" style="padding-top:0;">
   <div class="container">
-    <h2>Small Business</h2>
-    <p class="lede">Bring your own device — plans built for small teams that want simple, predictable pricing.</p>
 
-    <ul class="include-strip">
-      <li>✓ All plans include Rogers Satellite</li>
-      <li>✓ Prices include $5/mo Auto Pay discount</li>
-    </ul>
+    <div class="plan-tabs">
+      <button class="plan-tab-btn active" data-target="small-business">Small Business</button>
+      <button class="plan-tab-btn" data-target="corporate-5">5+ Lines Corporate</button>
+      <button class="plan-tab-btn" data-target="corporate-10">10+ Lines Corporate</button>
+    </div>
 
-    <div class="plan-grid">
+    <!-- ============ SMALL BUSINESS ============ -->
+    <div id="small-business" class="plan-tab-panel active">
+      <p class="lede">Bring your own device — plans built for small teams that want simple, predictable pricing.</p>
+
+      <ul class="include-strip">
+        <li>✓ All plans include Rogers Satellite</li>
+        <li>✓ Prices include $5/mo Auto Pay discount</li>
+      </ul>
+
+      <div class="plan-grid">
 
       <div class="plan-card popular">
         <span class="badge">Most Popular</span>
@@ -198,21 +205,17 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ============ 5+ LINES CORPORATE ============ -->
-<section id="corporate-5" class="section reveal">
-  <div class="container">
-    <h2>5+ Lines Corporate</h2>
-    <p class="lede">Pooled data plans for growing teams.</p>
+    <!-- ============ 5+ LINES CORPORATE ============ -->
+    <div id="corporate-5" class="plan-tab-panel">
+      <p class="lede">Pooled data plans for growing teams.</p>
 
-    <ul class="include-strip">
-      <li>✓ Unlimited calling to Canada &amp; USA</li>
-      <li>✓ Unlimited messaging from Canada to Canada, USA &amp; international</li>
-    </ul>
+      <ul class="include-strip">
+        <li>✓ Unlimited calling to Canada &amp; USA</li>
+        <li>✓ Unlimited messaging from Canada to Canada, USA &amp; international</li>
+      </ul>
 
-    <div class="plan-grid">
+      <div class="plan-grid">
 
       <div class="plan-card">
         <h4>10GB Pooled</h4>
@@ -308,21 +311,17 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ============ 10+ LINES CORPORATE ============ -->
-<section id="corporate-10" class="section reveal" style="background:var(--surface);">
-  <div class="container">
-    <h2>10+ Lines Corporate</h2>
-    <p class="lede">Pooled data plans with dedicated account support for larger teams.</p>
+    <!-- ============ 10+ LINES CORPORATE ============ -->
+    <div id="corporate-10" class="plan-tab-panel">
+      <p class="lede">Pooled data plans with dedicated account support for larger teams.</p>
 
-    <ul class="include-strip">
-      <li>✓ Unlimited calling to Canada &amp; USA</li>
-      <li>✓ Unlimited messaging from Canada to Canada, USA &amp; international</li>
-    </ul>
+      <ul class="include-strip">
+        <li>✓ Unlimited calling to Canada &amp; USA</li>
+        <li>✓ Unlimited messaging from Canada to Canada, USA &amp; international</li>
+      </ul>
 
-    <div class="plan-grid">
+      <div class="plan-grid">
 
       <div class="plan-card">
         <h4>10GB Pooled</h4>
@@ -410,8 +409,12 @@
 
     </div>
 
+  </div>
+</section>
 
-    <h3 style="margin-top:48px;">Extra features available</h3>
+<section class="section" style="background:var(--surface);">
+  <div class="container">
+    <h3 style="margin-top:0;">Extra features available</h3>
     <div class="addon-grid">
       <div class="addon-card">
         <div class="addon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/></svg></div>
