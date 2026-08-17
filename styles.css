@@ -363,21 +363,61 @@ a:focus-visible, button:focus-visible {
 .plan-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  gap: 20px;
+  align-items: start;
 }
 .plan-card {
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  padding: 24px 20px;
   background: var(--white);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
+.plan-card:hover {
+  box-shadow: 0 12px 30px rgba(20,22,26,0.07);
+  transform: translateY(-3px);
+}
+.plan-card.popular {
+  border: 2px solid var(--dark);
+  box-shadow: 0 14px 32px rgba(20,22,26,0.1);
+  position: relative;
+}
+.plan-card.popular:hover { transform: translateY(-5px); }
 .plan-card h4 { font-size: 15px; margin: 0 0 2px; }
 .plan-card .device-note { font-size: 12px; color: var(--text-muted); margin: 0 0 14px; }
-.plan-card .price { font-size: 26px; font-weight: 700; margin: 0 0 14px; }
-.plan-card .price span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+.plan-card .price { font-family: var(--font-display); font-size: 28px; font-weight: 600; margin: 0 0 14px; }
+.plan-card .price span { font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--text-muted); }
 .plan-card ul { list-style: none; padding: 0; margin: 16px 0 0; font-size: 13px; color: var(--text-muted); }
 .plan-card ul li { padding: 6px 0; border-top: 1px solid var(--border); }
 .plan-card ul li:first-child { border-top: none; }
+
+/* ---- Plan tier tabs ---- */
+.plan-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 40px;
+  flex-wrap: wrap;
+}
+.plan-tab-btn {
+  background: none;
+  border: none;
+  padding: 14px 4px;
+  margin-right: 32px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.plan-tab-btn:hover { color: var(--dark); }
+.plan-tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+.plan-tab-panel { display: none; }
+.plan-tab-panel.active { display: block; }
+@media (max-width: 700px) {
+  .plan-tabs { gap: 0; }
+  .plan-tab-btn { margin-right: 20px; font-size: 14px; }
+}
 
 .include-strip {
   display: grid;
