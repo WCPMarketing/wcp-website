@@ -49,7 +49,11 @@
   // ---------- Inject styles ----------
   var style = document.createElement('style');
   style.textContent = [
-    '.wcp-chat-launcher{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:var(--red,#B40E2A);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.25);z-index:9999;display:flex;align-items:center;justify-content:center;transition:transform 0.2s ease;}',
+    '@keyframes wcpPopIn{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.12);opacity:1;}100%{transform:scale(1);}}',
+    '@keyframes wcpPanelIn{0%{transform:translateY(16px) scale(0.97);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}',
+    '.wcp-chat-panel.open{animation:wcpPanelIn 0.28s ease-out both;}',
+    '@media (prefers-reduced-motion: reduce){.wcp-chat-launcher,.wcp-chat-panel.open{animation:none !important;}}',
+    '.wcp-chat-launcher{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:var(--red,#B40E2A);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.25);z-index:9999;display:flex;align-items:center;justify-content:center;transition:transform 0.2s ease;animation:wcpPopIn 0.5s cubic-bezier(.34,1.56,.64,1) both;}',
     '.wcp-chat-launcher:hover{transform:scale(1.06);}',
     '.wcp-chat-launcher svg{width:26px;height:26px;}',
     '.wcp-chat-panel{position:fixed;bottom:92px;right:22px;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 140px);background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.25);z-index:9999;display:none;flex-direction:column;overflow:hidden;font-family:var(--font-body,Inter,sans-serif);}',
@@ -263,5 +267,24 @@
     if (panel.classList.contains('open')) { closePanel(); } else { openPanel(); }
   });
   closeBtn.addEventListener('click', closePanel);
+
+  // Auto pop-open shortly after page load, but only once per browser session —
+  // not every time the visitor navigates to a new page.
+  var AUTO_OPEN_KEY = 'wcpBobAutoOpened';
+  var alreadyAutoOpened = false;
+  try {
+    alreadyAutoOpened = window.sessionStorage.getItem(AUTO_OPEN_KEY) === '1';
+  } catch (e) {
+    // sessionStorage unavailable (e.g. privacy mode) — fall back to opening once per page
+  }
+
+  if (!alreadyAutoOpened) {
+    window.setTimeout(function () {
+      if (!panel.classList.contains('open')) {
+        openPanel();
+      }
+      try { window.sessionStorage.setItem(AUTO_OPEN_KEY, '1'); } catch (e) {}
+    }, 1200);
+  }
 
 })();
