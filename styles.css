@@ -767,7 +767,7 @@ header.site-header.scrolled {
   border-radius: 12px;
   padding: 24px;
 }
-.award-card .icon { font-size: 40px; }
+.award-card .icon { color: var(--red); }
 .award-card h3 { margin: 0 0 6px; }
 .award-card p { margin: 0; font-size: 14px; color: var(--text-muted); }
 
