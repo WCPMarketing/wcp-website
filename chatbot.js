@@ -284,7 +284,7 @@
         openPanel();
       }
       try { window.sessionStorage.setItem(AUTO_OPEN_KEY, '1'); } catch (e) {}
-    }, 1200);
+    }, 12000);
   }
 
 })();
