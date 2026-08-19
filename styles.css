@@ -71,6 +71,38 @@ header.site-header .container {
 .main-nav { display: flex; gap: 28px; font-size: 15px; }
 .main-nav a:hover { color: var(--red); }
 
+/* ---- Nav dropdown (Rogers Business Services) ---- */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 5px; }
+.nav-dropdown-toggle svg { flex: 0 0 auto; transition: transform 0.15s ease; }
+.nav-dropdown:hover .nav-dropdown-toggle svg,
+.nav-dropdown:focus-within .nav-dropdown-toggle svg { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+  padding: 8px;
+  min-width: 210px;
+  z-index: 60;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text);
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover { background: var(--surface); color: var(--red); }
+
 /* ---- Hero ---- */
 .hero {
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)), var(--dark);
@@ -566,13 +598,33 @@ header.site-header.scrolled {
     transition: max-height 0.3s ease;
     box-shadow: 0 8px 16px rgba(0,0,0,0.06);
   }
-  .main-nav.open { max-height: 300px; }
+  .main-nav.open { max-height: 700px; }
   .main-nav a {
     padding: 16px 24px;
     border-top: 1px solid var(--border);
     font-size: 16px;
   }
   .main-nav a::after { display: none; }
+
+  /* Nav dropdown becomes an always-expanded inline sublist on mobile,
+     since hover doesn't work on touch */
+  .nav-dropdown-menu {
+    display: block;
+    position: static;
+    margin-top: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    background: var(--surface);
+    min-width: 0;
+  }
+  .nav-dropdown-menu a {
+    padding: 14px 24px 14px 40px;
+    border-top: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .nav-dropdown-toggle svg { display: none; }
 
   /* Ensure comfortable tap targets on mobile */
   .btn, .btn-card { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
