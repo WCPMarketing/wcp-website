@@ -483,6 +483,16 @@ a:focus-visible, button:focus-visible {
   max-width: 900px;
   margin: 32px auto 0;
 }
+.line-gate-options.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1080px;
+}
+@media (max-width: 900px) {
+  .line-gate-options.cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .line-gate-options.cols-4 { grid-template-columns: 1fr; }
+}
 button.line-gate-card {
   background: var(--white);
   border: 2px solid var(--border);
