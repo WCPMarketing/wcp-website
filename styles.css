@@ -65,7 +65,7 @@ header.site-header .container {
   padding-bottom: 16px;
 }
 .logo-block { display: flex; flex-direction: row; align-items: center; gap: 16px; }
-.logo-block .divider { width: 1px; height: 32px; background: var(--border); flex: 0 0 auto; }
+.logo-block .divider { width: 1px; height: 48px; background: var(--border); flex: 0 0 auto; }
 .logo-block .company { font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; text-transform: uppercase; }
 .logo-block .rogers { font-size: 17px; font-weight: 700; color: var(--red); }
 .main-nav { display: flex; gap: 28px; font-size: 15px; }
@@ -305,7 +305,7 @@ a:focus-visible, button:focus-visible {
 
 /* ---- Real logo images ---- */
 .logo-block img.wcp-logo {
-  height: 40px;
+  height: 68px;
   width: auto;
   display: block;
 }
@@ -315,9 +315,9 @@ a:focus-visible, button:focus-visible {
   display: block;
 }
 @media (max-width: 700px) {
-  .logo-block img.wcp-logo { height: 30px; }
+  .logo-block img.wcp-logo { height: 46px; }
   .dealer-badge { height: 30px; }
-  .logo-block .divider { height: 22px; }
+  .logo-block .divider { height: 32px; }
 }
 
 /* ---- Contact page responsive ---- */
