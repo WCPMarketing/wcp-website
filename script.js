@@ -40,6 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
     planTabBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         activatePlanTab(btn.dataset.target);
+        if (btn.classList.contains('line-gate-card')) {
+          var revealed = document.getElementById(btn.dataset.target);
+          if (revealed) {
+            window.setTimeout(function () {
+              revealed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+          }
+        }
       });
     });
 
