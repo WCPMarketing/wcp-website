@@ -10,6 +10,16 @@
   var PHONE = '1-833-844-1977';
   var PHONE_HREF = 'tel:+18338441977';
 
+  // Send events to Google Analytics (GA4) if it's loaded on the page.
+  // Never throws — if gtag is blocked (ad blockers) or missing, this just does nothing.
+  function trackEvent(eventName, params) {
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params || {});
+      }
+    } catch (e) { /* tracking should never break the chat experience */ }
+  }
+
   // ---------- Content: menu options and their responses ----------
   var MENU = [
     { id: 'wireless', label: 'Business wireless plans' },
@@ -194,6 +204,7 @@
       }).then(function (res) {
         if (res.ok) {
           clearOptions();
+          trackEvent('bob_lead_submitted', { page_path: window.location.pathname });
           addBotMessage("Thanks! A WCP business specialist will reach out shortly. You can also call " + PHONE + " anytime.");
         } else {
           submitBtn.disabled = false;
@@ -213,6 +224,7 @@
   function handleSelection(id, label) {
     addUserMessage(label);
     clearOptions();
+    trackEvent('bob_option_click', { option_id: id, option_label: label });
 
     if (id === 'menu') {
       addBotMessage(RESPONSES.menu.text);
@@ -254,6 +266,7 @@
     panel.classList.add('open');
     if (!started) {
       started = true;
+      trackEvent('bob_opened', { page_path: window.location.pathname });
       addBotMessage(GREETING);
       showMenuOptions();
     }
