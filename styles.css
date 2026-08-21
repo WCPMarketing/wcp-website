@@ -245,6 +245,11 @@ header.site-header .container {
   padding: 24px;
   background: var(--white);
 }
+.card-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .card.featured {
   border: 2px solid var(--red);
   position: relative;
@@ -263,7 +268,7 @@ header.site-header .container {
   margin-bottom: 16px;
 }
 .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--dark); margin: 0 0 8px; }
-.card p { font-size: 14px; color: var(--text-muted); margin: 0 0 14px; line-height: 1.45; }
+.card p { font-size: 14px; color: var(--text-muted); margin: 0 0 14px; line-height: 1.45; flex: 1 0 auto; }
 .btn-card {
   display: inline-block;
   padding: 9px 16px;
@@ -272,6 +277,8 @@ header.site-header .container {
   border-radius: var(--radius);
   font-size: 13px;
   font-weight: 600;
+  margin-top: auto;
+  align-self: flex-start;
 }
 .btn-card:hover { background: var(--red); color: var(--white); }
 
