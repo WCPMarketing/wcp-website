@@ -292,73 +292,76 @@ header.site-header .container {
 .why-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--text-muted); }
 
 /* ---- Why WCP: 3-card layout + highlighted banner ---- */
-.why-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 32px;
+.why-numbered-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-.why-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px 24px;
+.why-numbered-item {
+  flex: 1 1 240px;
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
 }
-.why-card .check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(180,14,42,0.08);
-  color: var(--red);
-  margin-bottom: 16px;
-}
-.why-card h3 {
+.why-numbered-item:last-child { border-right: none; }
+.why-num {
+  display: block;
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 40px;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.why-numbered-item h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
   color: var(--dark);
   margin: 0 0 8px;
 }
-.why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+.why-numbered-item p { font-size: 14px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+@media (max-width: 700px) {
+  .why-numbered-grid { flex-direction: column; }
+  .why-numbered-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .why-numbered-item:last-child { border-bottom: none; }
+}
 
 .why-banner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
-  background: var(--dark);
-  border-radius: 14px;
-  padding: 28px 32px;
-  margin-top: 20px;
+  gap: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 40px 36px;
+  margin-top: 40px;
+  background-image: linear-gradient(120deg, rgba(10,11,14,0.9), rgba(10,11,14,0.72)), url('images/hero-office-meeting.jpg');
+  background-size: cover;
+  background-position: center;
 }
-.why-banner-text { display: flex; align-items: flex-start; gap: 14px; }
-.why-banner .check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-  flex: 0 0 auto;
+.why-banner-text { max-width: 480px; }
+.why-banner-eyebrow {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #E8B4BC;
+  margin-bottom: 10px;
 }
 .why-banner h3 {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 24px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
   color: #fff;
-  margin: 0 0 4px;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
 }
-.why-banner p { font-size: 13.5px; color: rgba(255,255,255,0.65); margin: 0; }
+.why-banner p { font-size: 14.5px; color: rgba(255,255,255,0.72); margin: 0; }
 .why-banner .btn-primary { flex: 0 0 auto; white-space: nowrap; }
 
 .why-tagline { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 24px; }
