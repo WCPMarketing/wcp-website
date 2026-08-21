@@ -186,7 +186,7 @@ header.site-header .container {
 /* ---- Storefront photo band ---- */
 .photo-band {
   position: relative;
-  height: 340px;
+  height: clamp(240px, 26vw, 520px);
   overflow: hidden;
 }
 .photo-band img {
@@ -212,7 +212,6 @@ header.site-header .container {
   margin: 0;
 }
 @media (max-width: 700px) {
-  .photo-band { height: 260px; }
   .photo-band p { font-size: 17px; }
 }
 
