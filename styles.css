@@ -363,7 +363,7 @@ footer.site-footer {
   border-bottom: 1px solid rgba(255,255,255,0.1);
   text-align: left;
 }
-.footer-brand img { height: 40px; width: auto; margin-bottom: 16px; }
+.footer-brand img { width: 100%; max-width: 280px; height: auto; margin-bottom: 16px; }
 .footer-brand p {
   font-size: 13px;
   line-height: 1.65;
