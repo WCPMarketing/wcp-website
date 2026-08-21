@@ -447,9 +447,10 @@ a:focus-visible, button:focus-visible {
   display: block;
 }
 @media (max-width: 700px) {
-  .logo-block img.wcp-logo { height: 30px; }
-  .dealer-badge { height: 24px; }
-  .logo-block .divider { height: 22px; }
+  .logo-block img.wcp-logo { height: 16px; }
+  .dealer-badge { height: 13px; }
+  .logo-block .divider { height: 18px; }
+  .logo-block { gap: 10px; }
 }
 
 /* ---- Contact page responsive ---- */
@@ -712,7 +713,7 @@ button.line-gate-card.active .line-gate-range { color: var(--red); }
 /* ================= POLISH PASS ================= */
 
 /* ---- Smooth scrolling ---- */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -1060,7 +1061,9 @@ header.site-header.scrolled {
   background: var(--surface);
   border-radius: 12px;
   padding: 24px;
+  min-width: 0;
 }
+.award-card > div { min-width: 0; }
 .award-card .icon { color: var(--red); }
 .award-card h3 { margin: 0 0 6px; }
 .award-card p { margin: 0; font-size: 14px; color: var(--text-muted); }
@@ -1071,7 +1074,9 @@ header.site-header.scrolled {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 48px;
   align-items: center;
+  min-width: 0;
 }
+.split-content > * { min-width: 0; }
 .split-content img {
   width: 100%;
   height: 100%;
