@@ -1023,6 +1023,15 @@ header.site-header.scrolled {
   background-repeat: no-repeat;
 }
 
+.section-photo-bg {
+  background-image: linear-gradient(180deg, rgba(10,11,14,0.82), rgba(10,11,14,0.88)), var(--section-bg-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-photo-bg h2 { color: #fff; }
+.section-photo-bg .lede { color: rgba(255,255,255,0.75); }
+
 /* ---- About page ---- */
 .about-gallery {
   display: grid;
