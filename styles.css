@@ -575,7 +575,7 @@ a:focus-visible, button:focus-visible {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 .plan-card {
   border: 1px solid var(--border);
@@ -583,7 +583,10 @@ a:focus-visible, button:focus-visible {
   padding: 24px 20px;
   background: var(--white);
   transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
+.plan-card .plan-cta-group { margin-top: auto; padding-top: 14px; }
 .plan-card:hover {
   box-shadow: 0 12px 30px rgba(20,22,26,0.07);
   transform: translateY(-3px);
