@@ -71,7 +71,7 @@
   </div>
 </header>
 
-<section class="hero hero-photo" style="--hero-img: url('images/rogers-storefront.jpg');">
+<section class="hero hero-photo" style="--hero-img: url('images/rogers_pos.jpg');">
   <div class="container">
     <h1>Smarter payments. Stronger business.</h1>
     <p>Accept payments anywhere, manage operations effortlessly, and give your customers the experience they expect with Rogers POS, powered by Clover.</p>
@@ -187,22 +187,81 @@
 
 <section id="contact" class="section form-section reveal">
   <div class="container">
-    <h2>Let's Find the Right Plan for Your Business</h2>
-    <p class="lede">Fill this in and we'll call you back — or reach us directly at 1-833-844-1977.</p>
+    <div class="review-form-layout">
 
-    <form class="lead-form" action="https://formspree.io/f/xvkppvjl" method="POST">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="text" name="business_name" placeholder="Business name" required>
-      <input type="tel" name="phone" placeholder="Phone number" required>
-      <input type="email" name="email" placeholder="Email address" required>
-      <select name="interest" required>
-        <option value="" disabled selected>What are you looking for?</option>
-        <option>Wireless</option>
-        <option>Internet</option>
-        <option>Business phone</option>
-      </select>
-      <button type="submit" class="btn btn-primary">Request My Free Consultation</button>
-    </form>
+      <div class="review-form-intro">
+        <span class="section-eyebrow">FREE PROCESSING REVIEW</span>
+        <h2>Upload your statement. We'll do the homework.</h2>
+        <p class="lede">Send us a recent processing statement and a WCP business specialist will review your current rates and available options.</p>
+
+        <div class="review-benefits">
+          <div class="review-benefit">
+            <span>✓</span>
+            <div>
+              <strong>Review your current rates</strong>
+              <p>We'll look at what you're currently paying in transaction fees and add-ons.</p>
+            </div>
+          </div>
+          <div class="review-benefit">
+            <span>✓</span>
+            <div>
+              <strong>Identify opportunities</strong>
+              <p>We'll check available Rogers POS options that may better fit your business.</p>
+            </div>
+          </div>
+          <div class="review-benefit">
+            <span>✓</span>
+            <div>
+              <strong>Talk to a real person</strong>
+              <p>Your review is handled by a WCP business specialist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="lead-form bill-review-form" action="https://formspree.io/f/xvkppvjl" method="POST" enctype="multipart/form-data">
+        <div class="form-heading">
+          <h3>Get My Free Processing Review</h3>
+          <p>Tell us a little about your business.</p>
+        </div>
+
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+          <input type="text" name="business_name" placeholder="Business name" autocomplete="organization" required>
+        </div>
+
+        <div class="form-row">
+          <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" required>
+          <input type="email" name="email" placeholder="Email address" autocomplete="email" required>
+        </div>
+
+        <select name="interest" required>
+          <option value="" disabled selected>What can we help you with?</option>
+          <option value="Current processing review">Review my current processing rates</option>
+          <option value="New POS setup">New POS setup</option>
+          <option value="Switching provider">Switching from another provider</option>
+          <option value="Not sure">I'm not sure yet</option>
+        </select>
+
+        <div class="bill-upload">
+          <label for="bill-upload">
+            <span class="upload-icon">↑</span>
+            <span class="upload-copy">
+              <strong>Upload your current statement</strong>
+              <small>Optional — PDF, JPG or PNG</small>
+            </span>
+          </label>
+          <input type="file" id="bill-upload" name="current_statement" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+        </div>
+
+        <textarea name="message" rows="4" placeholder="Anything else you'd like us to know? (optional)"></textarea>
+
+        <button type="submit" class="btn btn-primary">Get My Free Processing Review</button>
+
+        <p class="form-disclaimer">🔒 Your statement is kept private and used only to review your business services. No obligation. Prefer to talk? <a href="tel:+18338441977">Call 1-833-844-1977</a></p>
+      </form>
+
+    </div>
   </div>
 </section><div class="footer-cta">
   <div class="container">
