@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<section class="hero hero-photo" style="--hero-img: url('images/hero-professional-call.jpg');">
+<section
+    class="hero hero-photo"
+    style="--hero-img: url('<?php echo esc_url(get_template_directory_uri() . '/images/hero-professional-call.jpg'); ?>');"
+>
 <div class="container">
 <h1>Mobile plans made for your business</h1>
 <p>Help your team work together seamlessly — with plans backed by local, dealer-direct support instead of a call centre.</p>
@@ -452,5 +455,5 @@
 
     </div>
   </div>
-</section><div class="footer-cta">
+</section>
 <?php get_footer(); ?>
