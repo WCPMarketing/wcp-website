@@ -2679,3 +2679,477 @@ add_action(
     'acf/init',
     'wcp_register_phone_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| FLEET MANAGEMENT - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_fleet_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $fleet_page = get_page_by_path('fleet-management');
+
+    if (!$fleet_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_fleet_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_fleet_' . $key,
+            'label'         => $label,
+            'name'          => 'fleet_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 3
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_fleet_' . $key,
+            'label'         => $label,
+            'name'          => 'fleet_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Best-in-class fleet monitoring, all in one place'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Control costs, increase driver safety, simplify compliance, and decrease downtime with Rogers Fleet Management.'
+    );
+
+    $add_text(
+        'hero_button',
+        'Hero Button Text',
+        'Speak With a Fleet Specialist'
+    );
+
+
+    $fields[] = array(
+        'key'           => 'field_fleet_hero_image',
+        'label'         => 'Hero Image',
+        'name'          => 'fleet_hero_image',
+        'type'          => 'image',
+        'return_format' => 'url',
+        'preview_size'  => 'medium',
+        'library'       => 'all',
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BENEFITS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'benefits',
+        'Benefits'
+    );
+
+    $add_text(
+        'benefits_heading',
+        'Section Heading',
+        'Drive change with fleet management'
+    );
+
+    $add_textarea(
+        'benefits_intro',
+        'Section Introduction',
+        'Full insight into your vehicles, so you can steer your business in the right direction.'
+    );
+
+
+    /*
+     * Benefit 1
+     */
+
+    $add_text(
+        'benefit_1_title',
+        'Benefit 1 Title',
+        'Improve safety'
+    );
+
+    $add_textarea(
+        'benefit_1_text',
+        'Benefit 1 Description',
+        'Protect your staff, vehicles, and cargo with alerts and reporting for weather, engine diagnostic data, and driver behaviour.'
+    );
+
+
+    /*
+     * Benefit 2
+     */
+
+    $add_text(
+        'benefit_2_title',
+        'Benefit 2 Title',
+        'Reduce costs'
+    );
+
+    $add_textarea(
+        'benefit_2_text',
+        'Benefit 2 Description',
+        'Decrease downtime, minimize wasteful activities, and maximize fleet operations with route optimization, fuel monitoring, and proactive maintenance.'
+    );
+
+
+    /*
+     * Benefit 3
+     */
+
+    $add_text(
+        'benefit_3_title',
+        'Benefit 3 Title',
+        'Simplify compliance'
+    );
+
+    $add_textarea(
+        'benefit_3_text',
+        'Benefit 3 Description',
+        'Take the administration and bookkeeping out of regulatory compliance with automated reporting and ELDs designed to satisfy all levels of government regulation.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FLEET SOLUTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'solutions',
+        'Fleet Solutions'
+    );
+
+    $add_text(
+        'solutions_heading',
+        'Section Heading',
+        'What fleet management solutions give you'
+    );
+
+    $add_textarea(
+        'solutions_intro',
+        'Section Introduction',
+        'Comprehensive insight into the forces shaping your business — on a single interactive dashboard, available 24/7 on your device.'
+    );
+
+
+    $solutions = array(
+
+        1 => array(
+            'title' => 'Monitoring & Management',
+            'text'  => 'Track vehicle location, speed, and more to optimize operational efficiencies, save costs, and promote safety.',
+        ),
+
+        2 => array(
+            'title' => 'Mixed Fleets',
+            'text'  => 'Leverage a single solution to manage and track your fleet of vehicles, equipment, trailers, or other mobile assets.',
+        ),
+
+        3 => array(
+            'title' => 'Winter Fleets',
+            'text'  => 'Monitor fleet health, improve dispatch efficiency, and optimize asset utilization through winter conditions.',
+        ),
+
+        4 => array(
+            'title' => 'ELDs & HoS Compliance',
+            'text'  => 'Officially certified to comply with the federal ELD mandate and keep everyone on the road safe.',
+        ),
+
+        5 => array(
+            'title' => 'Driver Monitoring & Coaching',
+            'text'  => 'AI dashcams help prevent accidents with immediate alerts for speeding and seatbelt use, along with fuel usage monitoring.',
+        ),
+
+    );
+
+
+    foreach ($solutions as $number => $solution) {
+
+        $add_text(
+            'solution_' . $number . '_title',
+            'Solution ' . $number . ' Title',
+            $solution['title']
+        );
+
+        $add_textarea(
+            'solution_' . $number . '_text',
+            'Solution ' . $number . ' Description',
+            $solution['text']
+        );
+
+        $add_text(
+            'solution_' . $number . '_button',
+            'Solution ' . $number . ' Button Text',
+            'Learn More'
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | VIDEO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'video',
+        'Video'
+    );
+
+    $add_text(
+        'video_heading',
+        'Video Heading',
+        'See it in action'
+    );
+
+    $add_textarea(
+        'video_intro',
+        'Video Description',
+        'A closer look at how Rogers fleet monitoring helps businesses like yours.'
+    );
+
+    $add_text(
+        'video_url',
+        'YouTube Embed URL',
+        'https://www.youtube.com/embed/Q1jGyOwYXVs'
+    );
+
+    $add_text(
+        'video_title',
+        'Video Accessibility Title',
+        'IoT fleet management with Rogers'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | WHY ROGERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'why',
+        'Why Rogers'
+    );
+
+    $add_text(
+        'why_heading',
+        'Section Heading',
+        'Why Rogers for Fleet Management'
+    );
+
+
+    $why_items = array(
+
+        1 => 'Over 20 years of experience delivering carefully selected IoT solutions',
+
+        2 => 'A dedicated service delivery team handles the details, start to finish',
+
+        3 => 'Simple installation — self-install, or certified installers come to you',
+
+        4 => 'Coast-to-coast network options, from 4G LTE and 5G to low-power IoT networks',
+
+    );
+
+
+    foreach ($why_items as $number => $text) {
+
+        $add_textarea(
+            'why_' . $number,
+            'Why Rogers Item ' . $number,
+            $text,
+            2
+        );
+    }
+
+
+    $add_textarea(
+        'why_note',
+        'Technology Partners Note',
+        'Built on trusted technology from industry leaders like Geotab and PowerFleet, turning your vehicle and asset data into actionable safety and operational insights.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FLEET CONSULTATION
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'consultation',
+        'Fleet Consultation'
+    );
+
+    $add_text(
+        'consultation_eyebrow',
+        'Consultation Eyebrow',
+        'FREE FLEET CONSULTATION'
+    );
+
+    $add_text(
+        'consultation_heading',
+        'Consultation Heading',
+        'Tell us about your fleet. We\'ll do the homework.'
+    );
+
+    $add_textarea(
+        'consultation_intro',
+        'Consultation Description',
+        'Share a few details about your vehicles and a WCP business specialist will recommend the right fleet management solution.'
+    );
+
+
+    /*
+     * Benefit 1
+     */
+
+    $add_text(
+        'consultation_1_title',
+        'Consultation Benefit 1 Title',
+        'Review your current setup'
+    );
+
+    $add_textarea(
+        'consultation_1_text',
+        'Consultation Benefit 1 Description',
+        'We\'ll look at your fleet size and how you\'re tracking it today, if at all.'
+    );
+
+
+    /*
+     * Benefit 2
+     */
+
+    $add_text(
+        'consultation_2_title',
+        'Consultation Benefit 2 Title',
+        'Identify opportunities'
+    );
+
+    $add_textarea(
+        'consultation_2_text',
+        'Consultation Benefit 2 Description',
+        'We\'ll match you to the right monitoring and compliance solution for your fleet.'
+    );
+
+
+    /*
+     * Benefit 3
+     */
+
+    $add_text(
+        'consultation_3_title',
+        'Consultation Benefit 3 Title',
+        'Talk to a real person'
+    );
+
+    $add_textarea(
+        'consultation_3_text',
+        'Consultation Benefit 3 Description',
+        'Your consultation is handled by a WCP business specialist.'
+    );
+
+
+    $add_text(
+        'consultation_button',
+        'Form Button Text',
+        'Get My Free Fleet Consultation'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_fleet_management',
+
+        'title' => 'Fleet Management Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $fleet_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_fleet_fields'
+);
