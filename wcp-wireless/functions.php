@@ -5739,3 +5739,478 @@ add_action(
     'acf/init',
     'wcp_register_mastercard_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| CAREERS PAGE - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_careers_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $careers_page = get_page_by_path('careers');
+
+    if (!$careers_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_careers_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_careers_' . $key,
+            'label'         => $label,
+            'name'          => 'careers_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 4
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_careers_' . $key,
+            'label'         => $label,
+            'name'          => 'careers_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_image = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_careers_' . $key,
+            'label'         => $label,
+            'name'          => 'careers_' . $key,
+            'type'          => 'image',
+            'return_format' => 'url',
+            'preview_size'  => 'medium',
+            'library'       => 'all',
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_eyebrow',
+        'Hero Eyebrow',
+        'CAREERS AT WCP'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Build your career with WCP'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Join a team that helps Canadian businesses stay connected with the technology and support they need to succeed.',
+        4
+    );
+
+    $add_text(
+        'hero_button',
+        'Hero Button Text',
+        'View Current Opportunity'
+    );
+
+    $add_image(
+        'hero_image',
+        'Hero Background Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | WHY WORK AT WCP
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'why',
+        'Why Work at WCP'
+    );
+
+    $add_text(
+        'why_heading',
+        'Section Heading',
+        'Why work at WCP?'
+    );
+
+    $add_textarea(
+        'why_intro',
+        'Section Introduction',
+        'We combine the support of an experienced local team with access to leading Rogers business solutions.',
+        3
+    );
+
+
+    $add_text(
+        'why_1_title',
+        'Benefit 1 Heading',
+        'A supportive team'
+    );
+
+    $add_textarea(
+        'why_1_text',
+        'Benefit 1 Description',
+        'Work with experienced people who support each other and share knowledge.',
+        3
+    );
+
+
+    $add_text(
+        'why_2_title',
+        'Benefit 2 Heading',
+        'Opportunity to grow'
+    );
+
+    $add_textarea(
+        'why_2_text',
+        'Benefit 2 Description',
+        'Develop your sales, technology and business skills while building your career.',
+        3
+    );
+
+
+    $add_text(
+        'why_3_title',
+        'Benefit 3 Heading',
+        'Leading technology'
+    );
+
+    $add_textarea(
+        'why_3_text',
+        'Benefit 3 Description',
+        'Help customers choose from Rogers wireless, internet, phone and other business solutions.',
+        3
+    );
+
+
+    $add_text(
+        'why_4_title',
+        'Benefit 4 Heading',
+        'Make an impact'
+    );
+
+    $add_textarea(
+        'why_4_text',
+        'Benefit 4 Description',
+        'Build long-term relationships and help Canadian businesses stay connected and productive.',
+        3
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | LIFE AT WCP
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'life',
+        'Life at WCP'
+    );
+
+    $add_text(
+        'life_heading',
+        'Section Heading',
+        'More than just a workplace'
+    );
+
+    $add_textarea(
+        'life_text',
+        'Section Description',
+        'At WCP, relationships matter. We work hard, support each other, celebrate our successes and focus on creating a positive environment for our team and our customers.',
+        5
+    );
+
+    $add_image(
+        'life_image',
+        'Life at WCP Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | WHAT WE LOOK FOR
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'qualities',
+        'What We Look For'
+    );
+
+    $add_text(
+        'qualities_heading',
+        'Section Heading',
+        'What we look for'
+    );
+
+    $add_text(
+        'quality_1',
+        'Quality 1',
+        'A customer-first mindset'
+    );
+
+    $add_text(
+        'quality_2',
+        'Quality 2',
+        'Strong communication skills'
+    );
+
+    $add_text(
+        'quality_3',
+        'Quality 3',
+        'A willingness to learn'
+    );
+
+    $add_text(
+        'quality_4',
+        'Quality 4',
+        'A positive, team-oriented attitude'
+    );
+
+    $add_text(
+        'quality_5',
+        'Quality 5',
+        'The drive to achieve results'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS ACCOUNT MANAGER
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'job',
+        'Business Account Manager'
+    );
+
+    $add_text(
+        'job_eyebrow',
+        'Job Eyebrow',
+        'CURRENT OPPORTUNITY'
+    );
+
+    $add_text(
+        'job_title',
+        'Job Title',
+        'Business Account Manager'
+    );
+
+    $add_text(
+        'job_location',
+        'Location',
+        'Markham, Ontario'
+    );
+
+    $add_text(
+        'job_type',
+        'Employment Type',
+        'Full Time'
+    );
+
+    $add_textarea(
+        'job_intro',
+        'Job Introduction',
+        'We are looking for a motivated Business Account Manager to join our team and help businesses find the right Rogers communications solutions.',
+        4
+    );
+
+    $add_text(
+        'job_about_heading',
+        'About the Role Heading',
+        'About the role'
+    );
+
+    $add_textarea(
+        'job_about',
+        'About the Role',
+        'As a Business Account Manager, you will build relationships with new and existing business customers, understand their communications needs and recommend solutions that help their businesses operate more effectively.',
+        6
+    );
+
+    $add_text(
+        'job_responsibilities_heading',
+        'Responsibilities Heading',
+        'What you\'ll do'
+    );
+
+    $add_textarea(
+        'job_responsibilities',
+        'Responsibilities',
+        "Develop and manage relationships with business customers\nIdentify new business opportunities and generate leads\nUnderstand customer needs and recommend appropriate Rogers Business solutions\nPrepare proposals and follow up with prospective customers\nManage the sales process from initial contact through activation\nMaintain strong relationships with existing customers\nMeet and exceed individual sales targets",
+        9
+    );
+
+    $add_text(
+        'job_qualifications_heading',
+        'Qualifications Heading',
+        'What we\'re looking for'
+    );
+
+    $add_textarea(
+        'job_qualifications',
+        'Qualifications',
+        "Strong communication and relationship-building skills\nA customer-focused approach\nMotivated and results-oriented attitude\nAbility to work independently and as part of a team\nComfortable learning new technology and business solutions\nPrevious sales or business-to-business experience is an asset",
+        8
+    );
+
+    $add_text(
+        'job_offer_heading',
+        'What We Offer Heading',
+        'What we offer'
+    );
+
+    $add_textarea(
+        'job_offer',
+        'What We Offer',
+        "Competitive compensation structure\nOpportunity to earn performance-based incentives\nTraining and ongoing support\nOpportunity for career growth\nAccess to leading Rogers Business products and solutions\nA supportive and experienced team environment",
+        8
+    );
+
+    $add_text(
+        'job_button',
+        'Apply Button Text',
+        'Apply Now'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | APPLICATION FORM
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'apply',
+        'Application Form'
+    );
+
+    $add_text(
+        'apply_eyebrow',
+        'Application Eyebrow',
+        'JOIN OUR TEAM'
+    );
+
+    $add_text(
+        'apply_heading',
+        'Application Heading',
+        'Apply for Business Account Manager'
+    );
+
+    $add_textarea(
+        'apply_text',
+        'Application Description',
+        'Complete the form below and upload your resume. We look forward to learning more about you.',
+        4
+    );
+
+    $add_text(
+        'apply_form_heading',
+        'Form Heading',
+        'Submit Your Application'
+    );
+
+    $add_text(
+        'apply_button',
+        'Submit Button Text',
+        'Submit Application'
+    );
+
+    $add_textarea(
+        'apply_privacy',
+        'Privacy Message',
+        'Your application and uploaded documents will only be used for recruitment purposes.',
+        3
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_careers',
+
+        'title' => 'Careers Page Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $careers_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_careers_fields'
+);
