@@ -5432,7 +5432,12 @@ function wcp_register_mastercard_fields() {
         'rogers',
         'Rogers Business Advantage'
     );
-
+   
+    $add_image(
+    'rogers_image',
+    'Rogers Business Advantage Image'
+    );
+   
     $add_text(
         'rogers_heading',
         'Section Heading',
