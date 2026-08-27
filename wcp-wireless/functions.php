@@ -5149,3 +5149,593 @@ add_action(
     'acf/init',
     'wcp_register_contact_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| ROGERS BUSINESS MASTERCARD - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_mastercard_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $mastercard_page = get_page_by_path('business-mastercard');
+
+    if (!$mastercard_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_mastercard_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_mastercard_' . $key,
+            'label'         => $label,
+            'name'          => 'mastercard_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 4
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_mastercard_' . $key,
+            'label'         => $label,
+            'name'          => 'mastercard_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_url = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_mastercard_' . $key,
+            'label'         => $label,
+            'name'          => 'mastercard_' . $key,
+            'type'          => 'url',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_image = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_mastercard_' . $key,
+            'label'         => $label,
+            'name'          => 'mastercard_' . $key,
+            'type'          => 'image',
+            'return_format' => 'url',
+            'preview_size'  => 'medium',
+            'library'       => 'all',
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_eyebrow',
+        'Hero Eyebrow',
+        'ROGERS RED WORLD ELITE BUSINESS MASTERCARD'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Make your business spending more rewarding'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Earn cash back on everyday business purchases and unlock additional value when you have an eligible Rogers or Shaw business service.',
+        4
+    );
+
+    $add_text(
+        'hero_button',
+        'Hero Button Text',
+        'Learn More & Apply'
+    );
+
+    $add_url(
+        'hero_button_url',
+        'Hero Button URL',
+        'https://www.rogersbank.com/en/business/'
+    );
+
+    $add_image(
+        'hero_image',
+        'Hero Background Image'
+    );
+
+    $add_image(
+        'card_image',
+        'Business Mastercard Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | KEY BENEFITS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'benefits',
+        'Key Benefits'
+    );
+
+    $add_text(
+        'benefits_heading',
+        'Section Heading',
+        'More value from everyday business spending'
+    );
+
+    $add_textarea(
+        'benefits_intro',
+        'Section Introduction',
+        'The Rogers Red World Elite Business Mastercard combines cash back rewards with benefits designed for eligible Rogers Business customers.'
+    );
+
+
+    /*
+     * Benefit 1
+     */
+
+    $add_text(
+        'benefit_1_title',
+        'Benefit 1 Heading',
+        'No annual fee'
+    );
+
+    $add_textarea(
+        'benefit_1_text',
+        'Benefit 1 Description',
+        'Enjoy the card with a $0 annual fee.'
+    );
+
+
+    /*
+     * Benefit 2
+     */
+
+    $add_text(
+        'benefit_2_title',
+        'Benefit 2 Heading',
+        'Earn 2% cash back'
+    );
+
+    $add_textarea(
+        'benefit_2_text',
+        'Benefit 2 Description',
+        'Earn 2% cash back on eligible purchases when you have an eligible Rogers or Shaw business service.'
+    );
+
+
+    /*
+     * Benefit 3
+     */
+
+    $add_text(
+        'benefit_3_title',
+        'Benefit 3 Heading',
+        '3% cash back in U.S. dollars'
+    );
+
+    $add_textarea(
+        'benefit_3_text',
+        'Benefit 3 Description',
+        'Earn 3% cash back on eligible purchases made in U.S. dollars.'
+    );
+
+
+    /*
+     * Benefit 4
+     */
+
+    $add_text(
+        'benefit_4_title',
+        'Benefit 4 Heading',
+        '1.5x redemption bonus'
+    );
+
+    $add_textarea(
+        'benefit_4_text',
+        'Benefit 4 Description',
+        'Redeem cash back for eligible Rogers, Fido, Shaw or Comwave purchases at 1.5 times the regular redemption value. This benefit is changing effective November 18, 2026.'
+    );
+
+
+    /*
+     * Benefit 5
+     */
+
+    $add_text(
+        'benefit_5_title',
+        'Benefit 5 Heading',
+        '5 Roam Like Home days'
+    );
+
+    $add_textarea(
+        'benefit_5_text',
+        'Benefit 5 Description',
+        'Eligible Rogers business mobile customers can receive 5 Roam Like Home days at no cost each year. This benefit is changing effective January 12, 2027.'
+    );
+
+
+    /*
+     * Benefit 6
+     */
+
+    $add_text(
+        'benefit_6_title',
+        'Benefit 6 Heading',
+        'Business support benefits'
+    );
+
+    $add_textarea(
+        'benefit_6_text',
+        'Benefit 6 Description',
+        'Access proactive identity and cybersecurity support through Cyberscout and unlimited 24/7 legal-support hotline access through My Friendly Lawyer.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROGERS BUSINESS ADVANTAGE
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'rogers',
+        'Rogers Business Advantage'
+    );
+
+    $add_text(
+        'rogers_heading',
+        'Section Heading',
+        'Being a Rogers Business customer can be even more rewarding'
+    );
+
+    $add_textarea(
+        'rogers_intro',
+        'Section Description',
+        'Having an eligible Rogers or Shaw business service can unlock the card\'s enhanced 2% cash back earn rate on eligible purchases.'
+    );
+
+    $add_text(
+        'rogers_item_1',
+        'Eligible Service 1',
+        'Rogers Business mobile'
+    );
+
+    $add_text(
+        'rogers_item_2',
+        'Eligible Service 2',
+        'Rogers Business Internet'
+    );
+
+    $add_text(
+        'rogers_item_3',
+        'Eligible Service 3',
+        'Rogers Business TV'
+    );
+
+    $add_text(
+        'rogers_item_4',
+        'Eligible Service 4',
+        'Rogers Business Phone'
+    );
+
+    $add_text(
+        'rogers_item_5',
+        'Eligible Service 5',
+        'Eligible Shaw Business services'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ADDITIONAL BENEFITS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'additional',
+        'Additional Benefits'
+    );
+
+    $add_text(
+        'additional_heading',
+        'Section Heading',
+        'More benefits for your business'
+    );
+
+
+    $add_text(
+        'additional_1_title',
+        'Additional Benefit 1 Heading',
+        'Purchase protection & extended warranty'
+    );
+
+    $add_textarea(
+        'additional_1_text',
+        'Additional Benefit 1 Description',
+        'Eligible purchases include purchase protection and extended warranty insurance, subject to the applicable insurance terms and conditions.'
+    );
+
+
+    $add_text(
+        'additional_2_title',
+        'Additional Benefit 2 Heading',
+        'Travel benefits'
+    );
+
+    $add_textarea(
+        'additional_2_text',
+        'Additional Benefit 2 Description',
+        'The card includes eligible travel insurance benefits and access to Mastercard Travel Pass. Terms, exclusions and upcoming benefit changes apply.'
+    );
+
+
+    $add_text(
+        'additional_3_title',
+        'Additional Benefit 3 Heading',
+        'Mastercard Travel Pass'
+    );
+
+    $add_textarea(
+        'additional_3_text',
+        'Additional Benefit 3 Description',
+        'Complimentary Mastercard Travel Pass membership provides access to more than 1,300 airport lounges worldwide at the applicable per-visit rate.'
+    );
+
+
+    $add_text(
+        'additional_4_title',
+        'Additional Benefit 4 Heading',
+        'Equal Payment Plans'
+    );
+
+    $add_textarea(
+        'additional_4_text',
+        'Additional Benefit 4 Description',
+        'Eligible large purchases can be converted into equal monthly payments over available terms.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ELIGIBILITY
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'eligibility',
+        'Eligibility'
+    );
+
+    $add_text(
+        'eligibility_heading',
+        'Section Heading',
+        'Who can apply?'
+    );
+
+    $add_textarea(
+        'eligibility_intro',
+        'Eligibility Introduction',
+        'The Rogers Red World Elite Business Mastercard is currently available to eligible sole proprietors and is a personal-liability credit card.'
+    );
+
+    $add_text(
+        'eligibility_1',
+        'Eligibility Item 1',
+        'Sole proprietors only'
+    );
+
+    $add_text(
+        'eligibility_2',
+        'Eligibility Item 2',
+        '$80,000 minimum personal annual income or $150,000 household income'
+    );
+
+    $add_text(
+        'eligibility_3',
+        'Eligibility Item 3',
+        'Subject to personal credit assessment and income verification'
+    );
+
+    $add_text(
+        'eligibility_4',
+        'Eligibility Item 4',
+        '$0 annual fee'
+    );
+
+    $add_textarea(
+        'eligibility_note',
+        'Eligibility Note',
+        'Applications for corporations, partnerships and other entity types are not currently accepted. Eligibility and approval are determined by Rogers Bank.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPCOMING CHANGES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'changes',
+        'Upcoming Changes'
+    );
+
+    $add_text(
+        'changes_heading',
+        'Section Heading',
+        'Important upcoming benefit changes'
+    );
+
+    $add_textarea(
+        'changes_intro',
+        'Section Introduction',
+        'Rogers Bank has announced upcoming changes to some rewards, roaming and insurance benefits. Check Rogers Bank for the latest terms before applying.'
+    );
+
+
+    $add_text(
+        'change_1_date',
+        'Change 1 Date',
+        'November 18, 2026'
+    );
+
+    $add_textarea(
+        'change_1_text',
+        'Change 1 Description',
+        'The 1.5x redemption bonus will end. Rogers Bank has also announced a 5% cash back earn rate on certain eligible Rogers purchases, subject to applicable annual limits and terms.'
+    );
+
+
+    $add_text(
+        'change_2_date',
+        'Change 2 Date',
+        'January 12, 2027'
+    );
+
+    $add_textarea(
+        'change_2_text',
+        'Change 2 Description',
+        'The existing 5 Roam Like Home days benefit will be replaced by a $75 annual roaming credit for the Rogers Red World Elite Business Mastercard.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CALL TO ACTION
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'cta',
+        'Call to Action'
+    );
+
+    $add_text(
+        'cta_eyebrow',
+        'CTA Eyebrow',
+        'ROGERS BUSINESS MASTERCARD'
+    );
+
+    $add_text(
+        'cta_heading',
+        'CTA Heading',
+        'Ready to make your business spending work harder?'
+    );
+
+    $add_textarea(
+        'cta_text',
+        'CTA Description',
+        'Visit Rogers Bank to review the latest card benefits, eligibility requirements, rates and terms.'
+    );
+
+    $add_text(
+        'cta_button',
+        'CTA Button Text',
+        'View Rogers Business Mastercard'
+    );
+
+    $add_url(
+        'cta_url',
+        'CTA Button URL',
+        'https://www.rogersbank.com/en/business/'
+    );
+
+    $add_textarea(
+        'disclaimer',
+        'Page Disclaimer',
+        'The Rogers Red World Elite Business Mastercard is issued by Rogers Bank. Eligibility, rewards, insurance, interest rates, fees and benefits are subject to Rogers Bank terms and conditions and may change. WCP does not issue or approve credit cards.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_business_mastercard',
+
+        'title' => 'Rogers Business Mastercard Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $mastercard_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_mastercard_fields'
+);
