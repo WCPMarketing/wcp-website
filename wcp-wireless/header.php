@@ -136,7 +136,11 @@
             <a href="<?php echo esc_url(home_url('/about/')); ?>">
                 About
             </a>
-
+            
+            <a href="<?php echo esc_url(home_url('/careers/')); ?>">
+                Careers
+            </a>
+            
             <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                 Contact
             </a>
