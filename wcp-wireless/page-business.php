@@ -50,10 +50,12 @@ $why_items = array(
 
     array(
         'number' => '01',
+
         'title' => $business_field(
             'why_1_title',
             'Your Own Account Manager'
         ),
+
         'text' => $business_field(
             'why_1_text',
             'No call queues. No bouncing between departments.'
@@ -62,10 +64,12 @@ $why_items = array(
 
     array(
         'number' => '02',
+
         'title' => $business_field(
             'why_2_title',
             'Local, Personal Support'
         ),
+
         'text' => $business_field(
             'why_2_text',
             'Face-to-face service when you need it.'
@@ -74,10 +78,12 @@ $why_items = array(
 
     array(
         'number' => '03',
+
         'title' => $business_field(
             'why_3_title',
             'The Right Rogers Plan'
         ),
+
         'text' => $business_field(
             'why_3_text',
             'We compare across Rogers\' full catalogue to find the best fit for your business.'
@@ -85,6 +91,7 @@ $why_items = array(
     ),
 
 );
+
 
 $banner_eyebrow = $business_field(
     'banner_eyebrow',
@@ -136,7 +143,14 @@ $services_background = $business_field(
 
 $services = array(
 
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS WIRELESS
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
         'title' => $business_field(
             'service_1_title',
             'Business Wireless'
@@ -156,7 +170,14 @@ $services = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS INTERNET
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
         'title' => $business_field(
             'service_2_title',
             'Business Internet'
@@ -176,7 +197,14 @@ $services = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS PHONE
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
         'title' => $business_field(
             'service_3_title',
             'Business Phone'
@@ -196,7 +224,14 @@ $services = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | POINT OF SALE
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
         'title' => $business_field(
             'service_4_title',
             'Point of Sale'
@@ -216,7 +251,14 @@ $services = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | FLEET MANAGEMENT
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
         'title' => $business_field(
             'service_5_title',
             'Fleet Management'
@@ -243,13 +285,17 @@ $services = array(
     */
 
     array(
+
         'title' => 'Rogers Business Mastercard',
 
-        'text' => 'Earn cash back on everyday business purchases and unlock added value when you have an eligible Rogers or Shaw business service.',
+        'text' =>
+            'Earn cash back on everyday business purchases and unlock added value when you have an eligible Rogers or Shaw business service.',
 
-        'button' => 'See Mastercard Benefits',
+        'button' =>
+            'See Mastercard Benefits',
 
-        'url' => home_url('/business-mastercard/'),
+        'url' =>
+            home_url('/business-mastercard/'),
     ),
 
 );
@@ -274,7 +320,22 @@ $testimonials_intro = $business_field(
 
 $testimonials = array(
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | SIMCOE IT SOLUTIONS
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-simcoe-it.png',
+
+        'logo_alt' =>
+            'Simcoe IT Solutions',
+
         'quote' => $business_field(
             'testimonial_1_quote',
             'The WCP team made switching to Rogers Business very painless. I\'d definitely work with them again.'
@@ -292,7 +353,21 @@ $testimonials = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | AVAYA
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-avaya.png',
+
+        'logo_alt' =>
+            'Avaya',
+
         'quote' => $business_field(
             'testimonial_2_quote',
             'I highly recommend the WCP team. During recent contract negotiations with Rogers, they demonstrated strong professionalism and expertise, ensuring a fair and efficient outcome. They\'re approachable, responsive, and always willing to help — and their problem-solving ability means they quickly find practical solutions. Overall, a great experience.'
@@ -310,7 +385,21 @@ $testimonials = array(
     ),
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | OAK VALLEY HEALTH
+    |--------------------------------------------------------------------------
+    */
+
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-oak-valley-health.png',
+
+        'logo_alt' =>
+            'Oak Valley Health',
+
         'quote' => $business_field(
             'testimonial_3_quote',
             'I\'ve worked with the WCP team for over 9 years now. They\'ve looked after our corporate plan for our employees at Markham Stouffville Hospital, keeping our staff up to date with current offers and promotions. Very knowledgeable at what they do.'
@@ -366,6 +455,7 @@ $review_intro = $business_field(
 $review_benefits = array(
 
     array(
+
         'title' => $business_field(
             'review_1_title',
             'Review your current costs'
@@ -377,8 +467,8 @@ $review_benefits = array(
         ),
     ),
 
-
     array(
+
         'title' => $business_field(
             'review_2_title',
             'Identify opportunities'
@@ -390,8 +480,8 @@ $review_benefits = array(
         ),
     ),
 
-
     array(
+
         'title' => $business_field(
             'review_3_title',
             'Talk to a real person'
@@ -456,7 +546,9 @@ $review_button = $business_field(
 
 <section
     class="section reveal"
-    style="background:var(--surface);"
+    style="
+        background:var(--surface);
+    "
 >
 
     <div class="container">
@@ -487,7 +579,7 @@ $review_button = $business_field(
         </div>
 
 
-        <!-- Bottom Line Banner -->
+        <!-- BOTTOM LINE BANNER -->
 
         <div class="why-banner">
 
@@ -595,7 +687,7 @@ $review_button = $business_field(
 ========================================================= -->
 
 <section
-    class="section reveal"
+    class="section reveal testimonials-section"
     style="
         padding-top:64px;
         padding-bottom:64px;
@@ -605,20 +697,17 @@ $review_button = $business_field(
     <div class="container">
 
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($testimonials_heading); ?>
-        </h2>
+        <div class="testimonials-heading">
 
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            <?php echo esc_html($testimonials_intro); ?>
-        </p>
+            <h2>
+                <?php echo esc_html($testimonials_heading); ?>
+            </h2>
+
+            <p class="lede">
+                <?php echo esc_html($testimonials_intro); ?>
+            </p>
+
+        </div>
 
 
         <div class="testimonial-grid">
@@ -627,17 +716,40 @@ $review_button = $business_field(
 
                 <div class="testimonial-card">
 
+
+                    <!-- COMPANY LOGO -->
+
+                    <div class="testimonial-company-logo">
+
+                        <img
+                            src="<?php echo esc_url($testimonial['logo']); ?>"
+                            alt="<?php echo esc_attr($testimonial['logo_alt']); ?>"
+                        >
+
+                    </div>
+
+
+                    <!-- TESTIMONIAL -->
+
                     <p class="testimonial-quote">
                         <?php echo esc_html($testimonial['quote']); ?>
                     </p>
 
-                    <p class="testimonial-attribution">
-                        <?php echo esc_html($testimonial['name']); ?>
-                    </p>
 
-                    <p class="testimonial-role">
-                        <?php echo esc_html($testimonial['role']); ?>
-                    </p>
+                    <!-- ATTRIBUTION -->
+
+                    <div class="testimonial-person">
+
+                        <p class="testimonial-attribution">
+                            <?php echo esc_html($testimonial['name']); ?>
+                        </p>
+
+                        <p class="testimonial-role">
+                            <?php echo esc_html($testimonial['role']); ?>
+                        </p>
+
+                    </div>
+
 
                 </div>
 
@@ -645,6 +757,8 @@ $review_button = $business_field(
 
         </div>
 
+
+        <!-- GOOGLE REVIEW -->
 
         <div class="review-cta">
 
@@ -682,7 +796,9 @@ $review_button = $business_field(
         <div class="review-form-layout">
 
 
-            <!-- REVIEW INTRO -->
+            <!-- =================================================
+                 REVIEW INTRO
+            ================================================== -->
 
             <div class="review-form-intro">
 
@@ -730,7 +846,9 @@ $review_button = $business_field(
             </div>
 
 
-            <!-- BILL REVIEW FORM -->
+            <!-- =================================================
+                 BILL REVIEW FORM
+            ================================================== -->
 
             <form
                 class="lead-form bill-review-form"
@@ -925,16 +1043,14 @@ $review_button = $business_field(
 
 
 <!-- =========================================================
-     BUSINESS SERVICES - SIX CARD RESPONSIVE LAYOUT
+     BUSINESS PAGE ADDITIONAL STYLES
 ========================================================= -->
 
 <style>
 
-/*
-|--------------------------------------------------------------------------
-| BUSINESS SERVICES HEADING
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   BUSINESS SERVICES HEADING
+========================================================= */
 
 .business-services-heading {
     text-align:center;
@@ -953,11 +1069,9 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| SIX CARDS IN ONE ROW
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   BUSINESS SERVICES - SIX ACROSS
+========================================================= */
 
 .card-grid.business-services-six {
     display:grid !important;
@@ -967,15 +1081,14 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| CARD APPEARANCE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   BUSINESS SERVICE CARDS
+========================================================= */
 
 .card-grid.business-services-six .business-service-card {
     display:flex;
     flex-direction:column;
+
     width:100% !important;
     min-width:0 !important;
 
@@ -987,11 +1100,7 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| CARD TITLE
-|--------------------------------------------------------------------------
-*/
+/* TITLE */
 
 .card-grid.business-services-six .business-service-card h3 {
     font-size:17px;
@@ -1001,11 +1110,7 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| CARD TEXT
-|--------------------------------------------------------------------------
-*/
+/* DESCRIPTION */
 
 .card-grid.business-services-six .business-service-card p {
     font-size:13px;
@@ -1015,11 +1120,7 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| BUTTONS ALIGN AT BOTTOM
-|--------------------------------------------------------------------------
-*/
+/* BUTTONS */
 
 .card-grid.business-services-six .business-service-card .btn-card {
     margin-top:auto;
@@ -1031,11 +1132,88 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| SMALLER DESKTOP / LAPTOP
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   TESTIMONIAL HEADING
+========================================================= */
+
+.testimonials-heading {
+    text-align:center;
+    margin-bottom:36px;
+}
+
+.testimonials-heading .lede {
+    max-width:620px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* =========================================================
+   TESTIMONIAL CARDS
+========================================================= */
+
+.testimonial-card {
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* =========================================================
+   COMPANY LOGOS
+========================================================= */
+
+.testimonial-company-logo {
+    height:82px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:22px;
+    padding-bottom:18px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.testimonial-company-logo img {
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:220px;
+    max-height:64px;
+
+    object-fit:contain;
+}
+
+
+/* =========================================================
+   TESTIMONIAL QUOTE
+========================================================= */
+
+.testimonial-quote {
+    flex-grow:1;
+}
+
+
+/* =========================================================
+   TESTIMONIAL PERSON
+========================================================= */
+
+.testimonial-person {
+    margin-top:auto;
+    padding-top:18px;
+}
+
+.testimonial-person .testimonial-attribution {
+    margin-bottom:3px;
+}
+
+
+/* =========================================================
+   SMALL DESKTOP / LAPTOP
+========================================================= */
 
 @media (max-width:1180px) {
 
@@ -1047,11 +1225,9 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| TABLET
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width:760px) {
 
@@ -1062,16 +1238,23 @@ $review_button = $business_field(
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| MOBILE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width:520px) {
 
     .card-grid.business-services-six {
         grid-template-columns:1fr !important;
+    }
+
+    .testimonial-company-logo {
+        height:72px;
+    }
+
+    .testimonial-company-logo img {
+        max-width:190px;
+        max-height:56px;
     }
 
 }
