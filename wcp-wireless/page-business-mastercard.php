@@ -482,7 +482,7 @@ $disclaimer = $mastercard_field(
         </p>
 
 
-        <div class="feature-strip">
+        <div class="feature-strip mastercard-benefits-grid">
 
 
             <?php foreach ($benefits as $benefit) : ?>
