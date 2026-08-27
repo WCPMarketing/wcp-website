@@ -1585,3 +1585,28 @@ header.site-header.scrolled {
   .review-form-intro h2 { font-size: 24px; }
   .upload-copy small { display: block; }
 }
+/* =========================================================
+   HOME SERVICES - SIX CARD LAYOUT
+========================================================= */
+
+.home-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+@media (max-width: 900px) {
+
+    .home-services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .home-services-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
