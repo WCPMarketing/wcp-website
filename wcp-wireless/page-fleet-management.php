@@ -1,21 +1,370 @@
 <?php get_header(); ?>
 
+<?php
 
-<!-- Fleet Hero -->
+/*
+|--------------------------------------------------------------------------
+| FLEET MANAGEMENT - WORDPRESS / ACF CONTENT
+|--------------------------------------------------------------------------
+*/
+
+$fleet_field = function ($name, $fallback = '') {
+
+    if (function_exists('wcp_field')) {
+        return wcp_field('fleet_' . $name, $fallback);
+    }
+
+    return $fallback;
+};
+
+
+/*
+|--------------------------------------------------------------------------
+| HERO
+|--------------------------------------------------------------------------
+*/
+
+$hero_heading = $fleet_field(
+    'hero_heading',
+    'Best-in-class fleet monitoring, all in one place'
+);
+
+$hero_description = $fleet_field(
+    'hero_description',
+    'Control costs, increase driver safety, simplify compliance, and decrease downtime with Rogers Fleet Management.'
+);
+
+$hero_button = $fleet_field(
+    'hero_button',
+    'Speak With a Fleet Specialist'
+);
+
+$hero_image = $fleet_field(
+    'hero_image',
+    get_template_directory_uri() . '/images/hero-office-meeting.jpg'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| BENEFITS
+|--------------------------------------------------------------------------
+*/
+
+$benefits_heading = $fleet_field(
+    'benefits_heading',
+    'Drive change with fleet management'
+);
+
+$benefits_intro = $fleet_field(
+    'benefits_intro',
+    'Full insight into your vehicles, so you can steer your business in the right direction.'
+);
+
+$benefits = array(
+
+    array(
+        'title' => $fleet_field(
+            'benefit_1_title',
+            'Improve safety'
+        ),
+
+        'text' => $fleet_field(
+            'benefit_1_text',
+            'Protect your staff, vehicles, and cargo with alerts and reporting for weather, engine diagnostic data, and driver behaviour.'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'benefit_2_title',
+            'Reduce costs'
+        ),
+
+        'text' => $fleet_field(
+            'benefit_2_text',
+            'Decrease downtime, minimize wasteful activities, and maximize fleet operations with route optimization, fuel monitoring, and proactive maintenance.'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'benefit_3_title',
+            'Simplify compliance'
+        ),
+
+        'text' => $fleet_field(
+            'benefit_3_text',
+            'Take the administration and bookkeeping out of regulatory compliance with automated reporting and ELDs designed to satisfy all levels of government regulation.'
+        ),
+    ),
+
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| FLEET SOLUTIONS
+|--------------------------------------------------------------------------
+*/
+
+$solutions_heading = $fleet_field(
+    'solutions_heading',
+    'What fleet management solutions give you'
+);
+
+$solutions_intro = $fleet_field(
+    'solutions_intro',
+    'Comprehensive insight into the forces shaping your business — on a single interactive dashboard, available 24/7 on your device.'
+);
+
+
+$solutions = array(
+
+    array(
+        'title' => $fleet_field(
+            'solution_1_title',
+            'Monitoring & Management'
+        ),
+
+        'text' => $fleet_field(
+            'solution_1_text',
+            'Track vehicle location, speed, and more to optimize operational efficiencies, save costs, and promote safety.'
+        ),
+
+        'button' => $fleet_field(
+            'solution_1_button',
+            'Learn More'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'solution_2_title',
+            'Mixed Fleets'
+        ),
+
+        'text' => $fleet_field(
+            'solution_2_text',
+            'Leverage a single solution to manage and track your fleet of vehicles, equipment, trailers, or other mobile assets.'
+        ),
+
+        'button' => $fleet_field(
+            'solution_2_button',
+            'Learn More'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'solution_3_title',
+            'Winter Fleets'
+        ),
+
+        'text' => $fleet_field(
+            'solution_3_text',
+            'Monitor fleet health, improve dispatch efficiency, and optimize asset utilization through winter conditions.'
+        ),
+
+        'button' => $fleet_field(
+            'solution_3_button',
+            'Learn More'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'solution_4_title',
+            'ELDs & HoS Compliance'
+        ),
+
+        'text' => $fleet_field(
+            'solution_4_text',
+            'Officially certified to comply with the federal ELD mandate and keep everyone on the road safe.'
+        ),
+
+        'button' => $fleet_field(
+            'solution_4_button',
+            'Learn More'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'solution_5_title',
+            'Driver Monitoring & Coaching'
+        ),
+
+        'text' => $fleet_field(
+            'solution_5_text',
+            'AI dashcams help prevent accidents with immediate alerts for speeding and seatbelt use, along with fuel usage monitoring.'
+        ),
+
+        'button' => $fleet_field(
+            'solution_5_button',
+            'Learn More'
+        ),
+    ),
+
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| VIDEO
+|--------------------------------------------------------------------------
+*/
+
+$video_heading = $fleet_field(
+    'video_heading',
+    'See it in action'
+);
+
+$video_intro = $fleet_field(
+    'video_intro',
+    'A closer look at how Rogers fleet monitoring helps businesses like yours.'
+);
+
+$video_url = $fleet_field(
+    'video_url',
+    'https://www.youtube.com/embed/Q1jGyOwYXVs'
+);
+
+$video_title = $fleet_field(
+    'video_title',
+    'IoT fleet management with Rogers'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| WHY ROGERS
+|--------------------------------------------------------------------------
+*/
+
+$why_heading = $fleet_field(
+    'why_heading',
+    'Why Rogers for Fleet Management'
+);
+
+$why_items = array(
+
+    $fleet_field(
+        'why_1',
+        'Over 20 years of experience delivering carefully selected IoT solutions'
+    ),
+
+    $fleet_field(
+        'why_2',
+        'A dedicated service delivery team handles the details, start to finish'
+    ),
+
+    $fleet_field(
+        'why_3',
+        'Simple installation — self-install, or certified installers come to you'
+    ),
+
+    $fleet_field(
+        'why_4',
+        'Coast-to-coast network options, from 4G LTE and 5G to low-power IoT networks'
+    ),
+
+);
+
+$why_note = $fleet_field(
+    'why_note',
+    'Built on trusted technology from industry leaders like Geotab and PowerFleet, turning your vehicle and asset data into actionable safety and operational insights.'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| FLEET CONSULTATION
+|--------------------------------------------------------------------------
+*/
+
+$consultation_eyebrow = $fleet_field(
+    'consultation_eyebrow',
+    'FREE FLEET CONSULTATION'
+);
+
+$consultation_heading = $fleet_field(
+    'consultation_heading',
+    'Tell us about your fleet. We\'ll do the homework.'
+);
+
+$consultation_intro = $fleet_field(
+    'consultation_intro',
+    'Share a few details about your vehicles and a WCP business specialist will recommend the right fleet management solution.'
+);
+
+
+$consultation_benefits = array(
+
+    array(
+        'title' => $fleet_field(
+            'consultation_1_title',
+            'Review your current setup'
+        ),
+
+        'text' => $fleet_field(
+            'consultation_1_text',
+            'We\'ll look at your fleet size and how you\'re tracking it today, if at all.'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'consultation_2_title',
+            'Identify opportunities'
+        ),
+
+        'text' => $fleet_field(
+            'consultation_2_text',
+            'We\'ll match you to the right monitoring and compliance solution for your fleet.'
+        ),
+    ),
+
+    array(
+        'title' => $fleet_field(
+            'consultation_3_title',
+            'Talk to a real person'
+        ),
+
+        'text' => $fleet_field(
+            'consultation_3_text',
+            'Your consultation is handled by a WCP business specialist.'
+        ),
+    ),
+
+);
+
+
+$consultation_button = $fleet_field(
+    'consultation_button',
+    'Get My Free Fleet Consultation'
+);
+
+?>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section
     class="hero hero-photo"
-    style="--hero-img: url('<?php echo esc_url(get_template_directory_uri() . '/images/hero-office-meeting.jpg'); ?>');"
+    style="--hero-img: url('<?php echo esc_url($hero_image); ?>');"
 >
+
     <div class="container">
 
         <h1>
-            Best-in-class fleet monitoring, all in one place
+            <?php echo esc_html($hero_heading); ?>
         </h1>
 
         <p>
-            Control costs, increase driver safety, simplify compliance, and
-            decrease downtime with Rogers Fleet Management.
+            <?php echo esc_html($hero_description); ?>
         </p>
 
         <div class="actions">
@@ -24,7 +373,7 @@
                 href="<?php echo esc_url(home_url('/contact/')); ?>"
                 class="btn btn-primary"
             >
-                Speak With a Fleet Specialist
+                <?php echo esc_html($hero_button); ?>
             </a>
 
             <a
@@ -37,19 +386,23 @@
         </div>
 
     </div>
+
 </section>
 
 
-<!-- Fleet Benefits -->
+<!-- =========================================================
+     FLEET BENEFITS
+========================================================= -->
 
 <section
     class="section"
     style="padding-bottom:64px;"
 >
+
     <div class="container">
 
         <h2 style="text-align:center;">
-            Drive change with fleet management
+            <?php echo esc_html($benefits_heading); ?>
         </h2>
 
         <p
@@ -60,117 +413,110 @@
                 margin-right:auto;
             "
         >
-            Full insight into your vehicles, so you can steer your business in
-            the right direction.
+            <?php echo esc_html($benefits_intro); ?>
         </p>
 
 
         <div class="feature-strip reveal">
 
-            <div>
 
-                <div class="feature-icon">
+            <?php foreach ($benefits as $index => $benefit) : ?>
 
-                    <svg
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/>
-                    </svg>
+                <div>
+
+                    <div class="feature-icon">
+
+
+                        <?php if ($index === 0) : ?>
+
+                            <svg
+                                width="26"
+                                height="26"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/>
+                            </svg>
+
+
+                        <?php elseif ($index === 1) : ?>
+
+                            <svg
+                                width="26"
+                                height="26"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                />
+
+                                <path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2-3 2.5-3 1.1-3 2.5 1.3 2.5 3 2.5 3-1.1 3-2.5"/>
+                            </svg>
+
+
+                        <?php else : ?>
+
+                            <svg
+                                width="26"
+                                height="26"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                />
+
+                                <path d="M8 12l3 3 5-6"/>
+                            </svg>
+
+                        <?php endif; ?>
+
+
+                    </div>
+
+                    <h4>
+                        <?php echo esc_html($benefit['title']); ?>
+                    </h4>
+
+                    <p>
+                        <?php echo esc_html($benefit['text']); ?>
+                    </p>
 
                 </div>
 
-                <h4>
-                    Improve safety
-                </h4>
+            <?php endforeach; ?>
 
-                <p>
-                    Protect your staff, vehicles, and cargo with alerts and
-                    reporting for weather, engine diagnostic data, and driver
-                    behaviour.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <div class="feature-icon">
-
-                    <svg
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="12" r="9"/>
-                        <path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2-3 2.5-3 1.1-3 2.5 1.3 2.5 3 2.5 3-1.1 3-2.5"/>
-                    </svg>
-
-                </div>
-
-                <h4>
-                    Reduce costs
-                </h4>
-
-                <p>
-                    Decrease downtime, minimize wasteful activities, and
-                    maximize fleet operations with route optimization, fuel
-                    monitoring, and proactive maintenance.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <div class="feature-icon">
-
-                    <svg
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="12" r="9"/>
-                        <path d="M8 12l3 3 5-6"/>
-                    </svg>
-
-                </div>
-
-                <h4>
-                    Simplify compliance
-                </h4>
-
-                <p>
-                    Take the administration and bookkeeping out of regulatory
-                    compliance with automated reporting and ELDs designed to
-                    satisfy all levels of government regulation.
-                </p>
-
-            </div>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- Fleet Solutions -->
+<!-- =========================================================
+     FLEET SOLUTIONS
+========================================================= -->
 
 <section
     class="section reveal"
@@ -180,6 +526,7 @@
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
         <h2
@@ -188,7 +535,7 @@
                 margin-top:48px;
             "
         >
-            What fleet management solutions give you
+            <?php echo esc_html($solutions_heading); ?>
         </h2>
 
         <p
@@ -200,8 +547,7 @@
                 margin:8px auto 0;
             "
         >
-            Comprehensive insight into the forces shaping your business — on a
-            single interactive dashboard, available 24/7 on your device.
+            <?php echo esc_html($solutions_intro); ?>
         </p>
 
 
@@ -210,117 +556,41 @@
             style="margin-top:32px;"
         >
 
-            <div class="card">
 
-                <h3>
-                    Monitoring &amp; Management
-                </h3>
+            <?php foreach ($solutions as $solution) : ?>
 
-                <p>
-                    Track vehicle location, speed, and more to optimize
-                    operational efficiencies, save costs, and promote safety.
-                </p>
+                <div class="card">
 
-                <a
-                    href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="btn-card"
-                >
-                    Learn More
-                </a>
+                    <h3>
+                        <?php echo esc_html($solution['title']); ?>
+                    </h3>
 
-            </div>
+                    <p>
+                        <?php echo esc_html($solution['text']); ?>
+                    </p>
 
+                    <a
+                        href="<?php echo esc_url(home_url('/contact/')); ?>"
+                        class="btn-card"
+                    >
+                        <?php echo esc_html($solution['button']); ?>
+                    </a>
 
-            <div class="card">
+                </div>
 
-                <h3>
-                    Mixed Fleets
-                </h3>
+            <?php endforeach; ?>
 
-                <p>
-                    Leverage a single solution to manage and track your fleet of
-                    vehicles, equipment, trailers, or other mobile assets.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="btn-card"
-                >
-                    Learn More
-                </a>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Winter Fleets
-                </h3>
-
-                <p>
-                    Monitor fleet health, improve dispatch efficiency, and
-                    optimize asset utilization through winter conditions.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="btn-card"
-                >
-                    Learn More
-                </a>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    ELDs &amp; HoS Compliance
-                </h3>
-
-                <p>
-                    Officially certified to comply with the federal ELD mandate
-                    and keep everyone on the road safe.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="btn-card"
-                >
-                    Learn More
-                </a>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Driver Monitoring &amp; Coaching
-                </h3>
-
-                <p>
-                    AI dashcams help prevent accidents with immediate alerts for
-                    speeding and seatbelt use, along with fuel usage monitoring.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="btn-card"
-                >
-                    Learn More
-                </a>
-
-            </div>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- Video -->
+<!-- =========================================================
+     VIDEO
+========================================================= -->
 
 <section
     class="section reveal"
@@ -329,10 +599,11 @@
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
         <h2 style="text-align:center;">
-            See it in action
+            <?php echo esc_html($video_heading); ?>
         </h2>
 
         <p
@@ -344,27 +615,35 @@
                 margin-bottom:32px;
             "
         >
-            A closer look at how Rogers fleet monitoring helps businesses like
-            yours.
+            <?php echo esc_html($video_intro); ?>
         </p>
 
-        <div class="video-embed">
 
-            <iframe
-                src="https://www.youtube.com/embed/Q1jGyOwYXVs"
-                title="IoT fleet management with Rogers"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy"
-            ></iframe>
+        <?php if ($video_url) : ?>
 
-        </div>
+            <div class="video-embed">
+
+                <iframe
+                    src="<?php echo esc_url($video_url); ?>"
+                    title="<?php echo esc_attr($video_title); ?>"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+
+            </div>
+
+        <?php endif; ?>
+
 
     </div>
+
 </section>
 
 
-<!-- Why Rogers -->
+<!-- =========================================================
+     WHY ROGERS
+========================================================= -->
 
 <section
     class="section reveal"
@@ -374,10 +653,11 @@
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
         <h2 style="text-align:center;">
-            Why Rogers for Fleet Management
+            <?php echo esc_html($why_heading); ?>
         </h2>
 
 
@@ -386,29 +666,19 @@
             style="margin-top:24px;"
         >
 
-            <div class="why-item">
-                <span class="icon">✓</span>
-                Over 20 years of experience delivering carefully selected IoT
-                solutions
-            </div>
+            <?php foreach ($why_items as $item) : ?>
 
-            <div class="why-item">
-                <span class="icon">✓</span>
-                A dedicated service delivery team handles the details, start to
-                finish
-            </div>
+                <div class="why-item">
 
-            <div class="why-item">
-                <span class="icon">✓</span>
-                Simple installation — self-install, or certified installers come
-                to you
-            </div>
+                    <span class="icon">
+                        ✓
+                    </span>
 
-            <div class="why-item">
-                <span class="icon">✓</span>
-                Coast-to-coast network options, from 4G LTE and 5G to low-power
-                IoT networks
-            </div>
+                    <?php echo esc_html($item); ?>
+
+                </div>
+
+            <?php endforeach; ?>
 
         </div>
 
@@ -421,16 +691,17 @@
                 max-width:640px;
             "
         >
-            Built on trusted technology from industry leaders like Geotab and
-            PowerFleet, turning your vehicle and asset data into actionable
-            safety and operational insights.
+            <?php echo esc_html($why_note); ?>
         </p>
 
     </div>
+
 </section>
 
 
-<!-- Fleet Consultation -->
+<!-- =========================================================
+     FLEET CONSULTATION
+========================================================= -->
 
 <section
     id="contact"
@@ -441,93 +712,61 @@
         background:var(--white);
     "
 >
+
     <div class="container">
 
         <div class="review-form-layout">
 
 
+            <!-- Consultation Intro -->
+
             <div class="review-form-intro">
 
                 <span class="section-eyebrow">
-                    FREE FLEET CONSULTATION
+                    <?php echo esc_html($consultation_eyebrow); ?>
                 </span>
 
                 <h2>
-                    Tell us about your fleet. We'll do the homework.
+                    <?php echo esc_html($consultation_heading); ?>
                 </h2>
 
                 <p class="lede">
-                    Share a few details about your vehicles and a WCP business
-                    specialist will recommend the right fleet management
-                    solution.
+                    <?php echo esc_html($consultation_intro); ?>
                 </p>
 
 
                 <div class="review-benefits">
 
-                    <div class="review-benefit">
+                    <?php foreach ($consultation_benefits as $benefit) : ?>
 
-                        <span>✓</span>
+                        <div class="review-benefit">
 
-                        <div>
+                            <span>
+                                ✓
+                            </span>
 
-                            <strong>
-                                Review your current setup
-                            </strong>
+                            <div>
 
-                            <p>
-                                We'll look at your fleet size and how you're
-                                tracking it today, if at all.
-                            </p>
+                                <strong>
+                                    <?php echo esc_html($benefit['title']); ?>
+                                </strong>
 
-                        </div>
+                                <p>
+                                    <?php echo esc_html($benefit['text']); ?>
+                                </p>
 
-                    </div>
-
-
-                    <div class="review-benefit">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Identify opportunities
-                            </strong>
-
-                            <p>
-                                We'll match you to the right monitoring and
-                                compliance solution for your fleet.
-                            </p>
+                            </div>
 
                         </div>
 
-                    </div>
-
-
-                    <div class="review-benefit">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Talk to a real person
-                            </strong>
-
-                            <p>
-                                Your consultation is handled by a WCP business
-                                specialist.
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <?php endforeach; ?>
 
                 </div>
 
             </div>
 
+
+            <!-- Consultation Form -->
 
             <form
                 class="lead-form bill-review-form"
@@ -539,7 +778,7 @@
                 <div class="form-heading">
 
                     <h3>
-                        Get My Free Fleet Consultation
+                        <?php echo esc_html($consultation_button); ?>
                     </h3>
 
                     <p>
@@ -625,7 +864,7 @@
 
                 <div class="bill-upload">
 
-                    <label for="bill-upload">
+                    <label for="fleet-list-upload">
 
                         <span class="upload-icon">
                             ↑
@@ -648,7 +887,7 @@
 
                     <input
                         type="file"
-                        id="bill-upload"
+                        id="fleet-list-upload"
                         name="fleet_list"
                         accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                     >
@@ -667,17 +906,19 @@
                     type="submit"
                     class="btn btn-primary"
                 >
-                    Get My Free Fleet Consultation
+                    <?php echo esc_html($consultation_button); ?>
                 </button>
 
 
                 <p class="form-disclaimer">
+
                     🔒 Your information is kept private and used only to review
                     your business needs. No obligation. Prefer to talk?
 
                     <a href="tel:+18338441977">
                         Call 1-833-844-1977
                     </a>
+
                 </p>
 
             </form>
@@ -685,6 +926,7 @@
         </div>
 
     </div>
+
 </section>
 
 
