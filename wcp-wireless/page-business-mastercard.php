@@ -147,54 +147,173 @@ $benefits = array(
 );
 
 
-/*
-|--------------------------------------------------------------------------
-| ROGERS BUSINESS ADVANTAGE
-|--------------------------------------------------------------------------
-*/
-$rogers_image = $mastercard_field(
-    'rogers_image',
-    ''
-);
+<!-- =========================================================
+     ROGERS BUSINESS ADVANTAGE
+========================================================= -->
 
-$rogers_heading = $mastercard_field(
-    'rogers_heading',
-    'Being a Rogers Business customer can be even more rewarding'
-);
+<style>
 
-$rogers_intro = $mastercard_field(
-    'rogers_intro',
-    'Having an eligible Rogers or Shaw business service can unlock the card\'s enhanced 2% cash back earn rate on eligible purchases.'
-);
+.mastercard-business-advantage {
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap:56px !important;
+    align-items:center !important;
+}
 
-$rogers_items = array(
+.mastercard-business-advantage-image {
+    width:100%;
+}
 
-    $mastercard_field(
-        'rogers_item_1',
-        'Rogers Business mobile'
-    ),
+.mastercard-business-advantage-image img {
+    display:block;
+    width:100%;
+    height:380px;
+    object-fit:cover;
+    border-radius:12px;
+}
 
-    $mastercard_field(
-        'rogers_item_2',
-        'Rogers Business Internet'
-    ),
+.mastercard-business-advantage-content {
+    width:100%;
+}
 
-    $mastercard_field(
-        'rogers_item_3',
-        'Rogers Business TV'
-    ),
+.mastercard-business-advantage-content h2 {
+    margin-top:8px;
+    margin-bottom:16px;
+}
 
-    $mastercard_field(
-        'rogers_item_4',
-        'Rogers Business Phone'
-    ),
+.mastercard-business-advantage-content .lede {
+    margin-left:0;
+    margin-right:0;
+    max-width:600px;
+}
 
-    $mastercard_field(
-        'rogers_item_5',
-        'Eligible Shaw Business services'
-    ),
+.mastercard-business-list {
+    list-style:none !important;
+    padding:0 !important;
+    margin:28px 0 0 !important;
+}
 
-);
+.mastercard-business-list li {
+    list-style:none !important;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 14px;
+    padding:0;
+    font-size:16px;
+}
+
+.mastercard-business-check {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 28px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(218,41,28,.10);
+    color:var(--red);
+    font-size:15px;
+    font-weight:800;
+}
+
+@media (max-width:800px) {
+
+    .mastercard-business-advantage {
+        grid-template-columns:1fr !important;
+        gap:30px !important;
+    }
+
+    .mastercard-business-advantage-image img {
+        height:auto;
+    }
+
+}
+
+</style>
+
+
+<section
+    class="section reveal"
+    style="
+        background:var(--surface);
+        padding-top:64px;
+        padding-bottom:64px;
+    "
+>
+
+    <div class="container">
+
+        <div class="mastercard-business-advantage">
+
+
+            <!-- LEFT SIDE - IMAGE -->
+
+            <div class="mastercard-business-advantage-image">
+
+                <?php if ($rogers_image) : ?>
+
+                    <img
+                        src="<?php echo esc_url($rogers_image); ?>"
+                        alt="Rogers Business customer"
+                    >
+
+                <?php endif; ?>
+
+            </div>
+
+
+            <!-- RIGHT SIDE - CONTENT -->
+
+            <div class="mastercard-business-advantage-content">
+
+                <span class="eyebrow">
+                    ROGERS BUSINESS
+                </span>
+
+
+                <h2>
+                    <?php echo esc_html($rogers_heading); ?>
+                </h2>
+
+
+                <p class="lede">
+                    <?php echo esc_html($rogers_intro); ?>
+                </p>
+
+
+                <ul class="mastercard-business-list">
+
+                    <?php foreach ($rogers_items as $item) : ?>
+
+                        <?php if ($item) : ?>
+
+                            <li>
+
+                                <span class="mastercard-business-check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    <?php echo esc_html($item); ?>
+                                </span>
+
+                            </li>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
 
 
 /*
