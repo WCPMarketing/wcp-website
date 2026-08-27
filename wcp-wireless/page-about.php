@@ -210,17 +210,13 @@
                         </h3>
 
                         <h3>
-                            Highest Outbound Sales Volume — 2018 &amp; 2019
+                            A Consistent Track Record of Outstanding Performance
                         </h3>
 
                         <p>
-                            WCP has consistently been recognized by Rogers for
-                            outstanding sales performance, including Highest
-                            Outbound Sales Volume in 2018 &amp; 2019. It's a
-                            reflection of the trust our customers place in us —
-                            and we don't take that lightly. Your satisfaction is
-                            our number one concern, and we promise to stay
-                            reliable.
+                           WCP has consistently been recognized by Rogers for strong sales performance and continued excellence.
+                           This recognition reflects the trust our customers place in us and our ongoing commitment to providing 
+                           knowledgeable advice, reliable support, and an exceptional customer experience.
                         </p>
 
                     </div>
