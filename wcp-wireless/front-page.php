@@ -1,11 +1,24 @@
 <?php get_header(); ?>
 
 
+<!-- =========================================================
+     HERO
+========================================================= -->
+
 <section
     class="hero hero-photo hero-sales"
-    style="--hero-img: url('<?php echo esc_url(get_template_directory_uri() . '/images/hero-office-meeting.jpg'); ?>');"
+    style="
+        --hero-img:url('<?php echo esc_url(
+            get_template_directory_uri() .
+            '/images/hero-office-meeting.jpg'
+        ); ?>');
+    "
 >
+
     <div class="container">
+
+
+        <!-- HERO COPY -->
 
         <div class="hero-copy">
 
@@ -22,28 +35,42 @@
                 dedicated account manager who knows your business.
             </p>
 
+
             <div class="actions">
 
-                <a href="#contact" class="btn btn-primary">
+                <a
+                    href="#contact"
+                    class="btn btn-primary"
+                >
                     Upload My Bill for a Free Review
                 </a>
 
-                <a href="tel:+18338441977" class="link-inline">
+                <a
+                    href="tel:+18338441977"
+                    class="link-inline"
+                >
                     Or call 1-833-844-1977
                 </a>
 
             </div>
 
+
             <div class="hero-checks">
 
                 <span>✓ No obligation</span>
+
                 <span>✓ Local account manager</span>
+
                 <span>✓ Canada-wide service</span>
 
             </div>
 
         </div>
 
+
+        <!-- =================================================
+             HERO BILL REVIEW CARD
+        ================================================== -->
 
         <div class="bill-review-card">
 
@@ -60,28 +87,57 @@
                 services, pricing and available Rogers Business options.
             </p>
 
+
             <div class="bill-review-steps">
 
                 <div class="bill-step">
-                    <span class="step-number">1</span>
-                    <span>Upload your current bill</span>
+
+                    <span class="step-number">
+                        1
+                    </span>
+
+                    <span>
+                        Upload your current bill
+                    </span>
+
                 </div>
 
-                <div class="bill-step">
-                    <span class="step-number">2</span>
-                    <span>We review your services</span>
-                </div>
 
                 <div class="bill-step">
-                    <span class="step-number">3</span>
-                    <span>We show you your options</span>
+
+                    <span class="step-number">
+                        2
+                    </span>
+
+                    <span>
+                        We review your services
+                    </span>
+
+                </div>
+
+
+                <div class="bill-step">
+
+                    <span class="step-number">
+                        3
+                    </span>
+
+                    <span>
+                        We show you your options
+                    </span>
+
                 </div>
 
             </div>
 
-            <a href="#contact" class="btn btn-primary bill-card-button">
+
+            <a
+                href="#contact"
+                class="btn btn-primary bill-card-button"
+            >
                 Upload My Bill
             </a>
+
 
             <p class="bill-card-note">
                 🔒 Your bill is kept private and used only to review your
@@ -91,12 +147,15 @@
 
         </div>
 
+
     </div>
+
 </section>
 
 
-
-<!-- Credibility -->
+<!-- =========================================================
+     CREDIBILITY
+========================================================= -->
 
 <section class="section credibility-section reveal">
 
@@ -104,6 +163,9 @@
 
         <div class="credibility-grid">
 
+
+            <!-- YEARS -->
+
             <div class="credibility-item">
 
                 <div class="credibility-icon">
@@ -119,18 +181,34 @@
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
-                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+
+                        <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="18"
+                            rx="2"
+                        />
+
                         <path d="M16 2v4M8 2v4M3 10h18"/>
+
                     </svg>
 
                 </div>
 
-                <span class="credibility-num">35+</span>
 
-                <p>Years in Business</p>
+                <span class="credibility-num">
+                    35+
+                </span>
+
+                <p>
+                    Years in Business
+                </p>
 
             </div>
 
+
+            <!-- BUSINESS ACCOUNTS -->
 
             <div class="credibility-item">
 
@@ -147,17 +225,37 @@
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
-                        <path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/>
+
+                        <path
+                            d="
+                                M3 21h18
+                                M5 21V7l7-4 7 4v14
+                                M9 9h1
+                                M14 9h1
+                                M9 13h1
+                                M14 13h1
+                                M9 17h1
+                                M14 17h1
+                            "
+                        />
+
                     </svg>
 
                 </div>
 
-                <span class="credibility-num">500+</span>
 
-                <p>Business Accounts Supported</p>
+                <span class="credibility-num">
+                    500+
+                </span>
+
+                <p>
+                    Business Accounts Supported
+                </p>
 
             </div>
 
+
+            <!-- CUSTOMERS -->
 
             <div class="credibility-item">
 
@@ -174,19 +272,47 @@
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+
+                        <path
+                            d="
+                                M17 21v-2
+                                a4 4 0 0 0-4-4H5
+                                a4 4 0 0 0-4 4v2
+                            "
+                        />
+
+                        <circle
+                            cx="9"
+                            cy="7"
+                            r="4"
+                        />
+
+                        <path
+                            d="
+                                M23 21v-2
+                                a4 4 0 0 0-3-3.87
+                                M16 3.13
+                                a4 4 0 0 1 0 7.75
+                            "
+                        />
+
                     </svg>
 
                 </div>
 
-                <span class="credibility-num">10,000+</span>
 
-                <p>Customers Served</p>
+                <span class="credibility-num">
+                    10,000+
+                </span>
+
+                <p>
+                    Customers Served
+                </p>
 
             </div>
 
+
+            <!-- AUTHORIZED DEALER -->
 
             <div class="credibility-item">
 
@@ -203,17 +329,40 @@
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
-                        <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
-                        <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/>
+
+                        <path
+                            d="
+                                M12 15
+                                a6 6 0 1 0 0-12
+                                6 6 0 0 0 0 12z
+                            "
+                        />
+
+                        <path
+                            d="
+                                M8.5 13.5
+                                7 22
+                                l5-3
+                                5 3
+                                -1.5-8.5
+                            "
+                        />
+
                     </svg>
 
                 </div>
 
-                <span class="credibility-num">Official</span>
 
-                <p>Rogers Authorized Dealer</p>
+                <span class="credibility-num">
+                    Official
+                </span>
+
+                <p>
+                    Rogers Authorized Dealer
+                </p>
 
             </div>
+
 
         </div>
 
@@ -222,20 +371,27 @@
 </section>
 
 
-
-<!-- Services -->
+<!-- =========================================================
+     OUR SERVICES
+========================================================= -->
 
 <section class="section reveal">
 
     <div class="container">
 
+
         <h2 style="text-align:center;">
             Our Services
         </h2>
 
+
         <p
             class="lede"
-            style="text-align:center; margin-left:auto; margin-right:auto;"
+            style="
+                text-align:center;
+                margin-left:auto;
+                margin-right:auto;
+            "
         >
             Built around what your business needs most.
         </p>
@@ -243,9 +399,14 @@
 
         <div class="card-grid home-services-grid">
 
-            <div class="card">
 
-                <h3>Business Wireless</h3>
+            <!-- BUSINESS WIRELESS -->
+
+            <div class="card home-service-card">
+
+                <h3>
+                    Business Wireless
+                </h3>
 
                 <p>
                     Custom wireless plans for businesses of all sizes — with a
@@ -253,7 +414,9 @@
                 </p>
 
                 <a
-                    href="<?php echo esc_url(home_url('/business-wireless/')); ?>"
+                    href="<?php echo esc_url(
+                        home_url('/business-wireless/')
+                    ); ?>"
                     class="btn-card"
                 >
                     See Wireless Plans
@@ -262,9 +425,13 @@
             </div>
 
 
-            <div class="card">
+            <!-- BUSINESS INTERNET -->
 
-                <h3>Business Internet</h3>
+            <div class="card home-service-card">
+
+                <h3>
+                    Business Internet
+                </h3>
 
                 <p>
                     Reliable, fast internet with predictable pricing and local
@@ -272,7 +439,9 @@
                 </p>
 
                 <a
-                    href="<?php echo esc_url(home_url('/business-internet/')); ?>"
+                    href="<?php echo esc_url(
+                        home_url('/business-internet/')
+                    ); ?>"
                     class="btn-card"
                 >
                     See Internet Plans
@@ -281,9 +450,13 @@
             </div>
 
 
-            <div class="card">
+            <!-- BUSINESS PHONE -->
 
-                <h3>Business Phone</h3>
+            <div class="card home-service-card">
+
+                <h3>
+                    Business Phone
+                </h3>
 
                 <p>
                     Streamline business calls with an advanced cloud PBX
@@ -292,7 +465,9 @@
                 </p>
 
                 <a
-                    href="<?php echo esc_url(home_url('/business-phone/')); ?>"
+                    href="<?php echo esc_url(
+                        home_url('/business-phone/')
+                    ); ?>"
                     class="btn-card"
                 >
                     See Phone Plans
@@ -301,9 +476,13 @@
             </div>
 
 
-            <div class="card">
+            <!-- POINT OF SALE -->
 
-                <h3>Point of Sale</h3>
+            <div class="card home-service-card">
+
+                <h3>
+                    Point of Sale
+                </h3>
 
                 <p>
                     Rogers POS, powered by Clover — accept payments anywhere
@@ -312,7 +491,9 @@
                 </p>
 
                 <a
-                    href="<?php echo esc_url(home_url('/business-pos/')); ?>"
+                    href="<?php echo esc_url(
+                        home_url('/business-pos/')
+                    ); ?>"
                     class="btn-card"
                 >
                     See POS Options
@@ -321,46 +502,57 @@
             </div>
 
 
-<div class="card">
+            <!-- FLEET MANAGEMENT -->
 
-    <h3>Fleet Management</h3>
+            <div class="card home-service-card">
 
-    <p>
-        Control costs, increase driver safety, and simplify
-        compliance with best-in-class fleet monitoring for your
-        vehicles and mobile assets.
-    </p>
+                <h3>
+                    Fleet Management
+                </h3>
 
-    <a
-        href="<?php echo esc_url(home_url('/fleet-management/')); ?>"
-        class="btn-card"
-    >
-        See Fleet Options
-    </a>
+                <p>
+                    Control costs, increase driver safety, and simplify
+                    compliance with best-in-class fleet monitoring for your
+                    vehicles and mobile assets.
+                </p>
 
-</div>
+                <a
+                    href="<?php echo esc_url(
+                        home_url('/fleet-management/')
+                    ); ?>"
+                    class="btn-card"
+                >
+                    See Fleet Options
+                </a>
 
-
-<div class="card">
-
-    <h3>
-        Rogers Business Mastercard
-    </h3>
-
-    <p>
-        Earn cash back on everyday business purchases and unlock added value
-        when you have an eligible Rogers or Shaw business service.
-    </p>
-
-    <a
-        href="<?php echo esc_url(home_url('/business-mastercard/')); ?>"
-        class="btn-card"
-    >
-        See Mastercard Benefits
-    </a>
-
-</div>
             </div>
+
+
+            <!-- ROGERS BUSINESS MASTERCARD -->
+
+            <div class="card home-service-card">
+
+                <h3>
+                    Rogers Business Mastercard
+                </h3>
+
+                <p>
+                    Earn cash back on everyday business purchases and unlock
+                    added value when you have an eligible Rogers or Shaw
+                    business service.
+                </p>
+
+                <a
+                    href="<?php echo esc_url(
+                        home_url('/business-mastercard/')
+                    ); ?>"
+                    class="btn-card"
+                >
+                    See Mastercard Benefits
+                </a>
+
+            </div>
+
 
         </div>
 
@@ -369,8 +561,9 @@
 </section>
 
 
-
-<!-- Rogers Preferred Program -->
+<!-- =========================================================
+     ROGERS PREFERRED PROGRAM
+========================================================= -->
 
 <section
     class="section reveal"
@@ -392,6 +585,7 @@
         "
     >
 
+
         <div style="max-width:520px;">
 
             <span
@@ -400,7 +594,7 @@
                     display:block;
                     font-size:11.5px;
                     font-weight:700;
-                    letter-spacing:0.08em;
+                    letter-spacing:.08em;
                     text-transform:uppercase;
                     color:var(--red);
                     margin-bottom:8px;
@@ -409,9 +603,11 @@
                 Employer &amp; Association Pricing
             </span>
 
+
             <h3 style="margin:0 0 6px;">
                 Rogers Preferred Program
             </h3>
+
 
             <p
                 style="
@@ -431,33 +627,40 @@
         <a
             href="https://wcpwireless.com/lookup#Home"
             class="btn btn-primary"
-            style="flex:0 0 auto;"
+            style="
+                flex:0 0 auto;
+            "
         >
             Check Eligibility
         </a>
+
 
     </div>
 
 </section>
 
 
-
-<!-- Storefront Photo -->
+<!-- =========================================================
+     STOREFRONT
+========================================================= -->
 
 <section class="photo-band">
 
     <img
-        src="<?php echo esc_url(get_template_directory_uri() . '/images/rogers store front1.png'); ?>"
+        src="<?php echo esc_url(
+            get_template_directory_uri() .
+            '/images/rogers store front1.png'
+        ); ?>"
         alt="Rogers storefront signage"
     >
+
 
     <div class="overlay">
 
         <div class="container">
 
             <p>
-                A local team you can walk in and talk to — not just a call
-                centre.
+                A local team you can walk in and talk to — not just a call centre.
             </p>
 
         </div>
@@ -467,8 +670,9 @@
 </section>
 
 
-
-<!-- Rogers Dealer -->
+<!-- =========================================================
+     ROGERS AUTHORIZED DEALER
+========================================================= -->
 
 <section
     class="section"
@@ -483,7 +687,10 @@
     <div class="container">
 
         <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/images/Rogers_AuthorizedDealer_Logo_Red_EN.png'); ?>"
+            src="<?php echo esc_url(
+                get_template_directory_uri() .
+                '/images/Rogers_AuthorizedDealer_Logo_Red_EN.png'
+            ); ?>"
             alt="Official Rogers Authorized Dealer"
             style="
                 height:30px;
@@ -491,6 +698,7 @@
                 margin:0 auto 14px;
             "
         >
+
 
         <p
             style="
@@ -509,11 +717,12 @@
 </section>
 
 
-
-<!-- Testimonials -->
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
 
 <section
-    class="section reveal"
+    class="section reveal home-testimonials-section"
     style="
         padding-top:100px;
         padding-bottom:64px;
@@ -522,55 +731,84 @@
 
     <div class="container">
 
-        <h2 style="text-align:center;">
-            What Our Clients Say
-        </h2>
 
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            Real feedback from businesses we've worked with.
-        </p>
+        <div class="home-testimonials-heading">
+
+            <h2>
+                What Our Clients Say
+            </h2>
+
+            <p class="lede">
+                Real feedback from businesses we've worked with.
+            </p>
+
+        </div>
 
 
         <div class="testimonial-grid">
 
-            <div class="testimonial-card">
+
+            <!-- =================================================
+                 SIMCOE IT SOLUTIONS
+            ================================================== -->
+
+            <div class="testimonial-card home-testimonial-card">
+
+
+                <div class="home-testimonial-logo">
+
+                    <img
+                        src="<?php echo esc_url(
+                            get_template_directory_uri() .
+                            '/images/testimonial-simcoe-it.png'
+                        ); ?>"
+                        alt="Simcoe IT Solutions"
+                    >
+
+                </div>
+
 
                 <p class="testimonial-quote">
                     The WCP team made switching to Rogers Business very
                     painless. I'd definitely work with them again.
                 </p>
 
-                <div class="testimonial-footer">
 
-                    <span class="testimonial-avatar">
-                        RN
-                    </span>
+                <div class="home-testimonial-person">
 
-                    <div>
+                    <p class="testimonial-attribution">
+                        Rob N.
+                    </p>
 
-                        <p class="testimonial-attribution">
-                            Rob N.
-                        </p>
-
-                        <p class="testimonial-role">
-                            President, Simcoe IT Solutions Inc.
-                        </p>
-
-                    </div>
+                    <p class="testimonial-role">
+                        President, Simcoe IT Solutions Inc.
+                    </p>
 
                 </div>
+
 
             </div>
 
 
-            <div class="testimonial-card">
+            <!-- =================================================
+                 AVAYA
+            ================================================== -->
+
+            <div class="testimonial-card home-testimonial-card">
+
+
+                <div class="home-testimonial-logo">
+
+                    <img
+                        src="<?php echo esc_url(
+                            get_template_directory_uri() .
+                            '/images/testimonial-avaya.png'
+                        ); ?>"
+                        alt="Avaya"
+                    >
+
+                </div>
+
 
                 <p class="testimonial-quote">
                     I highly recommend the WCP team. During recent contract
@@ -581,31 +819,42 @@
                     quickly find practical solutions. Overall, a great experience.
                 </p>
 
-                <div class="testimonial-footer">
 
-                    <span class="testimonial-avatar">
-                        DB
-                    </span>
+                <div class="home-testimonial-person">
 
-                    <div>
+                    <p class="testimonial-attribution">
+                        Debbie B.
+                    </p>
 
-                        <p class="testimonial-attribution">
-                            Debbie B.
-                        </p>
-
-                        <p class="testimonial-role">
-                            Deals Desk Manager / Sales Operations Specialist,
-                            Avaya
-                        </p>
-
-                    </div>
+                    <p class="testimonial-role">
+                        Deals Desk Manager / Sales Operations Specialist, Avaya
+                    </p>
 
                 </div>
+
 
             </div>
 
 
-            <div class="testimonial-card">
+            <!-- =================================================
+                 OAK VALLEY HEALTH
+            ================================================== -->
+
+            <div class="testimonial-card home-testimonial-card">
+
+
+                <div class="home-testimonial-logo">
+
+                    <img
+                        src="<?php echo esc_url(
+                            get_template_directory_uri() .
+                            '/images/testimonial-oak-valley-health.png'
+                        ); ?>"
+                        alt="Oak Valley Health"
+                    >
+
+                </div>
+
 
                 <p class="testimonial-quote">
                     I've worked with the WCP team for over 9 years now. They've
@@ -615,30 +864,27 @@
                     they do.
                 </p>
 
-                <div class="testimonial-footer">
 
-                    <span class="testimonial-avatar">
-                        LE
-                    </span>
+                <div class="home-testimonial-person">
 
-                    <div>
+                    <p class="testimonial-attribution">
+                        Lee E.
+                    </p>
 
-                        <p class="testimonial-attribution">
-                            Lee E.
-                        </p>
-
-                        <p class="testimonial-role">
-                            Network Analyst, OVH
-                        </p>
-
-                    </div>
+                    <p class="testimonial-role">
+                        Network Analyst, OVH
+                    </p>
 
                 </div>
 
+
             </div>
+
 
         </div>
 
+
+        <!-- GOOGLE REVIEW -->
 
         <div class="review-cta">
 
@@ -652,13 +898,15 @@
 
         </div>
 
+
     </div>
 
 </section>
 
 
-
-<!-- Bill Review Form -->
+<!-- =========================================================
+     BILL REVIEW FORM
+========================================================= -->
 
 <section
     id="contact"
@@ -669,6 +917,8 @@
 
         <div class="review-form-layout">
 
+
+            <!-- LEFT SIDE -->
 
             <div class="review-form-intro">
 
@@ -688,9 +938,12 @@
 
                 <div class="review-benefits">
 
+
                     <div class="review-benefit">
 
-                        <span>✓</span>
+                        <span>
+                            ✓
+                        </span>
 
                         <div>
 
@@ -710,7 +963,9 @@
 
                     <div class="review-benefit">
 
-                        <span>✓</span>
+                        <span>
+                            ✓
+                        </span>
 
                         <div>
 
@@ -730,7 +985,9 @@
 
                     <div class="review-benefit">
 
-                        <span>✓</span>
+                        <span>
+                            ✓
+                        </span>
 
                         <div>
 
@@ -747,11 +1004,15 @@
 
                     </div>
 
+
                 </div>
 
             </div>
 
 
+            <!-- =================================================
+                 FORM
+            ================================================== -->
 
             <form
                 class="lead-form bill-review-form"
@@ -759,6 +1020,7 @@
                 method="POST"
                 enctype="multipart/form-data"
             >
+
 
                 <div class="form-heading">
 
@@ -772,6 +1034,8 @@
 
                 </div>
 
+
+                <!-- NAME + BUSINESS -->
 
                 <div class="form-row">
 
@@ -794,6 +1058,8 @@
                 </div>
 
 
+                <!-- PHONE + EMAIL -->
+
                 <div class="form-row">
 
                     <input
@@ -815,12 +1081,18 @@
                 </div>
 
 
+                <!-- INTEREST -->
+
                 <select
                     name="interest"
                     required
                 >
 
-                    <option value="" disabled selected>
+                    <option
+                        value=""
+                        disabled
+                        selected
+                    >
                         What can we help you with?
                     </option>
 
@@ -840,12 +1112,26 @@
                         Business internet &amp; phone
                     </option>
 
+                    <option value="Point of Sale">
+                        Point of Sale
+                    </option>
+
+                    <option value="Fleet Management">
+                        Fleet Management
+                    </option>
+
+                    <option value="Rogers Business Mastercard">
+                        Rogers Business Mastercard
+                    </option>
+
                     <option value="Not sure">
                         I'm not sure yet
                     </option>
 
                 </select>
 
+
+                <!-- BILL UPLOAD -->
 
                 <div class="bill-upload">
 
@@ -880,12 +1166,16 @@
                 </div>
 
 
+                <!-- MESSAGE -->
+
                 <textarea
                     name="message"
                     rows="4"
                     placeholder="Anything else you'd like us to know? (optional)"
                 ></textarea>
 
+
+                <!-- SUBMIT -->
 
                 <button
                     type="submit"
@@ -896,20 +1186,168 @@
 
 
                 <p class="form-disclaimer">
+
                     🔒 Your bill is kept private and used only to review your
                     business services. No obligation. Prefer to talk?
+
                     <a href="tel:+18338441977">
                         Call 1-833-844-1977
                     </a>
+
                 </p>
 
+
             </form>
+
 
         </div>
 
     </div>
 
 </section>
+
+
+<!-- =========================================================
+     HOME PAGE ADDITIONAL STYLES
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   HOME SERVICES - 3 X 2
+========================================================= */
+
+.card-grid.home-services-grid {
+    display:grid !important;
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:18px !important;
+    align-items:stretch;
+}
+
+
+/* Make all service cards equal and buttons align */
+
+.card-grid.home-services-grid .home-service-card {
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+.card-grid.home-services-grid .home-service-card .btn-card {
+    margin-top:auto;
+    align-self:flex-start;
+}
+
+
+/* =========================================================
+   HOME TESTIMONIAL HEADING
+========================================================= */
+
+.home-testimonials-heading {
+    text-align:center;
+    margin-bottom:36px;
+}
+
+.home-testimonials-heading .lede {
+    max-width:620px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* =========================================================
+   HOME TESTIMONIAL CARDS
+========================================================= */
+
+.home-testimonial-card {
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* =========================================================
+   TESTIMONIAL COMPANY LOGOS
+========================================================= */
+
+.home-testimonial-logo {
+    height:82px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:22px;
+    padding-bottom:18px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.home-testimonial-logo img {
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:220px;
+    max-height:64px;
+
+    object-fit:contain;
+}
+
+
+/* =========================================================
+   QUOTE / ATTRIBUTION ALIGNMENT
+========================================================= */
+
+.home-testimonial-card .testimonial-quote {
+    flex-grow:1;
+}
+
+.home-testimonial-person {
+    margin-top:auto;
+    padding-top:18px;
+}
+
+.home-testimonial-person .testimonial-attribution {
+    margin-bottom:3px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:800px) {
+
+    .card-grid.home-services-grid {
+        grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:560px) {
+
+    .card-grid.home-services-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .home-testimonial-logo {
+        height:72px;
+    }
+
+    .home-testimonial-logo img {
+        max-width:190px;
+        max-height:56px;
+    }
+
+}
+
+</style>
 
 
 <?php get_footer(); ?>
