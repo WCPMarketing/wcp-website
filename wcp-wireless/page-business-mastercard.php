@@ -152,6 +152,10 @@ $benefits = array(
 | ROGERS BUSINESS ADVANTAGE
 |--------------------------------------------------------------------------
 */
+$rogers_image = $mastercard_field(
+    'rogers_image',
+    ''
+);
 
 $rogers_heading = $mastercard_field(
     'rogers_heading',
@@ -533,6 +537,10 @@ $disclaimer = $mastercard_field(
      ROGERS BUSINESS ADVANTAGE
 ========================================================= -->
 
+<!-- =========================================================
+     ROGERS BUSINESS ADVANTAGE
+========================================================= -->
+
 <section
     class="section reveal"
     style="
@@ -544,34 +552,77 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($rogers_heading); ?>
-        </h2>
-
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                max-width:660px;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            <?php echo esc_html($rogers_intro); ?>
-        </p>
+        <div class="mastercard-rogers-grid">
 
 
-        <ul class="include-strip">
+            <!-- IMAGE -->
 
-            <?php foreach ($rogers_items as $item) : ?>
+            <?php if ($rogers_image) : ?>
 
-                <li>
-                    ✓ <?php echo esc_html($item); ?>
-                </li>
+                <div class="mastercard-rogers-image">
 
-            <?php endforeach; ?>
+                    <img
+                        src="<?php echo esc_url($rogers_image); ?>"
+                        alt="Rogers Business customer"
+                    >
 
-        </ul>
+                </div>
+
+            <?php endif; ?>
+
+
+            <!-- CONTENT -->
+
+            <div class="mastercard-rogers-content">
+
+                <span class="eyebrow">
+                    ROGERS BUSINESS
+                </span>
+
+                <h2>
+                    <?php echo esc_html($rogers_heading); ?>
+                </h2>
+
+                <p
+                    class="lede"
+                    style="
+                        margin-left:0;
+                        margin-right:0;
+                        max-width:620px;
+                    "
+                >
+                    <?php echo esc_html($rogers_intro); ?>
+                </p>
+
+
+                <ul class="mastercard-rogers-list">
+
+                    <?php foreach ($rogers_items as $item) : ?>
+
+                        <?php if ($item) : ?>
+
+                            <li>
+
+                                <span class="mastercard-check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    <?php echo esc_html($item); ?>
+                                </span>
+
+                            </li>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </div>
+
+
+        </div>
 
     </div>
 
