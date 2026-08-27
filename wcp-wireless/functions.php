@@ -1271,3 +1271,834 @@ add_action(
     'acf/init',
     'wcp_register_wireless_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| BUSINESS INTERNET - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_internet_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $internet_page = get_page_by_path('business-internet');
+
+    if (!$internet_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_internet_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_internet_' . $key,
+            'label'         => $label,
+            'name'          => 'internet_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 3
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_internet_' . $key,
+            'label'         => $label,
+            'name'          => 'internet_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Internet for all your business needs'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Reliable, fast internet with predictable pricing and local support — whichever way your business connects.'
+    );
+
+    $add_text(
+        'hero_button',
+        'Hero Button Text',
+        'Get My Free Business Review'
+    );
+
+    $fields[] = array(
+        'key'           => 'field_internet_hero_image',
+        'label'         => 'Hero Image',
+        'name'          => 'internet_hero_image',
+        'type'          => 'image',
+        'return_format' => 'url',
+        'preview_size'  => 'medium',
+        'library'       => 'all',
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | TOP FEATURES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'features',
+        'Top Features'
+    );
+
+    $top_features = array(
+
+        1 => array(
+            'title' => 'Fast internet',
+            'text'  => 'From everyday to blazing fast, scaling with you as your business grows.',
+        ),
+
+        2 => array(
+            'title' => 'Reliable connection',
+            'text'  => 'Keep productivity on track with wireless backup and 24/7 business support.',
+        ),
+
+        3 => array(
+            'title' => 'Predictable cost',
+            'text'  => 'Choose from term, monthly, and bundled plans with unlimited usage.',
+        ),
+
+        4 => array(
+            'title' => 'Advanced security',
+            'text'  => 'Keep your data safe with automatic, network-level security.',
+        ),
+
+    );
+
+    foreach ($top_features as $number => $feature) {
+
+        $add_text(
+            'feature_' . $number . '_title',
+            'Feature ' . $number . ' Title',
+            $feature['title']
+        );
+
+        $add_textarea(
+            'feature_' . $number . '_text',
+            'Feature ' . $number . ' Description',
+            $feature['text']
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | INTERNET SELECTOR
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'selector',
+        'Internet Selector'
+    );
+
+    $add_text(
+        'selector_heading',
+        'Selector Heading',
+        'Which internet is right for my business?'
+    );
+
+    $add_textarea(
+        'selector_intro',
+        'Selector Description',
+        'Select how your business connects and we\'ll show you the plans built for it.'
+    );
+
+    $add_textarea(
+        'pricing_disclaimer',
+        'Pricing Disclaimer',
+        'Offers and pricing are subject to change and address availability. Contact WCP for current promotional pricing.'
+    );
+
+
+    /*
+     * Selector cards
+     */
+
+    $selector_cards = array(
+
+        1 => array(
+            'title' => 'Business Internet',
+            'text'  => 'Flexible monthly & term plans',
+        ),
+
+        2 => array(
+            'title' => 'Business Fibre',
+            'text'  => 'Symmetrical speeds, 1 static IP',
+        ),
+
+        3 => array(
+            'title' => 'Dedicated Fibre',
+            'text'  => 'Fastest, most reliable option with 5 static IPs',
+        ),
+
+        4 => array(
+            'title' => '5G Business Internet',
+            'text'  => 'No wired connection needed',
+        ),
+
+    );
+
+    foreach ($selector_cards as $number => $card) {
+
+        $add_text(
+            'selector_' . $number . '_title',
+            'Selector ' . $number . ' Title',
+            $card['title']
+        );
+
+        $add_text(
+            'selector_' . $number . '_text',
+            'Selector ' . $number . ' Subtitle',
+            $card['text']
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS INTERNET
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'business_internet',
+        'Business Internet'
+    );
+
+    $add_text(
+        'business_heading',
+        'Section Heading',
+        'Rogers Business Internet'
+    );
+
+    $add_textarea(
+        'business_intro',
+        'Section Introduction',
+        'Experience reliable internet performance with unlimited usage and 24/7 support.'
+    );
+
+    $add_text(
+        'business_include_1',
+        'Included Feature 1',
+        'Unlimited data usage'
+    );
+
+    $add_text(
+        'business_include_2',
+        'Included Feature 2',
+        'Automatic security updates'
+    );
+
+    $add_text(
+        'business_include_3',
+        'Included Feature 3',
+        'Advanced WiFi technology'
+    );
+
+
+    /*
+     * Business Internet plans
+     */
+
+    $business_plans = array(
+
+        1 => array(
+            'speed'  => '300 Mbps / 30 Mbps',
+            'price'  => '$64',
+            'suffix' => '.99/mo',
+            'credit' => '+ $200 bill credit.',
+        ),
+
+        2 => array(
+            'speed'  => '750 Mbps / 30 Mbps',
+            'price'  => '$69',
+            'suffix' => '.99/mo',
+            'credit' => '+ $200 bill credit.',
+        ),
+
+        3 => array(
+            'speed'  => '1 Gbps / 50 Mbps',
+            'price'  => '$79',
+            'suffix' => '.99/mo',
+            'credit' => '+ $200 bill credit.',
+        ),
+
+        4 => array(
+            'speed'  => '1.5 Gbps / 50 Mbps',
+            'price'  => '$89',
+            'suffix' => '.99/mo',
+            'credit' => '+ $600 bill credit.',
+        ),
+
+        5 => array(
+            'speed'  => '2 Gbps / 50 Mbps',
+            'price'  => '$99',
+            'suffix' => '.99/mo',
+            'credit' => '+ $600 bill credit.',
+        ),
+
+    );
+
+    foreach ($business_plans as $number => $plan) {
+
+        $add_text(
+            'business_' . $number . '_speed',
+            'Plan ' . $number . ' Speed',
+            $plan['speed']
+        );
+
+        $add_text(
+            'business_' . $number . '_price',
+            'Plan ' . $number . ' Price',
+            $plan['price']
+        );
+
+        $add_text(
+            'business_' . $number . '_suffix',
+            'Plan ' . $number . ' Price Suffix',
+            $plan['suffix']
+        );
+
+        $add_text(
+            'business_' . $number . '_credit',
+            'Plan ' . $number . ' Bill Credit',
+            $plan['credit']
+        );
+    }
+
+
+    /*
+     * Best value badge
+     */
+
+    $add_text(
+        'business_best_value',
+        'Plan 3 Badge',
+        'Best Value for Most Businesses'
+    );
+
+    $add_text(
+        'business_contract_note',
+        'Plan Contract Note',
+        'Price subject to change per contract terms.'
+    );
+
+
+    /*
+     * Bundles
+     */
+
+    $add_text(
+        'bundle_heading',
+        'Bundle Section Heading',
+        'How much can I save on internet with bundles?'
+    );
+
+    $add_text(
+        'bundle_1',
+        'Bundle Offer 1',
+        'Save $10/mo when you bundle internet with Business TV.'
+    );
+
+    $add_text(
+        'bundle_2',
+        'Bundle Offer 2',
+        'Save $15/mo when you bundle internet with Business Phone.'
+    );
+
+    $add_text(
+        'bundle_3',
+        'Bundle Offer 3',
+        'Save an additional $45/mo/line when you bundle internet with an Advantage Mobility plan.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BUSINESS FIBRE
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'fibre',
+        'Business Fibre'
+    );
+
+    $add_text(
+        'fibre_heading',
+        'Section Heading',
+        'Business Fibre Internet'
+    );
+
+    $add_textarea(
+        'fibre_intro',
+        'Section Introduction',
+        'Symmetrical upload and download speeds with 1 static IP — consistent performance for businesses that depend on their connection.'
+    );
+
+    $add_text(
+        'fibre_include_1',
+        'Included Feature 1',
+        'Symmetrical upload & download speeds'
+    );
+
+    $add_text(
+        'fibre_include_2',
+        'Included Feature 2',
+        '60-month term'
+    );
+
+
+    $fibre_plans = array(
+
+        1 => array(
+            'speed' => '100 Mbps',
+            'price' => '$79',
+        ),
+
+        2 => array(
+            'speed' => '200 Mbps',
+            'price' => '$99',
+        ),
+
+        3 => array(
+            'speed' => '500 Mbps',
+            'price' => '$109',
+        ),
+
+        4 => array(
+            'speed' => '1000 Mbps',
+            'price' => '$129',
+        ),
+
+    );
+
+    foreach ($fibre_plans as $number => $plan) {
+
+        $add_text(
+            'fibre_' . $number . '_speed',
+            'Fibre Plan ' . $number . ' Speed',
+            $plan['speed']
+        );
+
+        $add_text(
+            'fibre_' . $number . '_note',
+            'Fibre Plan ' . $number . ' Note',
+            'Symmetrical, 60-month term'
+        );
+
+        $add_text(
+            'fibre_' . $number . '_price',
+            'Fibre Plan ' . $number . ' Price',
+            $plan['price']
+        );
+
+        $add_text(
+            'fibre_' . $number . '_suffix',
+            'Fibre Plan ' . $number . ' Price Suffix',
+            '.99/mo'
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | DEDICATED FIBRE
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'dedicated',
+        'Dedicated Fibre'
+    );
+
+    $add_text(
+        'dedicated_heading',
+        'Section Heading',
+        'Dedicated Fibre Internet'
+    );
+
+    $add_textarea(
+        'dedicated_intro',
+        'Section Introduction',
+        'Experience our fastest, most reliable internet with 5 static IP addresses, IPv4 support, and optional DDoS protection.'
+    );
+
+
+    $dedicated_includes = array(
+        1 => 'Unlimited usage',
+        2 => 'Service level guarantees',
+        3 => '24/7 technical support',
+        4 => 'IPv4 support & static IP address',
+    );
+
+    foreach ($dedicated_includes as $number => $text) {
+
+        $add_text(
+            'dedicated_include_' . $number,
+            'Included Feature ' . $number,
+            $text
+        );
+    }
+
+
+    /*
+     * Dedicated plans
+     */
+
+    $dedicated_plans = array(
+
+        1 => array(
+            'name' => 'Up to 100 Mbps',
+            'features' =>
+                "Great for video conferencing\n" .
+                "File sharing\n" .
+                "Cloud based app usage",
+        ),
+
+        2 => array(
+            'name' => 'Up to 500 Mbps',
+            'features' =>
+                "Seamless video streaming\n" .
+                "Frequent cloud computing\n" .
+                "Multiple server hosting",
+        ),
+
+        3 => array(
+            'name' => 'Up to 1 Gbps',
+            'features' =>
+                "HD video conferencing\n" .
+                "Very large file downloads and uploads\n" .
+                "High speed operations",
+        ),
+
+        4 => array(
+            'name' => 'Up to 10 Gbps',
+            'features' =>
+                "Adjusting to continuous data increases\n" .
+                "Avoiding network congestion as you grow\n" .
+                "AV over IP solutions",
+        ),
+
+    );
+
+    foreach ($dedicated_plans as $number => $plan) {
+
+        $add_text(
+            'dedicated_' . $number . '_name',
+            'Dedicated Plan ' . $number . ' Name',
+            $plan['name']
+        );
+
+        $add_textarea(
+            'dedicated_' . $number . '_features',
+            'Dedicated Plan ' . $number . ' Features',
+            $plan['features'],
+            5
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | 5G BUSINESS INTERNET
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        '5g',
+        '5G Business Internet'
+    );
+
+    $add_text(
+        '5g_heading',
+        'Section Heading',
+        '5G Business Internet'
+    );
+
+    $add_textarea(
+        '5g_intro',
+        'Section Introduction',
+        'Built for remote businesses, seasonal stores, and work that moves.'
+    );
+
+
+    $internet_5g_includes = array(
+        1 => 'Fast & easy self-install',
+        2 => 'Worry-free — powered by Canada\'s best 5G+ network',
+        3 => 'No upfront cost, no setup or equipment fees',
+        4 => '24/7 tech support',
+    );
+
+    foreach ($internet_5g_includes as $number => $text) {
+
+        $add_text(
+            '5g_include_' . $number,
+            'Included Feature ' . $number,
+            $text
+        );
+    }
+
+
+    /*
+     * 5G plans
+     */
+
+    $internet_5g_plans = array(
+
+        1 => array(
+            'name' => 'Starter',
+            'note' => 'Compact design, high-capacity battery',
+            'price' => '$70',
+            'suffix' => '/mo, month-to-month',
+            'features' =>
+                "500 GB data at plan speeds, unlimited at reduced speeds thereafter\n" .
+                "HD video capability\n" .
+                "No term commitment",
+        ),
+
+        2 => array(
+            'name' => 'Pro',
+            'note' => 'Easy to transfer between locations',
+            'price' => '$90',
+            'suffix' => '/mo, month-to-month',
+            'features' =>
+                "1 TB data at plan speeds, unlimited at reduced speeds thereafter\n" .
+                "HD video capability\n" .
+                "No term commitment",
+        ),
+
+        3 => array(
+            'name' => 'Premium',
+            'note' => 'For users with high data needs',
+            'price' => '$100',
+            'suffix' => '/mo, month-to-month',
+            'features' =>
+                "Unlimited data at plan speeds\n" .
+                "Full HD video capability\n" .
+                "No term commitment",
+        ),
+
+    );
+
+    foreach ($internet_5g_plans as $number => $plan) {
+
+        $add_text(
+            '5g_' . $number . '_name',
+            '5G Plan ' . $number . ' Name',
+            $plan['name']
+        );
+
+        $add_text(
+            '5g_' . $number . '_note',
+            '5G Plan ' . $number . ' Description',
+            $plan['note']
+        );
+
+        $add_text(
+            '5g_' . $number . '_price',
+            '5G Plan ' . $number . ' Price',
+            $plan['price']
+        );
+
+        $add_text(
+            '5g_' . $number . '_suffix',
+            '5G Plan ' . $number . ' Price Suffix',
+            $plan['suffix']
+        );
+
+        $add_textarea(
+            '5g_' . $number . '_features',
+            '5G Plan ' . $number . ' Features',
+            $plan['features'],
+            5
+        );
+    }
+
+
+    $add_textarea(
+        '5g_term_note',
+        'Bottom Note',
+        'Need more than one device, or have questions? Contact us and we\'ll help you find the right fit.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BILL REVIEW
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'review',
+        'Bill Review'
+    );
+
+    $add_text(
+        'review_eyebrow',
+        'Review Eyebrow',
+        'FREE INTERNET BILL REVIEW'
+    );
+
+    $add_text(
+        'review_heading',
+        'Review Heading',
+        'Upload your bill. We\'ll do the homework.'
+    );
+
+    $add_textarea(
+        'review_intro',
+        'Review Description',
+        'Send us a recent internet bill and a WCP business specialist will review your current service and available options.'
+    );
+
+
+    /*
+     * Review benefit 1
+     */
+
+    $add_text(
+        'review_1_title',
+        'Review Benefit 1 Title',
+        'Review your current costs'
+    );
+
+    $add_textarea(
+        'review_1_text',
+        'Review Benefit 1 Description',
+        'We\'ll look at what you\'re currently paying and what speeds you have.'
+    );
+
+
+    /*
+     * Review benefit 2
+     */
+
+    $add_text(
+        'review_2_title',
+        'Review Benefit 2 Title',
+        'Identify opportunities'
+    );
+
+    $add_textarea(
+        'review_2_text',
+        'Review Benefit 2 Description',
+        'We\'ll check available Rogers Business internet options that may better fit your needs.'
+    );
+
+
+    /*
+     * Review benefit 3
+     */
+
+    $add_text(
+        'review_3_title',
+        'Review Benefit 3 Title',
+        'Talk to a real person'
+    );
+
+    $add_textarea(
+        'review_3_text',
+        'Review Benefit 3 Description',
+        'Your review is handled by a WCP business specialist.'
+    );
+
+
+    $add_text(
+        'review_button',
+        'Form Button Text',
+        'Get My Free Bill Review'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_business_internet',
+
+        'title' => 'Business Internet Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $internet_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_internet_fields'
+);
