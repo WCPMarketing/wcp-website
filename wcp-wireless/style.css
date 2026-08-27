@@ -1608,3 +1608,34 @@ header.site-header.scrolled {
     }
 
 }
+/* =========================================================
+   MASTERCARD BENEFITS - 3 X 2
+========================================================= */
+
+.feature-strip.mastercard-benefits-grid {
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:32px 40px;
+    align-items:start;
+}
+
+.feature-strip.mastercard-benefits-grid > div {
+    width:100%;
+}
+
+@media (max-width:800px) {
+
+    .feature-strip.mastercard-benefits-grid {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:28px;
+    }
+
+}
+
+@media (max-width:560px) {
+
+    .feature-strip.mastercard-benefits-grid {
+        grid-template-columns:1fr;
+    }
+
+}
