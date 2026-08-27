@@ -1,86 +1,492 @@
 <?php get_header(); ?>
 
+<?php
 
-<!-- Business Hero -->
+/*
+|--------------------------------------------------------------------------
+| BUSINESS OVERVIEW - WORDPRESS / ACF CONTENT
+|--------------------------------------------------------------------------
+*/
+
+$business_field = function ($name, $fallback = '') {
+
+    if (function_exists('wcp_field')) {
+        return wcp_field('business_' . $name, $fallback);
+    }
+
+    return $fallback;
+};
+
+
+/*
+|--------------------------------------------------------------------------
+| HERO
+|--------------------------------------------------------------------------
+*/
+
+$hero_heading = $business_field(
+    'hero_heading',
+    'You Get Rogers. You Deal With Us.'
+);
+
+$hero_description = $business_field(
+    'hero_description',
+    'The Rogers products and network your business needs — backed by a local team that knows your business and answers the phone.'
+);
+
+$hero_image = $business_field(
+    'hero_image',
+    get_template_directory_uri() . '/images/hero-laptop-cafe.jpg'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| WHY WCP
+|--------------------------------------------------------------------------
+*/
+
+$why_items = array(
+
+    array(
+        'number' => '01',
+        'title' => $business_field(
+            'why_1_title',
+            'Your Own Account Manager'
+        ),
+        'text' => $business_field(
+            'why_1_text',
+            'No call queues. No bouncing between departments.'
+        ),
+    ),
+
+    array(
+        'number' => '02',
+        'title' => $business_field(
+            'why_2_title',
+            'Local, Personal Support'
+        ),
+        'text' => $business_field(
+            'why_2_text',
+            'Face-to-face service when you need it.'
+        ),
+    ),
+
+    array(
+        'number' => '03',
+        'title' => $business_field(
+            'why_3_title',
+            'The Right Rogers Plan'
+        ),
+        'text' => $business_field(
+            'why_3_text',
+            'We compare across Rogers\' full catalogue to find the best fit for your business.'
+        ),
+    ),
+
+);
+
+
+$banner_eyebrow = $business_field(
+    'banner_eyebrow',
+    'The Bottom Line'
+);
+
+$banner_heading = $business_field(
+    'banner_heading',
+    'Rogers network. WCP service.'
+);
+
+$banner_text = $business_field(
+    'banner_text',
+    'Same Rogers products and network — with a local team in your corner.'
+);
+
+$banner_button = $business_field(
+    'banner_button',
+    'Get My Free Business Review →'
+);
+
+$why_tagline = $business_field(
+    'why_tagline',
+    'Serving Canadian businesses since 1990'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| SERVICES
+|--------------------------------------------------------------------------
+*/
+
+$services_heading = $business_field(
+    'services_heading',
+    'Rogers Business Services'
+);
+
+$services_intro = $business_field(
+    'services_intro',
+    'Everything your business needs to stay connected, in one place.'
+);
+
+$services_background = $business_field(
+    'services_background',
+    get_template_directory_uri() . '/images/office image.png'
+);
+
+
+$services = array(
+
+    array(
+        'title' => $business_field(
+            'service_1_title',
+            'Business Wireless'
+        ),
+
+        'text' => $business_field(
+            'service_1_text',
+            'Data plans, device financing, and BYOD options for teams of any size. We\'ll match you to the right plan instead of the most expensive one.'
+        ),
+
+        'button' => $business_field(
+            'service_1_button',
+            'See Wireless Options'
+        ),
+
+        'url' => home_url('/business-wireless/'),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'service_2_title',
+            'Business Internet'
+        ),
+
+        'text' => $business_field(
+            'service_2_text',
+            'Reliable, fast internet built for day-to-day operations — from single-location offices to multi-site businesses that need dependable uptime.'
+        ),
+
+        'button' => $business_field(
+            'service_2_button',
+            'See Internet Options'
+        ),
+
+        'url' => home_url('/business-internet/'),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'service_3_title',
+            'Business Phone'
+        ),
+
+        'text' => $business_field(
+            'service_3_text',
+            'Keep your team connected with landline and cloud-based phone solutions that scale as you grow.'
+        ),
+
+        'button' => $business_field(
+            'service_3_button',
+            'See Phone Options'
+        ),
+
+        'url' => home_url('/business-phone/'),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'service_4_title',
+            'Point of Sale'
+        ),
+
+        'text' => $business_field(
+            'service_4_text',
+            'Rogers POS, powered by Clover — accept payments anywhere with transparent pricing and easy-to-use sales, inventory, and employee management tools.'
+        ),
+
+        'button' => $business_field(
+            'service_4_button',
+            'See POS Options'
+        ),
+
+        'url' => home_url('/business-pos/'),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'service_5_title',
+            'Fleet Management'
+        ),
+
+        'text' => $business_field(
+            'service_5_text',
+            'Control costs, increase driver safety, and simplify compliance with best-in-class fleet monitoring for your vehicles and mobile assets.'
+        ),
+
+        'button' => $business_field(
+            'service_5_button',
+            'See Fleet Options'
+        ),
+
+        'url' => home_url('/fleet-management/'),
+    ),
+
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| TESTIMONIALS
+|--------------------------------------------------------------------------
+*/
+
+$testimonials_heading = $business_field(
+    'testimonials_heading',
+    'What Our Clients Say'
+);
+
+$testimonials_intro = $business_field(
+    'testimonials_intro',
+    'Real feedback from businesses we\'ve worked with.'
+);
+
+
+$testimonials = array(
+
+    array(
+        'quote' => $business_field(
+            'testimonial_1_quote',
+            'The WCP team made switching to Rogers Business very painless. I\'d definitely work with them again.'
+        ),
+
+        'name' => $business_field(
+            'testimonial_1_name',
+            'Rob N.'
+        ),
+
+        'role' => $business_field(
+            'testimonial_1_role',
+            'President, Simcoe IT Solutions Inc.'
+        ),
+    ),
+
+
+    array(
+        'quote' => $business_field(
+            'testimonial_2_quote',
+            'I highly recommend the WCP team. During recent contract negotiations with Rogers, they demonstrated strong professionalism and expertise, ensuring a fair and efficient outcome. They\'re approachable, responsive, and always willing to help — and their problem-solving ability means they quickly find practical solutions. Overall, a great experience.'
+        ),
+
+        'name' => $business_field(
+            'testimonial_2_name',
+            'Debbie B.'
+        ),
+
+        'role' => $business_field(
+            'testimonial_2_role',
+            'Deals Desk Manager / Sales Operations Specialist, Avaya'
+        ),
+    ),
+
+
+    array(
+        'quote' => $business_field(
+            'testimonial_3_quote',
+            'I\'ve worked with the WCP team for over 9 years now. They\'ve looked after our corporate plan for our employees at Markham Stouffville Hospital, keeping our staff up to date with current offers and promotions. Very knowledgeable at what they do.'
+        ),
+
+        'name' => $business_field(
+            'testimonial_3_name',
+            'Lee E.'
+        ),
+
+        'role' => $business_field(
+            'testimonial_3_role',
+            'Network Analyst, OVH'
+        ),
+    ),
+
+);
+
+
+$review_link_text = $business_field(
+    'review_link_text',
+    '⭐ Had a great experience with us? Leave us a review on Google →'
+);
+
+$review_link_url = $business_field(
+    'review_link_url',
+    'https://g.page/r/CX3o5GNSAmziEAE/review'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| BILL REVIEW
+|--------------------------------------------------------------------------
+*/
+
+$review_eyebrow = $business_field(
+    'review_eyebrow',
+    'FREE BUSINESS BILL REVIEW'
+);
+
+$review_heading = $business_field(
+    'review_heading',
+    'Upload your bill. We\'ll do the homework.'
+);
+
+$review_intro = $business_field(
+    'review_intro',
+    'Send us a recent bill and a WCP business specialist will review your current services and available options.'
+);
+
+
+$review_benefits = array(
+
+    array(
+        'title' => $business_field(
+            'review_1_title',
+            'Review your current costs'
+        ),
+
+        'text' => $business_field(
+            'review_1_text',
+            'We\'ll look at what you\'re currently paying and what services you have.'
+        ),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'review_2_title',
+            'Identify opportunities'
+        ),
+
+        'text' => $business_field(
+            'review_2_text',
+            'We\'ll check available Rogers Business options that may better fit your needs.'
+        ),
+    ),
+
+
+    array(
+        'title' => $business_field(
+            'review_3_title',
+            'Talk to a real person'
+        ),
+
+        'text' => $business_field(
+            'review_3_text',
+            'Your review is handled by a WCP business specialist.'
+        ),
+    ),
+
+);
+
+
+$review_form_heading = $business_field(
+    'review_form_heading',
+    'Get My Free Bill Review'
+);
+
+$review_form_intro = $business_field(
+    'review_form_intro',
+    'Tell us a little about your business.'
+);
+
+$review_button = $business_field(
+    'review_button',
+    'Get My Free Bill Review'
+);
+
+?>
+
+
+<!-- =========================================================
+     BUSINESS HERO
+========================================================= -->
 
 <section
     class="hero hero-photo"
-    style="--hero-img: url('<?php echo esc_url(get_template_directory_uri() . '/images/hero-laptop-cafe.jpg'); ?>');"
+    style="--hero-img: url('<?php echo esc_url($hero_image); ?>');"
 >
+
     <div class="container">
 
-        <h1>You Get Rogers. You Deal With Us.</h1>
+        <h1>
+            <?php echo esc_html($hero_heading); ?>
+        </h1>
 
         <p>
-            The Rogers products and network your business needs — backed by a
-            local team that knows your business and answers the phone.
+            <?php echo esc_html($hero_description); ?>
         </p>
 
     </div>
+
 </section>
 
 
-<!-- Why WCP -->
+<!-- =========================================================
+     WHY WCP
+========================================================= -->
 
 <section
     class="section reveal"
     style="background:var(--surface);"
 >
+
     <div class="container">
+
 
         <div class="why-numbered-grid">
 
-            <div class="why-numbered-item">
-                <span class="why-num">01</span>
 
-                <h3>Your Own Account Manager</h3>
+            <?php foreach ($why_items as $item) : ?>
 
-                <p>
-                    No call queues. No bouncing between departments.
-                </p>
-            </div>
+                <div class="why-numbered-item">
 
+                    <span class="why-num">
+                        <?php echo esc_html($item['number']); ?>
+                    </span>
 
-            <div class="why-numbered-item">
-                <span class="why-num">02</span>
+                    <h3>
+                        <?php echo esc_html($item['title']); ?>
+                    </h3>
 
-                <h3>Local, Personal Support</h3>
+                    <p>
+                        <?php echo esc_html($item['text']); ?>
+                    </p>
 
-                <p>
-                    Face-to-face service when you need it.
-                </p>
-            </div>
+                </div>
 
+            <?php endforeach; ?>
 
-            <div class="why-numbered-item">
-                <span class="why-num">03</span>
-
-                <h3>The Right Rogers Plan</h3>
-
-                <p>
-                    We compare across Rogers' full catalogue to find the best
-                    fit for your business.
-                </p>
-            </div>
 
         </div>
 
+
+        <!-- Bottom Line Banner -->
 
         <div class="why-banner">
 
             <div class="why-banner-text">
 
                 <span class="why-banner-eyebrow">
-                    The Bottom Line
+                    <?php echo esc_html($banner_eyebrow); ?>
                 </span>
 
                 <h3>
-                    Rogers network. WCP service.
+                    <?php echo esc_html($banner_heading); ?>
                 </h3>
 
                 <p>
-                    Same Rogers products and network — with a local team in
-                    your corner.
+                    <?php echo esc_html($banner_text); ?>
                 </p>
 
             </div>
@@ -90,35 +496,42 @@
                 href="<?php echo esc_url(home_url('/contact/')); ?>"
                 class="btn btn-primary"
             >
-                Get My Free Business Review →
+                <?php echo esc_html($banner_button); ?>
             </a>
 
         </div>
 
 
         <p class="why-tagline">
-            Serving Canadian businesses since 1990
+            <?php echo esc_html($why_tagline); ?>
         </p>
 
+
     </div>
+
 </section>
 
 
-<!-- Business Services -->
+<!-- =========================================================
+     BUSINESS SERVICES
+========================================================= -->
 
 <section
     class="section reveal section-photo-bg"
     style="
-        --section-bg-img: url('<?php echo esc_url(get_template_directory_uri() . '/images/office image.png'); ?>');
+        --section-bg-img: url('<?php echo esc_url($services_background); ?>');
         padding-top:64px;
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
+
         <h2 style="text-align:center;">
-            Rogers Business Services
+            <?php echo esc_html($services_heading); ?>
         </h2>
+
 
         <p
             class="lede"
@@ -128,127 +541,50 @@
                 margin-right:auto;
             "
         >
-            Everything your business needs to stay connected, in one place.
+            <?php echo esc_html($services_intro); ?>
         </p>
 
 
         <div class="card-grid cols-5">
 
-            <!-- Wireless -->
 
-            <div class="card">
+            <?php foreach ($services as $service) : ?>
 
-                <h3>Business Wireless</h3>
+                <div class="card">
 
-                <p>
-                    Data plans, device financing, and BYOD options for teams of
-                    any size. We'll match you to the right plan instead of the
-                    most expensive one.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/business-wireless/')); ?>"
-                    class="btn-card"
-                >
-                    See Wireless Options
-                </a>
-
-            </div>
+                    <h3>
+                        <?php echo esc_html($service['title']); ?>
+                    </h3>
 
 
-            <!-- Internet -->
-
-            <div class="card">
-
-                <h3>Business Internet</h3>
-
-                <p>
-                    Reliable, fast internet built for day-to-day operations —
-                    from single-location offices to multi-site businesses that
-                    need dependable uptime.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/business-internet/')); ?>"
-                    class="btn-card"
-                >
-                    See Internet Options
-                </a>
-
-            </div>
+                    <p>
+                        <?php echo esc_html($service['text']); ?>
+                    </p>
 
 
-            <!-- Phone -->
+                    <a
+                        href="<?php echo esc_url($service['url']); ?>"
+                        class="btn-card"
+                    >
+                        <?php echo esc_html($service['button']); ?>
+                    </a>
 
-            <div class="card">
+                </div>
 
-                <h3>Business Phone</h3>
+            <?php endforeach; ?>
 
-                <p>
-                    Keep your team connected with landline and cloud-based
-                    phone solutions that scale as you grow.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/business-phone/')); ?>"
-                    class="btn-card"
-                >
-                    See Phone Options
-                </a>
-
-            </div>
-
-
-            <!-- POS -->
-
-            <div class="card">
-
-                <h3>Point of Sale</h3>
-
-                <p>
-                    Rogers POS, powered by Clover — accept payments anywhere
-                    with transparent pricing and easy-to-use sales, inventory,
-                    and employee management tools.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/business-pos/')); ?>"
-                    class="btn-card"
-                >
-                    See POS Options
-                </a>
-
-            </div>
-
-
-            <!-- Fleet -->
-
-            <div class="card">
-
-                <h3>Fleet Management</h3>
-
-                <p>
-                    Control costs, increase driver safety, and simplify
-                    compliance with best-in-class fleet monitoring for your
-                    vehicles and mobile assets.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(home_url('/fleet-management/')); ?>"
-                    class="btn-card"
-                >
-                    See Fleet Options
-                </a>
-
-            </div>
 
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- Testimonials -->
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
 
 <section
     class="section reveal"
@@ -257,11 +593,14 @@
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
+
         <h2 style="text-align:center;">
-            What Our Clients Say
+            <?php echo esc_html($testimonials_heading); ?>
         </h2>
+
 
         <p
             class="lede"
@@ -271,72 +610,37 @@
                 margin-right:auto;
             "
         >
-            Real feedback from businesses we've worked with.
+            <?php echo esc_html($testimonials_intro); ?>
         </p>
 
 
         <div class="testimonial-grid">
 
-            <div class="testimonial-card">
 
-                <p class="testimonial-quote">
-                    The WCP team made switching to Rogers Business very
-                    painless. I'd definitely work with them again.
-                </p>
+            <?php foreach ($testimonials as $testimonial) : ?>
 
-                <p class="testimonial-attribution">
-                    Rob N.
-                </p>
-
-                <p class="testimonial-role">
-                    President, Simcoe IT Solutions Inc.
-                </p>
-
-            </div>
+                <div class="testimonial-card">
 
 
-            <div class="testimonial-card">
-
-                <p class="testimonial-quote">
-                    I highly recommend the WCP team. During recent contract
-                    negotiations with Rogers, they demonstrated strong
-                    professionalism and expertise, ensuring a fair and efficient
-                    outcome. They're approachable, responsive, and always
-                    willing to help — and their problem-solving ability means
-                    they quickly find practical solutions. Overall, a great
-                    experience.
-                </p>
-
-                <p class="testimonial-attribution">
-                    Debbie B.
-                </p>
-
-                <p class="testimonial-role">
-                    Deals Desk Manager / Sales Operations Specialist, Avaya
-                </p>
-
-            </div>
+                    <p class="testimonial-quote">
+                        <?php echo esc_html($testimonial['quote']); ?>
+                    </p>
 
 
-            <div class="testimonial-card">
+                    <p class="testimonial-attribution">
+                        <?php echo esc_html($testimonial['name']); ?>
+                    </p>
 
-                <p class="testimonial-quote">
-                    I've worked with the WCP team for over 9 years now. They've
-                    looked after our corporate plan for our employees at Markham
-                    Stouffville Hospital, keeping our staff up to date with
-                    current offers and promotions. Very knowledgeable at what
-                    they do.
-                </p>
 
-                <p class="testimonial-attribution">
-                    Lee E.
-                </p>
+                    <p class="testimonial-role">
+                        <?php echo esc_html($testimonial['role']); ?>
+                    </p>
 
-                <p class="testimonial-role">
-                    Network Analyst, OVH
-                </p>
 
-            </div>
+                </div>
+
+            <?php endforeach; ?>
+
 
         </div>
 
@@ -344,20 +648,24 @@
         <div class="review-cta">
 
             <a
-                href="https://g.page/r/CX3o5GNSAmziEAE/review"
+                href="<?php echo esc_url($review_link_url); ?>"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                ⭐ Had a great experience with us? Leave us a review on Google →
+                <?php echo esc_html($review_link_text); ?>
             </a>
 
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- Bill Review Form -->
+<!-- =========================================================
+     BILL REVIEW
+========================================================= -->
 
 <section
     id="contact"
@@ -367,90 +675,66 @@
         padding-bottom:64px;
     "
 >
+
     <div class="container">
 
         <div class="review-form-layout">
 
 
-            <!-- Intro -->
+            <!-- Review Intro -->
 
             <div class="review-form-intro">
 
                 <span class="section-eyebrow">
-                    FREE BUSINESS BILL REVIEW
+                    <?php echo esc_html($review_eyebrow); ?>
                 </span>
 
+
                 <h2>
-                    Upload your bill. We'll do the homework.
+                    <?php echo esc_html($review_heading); ?>
                 </h2>
 
+
                 <p class="lede">
-                    Send us a recent bill and a WCP business specialist will
-                    review your current services and available options.
+                    <?php echo esc_html($review_intro); ?>
                 </p>
 
 
                 <div class="review-benefits">
 
-                    <div class="review-benefit">
 
-                        <span>✓</span>
+                    <?php foreach ($review_benefits as $benefit) : ?>
 
-                        <div>
-                            <strong>
-                                Review your current costs
-                            </strong>
+                        <div class="review-benefit">
 
-                            <p>
-                                We'll look at what you're currently paying and
-                                what services you have.
-                            </p>
+                            <span>
+                                ✓
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    <?php echo esc_html($benefit['title']); ?>
+                                </strong>
+
+                                <p>
+                                    <?php echo esc_html($benefit['text']); ?>
+                                </p>
+
+                            </div>
+
                         </div>
 
-                    </div>
+                    <?php endforeach; ?>
 
-
-                    <div class="review-benefit">
-
-                        <span>✓</span>
-
-                        <div>
-                            <strong>
-                                Identify opportunities
-                            </strong>
-
-                            <p>
-                                We'll check available Rogers Business options
-                                that may better fit your needs.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="review-benefit">
-
-                        <span>✓</span>
-
-                        <div>
-                            <strong>
-                                Talk to a real person
-                            </strong>
-
-                            <p>
-                                Your review is handled by a WCP business
-                                specialist.
-                            </p>
-                        </div>
-
-                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- Form -->
+            <!-- Bill Review Form -->
 
             <form
                 class="lead-form bill-review-form"
@@ -459,20 +743,22 @@
                 enctype="multipart/form-data"
             >
 
+
                 <div class="form-heading">
 
                     <h3>
-                        Get My Free Bill Review
+                        <?php echo esc_html($review_form_heading); ?>
                     </h3>
 
                     <p>
-                        Tell us a little about your business.
+                        <?php echo esc_html($review_form_intro); ?>
                     </p>
 
                 </div>
 
 
                 <div class="form-row">
+
 
                     <input
                         type="text"
@@ -482,6 +768,7 @@
                         required
                     >
 
+
                     <input
                         type="text"
                         name="business_name"
@@ -490,10 +777,12 @@
                         required
                     >
 
+
                 </div>
 
 
                 <div class="form-row">
+
 
                     <input
                         type="tel"
@@ -503,6 +792,7 @@
                         required
                     >
 
+
                     <input
                         type="email"
                         name="email"
@@ -510,6 +800,7 @@
                         autocomplete="email"
                         required
                     >
+
 
                 </div>
 
@@ -527,21 +818,36 @@
                         What can we help you with?
                     </option>
 
+
                     <option value="Current bill review">
                         Review my current bill
                     </option>
+
 
                     <option value="Wireless">
                         Business wireless plans
                     </option>
 
+
                     <option value="Internet">
                         Business internet plans
                     </option>
 
+
                     <option value="Phone">
                         Business phone plans
                     </option>
+
+
+                    <option value="POS">
+                        Point of Sale
+                    </option>
+
+
+                    <option value="Fleet">
+                        Fleet Management
+                    </option>
+
 
                     <option value="Not sure">
                         I'm not sure yet
@@ -552,11 +858,12 @@
 
                 <div class="bill-upload">
 
-                    <label for="bill-upload">
+                    <label for="business-bill-upload">
 
                         <span class="upload-icon">
                             ↑
                         </span>
+
 
                         <span class="upload-copy">
 
@@ -575,7 +882,7 @@
 
                     <input
                         type="file"
-                        id="bill-upload"
+                        id="business-bill-upload"
                         name="current_bill"
                         accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                     >
@@ -594,23 +901,29 @@
                     type="submit"
                     class="btn btn-primary"
                 >
-                    Get My Free Bill Review
+                    <?php echo esc_html($review_button); ?>
                 </button>
 
 
                 <p class="form-disclaimer">
+
                     🔒 Your bill is kept private and used only to review your
                     business services. No obligation. Prefer to talk?
+
                     <a href="tel:+18338441977">
                         Call 1-833-844-1977
                     </a>
+
                 </p>
 
+
             </form>
+
 
         </div>
 
     </div>
+
 </section>
 
 
