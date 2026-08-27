@@ -147,173 +147,55 @@ $benefits = array(
 );
 
 
-<!-- =========================================================
-     ROGERS BUSINESS ADVANTAGE
-========================================================= -->
+/*
+|--------------------------------------------------------------------------
+| ROGERS BUSINESS ADVANTAGE
+|--------------------------------------------------------------------------
+*/
 
-<style>
+$rogers_image = $mastercard_field(
+    'rogers_image',
+    ''
+);
 
-.mastercard-business-advantage {
-    display:grid !important;
-    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr) !important;
-    gap:56px !important;
-    align-items:center !important;
-}
+$rogers_heading = $mastercard_field(
+    'rogers_heading',
+    'Being a Rogers Business customer can be even more rewarding'
+);
 
-.mastercard-business-advantage-image {
-    width:100%;
-}
+$rogers_intro = $mastercard_field(
+    'rogers_intro',
+    'Having an eligible Rogers or Shaw business service can unlock the card\'s enhanced 2% cash back earn rate on eligible purchases.'
+);
 
-.mastercard-business-advantage-image img {
-    display:block;
-    width:100%;
-    height:380px;
-    object-fit:cover;
-    border-radius:12px;
-}
+$rogers_items = array(
 
-.mastercard-business-advantage-content {
-    width:100%;
-}
+    $mastercard_field(
+        'rogers_item_1',
+        'Rogers Business mobile'
+    ),
 
-.mastercard-business-advantage-content h2 {
-    margin-top:8px;
-    margin-bottom:16px;
-}
+    $mastercard_field(
+        'rogers_item_2',
+        'Rogers Business Internet'
+    ),
 
-.mastercard-business-advantage-content .lede {
-    margin-left:0;
-    margin-right:0;
-    max-width:600px;
-}
+    $mastercard_field(
+        'rogers_item_3',
+        'Rogers Business TV'
+    ),
 
-.mastercard-business-list {
-    list-style:none !important;
-    padding:0 !important;
-    margin:28px 0 0 !important;
-}
+    $mastercard_field(
+        'rogers_item_4',
+        'Rogers Business Phone'
+    ),
 
-.mastercard-business-list li {
-    list-style:none !important;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:0 0 14px;
-    padding:0;
-    font-size:16px;
-}
+    $mastercard_field(
+        'rogers_item_5',
+        'Eligible Shaw Business services'
+    ),
 
-.mastercard-business-check {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex:0 0 28px;
-    width:28px;
-    height:28px;
-    border-radius:50%;
-    background:rgba(218,41,28,.10);
-    color:var(--red);
-    font-size:15px;
-    font-weight:800;
-}
-
-@media (max-width:800px) {
-
-    .mastercard-business-advantage {
-        grid-template-columns:1fr !important;
-        gap:30px !important;
-    }
-
-    .mastercard-business-advantage-image img {
-        height:auto;
-    }
-
-}
-
-</style>
-
-
-<section
-    class="section reveal"
-    style="
-        background:var(--surface);
-        padding-top:64px;
-        padding-bottom:64px;
-    "
->
-
-    <div class="container">
-
-        <div class="mastercard-business-advantage">
-
-
-            <!-- LEFT SIDE - IMAGE -->
-
-            <div class="mastercard-business-advantage-image">
-
-                <?php if ($rogers_image) : ?>
-
-                    <img
-                        src="<?php echo esc_url($rogers_image); ?>"
-                        alt="Rogers Business customer"
-                    >
-
-                <?php endif; ?>
-
-            </div>
-
-
-            <!-- RIGHT SIDE - CONTENT -->
-
-            <div class="mastercard-business-advantage-content">
-
-                <span class="eyebrow">
-                    ROGERS BUSINESS
-                </span>
-
-
-                <h2>
-                    <?php echo esc_html($rogers_heading); ?>
-                </h2>
-
-
-                <p class="lede">
-                    <?php echo esc_html($rogers_intro); ?>
-                </p>
-
-
-                <ul class="mastercard-business-list">
-
-                    <?php foreach ($rogers_items as $item) : ?>
-
-                        <?php if ($item) : ?>
-
-                            <li>
-
-                                <span class="mastercard-business-check">
-                                    ✓
-                                </span>
-
-                                <span>
-                                    <?php echo esc_html($item); ?>
-                                </span>
-
-                            </li>
-
-                        <?php endif; ?>
-
-                    <?php endforeach; ?>
-
-                </ul>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
+);
 
 
 /*
@@ -461,7 +343,7 @@ $change_2_text = $mastercard_field(
 
 /*
 |--------------------------------------------------------------------------
-| CTA
+| CALL TO ACTION
 |--------------------------------------------------------------------------
 */
 
@@ -503,18 +385,17 @@ $disclaimer = $mastercard_field(
 ========================================================= -->
 
 <section
-    class="hero hero-photo"
-    style="--hero-img: url('<?php echo esc_url($hero_image); ?>');"
+    class="hero hero-photo mastercard-hero"
+    style="
+        --hero-img:url('<?php echo esc_url($hero_image); ?>');
+    "
 >
 
     <div class="container">
 
         <span
             class="section-eyebrow"
-            style="
-                color:#ffffff;
-                opacity:.9;
-            "
+            style="color:#ffffff;"
         >
             <?php echo esc_html($hero_eyebrow); ?>
         </span>
@@ -562,21 +443,11 @@ $disclaimer = $mastercard_field(
 
         <?php if ($card_image) : ?>
 
-            <div
-                style="
-                    display:flex;
-                    justify-content:center;
-                    margin-bottom:40px;
-                "
-            >
+            <div class="mastercard-card-image">
 
                 <img
                     src="<?php echo esc_url($card_image); ?>"
                     alt="Rogers Red World Elite Business Mastercard"
-                    style="
-                        width:min(420px, 100%);
-                        height:auto;
-                    "
                 >
 
             </div>
@@ -584,29 +455,24 @@ $disclaimer = $mastercard_field(
         <?php endif; ?>
 
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($benefits_heading); ?>
-        </h2>
+        <div class="mastercard-section-heading">
 
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                max-width:660px;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            <?php echo esc_html($benefits_intro); ?>
-        </p>
+            <h2>
+                <?php echo esc_html($benefits_heading); ?>
+            </h2>
+
+            <p class="lede">
+                <?php echo esc_html($benefits_intro); ?>
+            </p>
+
+        </div>
 
 
         <div class="feature-strip mastercard-benefits-grid">
 
-
             <?php foreach ($benefits as $benefit) : ?>
 
-                <div>
+                <div class="mastercard-benefit">
 
                     <div class="feature-icon">
 
@@ -621,6 +487,7 @@ $disclaimer = $mastercard_field(
                             stroke-linejoin="round"
                             aria-hidden="true"
                         >
+
                             <circle
                                 cx="12"
                                 cy="12"
@@ -628,6 +495,7 @@ $disclaimer = $mastercard_field(
                             />
 
                             <path d="M8 12l3 3 5-6"/>
+
                         </svg>
 
                     </div>
@@ -644,17 +512,12 @@ $disclaimer = $mastercard_field(
 
             <?php endforeach; ?>
 
-
         </div>
 
     </div>
 
 </section>
 
-
-<!-- =========================================================
-     ROGERS BUSINESS ADVANTAGE
-========================================================= -->
 
 <!-- =========================================================
      ROGERS BUSINESS ADVANTAGE
@@ -671,14 +534,14 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <div class="mastercard-rogers-grid">
+        <div class="mastercard-business-advantage">
 
 
-            <!-- IMAGE -->
+            <!-- LEFT SIDE - IMAGE -->
 
             <?php if ($rogers_image) : ?>
 
-                <div class="mastercard-rogers-image">
+                <div class="mastercard-business-advantage-image">
 
                     <img
                         src="<?php echo esc_url($rogers_image); ?>"
@@ -690,9 +553,9 @@ $disclaimer = $mastercard_field(
             <?php endif; ?>
 
 
-            <!-- CONTENT -->
+            <!-- RIGHT SIDE - CONTENT -->
 
-            <div class="mastercard-rogers-content">
+            <div class="mastercard-business-advantage-content">
 
                 <span class="eyebrow">
                     ROGERS BUSINESS
@@ -702,19 +565,12 @@ $disclaimer = $mastercard_field(
                     <?php echo esc_html($rogers_heading); ?>
                 </h2>
 
-                <p
-                    class="lede"
-                    style="
-                        margin-left:0;
-                        margin-right:0;
-                        max-width:620px;
-                    "
-                >
+                <p class="lede">
                     <?php echo esc_html($rogers_intro); ?>
                 </p>
 
 
-                <ul class="mastercard-rogers-list">
+                <ul class="mastercard-business-list">
 
                     <?php foreach ($rogers_items as $item) : ?>
 
@@ -722,7 +578,7 @@ $disclaimer = $mastercard_field(
 
                             <li>
 
-                                <span class="mastercard-check">
+                                <span class="mastercard-business-check">
                                     ✓
                                 </span>
 
@@ -739,7 +595,6 @@ $disclaimer = $mastercard_field(
                 </ul>
 
             </div>
-
 
         </div>
 
@@ -762,15 +617,16 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($additional_heading); ?>
-        </h2>
+        <div class="mastercard-section-heading">
+
+            <h2>
+                <?php echo esc_html($additional_heading); ?>
+            </h2>
+
+        </div>
 
 
-        <div
-            class="card-grid"
-            style="margin-top:32px;"
-        >
+        <div class="card-grid mastercard-additional-grid">
 
             <?php foreach ($additional_benefits as $benefit) : ?>
 
@@ -810,53 +666,47 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <div
-            style="
-                max-width:780px;
-                margin:0 auto;
-            "
-        >
+        <div class="mastercard-narrow">
 
-            <h2 style="text-align:center;">
-                <?php echo esc_html($eligibility_heading); ?>
-            </h2>
+            <div class="mastercard-section-heading">
 
-            <p
-                class="lede"
-                style="
-                    text-align:center;
-                    max-width:650px;
-                    margin-left:auto;
-                    margin-right:auto;
-                "
-            >
-                <?php echo esc_html($eligibility_intro); ?>
-            </p>
+                <h2>
+                    <?php echo esc_html($eligibility_heading); ?>
+                </h2>
+
+                <p class="lede">
+                    <?php echo esc_html($eligibility_intro); ?>
+                </p>
+
+            </div>
 
 
-            <ul class="include-strip">
+            <ul class="mastercard-eligibility-list">
 
                 <?php foreach ($eligibility_items as $item) : ?>
 
-                    <li>
-                        ✓ <?php echo esc_html($item); ?>
-                    </li>
+                    <?php if ($item) : ?>
+
+                        <li>
+
+                            <span class="mastercard-business-check">
+                                ✓
+                            </span>
+
+                            <span>
+                                <?php echo esc_html($item); ?>
+                            </span>
+
+                        </li>
+
+                    <?php endif; ?>
 
                 <?php endforeach; ?>
 
             </ul>
 
 
-            <p
-                style="
-                    font-size:13px;
-                    line-height:1.6;
-                    text-align:center;
-                    color:var(--text-muted);
-                    margin:20px auto 0;
-                    max-width:700px;
-                "
-            >
+            <p class="mastercard-small-note">
                 <?php echo esc_html($eligibility_note); ?>
             </p>
 
@@ -881,31 +731,23 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($changes_heading); ?>
-        </h2>
+        <div class="mastercard-section-heading">
 
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                max-width:650px;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            <?php echo esc_html($changes_intro); ?>
-        </p>
+            <h2>
+                <?php echo esc_html($changes_heading); ?>
+            </h2>
+
+            <p class="lede">
+                <?php echo esc_html($changes_intro); ?>
+            </p>
+
+        </div>
 
 
-        <div
-            class="card-grid"
-            style="
-                max-width:840px;
-                margin:32px auto 0;
-            "
-        >
+        <div class="mastercard-changes-grid">
 
+
+            <!-- CHANGE 1 -->
 
             <div class="card">
 
@@ -923,6 +765,8 @@ $disclaimer = $mastercard_field(
 
             </div>
 
+
+            <!-- CHANGE 2 -->
 
             <div class="card">
 
@@ -963,13 +807,7 @@ $disclaimer = $mastercard_field(
 
     <div class="container">
 
-        <div
-            style="
-                max-width:760px;
-                margin:0 auto;
-                text-align:center;
-            "
-        >
+        <div class="mastercard-cta">
 
             <span class="section-eyebrow">
                 <?php echo esc_html($cta_eyebrow); ?>
@@ -979,13 +817,7 @@ $disclaimer = $mastercard_field(
                 <?php echo esc_html($cta_heading); ?>
             </h2>
 
-            <p
-                class="lede"
-                style="
-                    margin-left:auto;
-                    margin-right:auto;
-                "
-            >
+            <p class="lede">
                 <?php echo esc_html($cta_text); ?>
             </p>
 
@@ -1000,15 +832,7 @@ $disclaimer = $mastercard_field(
             </a>
 
 
-            <p
-                style="
-                    max-width:720px;
-                    margin:28px auto 0;
-                    font-size:11px;
-                    line-height:1.6;
-                    color:var(--text-muted);
-                "
-            >
+            <p class="mastercard-disclaimer">
                 <?php echo esc_html($disclaimer); ?>
             </p>
 
@@ -1017,6 +841,295 @@ $disclaimer = $mastercard_field(
     </div>
 
 </section>
+
+
+<!-- =========================================================
+     MASTERCARD PAGE STYLES
+========================================================= -->
+
+<style>
+
+/* ---------------------------------------------------------
+   HERO
+--------------------------------------------------------- */
+
+.mastercard-hero {
+    min-height:430px;
+    display:flex;
+    align-items:center;
+}
+
+
+/* ---------------------------------------------------------
+   STANDARD SECTION HEADINGS
+--------------------------------------------------------- */
+
+.mastercard-section-heading {
+    max-width:720px;
+    margin:0 auto 38px;
+    text-align:center;
+}
+
+.mastercard-section-heading .lede {
+    max-width:660px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* ---------------------------------------------------------
+   OPTIONAL CARD IMAGE
+--------------------------------------------------------- */
+
+.mastercard-card-image {
+    display:flex;
+    justify-content:center;
+    margin-bottom:40px;
+}
+
+.mastercard-card-image img {
+    width:min(420px, 100%);
+    height:auto;
+    display:block;
+}
+
+
+/* ---------------------------------------------------------
+   KEY BENEFITS - 3 X 2
+--------------------------------------------------------- */
+
+.feature-strip.mastercard-benefits-grid {
+    display:grid !important;
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:36px 44px !important;
+    align-items:start;
+}
+
+.feature-strip.mastercard-benefits-grid > div {
+    width:100% !important;
+    min-width:0 !important;
+}
+
+.mastercard-benefit h4 {
+    margin-top:10px;
+    margin-bottom:7px;
+}
+
+.mastercard-benefit p {
+    margin-bottom:0;
+}
+
+
+/* ---------------------------------------------------------
+   ROGERS BUSINESS ADVANTAGE
+--------------------------------------------------------- */
+
+.mastercard-business-advantage {
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap:56px !important;
+    align-items:center !important;
+}
+
+.mastercard-business-advantage-image {
+    width:100%;
+}
+
+.mastercard-business-advantage-image img {
+    display:block;
+    width:100%;
+    height:380px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:12px;
+}
+
+.mastercard-business-advantage-content {
+    width:100%;
+}
+
+.mastercard-business-advantage-content h2 {
+    margin-top:8px;
+    margin-bottom:16px;
+}
+
+.mastercard-business-advantage-content .lede {
+    margin-left:0;
+    margin-right:0;
+    max-width:600px;
+}
+
+.mastercard-business-list {
+    list-style:none !important;
+    padding:0 !important;
+    margin:28px 0 0 !important;
+}
+
+.mastercard-business-list li {
+    list-style:none !important;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 14px;
+    padding:0;
+    font-size:16px;
+}
+
+.mastercard-business-list li::marker {
+    content:"";
+}
+
+.mastercard-business-check {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 28px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(218,41,28,.10);
+    color:var(--red);
+    font-size:15px;
+    font-weight:800;
+}
+
+
+/* ---------------------------------------------------------
+   ADDITIONAL BENEFITS
+--------------------------------------------------------- */
+
+.card-grid.mastercard-additional-grid {
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:20px !important;
+}
+
+
+/* ---------------------------------------------------------
+   ELIGIBILITY
+--------------------------------------------------------- */
+
+.mastercard-narrow {
+    max-width:820px;
+    margin:0 auto;
+}
+
+.mastercard-eligibility-list {
+    list-style:none;
+    padding:0;
+    margin:30px auto 0;
+    max-width:700px;
+}
+
+.mastercard-eligibility-list li {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+    line-height:1.5;
+}
+
+.mastercard-small-note {
+    max-width:700px;
+    margin:24px auto 0;
+    text-align:center;
+    font-size:13px;
+    line-height:1.6;
+    color:var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------
+   UPCOMING CHANGES
+--------------------------------------------------------- */
+
+.mastercard-changes-grid {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:20px;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.mastercard-changes-grid .badge {
+    display:inline-block;
+    margin-bottom:12px;
+}
+
+
+/* ---------------------------------------------------------
+   CTA
+--------------------------------------------------------- */
+
+.mastercard-cta {
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.mastercard-cta .lede {
+    max-width:650px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.mastercard-disclaimer {
+    max-width:720px;
+    margin:28px auto 0;
+    font-size:11px;
+    line-height:1.6;
+    color:var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+--------------------------------------------------------- */
+
+@media (max-width:800px) {
+
+    .feature-strip.mastercard-benefits-grid {
+        grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+        gap:30px !important;
+    }
+
+    .mastercard-business-advantage {
+        grid-template-columns:1fr !important;
+        gap:30px !important;
+    }
+
+    .mastercard-business-advantage-image img {
+        height:auto;
+    }
+
+    .card-grid.mastercard-additional-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .mastercard-changes-grid {
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width:560px) {
+
+    .feature-strip.mastercard-benefits-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .mastercard-hero {
+        min-height:auto;
+    }
+
+}
+
+</style>
 
 
 <?php get_footer(); ?>
