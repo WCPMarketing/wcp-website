@@ -3929,3 +3929,594 @@ add_action(
     'acf/init',
     'wcp_register_home_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| BUSINESS OVERVIEW - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_business_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $business_page = get_page_by_path('business');
+
+    if (!$business_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_business_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_business_' . $key,
+            'label'         => $label,
+            'name'          => 'business_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 3
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_business_' . $key,
+            'label'         => $label,
+            'name'          => 'business_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_url = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_business_' . $key,
+            'label'         => $label,
+            'name'          => 'business_' . $key,
+            'type'          => 'url',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_image = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_business_' . $key,
+            'label'         => $label,
+            'name'          => 'business_' . $key,
+            'type'          => 'image',
+            'return_format' => 'url',
+            'preview_size'  => 'medium',
+            'library'       => 'all',
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'You Get Rogers. You Deal With Us.'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'The Rogers products and network your business needs — backed by a local team that knows your business and answers the phone.'
+    );
+
+    $add_image(
+        'hero_image',
+        'Hero Background Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | WHY WCP
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'why',
+        'Why WCP'
+    );
+
+
+    $add_text(
+        'why_1_title',
+        'Reason 1 Heading',
+        'Your Own Account Manager'
+    );
+
+    $add_textarea(
+        'why_1_text',
+        'Reason 1 Description',
+        'No call queues. No bouncing between departments.'
+    );
+
+
+    $add_text(
+        'why_2_title',
+        'Reason 2 Heading',
+        'Local, Personal Support'
+    );
+
+    $add_textarea(
+        'why_2_text',
+        'Reason 2 Description',
+        'Face-to-face service when you need it.'
+    );
+
+
+    $add_text(
+        'why_3_title',
+        'Reason 3 Heading',
+        'The Right Rogers Plan'
+    );
+
+    $add_textarea(
+        'why_3_text',
+        'Reason 3 Description',
+        'We compare across Rogers\' full catalogue to find the best fit for your business.'
+    );
+
+
+    /*
+     * Bottom line banner
+     */
+
+    $add_text(
+        'banner_eyebrow',
+        'Banner Eyebrow',
+        'The Bottom Line'
+    );
+
+    $add_text(
+        'banner_heading',
+        'Banner Heading',
+        'Rogers network. WCP service.'
+    );
+
+    $add_textarea(
+        'banner_text',
+        'Banner Description',
+        'Same Rogers products and network — with a local team in your corner.'
+    );
+
+    $add_text(
+        'banner_button',
+        'Banner Button Text',
+        'Get My Free Business Review →'
+    );
+
+    $add_text(
+        'why_tagline',
+        'Bottom Tagline',
+        'Serving Canadian businesses since 1990'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SERVICES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'services',
+        'Business Services'
+    );
+
+    $add_text(
+        'services_heading',
+        'Section Heading',
+        'Rogers Business Services'
+    );
+
+    $add_textarea(
+        'services_intro',
+        'Section Description',
+        'Everything your business needs to stay connected, in one place.'
+    );
+
+    $add_image(
+        'services_background',
+        'Services Background Image'
+    );
+
+
+    /*
+     * Wireless
+     */
+
+    $add_text(
+        'service_1_title',
+        'Service 1 Title',
+        'Business Wireless'
+    );
+
+    $add_textarea(
+        'service_1_text',
+        'Service 1 Description',
+        'Data plans, device financing, and BYOD options for teams of any size. We\'ll match you to the right plan instead of the most expensive one.'
+    );
+
+    $add_text(
+        'service_1_button',
+        'Service 1 Button',
+        'See Wireless Options'
+    );
+
+
+    /*
+     * Internet
+     */
+
+    $add_text(
+        'service_2_title',
+        'Service 2 Title',
+        'Business Internet'
+    );
+
+    $add_textarea(
+        'service_2_text',
+        'Service 2 Description',
+        'Reliable, fast internet built for day-to-day operations — from single-location offices to multi-site businesses that need dependable uptime.'
+    );
+
+    $add_text(
+        'service_2_button',
+        'Service 2 Button',
+        'See Internet Options'
+    );
+
+
+    /*
+     * Phone
+     */
+
+    $add_text(
+        'service_3_title',
+        'Service 3 Title',
+        'Business Phone'
+    );
+
+    $add_textarea(
+        'service_3_text',
+        'Service 3 Description',
+        'Keep your team connected with landline and cloud-based phone solutions that scale as you grow.'
+    );
+
+    $add_text(
+        'service_3_button',
+        'Service 3 Button',
+        'See Phone Options'
+    );
+
+
+    /*
+     * POS
+     */
+
+    $add_text(
+        'service_4_title',
+        'Service 4 Title',
+        'Point of Sale'
+    );
+
+    $add_textarea(
+        'service_4_text',
+        'Service 4 Description',
+        'Rogers POS, powered by Clover — accept payments anywhere with transparent pricing and easy-to-use sales, inventory, and employee management tools.'
+    );
+
+    $add_text(
+        'service_4_button',
+        'Service 4 Button',
+        'See POS Options'
+    );
+
+
+    /*
+     * Fleet
+     */
+
+    $add_text(
+        'service_5_title',
+        'Service 5 Title',
+        'Fleet Management'
+    );
+
+    $add_textarea(
+        'service_5_text',
+        'Service 5 Description',
+        'Control costs, increase driver safety, and simplify compliance with best-in-class fleet monitoring for your vehicles and mobile assets.'
+    );
+
+    $add_text(
+        'service_5_button',
+        'Service 5 Button',
+        'See Fleet Options'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | TESTIMONIALS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'testimonials',
+        'Testimonials'
+    );
+
+    $add_text(
+        'testimonials_heading',
+        'Section Heading',
+        'What Our Clients Say'
+    );
+
+    $add_text(
+        'testimonials_intro',
+        'Section Description',
+        'Real feedback from businesses we\'ve worked with.'
+    );
+
+
+    /*
+     * Testimonial 1
+     */
+
+    $add_textarea(
+        'testimonial_1_quote',
+        'Testimonial 1 Quote',
+        'The WCP team made switching to Rogers Business very painless. I\'d definitely work with them again.',
+        5
+    );
+
+    $add_text(
+        'testimonial_1_name',
+        'Testimonial 1 Name',
+        'Rob N.'
+    );
+
+    $add_text(
+        'testimonial_1_role',
+        'Testimonial 1 Role / Company',
+        'President, Simcoe IT Solutions Inc.'
+    );
+
+
+    /*
+     * Testimonial 2
+     */
+
+    $add_textarea(
+        'testimonial_2_quote',
+        'Testimonial 2 Quote',
+        'I highly recommend the WCP team. During recent contract negotiations with Rogers, they demonstrated strong professionalism and expertise, ensuring a fair and efficient outcome. They\'re approachable, responsive, and always willing to help — and their problem-solving ability means they quickly find practical solutions. Overall, a great experience.',
+        8
+    );
+
+    $add_text(
+        'testimonial_2_name',
+        'Testimonial 2 Name',
+        'Debbie B.'
+    );
+
+    $add_text(
+        'testimonial_2_role',
+        'Testimonial 2 Role / Company',
+        'Deals Desk Manager / Sales Operations Specialist, Avaya'
+    );
+
+
+    /*
+     * Testimonial 3
+     */
+
+    $add_textarea(
+        'testimonial_3_quote',
+        'Testimonial 3 Quote',
+        'I\'ve worked with the WCP team for over 9 years now. They\'ve looked after our corporate plan for our employees at Markham Stouffville Hospital, keeping our staff up to date with current offers and promotions. Very knowledgeable at what they do.',
+        7
+    );
+
+    $add_text(
+        'testimonial_3_name',
+        'Testimonial 3 Name',
+        'Lee E.'
+    );
+
+    $add_text(
+        'testimonial_3_role',
+        'Testimonial 3 Role / Company',
+        'Network Analyst, OVH'
+    );
+
+
+    $add_text(
+        'review_link_text',
+        'Google Review Link Text',
+        '⭐ Had a great experience with us? Leave us a review on Google →'
+    );
+
+    $add_url(
+        'review_link_url',
+        'Google Review URL',
+        'https://g.page/r/CX3o5GNSAmziEAE/review'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BILL REVIEW
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'review',
+        'Bill Review'
+    );
+
+    $add_text(
+        'review_eyebrow',
+        'Review Eyebrow',
+        'FREE BUSINESS BILL REVIEW'
+    );
+
+    $add_text(
+        'review_heading',
+        'Review Heading',
+        'Upload your bill. We\'ll do the homework.'
+    );
+
+    $add_textarea(
+        'review_intro',
+        'Review Description',
+        'Send us a recent bill and a WCP business specialist will review your current services and available options.'
+    );
+
+
+    $add_text(
+        'review_1_title',
+        'Benefit 1 Title',
+        'Review your current costs'
+    );
+
+    $add_textarea(
+        'review_1_text',
+        'Benefit 1 Description',
+        'We\'ll look at what you\'re currently paying and what services you have.'
+    );
+
+
+    $add_text(
+        'review_2_title',
+        'Benefit 2 Title',
+        'Identify opportunities'
+    );
+
+    $add_textarea(
+        'review_2_text',
+        'Benefit 2 Description',
+        'We\'ll check available Rogers Business options that may better fit your needs.'
+    );
+
+
+    $add_text(
+        'review_3_title',
+        'Benefit 3 Title',
+        'Talk to a real person'
+    );
+
+    $add_textarea(
+        'review_3_text',
+        'Benefit 3 Description',
+        'Your review is handled by a WCP business specialist.'
+    );
+
+
+    $add_text(
+        'review_form_heading',
+        'Form Heading',
+        'Get My Free Bill Review'
+    );
+
+    $add_text(
+        'review_form_intro',
+        'Form Introduction',
+        'Tell us a little about your business.'
+    );
+
+    $add_text(
+        'review_button',
+        'Submit Button Text',
+        'Get My Free Bill Review'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_business_overview',
+
+        'title' => 'Business Overview Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $business_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_business_fields'
+);
