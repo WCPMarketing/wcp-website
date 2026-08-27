@@ -79,6 +79,8 @@
         <div class="feature-strip reveal">
 
 
+            <!-- Transparent Pricing -->
+
             <div>
 
                 <div class="feature-icon">
@@ -119,6 +121,8 @@
 
 
 
+            <!-- Enhanced Savings -->
+
             <div>
 
                 <div class="feature-icon">
@@ -149,6 +153,8 @@
             </div>
 
 
+
+            <!-- Smarter Management -->
 
             <div>
 
@@ -182,6 +188,8 @@
             </div>
 
 
+
+            <!-- Rewards -->
 
             <div>
 
@@ -219,14 +227,29 @@
 
         </div>
 
+    </div>
+
+</section>
 
 
-        <!-- Plans -->
+
+<!-- POS Plans - White Background -->
+
+<section
+    class="section reveal"
+    style="
+        background:#ffffff;
+        padding-top:64px;
+        padding-bottom:64px;
+    "
+>
+
+    <div class="container">
 
         <h2
             style="
                 text-align:center;
-                margin-top:48px;
+                margin-top:0;
             "
         >
             Choose your POS plan
@@ -506,11 +529,29 @@
 
         </div>
 
+    </div>
+
+</section>
 
 
-        <!-- Hardware CTA -->
 
-        <div class="dial-tone-box">
+<!-- Hardware CTA -->
+
+<section
+    class="section"
+    style="
+        background:var(--surface);
+        padding-top:48px;
+        padding-bottom:48px;
+    "
+>
+
+    <div class="container">
+
+        <div
+            class="dial-tone-box"
+            style="margin-top:0;"
+        >
 
             <div>
 
