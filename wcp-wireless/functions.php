@@ -4520,3 +4520,340 @@ add_action(
     'acf/init',
     'wcp_register_business_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| ABOUT PAGE - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_about_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $about_page = get_page_by_path('about');
+
+    if (!$about_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_about_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_about_' . $key,
+            'label'         => $label,
+            'name'          => 'about_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 4
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_about_' . $key,
+            'label'         => $label,
+            'name'          => 'about_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_image = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_about_' . $key,
+            'label'         => $label,
+            'name'          => 'about_' . $key,
+            'type'          => 'image',
+            'return_format' => 'url',
+            'preview_size'  => 'medium',
+            'library'       => 'all',
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Built on relationships, not just transactions'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'A Rogers Authorized Dealer serving businesses across Canada since 1990 — still local, still hands-on, still answering the phone ourselves.'
+    );
+
+    $add_image(
+        'hero_image',
+        'Hero Background Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | OUR STORY
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'story',
+        'Our Story'
+    );
+
+    $add_text(
+        'story_heading',
+        'Section Heading',
+        'Our Story'
+    );
+
+    $add_textarea(
+        'story_paragraph_1',
+        'Story Paragraph 1',
+        'Founded in 1990, WCP was built by entrepreneurs willing to take risks to get results.'
+    );
+
+    $add_textarea(
+        'story_paragraph_2',
+        'Story Paragraph 2',
+        'Like the businesses we work with, we\'re business owners too — and we\'re just as driven to grow as our clients are. That shared perspective is what shapes how we work: we apply real experience to evaluate not just what a client needs today, but where their business is headed next.',
+        6
+    );
+
+    $add_textarea(
+        'story_paragraph_3',
+        'Story Paragraph 3',
+        'Over the years, that approach has made us an established local leader with genuine, lasting relationships — built through face-to-face service, in-store and on-site, rather than call centres and hold music. We proudly hold ourselves to the same standards Rogers is known for, and we work hard to earn that trust every day.',
+        6
+    );
+
+    $add_textarea(
+        'story_paragraph_4',
+        'Story Paragraph 4',
+        'At WCP, we\'re your single point of contact — removing complexity and resolving issues so you can stay focused on running your business. Our team of approximately 40 people helps us extend Rogers\' reach into communities and regions where a purely corporate presence often can\'t.',
+        6
+    );
+
+    $add_image(
+        'story_image',
+        'Story Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | MISSION
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'mission',
+        'Mission'
+    );
+
+    $add_text(
+        'mission_heading',
+        'Mission Heading',
+        'Our Mission'
+    );
+
+    $add_textarea(
+        'mission_text',
+        'Mission Text',
+        'Total customer satisfaction. That\'s it — that\'s the whole mission. Connect with us today and let us help you get connected. For us, that means listening first, finding the right solution for your business, and being there long after the sale. Our goal is simple: make business connectivity easier.',
+        7
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SALES EXCELLENCE
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'award',
+        'Sales Excellence'
+    );
+
+    $add_text(
+        'award_heading',
+        'Section Heading',
+        'Recognized for Sales Excellence'
+    );
+
+    $add_text(
+        'award_title',
+        'Award Title',
+        'Recognized by Rogers for Sales Excellence'
+    );
+
+    $add_text(
+        'award_subtitle',
+        'Award Subtitle',
+        'Highest Outbound Sales Volume — 2018 & 2019'
+    );
+
+    $add_textarea(
+        'award_text',
+        'Award Description',
+        'WCP has consistently been recognized by Rogers for outstanding sales performance, including Highest Outbound Sales Volume in 2018 & 2019. It\'s a reflection of the trust our customers place in us — and we don\'t take that lightly. Your satisfaction is our number one concern, and we promise to stay reliable.',
+        7
+    );
+
+    $add_image(
+        'award_image',
+        'Award Section Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | LIFE AT WCP
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'life',
+        'Life at WCP'
+    );
+
+    $add_text(
+        'life_heading',
+        'Section Heading',
+        'Life at WCP'
+    );
+
+    $add_textarea(
+        'life_intro',
+        'Section Introduction',
+        'Beyond wireless, internet, and phone plans, we care about the relationships behind the business — including with the customers who make it all possible.'
+    );
+
+    $add_textarea(
+        'life_text',
+        'Section Description',
+        'Every year, WCP hosts a Scramble Golf Tournament as a thank-you to the customers who do business with us. It\'s a day for our team and our customers to gather, connect, and have fun together — more like family or old friends than a client list.',
+        6
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | GALLERY IMAGES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_image(
+        'gallery_1',
+        'Gallery Image 1'
+    );
+
+    $add_image(
+        'gallery_2',
+        'Gallery Image 2'
+    );
+
+    $add_image(
+        'gallery_3',
+        'Gallery Image 3'
+    );
+
+    $add_image(
+        'gallery_4',
+        'Gallery Image 4'
+    );
+
+    $add_image(
+        'gallery_5',
+        'Gallery Image 5'
+    );
+
+    $add_image(
+        'gallery_6',
+        'Gallery Image 6'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_about',
+
+        'title' => 'About Page Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $about_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_about_fields'
+);
