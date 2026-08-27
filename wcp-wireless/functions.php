@@ -4856,3 +4856,296 @@ add_action(
     'acf/init',
     'wcp_register_about_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| CONTACT PAGE - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_contact_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $contact_page = get_page_by_path('contact');
+
+    if (!$contact_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_contact_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_contact_' . $key,
+            'label'         => $label,
+            'name'          => 'contact_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 4
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_contact_' . $key,
+            'label'         => $label,
+            'name'          => 'contact_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_email = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_contact_' . $key,
+            'label'         => $label,
+            'name'          => 'contact_' . $key,
+            'type'          => 'email',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_image = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_contact_' . $key,
+            'label'         => $label,
+            'name'          => 'contact_' . $key,
+            'type'          => 'image',
+            'return_format' => 'url',
+            'preview_size'  => 'medium',
+            'library'       => 'all',
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Let\'s see where you can save'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Send us a message, or email a copy of your current Rogers bill for a free business review — no obligation.'
+    );
+
+    $add_image(
+        'hero_image',
+        'Hero Background Image'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CONTACT FORM
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'form',
+        'Contact Form'
+    );
+
+    $add_text(
+        'form_heading',
+        'Form Heading',
+        'Get In Touch'
+    );
+
+    $add_textarea(
+        'form_intro',
+        'Form Introduction',
+        'Fill out the form and we\'ll get back to you, usually within one business day.'
+    );
+
+    $add_text(
+        'form_button',
+        'Submit Button Text',
+        'Send My Message'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FREE BUSINESS REVIEW
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'review',
+        'Free Business Review'
+    );
+
+    $add_text(
+        'review_badge',
+        'Badge Text',
+        'Free Business Review'
+    );
+
+    $add_text(
+        'review_heading',
+        'Review Heading',
+        'Already have Rogers? Let\'s find you savings.'
+    );
+
+    $add_textarea(
+        'review_text',
+        'Review Description',
+        'Email a copy of your current bill and our team will review it for free — no obligation, no pressure. We\'ll let you know exactly where you could be saving.',
+        5
+    );
+
+    $add_text(
+        'review_button',
+        'Review Button Text',
+        'Email sales@wcpwireless.com'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CONTACT DETAILS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'details',
+        'Contact Details'
+    );
+
+    $add_text(
+        'details_heading',
+        'Section Heading',
+        'Contact Details'
+    );
+
+    $add_text(
+        'phone',
+        'Phone Number',
+        '1-833-844-1977'
+    );
+
+    $add_email(
+        'email',
+        'Sales Email',
+        'sales@wcpwireless.com'
+    );
+
+    $add_textarea(
+        'address',
+        'Business Address',
+        '2875 14th Ave Unit 3, Markham, ON L3R 5H8',
+        2
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PRIVACY
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'privacy',
+        'Privacy'
+    );
+
+    $add_text(
+        'privacy_heading',
+        'Privacy Heading',
+        'A Note on Your Privacy'
+    );
+
+    $add_textarea(
+        'privacy_text',
+        'Privacy Message',
+        'Any bill or document you send us is used only by our team to review your current plan and identify potential savings or upgrades. We don\'t share your information with anyone outside WCP and Rogers for the purpose of servicing your account.',
+        6
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_contact',
+
+        'title' => 'Contact Page Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $contact_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_contact_fields'
+);
