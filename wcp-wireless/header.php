@@ -120,8 +120,12 @@
                     <a href="<?php echo esc_url(home_url('/fleet-management/')); ?>">
                         Fleet Management
                     </a>
-
-                    <a href="https://www.wcpwireless.com/lookup#Home">
+                    
+                    <a href="<?php echo esc_url(home_url('/business-mastercard/')); ?>">
+                    Rogers Business Mastercard
+                    </a>
+                    
+                    <a href="https://portal.wcpwireless.com/lookup#Home">
                         Preferred Program
                     </a>
 
