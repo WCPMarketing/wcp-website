@@ -4730,17 +4730,16 @@ function wcp_register_about_fields() {
     );
 
     $add_text(
-        'award_subtitle',
-        'Award Subtitle',
-        'Highest Outbound Sales Volume — 2018 & 2019'
-    );
-
+    'award_subtitle',
+    'Award Subtitle',
+    'A Consistent Track Record of Outstanding Performance'
+);
     $add_textarea(
-        'award_text',
-        'Award Description',
-        'WCP has consistently been recognized by Rogers for outstanding sales performance, including Highest Outbound Sales Volume in 2018 & 2019. It\'s a reflection of the trust our customers place in us — and we don\'t take that lightly. Your satisfaction is our number one concern, and we promise to stay reliable.',
-        7
-    );
+    'award_text',
+    'Award Description',
+    'WCP has consistently been recognized by Rogers for strong sales performance and continued excellence. This recognition reflects the trust our customers place in us and our ongoing commitment to providing knowledgeable advice, reliable support, and an exceptional customer experience.',
+    7
+);
 
     $add_image(
         'award_image',
