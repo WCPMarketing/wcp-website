@@ -1,14 +1,322 @@
 <?php get_header(); ?>
 
+<?php
 
-<!-- POS Hero -->
+/*
+|--------------------------------------------------------------------------
+| BUSINESS POS CONTENT
+|--------------------------------------------------------------------------
+| Values come from ACF when filled in.
+| If a field is blank, the original website content is used.
+|--------------------------------------------------------------------------
+*/
+
+
+/*
+|--------------------------------------------------------------------------
+| HERO
+|--------------------------------------------------------------------------
+*/
+
+$pos_hero_heading = wcp_field(
+    'pos_hero_heading',
+    'Smarter payments. Stronger business.'
+);
+
+$pos_hero_description = wcp_field(
+    'pos_hero_description',
+    'Accept payments anywhere, manage operations effortlessly, and give your customers the experience they expect with Rogers POS, powered by Clover.'
+);
+
+$pos_hero_button = wcp_field(
+    'pos_hero_button',
+    'Contact Sales'
+);
+
+$pos_hero_image = wcp_field(
+    'pos_hero_image',
+    get_template_directory_uri() . '/images/rogers_pos.jpg'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| FEATURES
+|--------------------------------------------------------------------------
+*/
+
+$pos_features_heading = wcp_field(
+    'pos_features_heading',
+    'POS that keeps your business moving'
+);
+
+$pos_features_intro = wcp_field(
+    'pos_features_intro',
+    'Simple, scalable technology built to grow with your business.'
+);
+
+
+$pos_feature_1_title = wcp_field(
+    'pos_feature_1_title',
+    'Transparent pricing'
+);
+
+$pos_feature_1_text = wcp_field(
+    'pos_feature_1_text',
+    'Benefit from a clear cost pricing model and easy-to-read bills.'
+);
+
+
+$pos_feature_2_title = wcp_field(
+    'pos_feature_2_title',
+    'Enhanced savings'
+);
+
+$pos_feature_2_text = wcp_field(
+    'pos_feature_2_text',
+    'Enjoy lower transaction costs and reduced add-on fees.'
+);
+
+
+$pos_feature_3_title = wcp_field(
+    'pos_feature_3_title',
+    'Smarter management'
+);
+
+$pos_feature_3_text = wcp_field(
+    'pos_feature_3_text',
+    'Leading platform by Clover, with easy-to-use sales analytics, inventory management, employee management and more.'
+);
+
+
+$pos_feature_4_title = wcp_field(
+    'pos_feature_4_title',
+    'Reward your customers when they pay'
+);
+
+$pos_feature_4_text = wcp_field(
+    'pos_feature_4_text',
+    'With the Rogers Red World Elite Business Mastercard, cardholders earn an additional 1% cash back on eligible purchases — on top of the card\'s standard cash back.'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| PLANS
+|--------------------------------------------------------------------------
+*/
+
+$pos_plans_heading = wcp_field(
+    'pos_plans_heading',
+    'Choose your POS plan'
+);
+
+$pos_plans_note = wcp_field(
+    'pos_plans_note',
+    'Pricing shown reflects month-to-month rates. Offers and pricing are subject to change. Contact WCP for current promotional pricing.'
+);
+
+
+/*
+ * Fixed
+ */
+
+$pos_fixed_name = wcp_field(
+    'pos_fixed_name',
+    'Fixed'
+);
+
+$pos_fixed_price = wcp_field(
+    'pos_fixed_price',
+    '$35'
+);
+
+$pos_fixed_price_details = wcp_field(
+    'pos_fixed_price_details',
+    '.00/mo, month-to-month when paired with an eligible 3-yr Business Internet or 5G Business Internet plan'
+);
+
+$pos_fixed_features = wcp_field(
+    'pos_fixed_features',
+    "2.50% per successful credit card transaction fee\n" .
+    "$0.10 per successful debit card transaction fee\n" .
+    "Comes with one (1) Clover Flex or Clover Flex Pocket terminal\n" .
+    "Access to Clover Dashboard included\n" .
+    "Clover Mini upgrade available"
+);
+
+
+/*
+ * Variable
+ */
+
+$pos_variable_name = wcp_field(
+    'pos_variable_name',
+    'Variable'
+);
+
+$pos_variable_price = wcp_field(
+    'pos_variable_price',
+    '$45'
+);
+
+$pos_variable_price_details = wcp_field(
+    'pos_variable_price_details',
+    '.00/mo, month-to-month when paired with an eligible 3-yr Business Internet or 5G Business Internet plan'
+);
+
+$pos_variable_features = wcp_field(
+    'pos_variable_features',
+    "Interchange + 0.30% + $0.08 per successful credit card transaction fee\n" .
+    "$0.08 per successful debit card transaction fee\n" .
+    "Comes with one (1) Clover Flex or Clover Flex Pocket terminal\n" .
+    "Access to Clover Dashboard included\n" .
+    "Clover Mini upgrade available"
+);
+
+
+/*
+ * Standalone
+ */
+
+$pos_standalone_name = wcp_field(
+    'pos_standalone_name',
+    'Standalone'
+);
+
+$pos_standalone_price = wcp_field(
+    'pos_standalone_price',
+    '$40'
+);
+
+$pos_standalone_price_details = wcp_field(
+    'pos_standalone_price_details',
+    '.00/mo, month-to-month'
+);
+
+$pos_standalone_features = wcp_field(
+    'pos_standalone_features',
+    "2.65% per successful credit card transaction fee\n" .
+    "$0.15 per successful debit card transaction fee\n" .
+    "Comes with one (1) Clover Flex or Clover Flex Pocket terminal\n" .
+    "Access to Clover Dashboard included\n" .
+    "Clover Mini upgrade available"
+);
+
+
+/*
+ * App Only
+ */
+
+$pos_app_name = wcp_field(
+    'pos_app_name',
+    'App-Only'
+);
+
+$pos_app_price = wcp_field(
+    'pos_app_price',
+    '$20'
+);
+
+$pos_app_price_details = wcp_field(
+    'pos_app_price_details',
+    '.00/mo, month-to-month when paired with an eligible Business Mobile plan'
+);
+
+$pos_app_features = wcp_field(
+    'pos_app_features',
+    "No Clover terminal required — use your iPhone as a payment terminal\n" .
+    "Access to Apple Tap to Pay using Clover Go software\n" .
+    "Access to Clover Dashboard included\n" .
+    "Fixed or Variable rate available\n" .
+    "Manual input and payment links available for merchants"
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| HARDWARE CTA
+|--------------------------------------------------------------------------
+*/
+
+$pos_hardware_heading = wcp_field(
+    'pos_hardware_heading',
+    'Not sure which hardware fits your business?'
+);
+
+$pos_hardware_text = wcp_field(
+    'pos_hardware_text',
+    'Clover Flex is a powerful, portable POS built for speed and mobility — accept every payment type on the go, manage inventory with the built-in barcode scanner, and access cloud-based reporting from anywhere. Clover Flex Pocket and Clover Mini are also available depending on your setup.'
+);
+
+$pos_hardware_button = wcp_field(
+    'pos_hardware_button',
+    'Contact Sales'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| PROCESSING REVIEW
+|--------------------------------------------------------------------------
+*/
+
+$pos_review_eyebrow = wcp_field(
+    'pos_review_eyebrow',
+    'FREE PROCESSING REVIEW'
+);
+
+$pos_review_heading = wcp_field(
+    'pos_review_heading',
+    'Upload your statement. We\'ll do the homework.'
+);
+
+$pos_review_intro = wcp_field(
+    'pos_review_intro',
+    'Send us a recent processing statement and a WCP business specialist will review your current rates and available options.'
+);
+
+$pos_review_button = wcp_field(
+    'pos_review_button',
+    'Get My Free Processing Review'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| HELPER FOR PLAN FEATURE LISTS
+|--------------------------------------------------------------------------
+*/
+
+$wcp_plan_features = function ($text) {
+
+    $lines = preg_split(
+        '/\r\n|\r|\n/',
+        (string) $text
+    );
+
+    $lines = array_map(
+        'trim',
+        $lines
+    );
+
+    return array_filter($lines);
+};
+
+?>
+
+
+
+<!-- =========================================================
+     POS HERO
+========================================================= -->
 
 <section class="hero-split">
 
     <div class="hero-split-image">
 
         <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/images/rogers_pos.jpg'); ?>"
+            src="<?php echo esc_url($pos_hero_image); ?>"
             alt="Rogers POS terminal accepting a tap payment"
         >
 
@@ -18,13 +326,11 @@
     <div class="hero-split-content">
 
         <h1>
-            Smarter payments. Stronger business.
+            <?php echo esc_html($pos_hero_heading); ?>
         </h1>
 
         <p>
-            Accept payments anywhere, manage operations effortlessly, and give
-            your customers the experience they expect with Rogers POS, powered
-            by Clover.
+            <?php echo esc_html($pos_hero_description); ?>
         </p>
 
         <div class="actions">
@@ -33,7 +339,7 @@
                 class="btn btn-primary"
                 href="<?php echo esc_url(home_url('/contact/')); ?>"
             >
-                Contact Sales
+                <?php echo esc_html($pos_hero_button); ?>
             </a>
 
             <a
@@ -51,7 +357,9 @@
 
 
 
-<!-- POS Features -->
+<!-- =========================================================
+     POS FEATURES
+========================================================= -->
 
 <section
     class="section"
@@ -61,7 +369,7 @@
     <div class="container">
 
         <h2 style="text-align:center;">
-            POS that keeps your business moving
+            <?php echo esc_html($pos_features_heading); ?>
         </h2>
 
         <p
@@ -72,14 +380,14 @@
                 margin-right:auto;
             "
         >
-            Simple, scalable technology built to grow with your business.
+            <?php echo esc_html($pos_features_intro); ?>
         </p>
 
 
         <div class="feature-strip reveal">
 
 
-            <!-- Transparent Pricing -->
+            <!-- Feature 1 -->
 
             <div>
 
@@ -94,6 +402,7 @@
                         stroke-width="1.8"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                     >
                         <rect
                             x="2"
@@ -109,19 +418,18 @@
                 </div>
 
                 <h4>
-                    Transparent pricing
+                    <?php echo esc_html($pos_feature_1_title); ?>
                 </h4>
 
                 <p>
-                    Benefit from a clear cost pricing model and easy-to-read
-                    bills.
+                    <?php echo esc_html($pos_feature_1_text); ?>
                 </p>
 
             </div>
 
 
 
-            <!-- Enhanced Savings -->
+            <!-- Feature 2 -->
 
             <div>
 
@@ -136,6 +444,7 @@
                         stroke-width="1.8"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                     >
                         <path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/>
                     </svg>
@@ -143,18 +452,18 @@
                 </div>
 
                 <h4>
-                    Enhanced savings
+                    <?php echo esc_html($pos_feature_2_title); ?>
                 </h4>
 
                 <p>
-                    Enjoy lower transaction costs and reduced add-on fees.
+                    <?php echo esc_html($pos_feature_2_text); ?>
                 </p>
 
             </div>
 
 
 
-            <!-- Smarter Management -->
+            <!-- Feature 3 -->
 
             <div>
 
@@ -169,6 +478,7 @@
                         stroke-width="1.8"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                     >
                         <path d="M3 3v18h18"/>
                         <path d="M7 15l4-5 3 3 5-7"/>
@@ -177,19 +487,18 @@
                 </div>
 
                 <h4>
-                    Smarter management
+                    <?php echo esc_html($pos_feature_3_title); ?>
                 </h4>
 
                 <p>
-                    Leading platform by Clover, with easy-to-use sales analytics,
-                    inventory management, employee management and more.
+                    <?php echo esc_html($pos_feature_3_text); ?>
                 </p>
 
             </div>
 
 
 
-            <!-- Rewards -->
+            <!-- Feature 4 -->
 
             <div>
 
@@ -204,8 +513,13 @@
                         stroke-width="1.8"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                     >
-                        <circle cx="12" cy="12" r="9"/>
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        />
 
                         <path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2-3 2.5-3 1.1-3 2.5 1.3 2.5 3 2.5 3-1.1 3-2.5"/>
                     </svg>
@@ -213,13 +527,11 @@
                 </div>
 
                 <h4>
-                    Reward your customers when they pay
+                    <?php echo esc_html($pos_feature_4_title); ?>
                 </h4>
 
                 <p>
-                    With the Rogers Red World Elite Business Mastercard,
-                    cardholders earn an additional 1% cash back on eligible
-                    purchases — on top of the card's standard cash back.
+                    <?php echo esc_html($pos_feature_4_text); ?>
                 </p>
 
             </div>
@@ -233,7 +545,9 @@
 
 
 
-<!-- POS Plans - White Background -->
+<!-- =========================================================
+     POS PLANS
+========================================================= -->
 
 <section
     class="section reveal"
@@ -252,7 +566,7 @@
                 margin-top:0;
             "
         >
-            Choose your POS plan
+            <?php echo esc_html($pos_plans_heading); ?>
         </h2>
 
         <p
@@ -264,10 +578,8 @@
                 margin:8px auto 0;
             "
         >
-            Pricing shown reflects month-to-month rates. Offers and pricing are
-            subject to change. Contact WCP for current promotional pricing.
+            <?php echo esc_html($pos_plans_note); ?>
         </p>
-
 
 
         <div
@@ -276,7 +588,9 @@
         >
 
 
-            <!-- Fixed -->
+            <!-- =================================================
+                 FIXED PLAN
+            ================================================== -->
 
             <div class="plan-card">
 
@@ -285,36 +599,29 @@
                 </p>
 
                 <h4>
-                    Fixed
+                    <?php echo esc_html($pos_fixed_name); ?>
                 </h4>
 
                 <p class="price">
-                    $35<span>.00/mo, month-to-month when paired with an eligible
-                    3-yr Business Internet or 5G Business Internet plan</span>
+
+                    <?php echo esc_html($pos_fixed_price); ?>
+
+                    <span>
+                        <?php echo esc_html($pos_fixed_price_details); ?>
+                    </span>
+
                 </p>
+
 
                 <ul>
 
-                    <li>
-                        2.50% per successful credit card transaction fee
-                    </li>
+                    <?php foreach ($wcp_plan_features($pos_fixed_features) as $feature) : ?>
 
-                    <li>
-                        $0.10 per successful debit card transaction fee
-                    </li>
+                        <li>
+                            <?php echo esc_html($feature); ?>
+                        </li>
 
-                    <li>
-                        Comes with one (1) Clover Flex or Clover Flex Pocket
-                        terminal
-                    </li>
-
-                    <li>
-                        Access to Clover Dashboard included
-                    </li>
-
-                    <li>
-                        Clover Mini upgrade available
-                    </li>
+                    <?php endforeach; ?>
 
                 </ul>
 
@@ -339,7 +646,9 @@
 
 
 
-            <!-- Variable -->
+            <!-- =================================================
+                 VARIABLE PLAN
+            ================================================== -->
 
             <div class="plan-card">
 
@@ -348,37 +657,29 @@
                 </p>
 
                 <h4>
-                    Variable
+                    <?php echo esc_html($pos_variable_name); ?>
                 </h4>
 
                 <p class="price">
-                    $45<span>.00/mo, month-to-month when paired with an eligible
-                    3-yr Business Internet or 5G Business Internet plan</span>
+
+                    <?php echo esc_html($pos_variable_price); ?>
+
+                    <span>
+                        <?php echo esc_html($pos_variable_price_details); ?>
+                    </span>
+
                 </p>
+
 
                 <ul>
 
-                    <li>
-                        Interchange + 0.30% + $0.08 per successful credit card
-                        transaction fee
-                    </li>
+                    <?php foreach ($wcp_plan_features($pos_variable_features) as $feature) : ?>
 
-                    <li>
-                        $0.08 per successful debit card transaction fee
-                    </li>
+                        <li>
+                            <?php echo esc_html($feature); ?>
+                        </li>
 
-                    <li>
-                        Comes with one (1) Clover Flex or Clover Flex Pocket
-                        terminal
-                    </li>
-
-                    <li>
-                        Access to Clover Dashboard included
-                    </li>
-
-                    <li>
-                        Clover Mini upgrade available
-                    </li>
+                    <?php endforeach; ?>
 
                 </ul>
 
@@ -403,7 +704,9 @@
 
 
 
-            <!-- Standalone -->
+            <!-- =================================================
+                 STANDALONE PLAN
+            ================================================== -->
 
             <div class="plan-card">
 
@@ -412,35 +715,29 @@
                 </p>
 
                 <h4>
-                    Standalone
+                    <?php echo esc_html($pos_standalone_name); ?>
                 </h4>
 
                 <p class="price">
-                    $40<span>.00/mo, month-to-month</span>
+
+                    <?php echo esc_html($pos_standalone_price); ?>
+
+                    <span>
+                        <?php echo esc_html($pos_standalone_price_details); ?>
+                    </span>
+
                 </p>
+
 
                 <ul>
 
-                    <li>
-                        2.65% per successful credit card transaction fee
-                    </li>
+                    <?php foreach ($wcp_plan_features($pos_standalone_features) as $feature) : ?>
 
-                    <li>
-                        $0.15 per successful debit card transaction fee
-                    </li>
+                        <li>
+                            <?php echo esc_html($feature); ?>
+                        </li>
 
-                    <li>
-                        Comes with one (1) Clover Flex or Clover Flex Pocket
-                        terminal
-                    </li>
-
-                    <li>
-                        Access to Clover Dashboard included
-                    </li>
-
-                    <li>
-                        Clover Mini upgrade available
-                    </li>
+                    <?php endforeach; ?>
 
                 </ul>
 
@@ -465,7 +762,9 @@
 
 
 
-            <!-- App Only -->
+            <!-- =================================================
+                 APP-ONLY PLAN
+            ================================================== -->
 
             <div class="plan-card">
 
@@ -474,36 +773,29 @@
                 </p>
 
                 <h4>
-                    App-Only
+                    <?php echo esc_html($pos_app_name); ?>
                 </h4>
 
                 <p class="price">
-                    $20<span>.00/mo, month-to-month when paired with an eligible
-                    Business Mobile plan</span>
+
+                    <?php echo esc_html($pos_app_price); ?>
+
+                    <span>
+                        <?php echo esc_html($pos_app_price_details); ?>
+                    </span>
+
                 </p>
+
 
                 <ul>
 
-                    <li>
-                        No Clover terminal required — use your iPhone as a
-                        payment terminal
-                    </li>
+                    <?php foreach ($wcp_plan_features($pos_app_features) as $feature) : ?>
 
-                    <li>
-                        Access to Apple Tap to Pay using Clover Go software
-                    </li>
+                        <li>
+                            <?php echo esc_html($feature); ?>
+                        </li>
 
-                    <li>
-                        Access to Clover Dashboard included
-                    </li>
-
-                    <li>
-                        Fixed or Variable rate available
-                    </li>
-
-                    <li>
-                        Manual input and payment links available for merchants
-                    </li>
+                    <?php endforeach; ?>
 
                 </ul>
 
@@ -535,7 +827,9 @@
 
 
 
-<!-- Hardware CTA -->
+<!-- =========================================================
+     HARDWARE CTA
+========================================================= -->
 
 <section
     class="section"
@@ -556,15 +850,11 @@
             <div>
 
                 <h4>
-                    Not sure which hardware fits your business?
+                    <?php echo esc_html($pos_hardware_heading); ?>
                 </h4>
 
                 <p>
-                    Clover Flex is a powerful, portable POS built for speed and
-                    mobility — accept every payment type on the go, manage
-                    inventory with the built-in barcode scanner, and access
-                    cloud-based reporting from anywhere. Clover Flex Pocket and
-                    Clover Mini are also available depending on your setup.
+                    <?php echo esc_html($pos_hardware_text); ?>
                 </p>
 
             </div>
@@ -574,7 +864,7 @@
                 class="btn btn-primary"
                 href="<?php echo esc_url(home_url('/contact/')); ?>"
             >
-                Contact Sales
+                <?php echo esc_html($pos_hardware_button); ?>
             </a>
 
         </div>
@@ -585,7 +875,9 @@
 
 
 
-<!-- Processing Review Form -->
+<!-- =========================================================
+     PROCESSING REVIEW
+========================================================= -->
 
 <section
     id="contact"
@@ -602,22 +894,20 @@
         <div class="review-form-layout">
 
 
-            <!-- Form Intro -->
+            <!-- Intro -->
 
             <div class="review-form-intro">
 
                 <span class="section-eyebrow">
-                    FREE PROCESSING REVIEW
+                    <?php echo esc_html($pos_review_eyebrow); ?>
                 </span>
 
                 <h2>
-                    Upload your statement. We'll do the homework.
+                    <?php echo esc_html($pos_review_heading); ?>
                 </h2>
 
                 <p class="lede">
-                    Send us a recent processing statement and a WCP business
-                    specialist will review your current rates and available
-                    options.
+                    <?php echo esc_html($pos_review_intro); ?>
                 </p>
 
 
@@ -704,7 +994,7 @@
                 <div class="form-heading">
 
                     <h3>
-                        Get My Free Processing Review
+                        <?php echo esc_html($pos_review_button); ?>
                     </h3>
 
                     <p>
@@ -838,18 +1128,20 @@
                     class="btn btn-primary"
                     type="submit"
                 >
-                    Get My Free Processing Review
+                    <?php echo esc_html($pos_review_button); ?>
                 </button>
 
 
 
                 <p class="form-disclaimer">
+
                     🔒 Your statement is kept private and used only to review
                     your business services. No obligation. Prefer to talk?
 
                     <a href="tel:+18338441977">
                         Call 1-833-844-1977
                     </a>
+
                 </p>
 
             </form>
