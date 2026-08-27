@@ -624,3 +624,650 @@ function wcp_register_pos_fields() {
 }
 
 add_action('acf/init', 'wcp_register_pos_fields');
+/*
+|--------------------------------------------------------------------------
+| BUSINESS WIRELESS - EDITABLE WORDPRESS FIELDS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_register_wireless_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $wireless_page = get_page_by_path('business-wireless');
+
+    if (!$wireless_page) {
+        return;
+    }
+
+    $fields = array();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FIELD HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab = function ($key, $label) use (&$fields) {
+
+        $fields[] = array(
+            'key'   => 'field_wireless_tab_' . $key,
+            'label' => $label,
+            'name'  => '',
+            'type'  => 'tab',
+        );
+    };
+
+
+    $add_text = function ($key, $label, $default = '') use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_wireless_' . $key,
+            'label'         => $label,
+            'name'          => 'wireless_' . $key,
+            'type'          => 'text',
+            'default_value' => $default,
+        );
+    };
+
+
+    $add_textarea = function (
+        $key,
+        $label,
+        $default = '',
+        $rows = 3
+    ) use (&$fields) {
+
+        $fields[] = array(
+            'key'           => 'field_wireless_' . $key,
+            'label'         => $label,
+            'name'          => 'wireless_' . $key,
+            'type'          => 'textarea',
+            'rows'          => $rows,
+            'default_value' => $default,
+        );
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HERO
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'hero',
+        'Hero'
+    );
+
+    $add_text(
+        'hero_heading',
+        'Hero Heading',
+        'Mobile plans made for your business'
+    );
+
+    $add_textarea(
+        'hero_description',
+        'Hero Description',
+        'Help your team work together seamlessly — with plans backed by local, dealer-direct support instead of a call centre.'
+    );
+
+    $add_text(
+        'hero_button',
+        'Hero Button Text',
+        'Get My Free Business Review'
+    );
+
+
+    $fields[] = array(
+        'key'            => 'field_wireless_hero_image',
+        'label'          => 'Hero Image',
+        'name'           => 'wireless_hero_image',
+        'type'           => 'image',
+        'return_format'  => 'url',
+        'preview_size'   => 'medium',
+        'library'        => 'all',
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PLAN SELECTOR
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'selector',
+        'Plan Selector'
+    );
+
+    $add_text(
+        'selector_heading',
+        'Selector Heading',
+        'How many lines does your business need?'
+    );
+
+    $add_textarea(
+        'selector_intro',
+        'Selector Description',
+        'Select your team size and we\'ll show you the plans built for it.'
+    );
+
+    $add_textarea(
+        'pricing_disclaimer',
+        'Pricing Disclaimer',
+        'Offers and pricing are subject to change and address availability. Contact WCP for current promotional pricing.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SMALL BUSINESS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'small',
+        '1–4 Lines'
+    );
+
+    $add_textarea(
+        'small_intro',
+        'Section Introduction',
+        'Plans built for small teams that want simple, predictable pricing.'
+    );
+
+    $add_text(
+        'small_include_1',
+        'Included Note 1',
+        'All plans include Rogers Satellite'
+    );
+
+    $add_text(
+        'small_include_2',
+        'Included Note 2',
+        'Prices include $5/mo Auto Pay discount'
+    );
+
+
+    /*
+     * Small Business Plan 1
+     */
+
+    $add_text(
+        'small_1_badge',
+        'Plan 1 Badge',
+        'Best Value for Most Businesses'
+    );
+
+    $add_text(
+        'small_1_name',
+        'Plan 1 Name',
+        '60GB Canada-Wide'
+    );
+
+    $add_text(
+        'small_1_note',
+        'Plan 1 Data Note',
+        'Non-shared data'
+    );
+
+    $add_text(
+        'small_1_price',
+        'Plan 1 Price',
+        '$65'
+    );
+
+    $add_text(
+        'small_1_price_suffix',
+        'Plan 1 Price Suffix',
+        '/mo per line'
+    );
+
+
+    /*
+     * Small Business Plan 2
+     */
+
+    $add_text(
+        'small_2_name',
+        'Plan 2 Name',
+        '100GB Canada-Wide'
+    );
+
+    $add_text(
+        'small_2_note',
+        'Plan 2 Data Note',
+        'Non-shared data'
+    );
+
+    $add_text(
+        'small_2_price',
+        'Plan 2 Price',
+        '$70'
+    );
+
+    $add_text(
+        'small_2_price_suffix',
+        'Plan 2 Price Suffix',
+        '/mo per line'
+    );
+
+
+    /*
+     * Small Business Plan 3
+     */
+
+    $add_text(
+        'small_3_name',
+        'Plan 3 Name',
+        'Unlimited Canada-Wide'
+    );
+
+    $add_text(
+        'small_3_note',
+        'Plan 3 Data Note',
+        'Non-shared data'
+    );
+
+    $add_text(
+        'small_3_price',
+        'Plan 3 Price',
+        '$85'
+    );
+
+    $add_text(
+        'small_3_price_suffix',
+        'Plan 3 Price Suffix',
+        '/mo per line'
+    );
+
+
+    /*
+     * Small Business Plan 4
+     */
+
+    $add_text(
+        'small_4_name',
+        'Plan 4 Name',
+        'Unlimited Canada + 64 Countries'
+    );
+
+    $add_text(
+        'small_4_note',
+        'Plan 4 Data Note',
+        'Non-shared data'
+    );
+
+    $add_text(
+        'small_4_price',
+        'Plan 4 Price',
+        '$100'
+    );
+
+    $add_text(
+        'small_4_price_suffix',
+        'Plan 4 Price Suffix',
+        '/mo per line'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CORPORATE - 5–9 LINES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'corporate_5',
+        '5–9 Lines'
+    );
+
+    $add_textarea(
+        'corp5_intro',
+        'Section Introduction',
+        'Pooled data plans for growing teams.'
+    );
+
+
+    $corp5_plans = array(
+
+        '10' => array(
+            'name'   => '10GB Pooled',
+            'price'  => '$38',
+            'credit' => '+ $200 credit.',
+        ),
+
+        '25' => array(
+            'name'   => '25GB Pooled',
+            'price'  => '$43',
+            'credit' => '+ $200 credit.',
+        ),
+
+        '50' => array(
+            'name'   => '50GB Pooled',
+            'price'  => '$53',
+            'credit' => '+ $200 credit.',
+        ),
+
+        '100' => array(
+            'name'   => '100GB Pooled',
+            'price'  => '$63',
+            'credit' => '+ $200 credit.',
+        ),
+
+        '250' => array(
+            'name'   => '250GB Pooled',
+            'price'  => '$80',
+            'credit' => '+ $400 credit.',
+        ),
+
+    );
+
+
+    foreach ($corp5_plans as $slug => $plan) {
+
+        $add_text(
+            'corp5_' . $slug . '_name',
+            $plan['name'] . ' — Plan Name',
+            $plan['name']
+        );
+
+        $add_text(
+            'corp5_' . $slug . '_price',
+            $plan['name'] . ' — Price',
+            $plan['price']
+        );
+
+        $add_text(
+            'corp5_' . $slug . '_credit',
+            $plan['name'] . ' — Credit / Promotion',
+            $plan['credit']
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CORPORATE - 10+ LINES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'corporate_10',
+        '10+ Lines'
+    );
+
+    $add_textarea(
+        'corp10_intro',
+        'Section Introduction',
+        'Pooled data plans with dedicated account support for larger teams.'
+    );
+
+
+    $corp10_plans = array(
+
+        '10' => array(
+            'name'   => '10GB Pooled',
+            'price'  => '$30',
+            'credit' => '+ $375 credit per line.',
+        ),
+
+        '25' => array(
+            'name'   => '25GB Pooled',
+            'price'  => '$35',
+            'credit' => '+ $400 credit per line.',
+        ),
+
+        '50' => array(
+            'name'   => '50GB Pooled',
+            'price'  => '$45',
+            'credit' => '+ $400 credit per line.',
+        ),
+
+        '100' => array(
+            'name'   => '100GB Pooled',
+            'price'  => '$55',
+            'credit' => '+ $500 credit per line.',
+        ),
+
+        '250' => array(
+            'name'   => '250GB Pooled',
+            'price'  => '$80',
+            'credit' => '+ $500 credit per line.',
+        ),
+
+    );
+
+
+    foreach ($corp10_plans as $slug => $plan) {
+
+        $add_text(
+            'corp10_' . $slug . '_name',
+            $plan['name'] . ' — Plan Name',
+            $plan['name']
+        );
+
+        $add_text(
+            'corp10_' . $slug . '_price',
+            $plan['name'] . ' — Price',
+            $plan['price']
+        );
+
+        $add_text(
+            'corp10_' . $slug . '_credit',
+            $plan['name'] . ' — Credit / Promotion',
+            $plan['credit']
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CONNECTIVITY FEATURES
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'features',
+        'Connectivity Features'
+    );
+
+    $add_text(
+        'features_heading',
+        'Section Heading',
+        'Everything Your Business Needs to Stay Connected'
+    );
+
+
+    $add_text(
+        'feature_1_title',
+        'Feature 1 Title',
+        '5G+'
+    );
+
+    $add_textarea(
+        'feature_1_text',
+        'Feature 1 Description',
+        'Fast, reliable 5G+ connectivity on Canada\'s best 5G+ network.'
+    );
+
+
+    $add_text(
+        'feature_2_title',
+        'Feature 2 Title',
+        'Flexible calling & data plans'
+    );
+
+    $add_textarea(
+        'feature_2_text',
+        'Feature 2 Description',
+        'Flexible data plans without overage charges.'
+    );
+
+
+    $add_text(
+        'feature_3_title',
+        'Feature 3 Title',
+        'Save on mobility'
+    );
+
+    $add_textarea(
+        'feature_3_text',
+        'Feature 3 Description',
+        'Get the latest devices with financing and trade-in options.'
+    );
+
+
+    $add_text(
+        'feature_4_title',
+        'Feature 4 Title',
+        'Bundle more, save more'
+    );
+
+    $add_textarea(
+        'feature_4_text',
+        'Feature 4 Description',
+        'Save more when you add business internet to your plan.'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ADD-ONS
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'addons',
+        'Add-ons'
+    );
+
+    $add_text(
+        'addons_heading',
+        'Section Heading',
+        'Business add-ons'
+    );
+
+
+    $addons = array(
+
+        1 => array(
+            'title' => 'Business Collaboration',
+            'text'  => 'Boost your team\'s productivity with tools like Microsoft 365 and Teams Phone.',
+        ),
+
+        2 => array(
+            'title' => 'Mobility Management',
+            'text'  => 'Improve productivity and data security across your team\'s mobile devices.',
+        ),
+
+        3 => array(
+            'title' => 'Expense Management',
+            'text'  => 'Manage and control the monthly costs of your team\'s mobile services.',
+        ),
+
+        4 => array(
+            'title' => 'Premium Device Protection',
+            'text'  => 'Accidents happen — get peace of mind with device protection and screen repair coverage.',
+        ),
+
+    );
+
+
+    foreach ($addons as $number => $addon) {
+
+        $add_text(
+            'addon_' . $number . '_title',
+            'Add-on ' . $number . ' Title',
+            $addon['title']
+        );
+
+        $add_textarea(
+            'addon_' . $number . '_text',
+            'Add-on ' . $number . ' Description',
+            $addon['text']
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BILL REVIEW
+    |--------------------------------------------------------------------------
+    */
+
+    $add_tab(
+        'review',
+        'Bill Review'
+    );
+
+    $add_text(
+        'review_eyebrow',
+        'Review Eyebrow',
+        'FREE WIRELESS BILL REVIEW'
+    );
+
+    $add_text(
+        'review_heading',
+        'Review Heading',
+        'Upload your bill. We\'ll do the homework.'
+    );
+
+    $add_textarea(
+        'review_intro',
+        'Review Description',
+        'Send us a recent wireless bill and a WCP business specialist will review your current services and available options.'
+    );
+
+    $add_text(
+        'review_button',
+        'Form Button Text',
+        'Get My Free Bill Review'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REGISTER FIELD GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_business_wireless',
+
+        'title' => 'Business Wireless Content',
+
+        'fields' => $fields,
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param'    => 'page',
+                    'operator' => '==',
+                    'value'    => (string) $wireless_page->ID,
+                ),
+
+            ),
+
+        ),
+
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_wireless_fields'
+);
