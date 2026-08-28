@@ -4,13 +4,35 @@
 |--------------------------------------------------------------------------
 | GLOBAL HEADER SETTINGS
 |--------------------------------------------------------------------------
-|
-| Pull the Preferred Program URL from the Home page so the same URL
-| can be edited once in WordPress and used throughout the website.
-|
 */
 
 $front_page_id = (int) get_option('page_on_front');
+
+
+/*
+|--------------------------------------------------------------------------
+| PHONE NUMBER
+|--------------------------------------------------------------------------
+*/
+
+$global_phone = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'phone',
+        '1-833-844-1977'
+    )
+    : '1-833-844-1977';
+
+
+$global_phone_href = function_exists('wcp_global_phone_href')
+    ? wcp_global_phone_href()
+    : 'tel:+18338441977';
+
+
+/*
+|--------------------------------------------------------------------------
+| PREFERRED PROGRAM URL
+|--------------------------------------------------------------------------
+*/
 
 $preferred_program_url =
     'https://portal.wcpwireless.com/lookup#Home';
@@ -29,7 +51,6 @@ if (
     if (!empty($saved_preferred_url)) {
         $preferred_program_url = $saved_preferred_url;
     }
-
 }
 
 
@@ -37,10 +58,6 @@ if (
 |--------------------------------------------------------------------------
 | NORMALIZE OLD PREFERRED PROGRAM URL
 |--------------------------------------------------------------------------
-|
-| If the older wcpwireless.com URL is still saved in WordPress,
-| automatically use the direct portal URL instead.
-|
 */
 
 if (
@@ -131,10 +148,10 @@ if (
     <div class="container">
 
         <a
-            href="tel:+18338441977"
-            aria-label="Call 1-833-844-1977"
+            href="<?php echo esc_attr($global_phone_href); ?>"
+            aria-label="Call <?php echo esc_attr($global_phone); ?>"
         >
-            📞 1-833-844-1977
+            📞 <?php echo esc_html($global_phone); ?>
         </a>
 
     </div>
@@ -233,7 +250,6 @@ if (
 
             <div class="nav-dropdown">
 
-
                 <a
                     href="<?php echo esc_url(home_url('/business/')); ?>"
                     class="nav-dropdown-toggle"
@@ -258,18 +274,11 @@ if (
 
                     </svg>
 
-
                 </a>
 
 
-                <!-- =================================================
-                     BUSINESS DROPDOWN
-                ================================================== -->
-
                 <div class="nav-dropdown-menu">
 
-
-                    <!-- BUSINESS WIRELESS -->
 
                     <a
                         href="<?php
@@ -282,8 +291,6 @@ if (
                     </a>
 
 
-                    <!-- BUSINESS INTERNET -->
-
                     <a
                         href="<?php
                             echo esc_url(
@@ -294,8 +301,6 @@ if (
                         Business Internet
                     </a>
 
-
-                    <!-- BUSINESS PHONE -->
 
                     <a
                         href="<?php
@@ -308,8 +313,6 @@ if (
                     </a>
 
 
-                    <!-- POINT OF SALE -->
-
                     <a
                         href="<?php
                             echo esc_url(
@@ -320,8 +323,6 @@ if (
                         Point of Sale
                     </a>
 
-
-                    <!-- FLEET MANAGEMENT -->
 
                     <a
                         href="<?php
@@ -334,8 +335,6 @@ if (
                     </a>
 
 
-                    <!-- ROGERS BUSINESS MASTERCARD -->
-
                     <a
                         href="<?php
                             echo esc_url(
@@ -346,8 +345,6 @@ if (
                         Rogers Business Mastercard
                     </a>
 
-
-                    <!-- PREFERRED PROGRAM -->
 
                     <a
                         href="<?php
@@ -362,13 +359,10 @@ if (
 
                 </div>
 
-
             </div>
 
 
-            <!-- =================================================
-                 ABOUT
-            ================================================== -->
+            <!-- ABOUT -->
 
             <a
                 href="<?php
@@ -381,9 +375,7 @@ if (
             </a>
 
 
-            <!-- =================================================
-                 CAREERS
-            ================================================== -->
+            <!-- CAREERS -->
 
             <a
                 href="<?php
@@ -396,9 +388,7 @@ if (
             </a>
 
 
-            <!-- =================================================
-                 CONTACT
-            ================================================== -->
+            <!-- CONTACT -->
 
             <a
                 href="<?php
