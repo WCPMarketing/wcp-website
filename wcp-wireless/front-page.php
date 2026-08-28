@@ -1,5 +1,583 @@
 <?php get_header(); ?>
 
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| HOMEPAGE - WORDPRESS / ACF CONTENT
+|--------------------------------------------------------------------------
+*/
+
+$home_field = function ($name, $fallback = '') {
+
+    if (function_exists('wcp_field')) {
+        return wcp_field('home_' . $name, $fallback);
+    }
+
+    return $fallback;
+};
+
+
+/*
+|--------------------------------------------------------------------------
+| HERO
+|--------------------------------------------------------------------------
+*/
+
+$hero_eyebrow = $home_field(
+    'hero_eyebrow',
+    'Rogers Authorized Dealer • Serving Canadian Businesses Since 1990'
+);
+
+$hero_heading = $home_field(
+    'hero_heading',
+    'Business wireless and connectivity, handled by local experts'
+);
+
+$hero_description = $home_field(
+    'hero_description',
+    'Get business wireless, internet and phone solutions backed by a dedicated account manager who knows your business.'
+);
+
+$hero_button = $home_field(
+    'hero_button',
+    'Upload My Bill for a Free Review'
+);
+
+$hero_check_1 = $home_field(
+    'hero_check_1',
+    'No obligation'
+);
+
+$hero_check_2 = $home_field(
+    'hero_check_2',
+    'Local account manager'
+);
+
+$hero_check_3 = $home_field(
+    'hero_check_3',
+    'Canada-wide service'
+);
+
+$hero_image = $home_field(
+    'hero_image',
+    get_template_directory_uri() . '/images/hero-office-meeting.jpg'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| HERO BILL REVIEW CARD
+|--------------------------------------------------------------------------
+*/
+
+$hero_review_label = $home_field(
+    'hero_review_label',
+    'FREE BUSINESS BILL REVIEW'
+);
+
+$hero_review_heading = $home_field(
+    'hero_review_heading',
+    'Think you\'re paying too much for business wireless?'
+);
+
+$hero_review_text = $home_field(
+    'hero_review_text',
+    'Send us a recent wireless bill and we\'ll review your current services, pricing and available Rogers Business options.'
+);
+
+$hero_review_step_1 = $home_field(
+    'hero_review_step_1',
+    'Upload your current bill'
+);
+
+$hero_review_step_2 = $home_field(
+    'hero_review_step_2',
+    'We review your services'
+);
+
+$hero_review_step_3 = $home_field(
+    'hero_review_step_3',
+    'We show you your options'
+);
+
+$hero_review_button = $home_field(
+    'hero_review_button',
+    'Upload My Bill'
+);
+
+$hero_review_note = $home_field(
+    'hero_review_note',
+    'Your bill is kept private and used only to review your business services. No obligation • Reviewed by a WCP business specialist.'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| CREDIBILITY
+|--------------------------------------------------------------------------
+*/
+
+$credibility = array(
+
+    array(
+        'number' => $home_field(
+            'credibility_1_number',
+            '35+'
+        ),
+        'label' => $home_field(
+            'credibility_1_label',
+            'Years in Business'
+        ),
+    ),
+
+    array(
+        'number' => $home_field(
+            'credibility_2_number',
+            '500+'
+        ),
+        'label' => $home_field(
+            'credibility_2_label',
+            'Business Accounts Supported'
+        ),
+    ),
+
+    array(
+        'number' => $home_field(
+            'credibility_3_number',
+            '10,000+'
+        ),
+        'label' => $home_field(
+            'credibility_3_label',
+            'Customers Served'
+        ),
+    ),
+
+    array(
+        'number' => $home_field(
+            'credibility_4_number',
+            'Official'
+        ),
+        'label' => $home_field(
+            'credibility_4_label',
+            'Rogers Authorized Dealer'
+        ),
+    ),
+
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| SERVICES
+|--------------------------------------------------------------------------
+*/
+
+$services_heading = $home_field(
+    'services_heading',
+    'Our Services'
+);
+
+$services_intro = $home_field(
+    'services_intro',
+    'Built around what your business needs most.'
+);
+
+
+$services = array(
+
+    array(
+        'title' => $home_field(
+            'service_1_title',
+            'Business Wireless'
+        ),
+
+        'text' => $home_field(
+            'service_1_text',
+            'Custom wireless plans for businesses of all sizes — with a dedicated account manager who knows your business by name.'
+        ),
+
+        'button' => $home_field(
+            'service_1_button',
+            'See Wireless Plans'
+        ),
+
+        'url' => home_url('/business-wireless/'),
+    ),
+
+
+    array(
+        'title' => $home_field(
+            'service_2_title',
+            'Business Internet'
+        ),
+
+        'text' => $home_field(
+            'service_2_text',
+            'Reliable, fast internet with predictable pricing and local support — whichever way your business connects.'
+        ),
+
+        'button' => $home_field(
+            'service_2_button',
+            'See Internet Plans'
+        ),
+
+        'url' => home_url('/business-internet/'),
+    ),
+
+
+    array(
+        'title' => $home_field(
+            'service_3_title',
+            'Business Phone'
+        ),
+
+        'text' => $home_field(
+            'service_3_text',
+            'Streamline business calls with an advanced cloud PBX solution — Teams integration, mobile access, and 24/7 managed support.'
+        ),
+
+        'button' => $home_field(
+            'service_3_button',
+            'See Phone Plans'
+        ),
+
+        'url' => home_url('/business-phone/'),
+    ),
+
+
+    array(
+        'title' => $home_field(
+            'service_4_title',
+            'Point of Sale'
+        ),
+
+        'text' => $home_field(
+            'service_4_text',
+            'Rogers POS, powered by Clover — accept payments anywhere with transparent pricing and easy-to-use sales, inventory, and employee management tools.'
+        ),
+
+        'button' => $home_field(
+            'service_4_button',
+            'See POS Options'
+        ),
+
+        'url' => home_url('/business-pos/'),
+    ),
+
+
+    array(
+        'title' => $home_field(
+            'service_5_title',
+            'Fleet Management'
+        ),
+
+        'text' => $home_field(
+            'service_5_text',
+            'Control costs, increase driver safety, and simplify compliance with best-in-class fleet monitoring for your vehicles and mobile assets.'
+        ),
+
+        'button' => $home_field(
+            'service_5_button',
+            'See Fleet Options'
+        ),
+
+        'url' => home_url('/fleet-management/'),
+    ),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROGERS BUSINESS MASTERCARD
+    |--------------------------------------------------------------------------
+    */
+
+    array(
+        'title' => 'Rogers Business Mastercard',
+
+        'text' =>
+            'Earn cash back on everyday business purchases and unlock added value when you have an eligible Rogers or Shaw business service.',
+
+        'button' =>
+            'See Mastercard Benefits',
+
+        'url' =>
+            home_url('/business-mastercard/'),
+    ),
+
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| PREFERRED PROGRAM
+|--------------------------------------------------------------------------
+*/
+
+$preferred_eyebrow = $home_field(
+    'preferred_eyebrow',
+    'Employer & Association Pricing'
+);
+
+$preferred_heading = $home_field(
+    'preferred_heading',
+    'Rogers Preferred Program'
+);
+
+$preferred_text = $home_field(
+    'preferred_text',
+    'Exclusive pricing on the latest phones and plans for eligible employers and associations. Check in seconds if your business qualifies.'
+);
+
+$preferred_button = $home_field(
+    'preferred_button',
+    'Check Eligibility'
+);
+
+$preferred_url = $home_field(
+    'preferred_url',
+    'https://portal.wcpwireless.com/lookup#Home'
+);
+
+
+/*
+ * Older versions of the field used wcpwireless.com/lookup.
+ * Automatically send that old value directly to the new portal.
+ */
+
+if (
+    $preferred_url === 'https://wcpwireless.com/lookup#Home' ||
+    $preferred_url === 'https://www.wcpwireless.com/lookup#Home'
+) {
+    $preferred_url =
+        'https://portal.wcpwireless.com/lookup#Home';
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| STOREFRONT
+|--------------------------------------------------------------------------
+*/
+
+$storefront_text = $home_field(
+    'storefront_text',
+    'A local team you can walk in and talk to — not just a call centre.'
+);
+
+$storefront_image = $home_field(
+    'storefront_image',
+    get_template_directory_uri() . '/images/rogers store front1.png'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| ROGERS DEALER
+|--------------------------------------------------------------------------
+*/
+
+$dealer_text = $home_field(
+    'dealer_text',
+    'As an Official Rogers Authorized Dealer since 1990, WCP is held to Rogers\' own standards for pricing, service, and support.'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| TESTIMONIALS
+|--------------------------------------------------------------------------
+*/
+
+$testimonials_heading = $home_field(
+    'testimonials_heading',
+    'What Our Clients Say'
+);
+
+$testimonials_intro = $home_field(
+    'testimonials_intro',
+    'Real feedback from businesses we\'ve worked with.'
+);
+
+
+$testimonials = array(
+
+    array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-simcoe-it.png',
+
+        'alt' =>
+            'Simcoe IT Solutions',
+
+        'quote' => $home_field(
+            'testimonial_1_quote',
+            'The WCP team made switching to Rogers Business very painless. I\'d definitely work with them again.'
+        ),
+
+        'name' => $home_field(
+            'testimonial_1_name',
+            'Rob N.'
+        ),
+
+        'role' => $home_field(
+            'testimonial_1_role',
+            'President, Simcoe IT Solutions Inc.'
+        ),
+    ),
+
+
+    array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-avaya.png',
+
+        'alt' =>
+            'Avaya',
+
+        'quote' => $home_field(
+            'testimonial_2_quote',
+            'I highly recommend the WCP team. During recent contract negotiations with Rogers, they demonstrated strong professionalism and expertise, ensuring a fair and efficient outcome. They\'re approachable, responsive, and always willing to help — and their problem-solving ability means they quickly find practical solutions. Overall, a great experience.'
+        ),
+
+        'name' => $home_field(
+            'testimonial_2_name',
+            'Debbie B.'
+        ),
+
+        'role' => $home_field(
+            'testimonial_2_role',
+            'Deals Desk Manager / Sales Operations Specialist, Avaya'
+        ),
+    ),
+
+
+    array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-oak-valley-health.png',
+
+        'alt' =>
+            'Oak Valley Health',
+
+        'quote' => $home_field(
+            'testimonial_3_quote',
+            'I\'ve worked with the WCP team for over 9 years now. They\'ve looked after our corporate plan for our employees at Markham Stouffville Hospital, keeping our staff up to date with current offers and promotions. Very knowledgeable at what they do.'
+        ),
+
+        'name' => $home_field(
+            'testimonial_3_name',
+            'Lee E.'
+        ),
+
+        'role' => $home_field(
+            'testimonial_3_role',
+            'Network Analyst, OVH'
+        ),
+    ),
+
+);
+
+
+$google_review_text = $home_field(
+    'google_review_text',
+    '⭐ Had a great experience with us? Leave us a review on Google →'
+);
+
+$google_review_url = $home_field(
+    'google_review_url',
+    'https://g.page/r/CX3o5GNSAmziEAE/review'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| BILL REVIEW
+|--------------------------------------------------------------------------
+*/
+
+$review_eyebrow = $home_field(
+    'review_eyebrow',
+    'FREE BUSINESS BILL REVIEW'
+);
+
+$review_heading = $home_field(
+    'review_heading',
+    'Upload your bill. We\'ll do the homework.'
+);
+
+$review_intro = $home_field(
+    'review_intro',
+    'Send us a recent wireless bill and a WCP business specialist will review your current services and available options.'
+);
+
+
+$review_benefits = array(
+
+    array(
+
+        'title' => $home_field(
+            'review_1_title',
+            'Review your current costs'
+        ),
+
+        'text' => $home_field(
+            'review_1_text',
+            'We\'ll look at what you\'re currently paying and what services you have.'
+        ),
+    ),
+
+
+    array(
+
+        'title' => $home_field(
+            'review_2_title',
+            'Identify opportunities'
+        ),
+
+        'text' => $home_field(
+            'review_2_text',
+            'We\'ll check available Rogers Business options that may better fit your needs.'
+        ),
+    ),
+
+
+    array(
+
+        'title' => $home_field(
+            'review_3_title',
+            'Talk to a real person'
+        ),
+
+        'text' => $home_field(
+            'review_3_text',
+            'Your review is handled by a WCP business specialist.'
+        ),
+    ),
+
+);
+
+
+$review_form_heading = $home_field(
+    'review_form_heading',
+    'Get My Free Bill Review'
+);
+
+$review_form_intro = $home_field(
+    'review_form_intro',
+    'Tell us a little about your business.'
+);
+
+$review_button = $home_field(
+    'review_button',
+    'Get My Free Bill Review'
+);
+
+?>
+
 
 <!-- =========================================================
      HERO
@@ -8,31 +586,27 @@
 <section
     class="hero hero-photo hero-sales"
     style="
-        --hero-img:url('<?php echo esc_url(
-            get_template_directory_uri() .
-            '/images/hero-office-meeting.jpg'
-        ); ?>');
+        --hero-img:url('<?php echo esc_url($hero_image); ?>');
     "
 >
 
     <div class="container">
 
 
-        <!-- HERO COPY -->
-
         <div class="hero-copy">
 
             <span class="hero-eyebrow">
-                Rogers Authorized Dealer • Serving Canadian Businesses Since 1990
+                <?php echo esc_html($hero_eyebrow); ?>
             </span>
 
+
             <h1>
-                Business wireless and connectivity, handled by local experts
+                <?php echo esc_html($hero_heading); ?>
             </h1>
 
+
             <p>
-                Get business wireless, internet and phone solutions backed by a
-                dedicated account manager who knows your business.
+                <?php echo esc_html($hero_description); ?>
             </p>
 
 
@@ -42,7 +616,7 @@
                     href="#contact"
                     class="btn btn-primary"
                 >
-                    Upload My Bill for a Free Review
+                    <?php echo esc_html($hero_button); ?>
                 </a>
 
                 <a
@@ -57,38 +631,47 @@
 
             <div class="hero-checks">
 
-                <span>✓ No obligation</span>
+                <span>
+                    ✓ <?php echo esc_html($hero_check_1); ?>
+                </span>
 
-                <span>✓ Local account manager</span>
+                <span>
+                    ✓ <?php echo esc_html($hero_check_2); ?>
+                </span>
 
-                <span>✓ Canada-wide service</span>
+                <span>
+                    ✓ <?php echo esc_html($hero_check_3); ?>
+                </span>
 
             </div>
+
 
         </div>
 
 
         <!-- =================================================
-             HERO BILL REVIEW CARD
+             HERO BILL REVIEW
         ================================================== -->
 
         <div class="bill-review-card">
 
             <div class="bill-card-label">
-                FREE BUSINESS BILL REVIEW
+                <?php echo esc_html($hero_review_label); ?>
             </div>
 
+
             <h2>
-                Think you're paying too much for business wireless?
+                <?php echo esc_html($hero_review_heading); ?>
             </h2>
 
+
             <p>
-                Send us a recent wireless bill and we'll review your current
-                services, pricing and available Rogers Business options.
+                <?php echo esc_html($hero_review_text); ?>
             </p>
 
 
             <div class="bill-review-steps">
+
 
                 <div class="bill-step">
 
@@ -97,7 +680,7 @@
                     </span>
 
                     <span>
-                        Upload your current bill
+                        <?php echo esc_html($hero_review_step_1); ?>
                     </span>
 
                 </div>
@@ -110,7 +693,7 @@
                     </span>
 
                     <span>
-                        We review your services
+                        <?php echo esc_html($hero_review_step_2); ?>
                     </span>
 
                 </div>
@@ -123,10 +706,11 @@
                     </span>
 
                     <span>
-                        We show you your options
+                        <?php echo esc_html($hero_review_step_3); ?>
                     </span>
 
                 </div>
+
 
             </div>
 
@@ -135,15 +719,14 @@
                 href="#contact"
                 class="btn btn-primary bill-card-button"
             >
-                Upload My Bill
+                <?php echo esc_html($hero_review_button); ?>
             </a>
 
 
             <p class="bill-card-note">
-                🔒 Your bill is kept private and used only to review your
-                business services. No obligation • Reviewed by a WCP business
-                specialist
+                🔒 <?php echo esc_html($hero_review_note); ?>
             </p>
+
 
         </div>
 
@@ -164,204 +747,140 @@
         <div class="credibility-grid">
 
 
-            <!-- YEARS -->
+            <?php foreach ($credibility as $index => $item) : ?>
 
-            <div class="credibility-item">
 
-                <div class="credibility-icon">
+                <div class="credibility-item">
 
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                    >
+                    <div class="credibility-icon">
 
-                        <rect
-                            x="3"
-                            y="4"
-                            width="18"
-                            height="18"
-                            rx="2"
-                        />
 
-                        <path d="M16 2v4M8 2v4M3 10h18"/>
+                        <?php if ($index === 0) : ?>
 
-                    </svg>
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+
+                                <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="18"
+                                    rx="2"
+                                />
+
+                                <path d="M16 2v4M8 2v4M3 10h18"/>
+
+                            </svg>
+
+
+                        <?php elseif ($index === 1) : ?>
+
+
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"
+                                />
+
+                            </svg>
+
+
+                        <?php elseif ($index === 2) : ?>
+
+
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                                />
+
+                                <circle
+                                    cx="9"
+                                    cy="7"
+                                    r="4"
+                                />
+
+                                <path
+                                    d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                                />
+
+                            </svg>
+
+
+                        <?php else : ?>
+
+
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+                                />
+
+                                <path
+                                    d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"
+                                />
+
+                            </svg>
+
+
+                        <?php endif; ?>
+
+
+                    </div>
+
+
+                    <span class="credibility-num">
+                        <?php echo esc_html($item['number']); ?>
+                    </span>
+
+                    <p>
+                        <?php echo esc_html($item['label']); ?>
+                    </p>
+
 
                 </div>
 
 
-                <span class="credibility-num">
-                    35+
-                </span>
-
-                <p>
-                    Years in Business
-                </p>
-
-            </div>
-
-
-            <!-- BUSINESS ACCOUNTS -->
-
-            <div class="credibility-item">
-
-                <div class="credibility-icon">
-
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                    >
-
-                        <path
-                            d="
-                                M3 21h18
-                                M5 21V7l7-4 7 4v14
-                                M9 9h1
-                                M14 9h1
-                                M9 13h1
-                                M14 13h1
-                                M9 17h1
-                                M14 17h1
-                            "
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <span class="credibility-num">
-                    500+
-                </span>
-
-                <p>
-                    Business Accounts Supported
-                </p>
-
-            </div>
-
-
-            <!-- CUSTOMERS -->
-
-            <div class="credibility-item">
-
-                <div class="credibility-icon">
-
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                    >
-
-                        <path
-                            d="
-                                M17 21v-2
-                                a4 4 0 0 0-4-4H5
-                                a4 4 0 0 0-4 4v2
-                            "
-                        />
-
-                        <circle
-                            cx="9"
-                            cy="7"
-                            r="4"
-                        />
-
-                        <path
-                            d="
-                                M23 21v-2
-                                a4 4 0 0 0-3-3.87
-                                M16 3.13
-                                a4 4 0 0 1 0 7.75
-                            "
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <span class="credibility-num">
-                    10,000+
-                </span>
-
-                <p>
-                    Customers Served
-                </p>
-
-            </div>
-
-
-            <!-- AUTHORIZED DEALER -->
-
-            <div class="credibility-item">
-
-                <div class="credibility-icon">
-
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                    >
-
-                        <path
-                            d="
-                                M12 15
-                                a6 6 0 1 0 0-12
-                                6 6 0 0 0 0 12z
-                            "
-                        />
-
-                        <path
-                            d="
-                                M8.5 13.5
-                                7 22
-                                l5-3
-                                5 3
-                                -1.5-8.5
-                            "
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <span class="credibility-num">
-                    Official
-                </span>
-
-                <p>
-                    Rogers Authorized Dealer
-                </p>
-
-            </div>
+            <?php endforeach; ?>
 
 
         </div>
@@ -372,7 +891,7 @@
 
 
 <!-- =========================================================
-     OUR SERVICES
+     SERVICES
 ========================================================= -->
 
 <section class="section reveal">
@@ -381,7 +900,7 @@
 
 
         <h2 style="text-align:center;">
-            Our Services
+            <?php echo esc_html($services_heading); ?>
         </h2>
 
 
@@ -393,168 +912,43 @@
                 margin-right:auto;
             "
         >
-            Built around what your business needs most.
+            <?php echo esc_html($services_intro); ?>
         </p>
 
 
         <div class="card-grid home-services-grid">
 
 
-            <!-- BUSINESS WIRELESS -->
-
-            <div class="card home-service-card">
-
-                <h3>
-                    Business Wireless
-                </h3>
-
-                <p>
-                    Custom wireless plans for businesses of all sizes — with a
-                    dedicated account manager who knows your business by name.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/business-wireless/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See Wireless Plans
-                </a>
-
-            </div>
+            <?php foreach ($services as $service) : ?>
 
 
-            <!-- BUSINESS INTERNET -->
+                <div class="card home-service-card">
 
-            <div class="card home-service-card">
-
-                <h3>
-                    Business Internet
-                </h3>
-
-                <p>
-                    Reliable, fast internet with predictable pricing and local
-                    support — whichever way your business connects.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/business-internet/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See Internet Plans
-                </a>
-
-            </div>
+                    <h3>
+                        <?php echo esc_html($service['title']); ?>
+                    </h3>
 
 
-            <!-- BUSINESS PHONE -->
-
-            <div class="card home-service-card">
-
-                <h3>
-                    Business Phone
-                </h3>
-
-                <p>
-                    Streamline business calls with an advanced cloud PBX
-                    solution — Teams integration, mobile access, and 24/7
-                    managed support.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/business-phone/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See Phone Plans
-                </a>
-
-            </div>
+                    <p>
+                        <?php echo esc_html($service['text']); ?>
+                    </p>
 
 
-            <!-- POINT OF SALE -->
+                    <a
+                        href="<?php echo esc_url($service['url']); ?>"
+                        class="btn-card"
+                    >
+                        <?php echo esc_html($service['button']); ?>
+                    </a>
 
-            <div class="card home-service-card">
-
-                <h3>
-                    Point of Sale
-                </h3>
-
-                <p>
-                    Rogers POS, powered by Clover — accept payments anywhere
-                    with transparent pricing and easy-to-use sales, inventory,
-                    and employee management tools.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/business-pos/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See POS Options
-                </a>
-
-            </div>
+                </div>
 
 
-            <!-- FLEET MANAGEMENT -->
-
-            <div class="card home-service-card">
-
-                <h3>
-                    Fleet Management
-                </h3>
-
-                <p>
-                    Control costs, increase driver safety, and simplify
-                    compliance with best-in-class fleet monitoring for your
-                    vehicles and mobile assets.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/fleet-management/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See Fleet Options
-                </a>
-
-            </div>
-
-
-            <!-- ROGERS BUSINESS MASTERCARD -->
-
-            <div class="card home-service-card">
-
-                <h3>
-                    Rogers Business Mastercard
-                </h3>
-
-                <p>
-                    Earn cash back on everyday business purchases and unlock
-                    added value when you have an eligible Rogers or Shaw
-                    business service.
-                </p>
-
-                <a
-                    href="<?php echo esc_url(
-                        home_url('/business-mastercard/')
-                    ); ?>"
-                    class="btn-card"
-                >
-                    See Mastercard Benefits
-                </a>
-
-            </div>
+            <?php endforeach; ?>
 
 
         </div>
+
 
     </div>
 
@@ -588,6 +982,7 @@
 
         <div style="max-width:520px;">
 
+
             <span
                 class="eyebrow"
                 style="
@@ -600,12 +995,12 @@
                     margin-bottom:8px;
                 "
             >
-                Employer &amp; Association Pricing
+                <?php echo esc_html($preferred_eyebrow); ?>
             </span>
 
 
             <h3 style="margin:0 0 6px;">
-                Rogers Preferred Program
+                <?php echo esc_html($preferred_heading); ?>
             </h3>
 
 
@@ -616,22 +1011,21 @@
                     font-size:14.5px;
                 "
             >
-                Exclusive pricing on the latest phones and plans for eligible
-                employers and associations. Check in seconds if your business
-                qualifies.
+                <?php echo esc_html($preferred_text); ?>
             </p>
+
 
         </div>
 
 
         <a
-            href="https://portal.wcpwireless.com/lookup#Home"
+            href="<?php echo esc_url($preferred_url); ?>"
             class="btn btn-primary"
             style="
                 flex:0 0 auto;
             "
         >
-            Check Eligibility
+            <?php echo esc_html($preferred_button); ?>
         </a>
 
 
@@ -647,10 +1041,7 @@
 <section class="photo-band">
 
     <img
-        src="<?php echo esc_url(
-            get_template_directory_uri() .
-            '/images/rogers store front1.png'
-        ); ?>"
+        src="<?php echo esc_url($storefront_image); ?>"
         alt="Rogers storefront signage"
     >
 
@@ -660,7 +1051,7 @@
         <div class="container">
 
             <p>
-                A local team you can walk in and talk to — not just a call centre.
+                <?php echo esc_html($storefront_text); ?>
             </p>
 
         </div>
@@ -686,6 +1077,7 @@
 
     <div class="container">
 
+
         <img
             src="<?php echo esc_url(
                 get_template_directory_uri() .
@@ -708,9 +1100,9 @@
                 margin:0 auto;
             "
         >
-            As an Official Rogers Authorized Dealer since 1990, WCP is held to
-            Rogers' own standards for pricing, service, and support.
+            <?php echo esc_html($dealer_text); ?>
         </p>
+
 
     </div>
 
@@ -722,7 +1114,7 @@
 ========================================================= -->
 
 <section
-    class="section reveal home-testimonials-section"
+    class="section reveal"
     style="
         padding-top:100px;
         padding-bottom:64px;
@@ -735,11 +1127,11 @@
         <div class="home-testimonials-heading">
 
             <h2>
-                What Our Clients Say
+                <?php echo esc_html($testimonials_heading); ?>
             </h2>
 
             <p class="lede">
-                Real feedback from businesses we've worked with.
+                <?php echo esc_html($testimonials_intro); ?>
             </p>
 
         </div>
@@ -748,152 +1140,57 @@
         <div class="testimonial-grid">
 
 
-            <!-- =================================================
-                 SIMCOE IT SOLUTIONS
-            ================================================== -->
-
-            <div class="testimonial-card home-testimonial-card">
+            <?php foreach ($testimonials as $testimonial) : ?>
 
 
-                <div class="home-testimonial-logo">
+                <div class="testimonial-card home-testimonial-card">
 
-                    <img
-                        src="<?php echo esc_url(
-                            get_template_directory_uri() .
-                            '/images/testimonial-simcoe-it.png'
-                        ); ?>"
-                        alt="Simcoe IT Solutions"
-                    >
+
+                    <div class="home-testimonial-logo">
+
+                        <img
+                            src="<?php echo esc_url($testimonial['logo']); ?>"
+                            alt="<?php echo esc_attr($testimonial['alt']); ?>"
+                        >
+
+                    </div>
+
+
+                    <p class="testimonial-quote">
+                        <?php echo esc_html($testimonial['quote']); ?>
+                    </p>
+
+
+                    <div class="home-testimonial-person">
+
+                        <p class="testimonial-attribution">
+                            <?php echo esc_html($testimonial['name']); ?>
+                        </p>
+
+                        <p class="testimonial-role">
+                            <?php echo esc_html($testimonial['role']); ?>
+                        </p>
+
+                    </div>
+
 
                 </div>
 
 
-                <p class="testimonial-quote">
-                    The WCP team made switching to Rogers Business very
-                    painless. I'd definitely work with them again.
-                </p>
-
-
-                <div class="home-testimonial-person">
-
-                    <p class="testimonial-attribution">
-                        Rob N.
-                    </p>
-
-                    <p class="testimonial-role">
-                        President, Simcoe IT Solutions Inc.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =================================================
-                 AVAYA
-            ================================================== -->
-
-            <div class="testimonial-card home-testimonial-card">
-
-
-                <div class="home-testimonial-logo">
-
-                    <img
-                        src="<?php echo esc_url(
-                            get_template_directory_uri() .
-                            '/images/testimonial-avaya.png'
-                        ); ?>"
-                        alt="Avaya"
-                    >
-
-                </div>
-
-
-                <p class="testimonial-quote">
-                    I highly recommend the WCP team. During recent contract
-                    negotiations with Rogers, they demonstrated strong
-                    professionalism and expertise, ensuring a fair and efficient
-                    outcome. They're approachable, responsive, and always willing
-                    to help — and their problem-solving ability means they
-                    quickly find practical solutions. Overall, a great experience.
-                </p>
-
-
-                <div class="home-testimonial-person">
-
-                    <p class="testimonial-attribution">
-                        Debbie B.
-                    </p>
-
-                    <p class="testimonial-role">
-                        Deals Desk Manager / Sales Operations Specialist, Avaya
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =================================================
-                 OAK VALLEY HEALTH
-            ================================================== -->
-
-            <div class="testimonial-card home-testimonial-card">
-
-
-                <div class="home-testimonial-logo">
-
-                    <img
-                        src="<?php echo esc_url(
-                            get_template_directory_uri() .
-                            '/images/testimonial-oak-valley-health.png'
-                        ); ?>"
-                        alt="Oak Valley Health"
-                    >
-
-                </div>
-
-
-                <p class="testimonial-quote">
-                    I've worked with the WCP team for over 9 years now. They've
-                    looked after our corporate plan for our employees at Markham
-                    Stouffville Hospital, keeping our staff up to date with
-                    current offers and promotions. Very knowledgeable at what
-                    they do.
-                </p>
-
-
-                <div class="home-testimonial-person">
-
-                    <p class="testimonial-attribution">
-                        Lee E.
-                    </p>
-
-                    <p class="testimonial-role">
-                        Network Analyst, OVH
-                    </p>
-
-                </div>
-
-
-            </div>
+            <?php endforeach; ?>
 
 
         </div>
 
 
-        <!-- GOOGLE REVIEW -->
-
         <div class="review-cta">
 
             <a
-                href="https://g.page/r/CX3o5GNSAmziEAE/review"
+                href="<?php echo esc_url($google_review_url); ?>"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                ⭐ Had a great experience with us? Leave us a review on Google →
+                <?php echo esc_html($google_review_text); ?>
             </a>
 
         </div>
@@ -918,101 +1215,66 @@
         <div class="review-form-layout">
 
 
-            <!-- LEFT SIDE -->
+            <!-- LEFT -->
 
             <div class="review-form-intro">
 
+
                 <span class="section-eyebrow">
-                    FREE BUSINESS BILL REVIEW
+                    <?php echo esc_html($review_eyebrow); ?>
                 </span>
 
+
                 <h2>
-                    Upload your bill. We'll do the homework.
+                    <?php echo esc_html($review_heading); ?>
                 </h2>
 
+
                 <p class="lede">
-                    Send us a recent wireless bill and a WCP business specialist
-                    will review your current services and available options.
+                    <?php echo esc_html($review_intro); ?>
                 </p>
 
 
                 <div class="review-benefits">
 
 
-                    <div class="review-benefit">
+                    <?php foreach ($review_benefits as $benefit) : ?>
 
-                        <span>
-                            ✓
-                        </span>
 
-                        <div>
+                        <div class="review-benefit">
 
-                            <strong>
-                                Review your current costs
-                            </strong>
+                            <span>
+                                ✓
+                            </span>
 
-                            <p>
-                                We'll look at what you're currently paying and
-                                what services you have.
-                            </p>
+
+                            <div>
+
+                                <strong>
+                                    <?php echo esc_html($benefit['title']); ?>
+                                </strong>
+
+
+                                <p>
+                                    <?php echo esc_html($benefit['text']); ?>
+                                </p>
+
+                            </div>
+
 
                         </div>
 
-                    </div>
 
-
-                    <div class="review-benefit">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Identify opportunities
-                            </strong>
-
-                            <p>
-                                We'll check available Rogers Business options
-                                that may better fit your needs.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="review-benefit">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Talk to a real person
-                            </strong>
-
-                            <p>
-                                Your review is handled by a WCP business
-                                specialist.
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <?php endforeach; ?>
 
 
                 </div>
 
+
             </div>
 
 
-            <!-- =================================================
-                 FORM
-            ================================================== -->
+            <!-- FORM -->
 
             <form
                 class="lead-form bill-review-form"
@@ -1025,17 +1287,15 @@
                 <div class="form-heading">
 
                     <h3>
-                        Get My Free Bill Review
+                        <?php echo esc_html($review_form_heading); ?>
                     </h3>
 
                     <p>
-                        Tell us a little about your business.
+                        <?php echo esc_html($review_form_intro); ?>
                     </p>
 
                 </div>
 
-
-                <!-- NAME + BUSINESS -->
 
                 <div class="form-row">
 
@@ -1058,8 +1318,6 @@
                 </div>
 
 
-                <!-- PHONE + EMAIL -->
-
                 <div class="form-row">
 
                     <input
@@ -1080,8 +1338,6 @@
 
                 </div>
 
-
-                <!-- INTEREST -->
 
                 <select
                     name="interest"
@@ -1131,8 +1387,6 @@
                 </select>
 
 
-                <!-- BILL UPLOAD -->
-
                 <div class="bill-upload">
 
                     <label for="bill-upload">
@@ -1140,6 +1394,7 @@
                         <span class="upload-icon">
                             ↑
                         </span>
+
 
                         <span class="upload-copy">
 
@@ -1153,6 +1408,7 @@
 
                         </span>
 
+
                     </label>
 
 
@@ -1163,10 +1419,9 @@
                         accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                     >
 
+
                 </div>
 
-
-                <!-- MESSAGE -->
 
                 <textarea
                     name="message"
@@ -1175,13 +1430,11 @@
                 ></textarea>
 
 
-                <!-- SUBMIT -->
-
                 <button
                     type="submit"
                     class="btn btn-primary"
                 >
-                    Get My Free Bill Review
+                    <?php echo esc_html($review_button); ?>
                 </button>
 
 
@@ -1208,13 +1461,13 @@
 
 
 <!-- =========================================================
-     HOME PAGE ADDITIONAL STYLES
+     HOMEPAGE ADDITIONAL STYLES
 ========================================================= -->
 
 <style>
 
 /* =========================================================
-   HOME SERVICES - 3 X 2
+   SERVICES - 3 X 2
 ========================================================= */
 
 .card-grid.home-services-grid {
@@ -1223,9 +1476,6 @@
     gap:18px !important;
     align-items:stretch;
 }
-
-
-/* Make all service cards equal and buttons align */
 
 .card-grid.home-services-grid .home-service-card {
     display:flex;
@@ -1240,7 +1490,7 @@
 
 
 /* =========================================================
-   HOME TESTIMONIAL HEADING
+   TESTIMONIALS
 ========================================================= */
 
 .home-testimonials-heading {
@@ -1254,20 +1504,13 @@
     margin-right:auto;
 }
 
-
-/* =========================================================
-   HOME TESTIMONIAL CARDS
-========================================================= */
-
 .home-testimonial-card {
     display:flex;
     flex-direction:column;
 }
 
 
-/* =========================================================
-   TESTIMONIAL COMPANY LOGOS
-========================================================= */
+/* COMPANY LOGOS */
 
 .home-testimonial-logo {
     height:82px;
@@ -1295,9 +1538,7 @@
 }
 
 
-/* =========================================================
-   QUOTE / ATTRIBUTION ALIGNMENT
-========================================================= */
+/* ALIGN TESTIMONIAL CONTENT */
 
 .home-testimonial-card .testimonial-quote {
     flex-grow:1;
