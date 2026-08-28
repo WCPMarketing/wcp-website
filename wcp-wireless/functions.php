@@ -6219,3 +6219,237 @@ add_action(
     'acf/init',
     'wcp_register_careers_fields'
 );
+/*
+|--------------------------------------------------------------------------
+| GLOBAL SITE SETTINGS
+|--------------------------------------------------------------------------
+|
+| These fields live on the WordPress Home page but can be used
+| throughout the entire website.
+|
+| Edit from:
+|
+| Pages → Home → Global Site Settings
+|
+*/
+
+function wcp_register_global_site_fields() {
+
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $front_page_id = (int) get_option('page_on_front');
+
+    if (!$front_page_id) {
+        return;
+    }
+
+
+    acf_add_local_field_group(array(
+
+        'key' => 'group_wcp_global_site_settings',
+
+        'title' => 'Global Site Settings',
+
+        'fields' => array(
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CONTACT DETAILS TAB
+            |--------------------------------------------------------------------------
+            */
+
+            array(
+                'key' => 'field_global_contact_tab',
+                'label' => 'Contact Details',
+                'name' => '',
+                'type' => 'tab',
+            ),
+
+
+            array(
+                'key' => 'field_global_phone',
+                'label' => 'Main Phone Number',
+                'name' => 'global_phone',
+                'type' => 'text',
+                'default_value' => '1-833-844-1977',
+            ),
+
+
+            array(
+                'key' => 'field_global_email',
+                'label' => 'Sales Email',
+                'name' => 'global_email',
+                'type' => 'email',
+                'default_value' => 'sales@wcpwireless.com',
+            ),
+
+
+            array(
+                'key' => 'field_global_address',
+                'label' => 'Business Address',
+                'name' => 'global_address',
+                'type' => 'textarea',
+                'rows' => 3,
+                'default_value' => '2875 14th Ave Unit 3, Markham, ON L3R 5H8',
+            ),
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SOCIAL MEDIA TAB
+            |--------------------------------------------------------------------------
+            */
+
+            array(
+                'key' => 'field_global_social_tab',
+                'label' => 'Social Media',
+                'name' => '',
+                'type' => 'tab',
+            ),
+
+
+            array(
+                'key' => 'field_global_facebook',
+                'label' => 'Facebook URL',
+                'name' => 'global_facebook',
+                'type' => 'url',
+                'default_value' => 'https://www.facebook.com/wcpwireless/',
+            ),
+
+
+            array(
+                'key' => 'field_global_instagram',
+                'label' => 'Instagram URL',
+                'name' => 'global_instagram',
+                'type' => 'url',
+                'default_value' => 'https://www.instagram.com/wcpwireless/',
+            ),
+
+
+            array(
+                'key' => 'field_global_linkedin',
+                'label' => 'LinkedIn URL',
+                'name' => 'global_linkedin',
+                'type' => 'url',
+                'default_value' => 'https://www.linkedin.com/company/wirelesscommunicationsplus/',
+            ),
+
+        ),
+
+
+        'location' => array(
+
+            array(
+
+                array(
+                    'param' => 'page',
+                    'operator' => '==',
+                    'value' => (string) $front_page_id,
+                ),
+
+            ),
+
+        ),
+
+
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+
+    ));
+}
+
+add_action(
+    'acf/init',
+    'wcp_register_global_site_fields'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL FIELD HELPER
+|--------------------------------------------------------------------------
+|
+| Allows any template to read these Home-page settings.
+|
+| Example:
+|
+| wcp_global_field('phone', '1-833-844-1977');
+|
+*/
+
+function wcp_global_field($name, $fallback = '') {
+
+    $front_page_id = (int) get_option('page_on_front');
+
+    if (
+        function_exists('get_field') &&
+        $front_page_id
+    ) {
+
+        $value = get_field(
+            'global_' . $name,
+            $front_page_id
+        );
+
+        if (
+            $value !== null &&
+            $value !== false &&
+            $value !== ''
+        ) {
+            return $value;
+        }
+    }
+
+    return $fallback;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL PHONE LINK HELPER
+|--------------------------------------------------------------------------
+|
+| Turns:
+|
+| 1-833-844-1977
+|
+| into:
+|
+| tel:+18338441977
+|
+*/
+
+function wcp_global_phone_href() {
+
+    $phone = wcp_global_field(
+        'phone',
+        '1-833-844-1977'
+    );
+
+    $digits = preg_replace(
+        '/\D+/',
+        '',
+        $phone
+    );
+
+    /*
+     * If someone enters a standard 10-digit Canadian/US number,
+     * automatically add country code 1.
+     */
+
+    if (strlen($digits) === 10) {
+        $digits = '1' . $digits;
+    }
+
+    if (!$digits) {
+        $digits = '18338441977';
+    }
+
+    return 'tel:+' . $digits;
+}
