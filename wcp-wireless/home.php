@@ -301,7 +301,7 @@ $preferred_button = $home_field(
 
 $preferred_url = $home_field(
     'preferred_url',
-    'https://wcpwireless.com/lookup#Home'
+    'https://portal.wcpwireless.com/lookup#Home'
 );
 
 
