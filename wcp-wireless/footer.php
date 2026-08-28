@@ -4,16 +4,81 @@
 |--------------------------------------------------------------------------
 | GLOBAL FOOTER SETTINGS
 |--------------------------------------------------------------------------
-|
-| Pull the Preferred Program URL from the Home page.
-|
-| Edit it from:
-|
-| Pages → Home → Preferred Program → Eligibility Page URL
-|
 */
 
 $front_page_id = (int) get_option('page_on_front');
+
+
+/*
+|--------------------------------------------------------------------------
+| CONTACT INFORMATION
+|--------------------------------------------------------------------------
+*/
+
+$global_phone = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'phone',
+        '1-833-844-1977'
+    )
+    : '1-833-844-1977';
+
+
+$global_phone_href = function_exists('wcp_global_phone_href')
+    ? wcp_global_phone_href()
+    : 'tel:+18338441977';
+
+
+$global_email = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'email',
+        'sales@wcpwireless.com'
+    )
+    : 'sales@wcpwireless.com';
+
+
+$global_address = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'address',
+        '2875 14th Ave Unit 3, Markham, ON L3R 5H8'
+    )
+    : '2875 14th Ave Unit 3, Markham, ON L3R 5H8';
+
+
+/*
+|--------------------------------------------------------------------------
+| SOCIAL MEDIA
+|--------------------------------------------------------------------------
+*/
+
+$global_facebook = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'facebook',
+        'https://www.facebook.com/wcpwireless/'
+    )
+    : 'https://www.facebook.com/wcpwireless/';
+
+
+$global_instagram = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'instagram',
+        'https://www.instagram.com/wcpwireless/'
+    )
+    : 'https://www.instagram.com/wcpwireless/';
+
+
+$global_linkedin = function_exists('wcp_global_field')
+    ? wcp_global_field(
+        'linkedin',
+        'https://www.linkedin.com/company/wirelesscommunicationsplus/'
+    )
+    : 'https://www.linkedin.com/company/wirelesscommunicationsplus/';
+
+
+/*
+|--------------------------------------------------------------------------
+| PREFERRED PROGRAM URL
+|--------------------------------------------------------------------------
+*/
 
 $preferred_program_url =
     'https://portal.wcpwireless.com/lookup#Home';
@@ -30,11 +95,8 @@ if (
     );
 
     if (!empty($saved_preferred_url)) {
-
-        $preferred_program_url =
-            $saved_preferred_url;
+        $preferred_program_url = $saved_preferred_url;
     }
-
 }
 
 
@@ -42,9 +104,6 @@ if (
 |--------------------------------------------------------------------------
 | NORMALIZE OLD PREFERRED PROGRAM URL
 |--------------------------------------------------------------------------
-|
-| If the older WCP URL is still stored, use the direct portal URL.
-|
 */
 
 if (
@@ -74,7 +133,13 @@ if (
             Prefer to talk now? Call
 
             <strong>
-                1-833-844-1977
+
+                <a
+                    href="<?php echo esc_attr($global_phone_href); ?>"
+                >
+                    <?php echo esc_html($global_phone); ?>
+                </a>
+
             </strong>
 
             — we're happy to help.
@@ -133,7 +198,7 @@ if (
                     <!-- FACEBOOK -->
 
                     <a
-                        href="https://www.facebook.com/wcpwireless/"
+                        href="<?php echo esc_url($global_facebook); ?>"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook"
@@ -158,7 +223,7 @@ if (
                     <!-- INSTAGRAM -->
 
                     <a
-                        href="https://www.instagram.com/wcpwireless/"
+                        href="<?php echo esc_url($global_instagram); ?>"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
@@ -183,7 +248,7 @@ if (
                     <!-- LINKEDIN -->
 
                     <a
-                        href="https://www.linkedin.com/company/wirelesscommunicationsplus/"
+                        href="<?php echo esc_url($global_linkedin); ?>"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn"
@@ -221,93 +286,37 @@ if (
                 </h4>
 
 
-                <!-- BUSINESS WIRELESS -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business-wireless/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business-wireless/')); ?>">
                     Business Wireless
                 </a>
 
 
-                <!-- BUSINESS INTERNET -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business-internet/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business-internet/')); ?>">
                     Business Internet
                 </a>
 
 
-                <!-- BUSINESS PHONE -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business-phone/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business-phone/')); ?>">
                     Business Phone
                 </a>
 
 
-                <!-- POINT OF SALE -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business-pos/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business-pos/')); ?>">
                     Point of Sale
                 </a>
 
 
-                <!-- FLEET MANAGEMENT -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/fleet-management/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/fleet-management/')); ?>">
                     Fleet Management
                 </a>
 
 
-                <!-- ROGERS BUSINESS MASTERCARD -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business-mastercard/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business-mastercard/')); ?>">
                     Rogers Business Mastercard
                 </a>
 
 
-                <!-- PREFERRED PROGRAM -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            $preferred_program_url
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url($preferred_program_url); ?>">
                     Preferred Program
                 </a>
 
@@ -326,67 +335,27 @@ if (
                 </h4>
 
 
-                <!-- HOME -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/')); ?>">
                     Home
                 </a>
 
 
-                <!-- ABOUT -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/about/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/about/')); ?>">
                     About Us
                 </a>
 
 
-                <!-- BUSINESS -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/business/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/business/')); ?>">
                     Business Solutions Overview
                 </a>
 
 
-                <!-- CAREERS -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/careers/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/careers/')); ?>">
                     Careers
                 </a>
 
 
-                <!-- CONTACT -->
-
-                <a
-                    href="<?php
-                        echo esc_url(
-                            home_url('/contact/')
-                        );
-                    ?>"
-                >
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                     Contact Us
                 </a>
 
@@ -428,8 +397,10 @@ if (
                     </svg>
 
 
-                    <a href="tel:+18338441977">
-                        1-833-844-1977
+                    <a
+                        href="<?php echo esc_attr($global_phone_href); ?>"
+                    >
+                        <?php echo esc_html($global_phone); ?>
                     </a>
 
                 </div>
@@ -458,8 +429,14 @@ if (
                     </svg>
 
 
-                    <a href="mailto:sales@wcpwireless.com">
-                        sales@wcpwireless.com
+                    <a
+                        href="<?php
+                            echo esc_attr(
+                                'mailto:' . sanitize_email($global_email)
+                            );
+                        ?>"
+                    >
+                        <?php echo esc_html($global_email); ?>
                     </a>
 
                 </div>
@@ -495,8 +472,11 @@ if (
 
 
                     <span>
-                        2875 14th Ave Unit 3,<br>
-                        Markham, ON L3R 5H8
+                        <?php
+                            echo nl2br(
+                                esc_html($global_address)
+                            );
+                        ?>
                     </span>
 
                 </div>
