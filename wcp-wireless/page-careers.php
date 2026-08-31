@@ -856,6 +856,7 @@ $apply_privacy = $careers_field(
                     'file_too_large'  => 'The uploaded document is too large. Please choose a file under 10 MB.',
                     'file_type'       => 'Please upload a PDF, DOC or DOCX file.',
                     'upload_error'    => 'One of your documents could not be uploaded. Please try again.',
+                    'save'            => 'Your application could not be saved. Please try again.',
                     'mail'            => 'Your application could not be sent. Please try again or contact WCP directly.',
                     'invalid_request' => 'The application could not be submitted. Please try again.',
                 );
