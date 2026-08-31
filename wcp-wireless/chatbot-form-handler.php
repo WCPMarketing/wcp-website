@@ -251,6 +251,88 @@ function wcp_handle_chatbot_submit() {
 
     /*
     |--------------------------------------------------------------------------
+    | REQUEST TYPE
+    |--------------------------------------------------------------------------
+    */
+
+    $intent_label = 'General';
+
+    if ('review' === $chat_intent) {
+
+        $intent_label =
+            'Free Bill Review';
+
+    } elseif ('human' === $chat_intent) {
+
+        $intent_label =
+            'Talk to a Person';
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SAVE TO WCP SUBMISSIONS
+    |--------------------------------------------------------------------------
+    */
+
+    if (!function_exists('wcp_save_submission')) {
+
+        wcp_chatbot_error(
+            'save',
+            500
+        );
+    }
+
+
+    $submission_id =
+        wcp_save_submission(
+            array(
+
+                'form_source' =>
+                    $form_source,
+
+                'name' =>
+                    $name,
+
+                'business_name' =>
+                    $business_name,
+
+                'email' =>
+                    $email,
+
+                'phone' =>
+                    $phone,
+
+                'interest' =>
+                    $intent_label,
+
+                'message' =>
+                    '',
+
+                'page_url' =>
+                    $page_url,
+
+                'source' =>
+                    $source,
+
+                'email_status' =>
+                    'Pending',
+
+            )
+        );
+
+
+    if (is_wp_error($submission_id)) {
+
+        wcp_chatbot_error(
+            'save',
+            500
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
     | EMAIL RECIPIENT
     |--------------------------------------------------------------------------
     |
@@ -277,26 +359,6 @@ function wcp_handle_chatbot_submit() {
             'recipient',
             500
         );
-    }
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | REQUEST TYPE
-    |--------------------------------------------------------------------------
-    */
-
-    $intent_label = 'General';
-
-    if ('review' === $chat_intent) {
-
-        $intent_label =
-            'Free Bill Review';
-
-    } elseif ('human' === $chat_intent) {
-
-        $intent_label =
-            'Talk to a Person';
     }
 
 
@@ -365,25 +427,29 @@ function wcp_handle_chatbot_submit() {
     );
 
 
-    if (!$sent) {
-
-        wcp_chatbot_error(
-            'mail',
-            500
-        );
-    }
+    update_post_meta(
+        $submission_id,
+        '_wcp_email_status',
+        $sent
+            ? 'Sent'
+            : 'Failed'
+    );
 
 
     /*
     |--------------------------------------------------------------------------
     | SUCCESS
     |--------------------------------------------------------------------------
+    |
+    | Once the lead is safely saved in WCP Submissions, Bob can confirm the
+    | submission even if the separate email notification fails.
+    |
     */
 
     wp_send_json_success(
         array(
-            'received' => true,
+            'received'   => true,
+            'email_sent' => (bool) $sent,
         )
     );
 }
-
