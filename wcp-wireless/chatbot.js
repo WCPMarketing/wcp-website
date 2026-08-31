@@ -1,88 +1,188 @@
 // ===== WCP Chat Widget =====
-// Self-contained: injects its own CSS and HTML. Only requires styles.css
-// to already be loaded on the page (for --red, --dark, --font-display etc.)
-// Add <script src="chatbot.js"></script> before </body> on any page.
+// Self-contained: injects its own CSS and HTML.
+// Tracks meaningful chatbot interactions in Google Analytics 4 (GA4).
 
 (function () {
   'use strict';
 
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvkppvjl';
+
   var PHONE = '1-833-844-1977';
   var PHONE_HREF = 'tel:+18338441977';
 
-  // Send events to Google Analytics (GA4) if it's loaded on the page.
-  // Never throws — if gtag is blocked (ad blockers) or missing, this just does nothing.
+
+  // =========================================================
+  // GOOGLE ANALYTICS TRACKING
+  // =========================================================
+  //
+  // Events are sent only if Google Analytics / gtag is loaded.
+  // If GA4 is blocked or unavailable, Bob continues working normally.
+  //
+
   function trackEvent(eventName, params) {
+
     try {
+
       if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, params || {});
+
+        var eventParams = Object.assign(
+          {
+            page_path: window.location.pathname
+          },
+          params || {}
+        );
+
+        window.gtag(
+          'event',
+          eventName,
+          eventParams
+        );
+
       }
+
     } catch (e) {
-      /* tracking should never break the chat experience */
+
+      // Analytics should never break Bob.
+
     }
+
   }
 
-  // ---------- Content: menu options and their responses ----------
+
+  // =========================================================
+  // MENU
+  // =========================================================
+
   var MENU = [
-    { id: 'wireless', label: 'Business wireless plans' },
-    { id: 'internet', label: 'Business internet plans' },
-    { id: 'review', label: 'Get a free bill review' },
-    { id: 'human', label: 'Talk to a person' }
+
+    {
+      id: 'wireless',
+      label: 'Business wireless plans'
+    },
+
+    {
+      id: 'internet',
+      label: 'Business internet plans'
+    },
+
+    {
+      id: 'review',
+      label: 'Get a free bill review'
+    },
+
+    {
+      id: 'human',
+      label: 'Talk to a person'
+    }
+
   ];
+
+
+  // =========================================================
+  // RESPONSES
+  // =========================================================
 
   var RESPONSES = {
 
+
     wireless: {
+
       text:
         "Here's a quick overview of our business wireless plans:\n\n" +
+
         "**Small Business** (bring your own device) — from $65/mo per line\n" +
+
         "**5+ Lines Corporate** (pooled data) — from $38/mo per line\n" +
+
         "**10+ Lines Corporate** (pooled data, dedicated support) — from $30/mo per line\n\n" +
+
         "All plans include unlimited Canada-wide talk & text. Want the full breakdown, or would you like a specialist to help you pick?",
 
+
       links: [
+
         {
           label: 'See full wireless plans',
-          href: '/business-wireless/'
+          href: '/business-wireless/',
+          trackingType: 'wireless'
         }
+
       ],
 
-      followUp: ['review', 'human', 'menu']
+
+      followUp: [
+        'review',
+        'human',
+        'menu'
+      ]
+
     },
+
 
     internet: {
+
       text:
         "Here's a quick overview of our business internet options:\n\n" +
+
         "**Business Internet** — from $64.99/mo (300 Mbps)\n" +
+
         "**Business Fibre** — from $79.99/mo (100 Mbps, symmetrical)\n" +
+
         "**Dedicated Fibre** — custom pricing, static IP included\n" +
+
         "**5G Business Internet** — from $70/mo, self-install in minutes\n\n" +
+
         "Want the full breakdown, or would you like a specialist to help you pick?",
 
+
       links: [
+
         {
           label: 'See full internet plans',
-          href: '/business-internet/'
+          href: '/business-internet/',
+          trackingType: 'internet'
         }
+
       ],
 
-      followUp: ['review', 'human', 'menu']
+
+      followUp: [
+        'review',
+        'human',
+        'menu'
+      ]
+
     },
 
+
     menu: {
-      text: "What can I help you with?",
-      showMenu: true
+
+      text:
+        "What can I help you with?",
+
+      showMenu:
+        true
+
     }
 
   };
 
 
+  // =========================================================
+  // GREETING
+  // =========================================================
+
   var GREETING =
     "Hi, I'm Bob! I'm here to help with Rogers business wireless, internet, and phone plans. What can I help you with?";
 
 
-  // ---------- Inject styles ----------
-  var style = document.createElement('style');
+  // =========================================================
+  // STYLES
+  // =========================================================
+
+  var style =
+    document.createElement('style');
+
 
   style.textContent = [
 
@@ -150,18 +250,27 @@
 
   ].join('\n');
 
+
   document.head.appendChild(style);
 
 
-  // ---------- Inject markup ----------
-  var launcher = document.createElement('button');
+  // =========================================================
+  // CHAT LAUNCHER
+  // =========================================================
 
-  launcher.className = 'wcp-chat-launcher';
+  var launcher =
+    document.createElement('button');
+
+
+  launcher.className =
+    'wcp-chat-launcher';
+
 
   launcher.setAttribute(
     'aria-label',
     'Chat with Bob'
   );
+
 
   launcher.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -169,11 +278,20 @@
     '</svg>';
 
 
-  var panel = document.createElement('div');
+  // =========================================================
+  // CHAT PANEL
+  // =========================================================
 
-  panel.className = 'wcp-chat-panel';
+  var panel =
+    document.createElement('div');
+
+
+  panel.className =
+    'wcp-chat-panel';
+
 
   panel.innerHTML =
+
     '<div class="wcp-chat-header">' +
 
       '<div>' +
@@ -207,7 +325,9 @@
       'Prefer to talk? Call ' +
 
       '<a href="' + PHONE_HREF + '">' +
+
         PHONE +
+
       '</a>' +
 
     '</div>';
@@ -217,14 +337,58 @@
   document.body.appendChild(panel);
 
 
+  // =========================================================
+  // ELEMENT REFERENCES
+  // =========================================================
+
   var messagesEl =
-    panel.querySelector('.wcp-chat-messages');
+    panel.querySelector(
+      '.wcp-chat-messages'
+    );
+
 
   var closeBtn =
-    panel.querySelector('.wcp-chat-close');
+    panel.querySelector(
+      '.wcp-chat-close'
+    );
 
-  var started = false;
 
+  var phoneLink =
+    panel.querySelector(
+      '.wcp-chat-footer a'
+    );
+
+
+  var started =
+    false;
+
+
+  // =========================================================
+  // PHONE CLICK TRACKING
+  // =========================================================
+
+  if (phoneLink) {
+
+    phoneLink.addEventListener(
+      'click',
+      function () {
+
+        trackEvent(
+          'bob_phone_click',
+          {
+            phone_number: PHONE
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  // =========================================================
+  // SCROLL
+  // =========================================================
 
   function scrollToBottom() {
 
@@ -234,24 +398,33 @@
   }
 
 
+  // =========================================================
+  // BOT MESSAGE
+  // =========================================================
+
   function addBotMessage(text) {
 
     var el =
       document.createElement('div');
 
+
     el.className =
       'wcp-msg wcp-msg-bot';
 
+
     el.innerHTML =
       escapeHtml(text)
+
         .replace(
           /\*\*(.+?)\*\*/g,
           '<strong>$1</strong>'
         )
+
         .replace(
           /\n/g,
           '<br>'
         );
+
 
     messagesEl.appendChild(el);
 
@@ -259,16 +432,24 @@
 
   }
 
+
+  // =========================================================
+  // USER MESSAGE
+  // =========================================================
 
   function addUserMessage(text) {
 
     var el =
       document.createElement('div');
 
+
     el.className =
       'wcp-msg wcp-msg-user';
 
-    el.textContent = text;
+
+    el.textContent =
+      text;
+
 
     messagesEl.appendChild(el);
 
@@ -277,17 +458,28 @@
   }
 
 
+  // =========================================================
+  // HTML ESCAPING
+  // =========================================================
+
   function escapeHtml(str) {
 
     var div =
       document.createElement('div');
 
-    div.textContent = str;
+
+    div.textContent =
+      str;
+
 
     return div.innerHTML;
 
   }
 
+
+  // =========================================================
+  // REMOVE CURRENT OPTIONS
+  // =========================================================
 
   function clearOptions() {
 
@@ -296,50 +488,66 @@
         '.wcp-chat-options, .wcp-lead-form'
       );
 
+
     if (existing) {
+
       existing.remove();
+
     }
 
   }
 
 
+  // =========================================================
+  // MAIN MENU
+  // =========================================================
+
   function showMenuOptions() {
 
     clearOptions();
 
+
     var wrap =
       document.createElement('div');
+
 
     wrap.className =
       'wcp-chat-options';
 
 
-    MENU.forEach(function (item) {
+    MENU.forEach(
+      function (item) {
 
-      var btn =
-        document.createElement('button');
 
-      btn.className =
-        'wcp-chat-btn';
+        var btn =
+          document.createElement('button');
 
-      btn.textContent =
-        item.label;
 
-      btn.addEventListener(
-        'click',
-        function () {
+        btn.className =
+          'wcp-chat-btn';
 
-          handleSelection(
-            item.id,
-            item.label
-          );
 
-        }
-      );
+        btn.textContent =
+          item.label;
 
-      wrap.appendChild(btn);
 
-    });
+        btn.addEventListener(
+          'click',
+          function () {
+
+            handleSelection(
+              item.id,
+              item.label
+            );
+
+          }
+        );
+
+
+        wrap.appendChild(btn);
+
+      }
+    );
 
 
     messagesEl.appendChild(wrap);
@@ -348,54 +556,70 @@
 
   }
 
+
+  // =========================================================
+  // FOLLOW-UP OPTIONS
+  // =========================================================
 
   function showFollowUpOptions(ids) {
 
     clearOptions();
 
+
     var wrap =
       document.createElement('div');
+
 
     wrap.className =
       'wcp-chat-options';
 
 
-    ids.forEach(function (id) {
-
-      var label =
-        id === 'review'
-          ? 'Get a free bill review'
-          : id === 'human'
-          ? 'Talk to a person'
-          : 'Back to main menu';
+    ids.forEach(
+      function (id) {
 
 
-      var btn =
-        document.createElement('button');
+        var label =
 
-      btn.className =
-        'wcp-chat-btn';
+          id === 'review'
 
-      btn.textContent =
-        label;
+            ? 'Get a free bill review'
 
+            : id === 'human'
 
-      btn.addEventListener(
-        'click',
-        function () {
+            ? 'Talk to a person'
 
-          handleSelection(
-            id,
-            label
-          );
-
-        }
-      );
+            : 'Back to main menu';
 
 
-      wrap.appendChild(btn);
+        var btn =
+          document.createElement('button');
 
-    });
+
+        btn.className =
+          'wcp-chat-btn';
+
+
+        btn.textContent =
+          label;
+
+
+        btn.addEventListener(
+          'click',
+          function () {
+
+            handleSelection(
+              id,
+              label
+            );
+
+          }
+        );
+
+
+        wrap.appendChild(btn);
+
+      }
+    );
 
 
     messagesEl.appendChild(wrap);
@@ -404,14 +628,24 @@
 
   }
 
+
+  // =========================================================
+  // LEAD FORM
+  // =========================================================
 
   function showLeadForm() {
 
     clearOptions();
 
 
+    trackEvent(
+      'bob_lead_form_shown'
+    );
+
+
     var wrap =
       document.createElement('form');
+
 
     wrap.className =
       'wcp-lead-form';
@@ -434,7 +668,13 @@
       'submit',
       function (e) {
 
+
         e.preventDefault();
+
+
+        trackEvent(
+          'bob_lead_submit_attempt'
+        );
 
 
         var formData =
@@ -448,10 +688,14 @@
 
 
         var submitBtn =
-          wrap.querySelector('button');
+          wrap.querySelector(
+            'button'
+          );
 
 
-        submitBtn.disabled = true;
+        submitBtn.disabled =
+          true;
+
 
         submitBtn.textContent =
           'Sending...';
@@ -461,70 +705,118 @@
           FORMSPREE_ENDPOINT,
           {
 
-            method: 'POST',
+            method:
+              'POST',
 
-            body: formData,
+            body:
+              formData,
 
             headers: {
-              'Accept': 'application/json'
+
+              'Accept':
+                'application/json'
+
             }
 
           }
         )
-          .then(function (res) {
+
+
+        .then(
+          function (res) {
+
 
             if (res.ok) {
+
 
               clearOptions();
 
 
               trackEvent(
-                'bob_lead_submitted',
-                {
-                  page_path:
-                    window.location.pathname
-                }
+                'bob_lead_submitted'
               );
 
 
               addBotMessage(
+
                 "Thanks! A WCP business specialist will reach out shortly. You can also call " +
+
                 PHONE +
+
                 " anytime."
+
               );
+
 
             } else {
 
-              submitBtn.disabled = false;
+
+              trackEvent(
+                'bob_lead_submit_error',
+                {
+                  error_type:
+                    'server_response'
+                }
+              );
+
+
+              submitBtn.disabled =
+                false;
+
 
               submitBtn.textContent =
                 'Send my info';
 
 
               addBotMessage(
+
                 "Something went wrong sending that — mind trying again, or just calling " +
+
                 PHONE +
+
                 "?"
+
               );
 
             }
 
-          })
-          .catch(function () {
+          }
+        )
 
-            submitBtn.disabled = false;
+
+        .catch(
+          function () {
+
+
+            trackEvent(
+              'bob_lead_submit_error',
+              {
+                error_type:
+                  'network_error'
+              }
+            );
+
+
+            submitBtn.disabled =
+              false;
+
 
             submitBtn.textContent =
               'Send my info';
 
 
             addBotMessage(
+
               "Something went wrong sending that — mind trying again, or just calling " +
+
               PHONE +
+
               "?"
+
             );
 
-          });
+          }
+        );
 
       }
     );
@@ -537,9 +829,20 @@
   }
 
 
-  function handleSelection(id, label) {
+  // =========================================================
+  // USER SELECTION
+  // =========================================================
 
-    addUserMessage(label);
+  function handleSelection(
+    id,
+    label
+  ) {
+
+
+    addUserMessage(
+      label
+    );
+
 
     clearOptions();
 
@@ -547,36 +850,55 @@
     trackEvent(
       'bob_option_click',
       {
-        option_id: id,
-        option_label: label
+
+        option_id:
+          id,
+
+        option_label:
+          label
+
       }
     );
 
 
+    // ---------------------------------------------------------
+    // BACK TO MENU
+    // ---------------------------------------------------------
+
     if (id === 'menu') {
+
 
       addBotMessage(
         RESPONSES.menu.text
       );
 
+
       showMenuOptions();
+
 
       return;
 
     }
 
 
+    // ---------------------------------------------------------
+    // LEAD / HUMAN REQUEST
+    // ---------------------------------------------------------
+
     if (
       id === 'review' ||
       id === 'human'
     ) {
+
 
       addBotMessage(
 
         id === 'human'
 
           ? "Happy to connect you. Leave your info below and a WCP specialist will reach out — or call " +
+
             PHONE +
+
             " right now."
 
           : "Sure — leave your info below and we'll review your current bill and options."
@@ -586,17 +908,24 @@
 
       showLeadForm();
 
+
       return;
 
     }
 
+
+    // ---------------------------------------------------------
+    // STANDARD RESPONSE
+    // ---------------------------------------------------------
 
     var response =
       RESPONSES[id];
 
 
     if (!response) {
+
       return;
+
     }
 
 
@@ -605,7 +934,12 @@
     );
 
 
+    // ---------------------------------------------------------
+    // PLAN LINKS
+    // ---------------------------------------------------------
+
     if (response.links) {
+
 
       var linksWrap =
         document.createElement('div');
@@ -613,6 +947,7 @@
 
       response.links.forEach(
         function (link) {
+
 
           var a =
             document.createElement('a');
@@ -628,6 +963,35 @@
 
           a.textContent =
             link.label;
+
+
+          // ---------------------------------------------------
+          // TRACK FULL PLAN LINK CLICK
+          // ---------------------------------------------------
+
+          a.addEventListener(
+            'click',
+            function () {
+
+
+              trackEvent(
+                'bob_plan_link_click',
+                {
+
+                  plan_type:
+                    link.trackingType || '',
+
+                  link_label:
+                    link.label,
+
+                  destination_url:
+                    link.href
+
+                }
+              );
+
+            }
+          );
 
 
           linksWrap.appendChild(a);
@@ -654,7 +1018,12 @@
   }
 
 
-  function openPanel() {
+  // =========================================================
+  // OPEN CHAT
+  // =========================================================
+
+  function openPanel(source) {
+
 
     panel.classList.add(
       'open'
@@ -663,14 +1032,18 @@
 
     if (!started) {
 
-      started = true;
+
+      started =
+        true;
 
 
       trackEvent(
         'bob_opened',
         {
-          page_path:
-            window.location.pathname
+
+          open_source:
+            source || 'unknown'
+
         }
       );
 
@@ -687,7 +1060,32 @@
   }
 
 
-  function closePanel() {
+  // =========================================================
+  // CLOSE CHAT
+  // =========================================================
+
+  function closePanel(source) {
+
+
+    if (
+      panel.classList.contains(
+        'open'
+      )
+    ) {
+
+
+      trackEvent(
+        'bob_closed',
+        {
+
+          close_source:
+            source || 'unknown'
+
+        }
+      );
+
+    }
+
 
     panel.classList.remove(
       'open'
@@ -696,19 +1094,33 @@
   }
 
 
+  // =========================================================
+  // LAUNCHER CLICK
+  // =========================================================
+
   launcher.addEventListener(
     'click',
     function () {
 
+
       if (
-        panel.classList.contains('open')
+        panel.classList.contains(
+          'open'
+        )
       ) {
 
-        closePanel();
+
+        closePanel(
+          'launcher'
+        );
+
 
       } else {
 
-        openPanel();
+
+        openPanel(
+          'launcher'
+        );
 
       }
 
@@ -716,15 +1128,28 @@
   );
 
 
+  // =========================================================
+  // CLOSE BUTTON
+  // =========================================================
+
   closeBtn.addEventListener(
     'click',
-    closePanel
+    function () {
+
+      closePanel(
+        'close_button'
+      );
+
+    }
   );
 
 
-  // Auto pop-open shortly after page load,
-  // but only once per browser session —
-  // not every time the visitor navigates to a new page.
+  // =========================================================
+  // AUTO OPEN
+  // =========================================================
+  //
+  // Bob automatically opens once per browser session.
+  //
 
   var AUTO_OPEN_KEY =
     'wcpBobAutoOpened';
@@ -736,41 +1161,53 @@
 
   try {
 
+
     alreadyAutoOpened =
       window.sessionStorage.getItem(
         AUTO_OPEN_KEY
       ) === '1';
 
+
   } catch (e) {
 
-    // sessionStorage unavailable
-    // (e.g. privacy mode)
+
+    // sessionStorage unavailable.
 
   }
 
 
   if (!alreadyAutoOpened) {
 
+
     window.setTimeout(
       function () {
 
+
         if (
-          !panel.classList.contains('open')
+          !panel.classList.contains(
+            'open'
+          )
         ) {
 
-          openPanel();
+
+          openPanel(
+            'auto'
+          );
 
         }
 
 
         try {
 
+
           window.sessionStorage.setItem(
             AUTO_OPEN_KEY,
             '1'
           );
 
+
         } catch (e) {}
+
 
       },
       12000
