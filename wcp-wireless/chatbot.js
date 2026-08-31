@@ -5,7 +5,30 @@
 (function () {
   'use strict';
 
-  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvkppvjl';
+  // WordPress submission settings are supplied by chatbot-form-handler.php.
+  // Read them at submit time so this still works if the config script is
+  // printed later in the page footer.
+  function getWordPressEndpoint() {
+    if (
+      window.wcpChatbotConfig &&
+      window.wcpChatbotConfig.endpoint
+    ) {
+      return window.wcpChatbotConfig.endpoint;
+    }
+
+    return window.location.origin + '/wp-admin/admin-post.php';
+  }
+
+  function getWordPressNonce() {
+    if (
+      window.wcpChatbotConfig &&
+      window.wcpChatbotConfig.nonce
+    ) {
+      return window.wcpChatbotConfig.nonce;
+    }
+
+    return '';
+  }
 
   var PHONE = '1-833-844-1977';
   var PHONE_HREF = 'tel:+18338441977';
@@ -241,6 +264,7 @@
     '.wcp-lead-form input{padding:9px 11px;border:1px solid var(--border,#E3E3E3);border-radius:6px;font-size:13px;font-family:inherit;}',
 
     '.wcp-lead-form input:focus{outline:2px solid var(--red,#B40E2A);outline-offset:1px;}',
+    '.wcp-chat-hp{position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;overflow:hidden !important;}',
 
     '.wcp-lead-form button{background:var(--red,#B40E2A);color:#fff;border:none;border-radius:6px;padding:9px;font-size:13px;font-weight:600;cursor:pointer;}',
 
@@ -633,14 +657,24 @@
   // LEAD FORM
   // =========================================================
 
-  function showLeadForm() {
+  function showLeadForm(intent) {
 
     clearOptions();
 
 
     trackEvent(
-      'bob_lead_form_shown'
+      'bob_lead_form_shown',
+      {
+        lead_intent:
+          intent || 'unknown'
+      }
     );
+
+
+    var formStarted =
+      Math.floor(
+        Date.now() / 1000
+      );
 
 
     var wrap =
@@ -653,13 +687,19 @@
 
     wrap.innerHTML =
 
-      '<input type="text" name="name" placeholder="Your name" required>' +
+      '<input type="text" name="name" placeholder="Your name" autocomplete="name" required>' +
 
-      '<input type="text" name="business_name" placeholder="Business name" required>' +
+      '<input type="text" name="business_name" placeholder="Business name" autocomplete="organization" required>' +
 
-      '<input type="tel" name="phone" placeholder="Phone number" required>' +
+      '<input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" required>' +
 
-      '<input type="email" name="email" placeholder="Email address" required>' +
+      '<input type="email" name="email" placeholder="Email address" autocomplete="email" required>' +
+
+      '<div class="wcp-chat-hp" aria-hidden="true">' +
+        '<label>Leave this field empty' +
+          '<input type="text" name="website" value="" tabindex="-1" autocomplete="off">' +
+        '</label>' +
+      '</div>' +
 
       '<button type="submit">Send my info</button>';
 
@@ -673,7 +713,11 @@
 
 
         trackEvent(
-          'bob_lead_submit_attempt'
+          'bob_lead_submit_attempt',
+          {
+            lead_intent:
+              intent || 'unknown'
+          }
         );
 
 
@@ -681,9 +725,47 @@
           new FormData(wrap);
 
 
+        // WordPress admin-post handler.
+        formData.append(
+          'action',
+          'wcp_chatbot_submit'
+        );
+
+
+        formData.append(
+          'wcp_chatbot_nonce',
+          getWordPressNonce()
+        );
+
+
+        formData.append(
+          'wcp_started',
+          String(formStarted)
+        );
+
+
+        // Keep the original chatbot field name used for source identification.
         formData.append(
           'source',
           'Website chat widget'
+        );
+
+
+        formData.append(
+          'form_source',
+          'Website Chatbot'
+        );
+
+
+        formData.append(
+          'chat_intent',
+          intent || 'unknown'
+        );
+
+
+        formData.append(
+          'page_url',
+          window.location.href
         );
 
 
@@ -702,7 +784,7 @@
 
 
         fetch(
-          FORMSPREE_ENDPOINT,
+          getWordPressEndpoint(),
           {
 
             method:
@@ -710,6 +792,9 @@
 
             body:
               formData,
+
+            credentials:
+              'same-origin',
 
             headers: {
 
@@ -725,60 +810,97 @@
         .then(
           function (res) {
 
+            return res
+              .json()
+              .catch(
+                function () {
 
-            if (res.ok) {
+                  return {
+                    success: false,
+                    data: {
+                      code: 'invalid_response'
+                    }
+                  };
+
+                }
+              )
+              .then(
+                function (data) {
+
+                  if (
+                    res.ok &&
+                    data &&
+                    data.success
+                  ) {
+
+                    clearOptions();
 
 
-              clearOptions();
+                    trackEvent(
+                      'bob_lead_submitted',
+                      {
+                        lead_intent:
+                          intent || 'unknown'
+                      }
+                    );
 
 
-              trackEvent(
-                'bob_lead_submitted'
-              );
+                    addBotMessage(
+
+                      "Thanks! A WCP business specialist will reach out shortly. You can also call " +
+
+                      PHONE +
+
+                      " anytime."
+
+                    );
 
 
-              addBotMessage(
+                    return;
 
-                "Thanks! A WCP business specialist will reach out shortly. You can also call " +
-
-                PHONE +
-
-                " anytime."
-
-              );
+                  }
 
 
-            } else {
+                  var errorType =
+                    data &&
+                    data.data &&
+                    data.data.code
+                      ? data.data.code
+                      : 'server_response';
 
 
-              trackEvent(
-                'bob_lead_submit_error',
-                {
-                  error_type:
-                    'server_response'
+                  trackEvent(
+                    'bob_lead_submit_error',
+                    {
+                      error_type:
+                        errorType,
+
+                      lead_intent:
+                        intent || 'unknown'
+                    }
+                  );
+
+
+                  submitBtn.disabled =
+                    false;
+
+
+                  submitBtn.textContent =
+                    'Send my info';
+
+
+                  addBotMessage(
+
+                    "Something went wrong sending that — mind trying again, or just calling " +
+
+                    PHONE +
+
+                    "?"
+
+                  );
+
                 }
               );
-
-
-              submitBtn.disabled =
-                false;
-
-
-              submitBtn.textContent =
-                'Send my info';
-
-
-              addBotMessage(
-
-                "Something went wrong sending that — mind trying again, or just calling " +
-
-                PHONE +
-
-                "?"
-
-              );
-
-            }
 
           }
         )
@@ -792,7 +914,10 @@
               'bob_lead_submit_error',
               {
                 error_type:
-                  'network_error'
+                  'network_error',
+
+                lead_intent:
+                  intent || 'unknown'
               }
             );
 
@@ -827,7 +952,6 @@
     scrollToBottom();
 
   }
-
 
   // =========================================================
   // USER SELECTION
@@ -906,7 +1030,7 @@
       );
 
 
-      showLeadForm();
+      showLeadForm(id);
 
 
       return;
