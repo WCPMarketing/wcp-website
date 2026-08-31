@@ -230,12 +230,141 @@ $privacy_text = $contact_field(
             </p>
 
 
+            <?php
+
+            $wcp_form_status = isset($_GET['wcp_form'])
+                ? sanitize_key(wp_unslash($_GET['wcp_form']))
+                : '';
+
+            $wcp_form_reason = isset($_GET['wcp_reason'])
+                ? sanitize_key(wp_unslash($_GET['wcp_reason']))
+                : '';
+
+            $wcp_error_messages = array(
+                'security'        => 'Your session expired. Please refresh the page and try again.',
+                'required'        => 'Please complete all required fields and try again.',
+                'email'           => 'Please enter a valid email address.',
+                'interest'        => 'Please select an option from the list.',
+                'file_too_large'  => 'The uploaded file is too large. Please choose a file under 10 MB.',
+                'file_type'       => 'Please upload a PDF, JPG, JPEG or PNG file.',
+                'upload_error'    => 'The file could not be uploaded. Please try again.',
+                'upload_save'     => 'The file could not be saved. Please try again.',
+                'storage'         => 'The submission could not be stored. Please try again or contact us.',
+                'save'            => 'Your submission could not be saved. Please try again.',
+                'too_fast'        => 'Please wait a moment and submit the form again.',
+                'invalid_request' => 'The form could not be submitted. Please try again.',
+            );
+
+            ?>
+
             <form
+                id="contact-form"
                 class="lead-form"
-                action="https://formspree.io/f/xvkppvjl"
+                action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                 method="POST"
             >
 
+                <input
+                    type="hidden"
+                    name="action"
+                    value="wcp_bill_review_submit"
+                >
+
+                <?php
+                wp_nonce_field(
+                    'wcp_bill_review_submit',
+                    'wcp_bill_review_nonce'
+                );
+                ?>
+
+                <input
+                    type="hidden"
+                    name="redirect_to"
+                    value="<?php echo esc_url(get_permalink() . '#contact-form'); ?>"
+                >
+
+                <input
+                    type="hidden"
+                    name="form_source"
+                    value="Contact Page"
+                >
+
+                <input
+                    type="hidden"
+                    name="interest"
+                    value="Not sure"
+                >
+
+                <input
+                    type="hidden"
+                    name="wcp_started"
+                    value="<?php echo esc_attr(time()); ?>"
+                >
+
+                <!-- Spam Honeypot -->
+
+                <div
+                    aria-hidden="true"
+                    style="
+                        position:absolute;
+                        left:-9999px;
+                        width:1px;
+                        height:1px;
+                        overflow:hidden;
+                    "
+                >
+
+                    <label>
+
+                        Leave this field empty
+
+                        <input
+                            type="text"
+                            name="website"
+                            value=""
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+
+                    </label>
+
+                </div>
+
+                <!-- Success / Error Message -->
+
+                <?php if ('success' === $wcp_form_status) : ?>
+
+                    <div
+                        class="form-message form-success"
+                        role="status"
+                    >
+
+                        <strong>
+                            Thank you.
+                        </strong>
+
+                        We received your message and a WCP business specialist will follow up with you.
+
+                    </div>
+
+                <?php elseif ('error' === $wcp_form_status) : ?>
+
+                    <div
+                        class="form-message form-error"
+                        role="alert"
+                    >
+
+                        <?php
+                        echo esc_html(
+                            isset($wcp_error_messages[$wcp_form_reason])
+                                ? $wcp_error_messages[$wcp_form_reason]
+                                : 'Something went wrong. Please review the form and try again.'
+                        );
+                        ?>
+
+                    </div>
+
+                <?php endif; ?>
 
                 <input
                     type="text"
@@ -245,14 +374,12 @@ $privacy_text = $contact_field(
                     required
                 >
 
-
                 <input
                     type="text"
                     name="business_name"
                     placeholder="Business name (if applicable)"
                     autocomplete="organization"
                 >
-
 
                 <input
                     type="tel"
@@ -262,7 +389,6 @@ $privacy_text = $contact_field(
                     required
                 >
 
-
                 <input
                     type="email"
                     name="email"
@@ -270,7 +396,6 @@ $privacy_text = $contact_field(
                     autocomplete="email"
                     required
                 >
-
 
                 <textarea
                     name="message"
@@ -286,14 +411,12 @@ $privacy_text = $contact_field(
                     "
                 ></textarea>
 
-
                 <button
                     type="submit"
                     class="btn btn-primary"
                 >
                     <?php echo esc_html($form_button); ?>
                 </button>
-
 
             </form>
 
