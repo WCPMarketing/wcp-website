@@ -5,34 +5,30 @@
 | WCP LEGACY PORTAL REDIRECTS
 |--------------------------------------------------------------------------
 |
-| Known legacy URLs on wcpwireless.com are redirected to
-| portal.wcpwireless.com.
+| Old WCP portal URLs are redirected to portal.wcpwireless.com.
 |
-| Incoming URLs are matched CASE-INSENSITIVELY.
-| Destination capitalization is preserved exactly.
-|
-| Example:
+| Incoming URLs are converted to lowercase for matching, so:
 |
 | /OREA
 | /orea
 | /Orea
 |
-| all redirect to:
+| all match the same redirect.
 |
-| https://portal.wcpwireless.com/OREA#Home
+| The destination capitalization is preserved exactly as entered below.
 |
 */
 
 
 /*
 |--------------------------------------------------------------------------
-| GET REQUEST PATH
+| GET REQUESTED PATH
 |--------------------------------------------------------------------------
 */
 
 $request_uri = isset($_SERVER['REQUEST_URI'])
-    ? $_SERVER['REQUEST_URI']
-    : '/';
+    ? wp_unslash($_SERVER['REQUEST_URI'])
+    : '';
 
 
 $request_path = parse_url(
@@ -41,27 +37,16 @@ $request_path = parse_url(
 );
 
 
-/*
-|--------------------------------------------------------------------------
-| NORMALIZE REQUEST
-|--------------------------------------------------------------------------
-|
-| Examples:
-|
-| /OREA/     -> orea
-| /Orea      -> orea
-| /orea      -> orea
-|
-*/
-
 $request_path = rawurldecode(
-    (string) $request_path
+    $request_path
 );
+
 
 $request_path = trim(
     $request_path,
     '/'
 );
+
 
 $request_key = strtolower(
     $request_path
@@ -70,18 +55,27 @@ $request_key = strtolower(
 
 /*
 |--------------------------------------------------------------------------
-| APPROVED LEGACY PORTAL REDIRECTS
+| LEGACY PORTAL REDIRECT LIST
 |--------------------------------------------------------------------------
-|
-| LEFT:
-| Normalized old WCP path.
-|
-| RIGHT:
-| Exact new portal destination.
-|
 */
 
 $portal_redirects = array(
+
+    /*
+    |--------------------------------------------------------------------------
+    | NEW LOGIN REDIRECT
+    |--------------------------------------------------------------------------
+    */
+
+    'login' =>
+        'https://portal.wcpwireless.com/login',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | EXISTING PORTAL REDIRECTS
+    |--------------------------------------------------------------------------
+    */
 
     'vw' =>
         'https://portal.wcpwireless.com/VW#Home',
@@ -259,7 +253,7 @@ $portal_redirects = array(
 
 /*
 |--------------------------------------------------------------------------
-| PERFORM LEGACY REDIRECT
+| RUN LEGACY REDIRECT
 |--------------------------------------------------------------------------
 */
 
@@ -268,7 +262,9 @@ if (
     isset($portal_redirects[$request_key])
 ) {
 
-    $destination = $portal_redirects[$request_key];
+    $destination =
+        $portal_redirects[$request_key];
+
 
     wp_redirect(
         $destination,
@@ -276,7 +272,9 @@ if (
         'WCP Legacy Portal Redirect'
     );
 
+
     exit;
+
 }
 
 
@@ -285,36 +283,54 @@ if (
 | NORMAL WORDPRESS 404
 |--------------------------------------------------------------------------
 |
-| Anything NOT specifically listed above stays on the WCP website
-| and receives a normal 404 page.
+| If the URL isn't one of the legacy portal URLs above,
+| show the normal WCP branded 404 page.
 |
 */
+
+status_header(404);
+
+nocache_headers();
 
 get_header();
 
 ?>
 
 
+<!-- =========================================================
+     404 PAGE
+========================================================= -->
+
 <section
     class="section"
     style="
-        padding-top:90px;
-        padding-bottom:90px;
-        min-height:420px;
+        min-height:520px;
+        display:flex;
+        align-items:center;
     "
 >
 
     <div
         class="container"
         style="
-            max-width:760px;
             text-align:center;
+            max-width:700px;
         "
     >
 
-        <span class="eyebrow">
+
+        <div
+            style="
+                font-size:15px;
+                font-weight:700;
+                letter-spacing:.08em;
+                text-transform:uppercase;
+                color:var(--red);
+                margin-bottom:12px;
+            "
+        >
             404
-        </span>
+        </div>
 
 
         <h1>
@@ -325,7 +341,7 @@ get_header();
         <p
             class="lede"
             style="
-                max-width:600px;
+                max-width:560px;
                 margin-left:auto;
                 margin-right:auto;
             "
@@ -342,6 +358,7 @@ get_header();
             "
         >
 
+
             <a
                 href="<?php echo esc_url(home_url('/')); ?>"
                 class="btn btn-primary"
@@ -356,6 +373,7 @@ get_header();
             >
                 Contact Us
             </a>
+
 
         </div>
 
