@@ -1206,6 +1206,7 @@ $review_button = $home_field(
 ========================================================= -->
 
 <?php
+
 $wcp_form_status = isset( $_GET['wcp_form'] )
     ? sanitize_key( wp_unslash( $_GET['wcp_form'] ) )
     : '';
@@ -1215,50 +1216,46 @@ $wcp_form_reason = isset( $_GET['wcp_reason'] )
     : '';
 
 $wcp_error_messages = array(
-    'security'        => 'Your session expired. Please refresh the page and try again.',
-    'required'        => 'Please complete all required fields and try again.',
-    'email'           => 'Please enter a valid email address.',
-    'interest'        => 'Please select an option from the list.',
-    'file_too_large'  => 'The uploaded bill is too large. Please choose a file under 10 MB.',
-    'file_type'       => 'Please upload a PDF, JPG, JPEG or PNG file.',
-    'upload_error'    => 'The bill could not be uploaded. Please try again.',
-    'upload_save'     => 'The bill could not be saved. Please try again.',
-    'storage'         => 'The bill could not be stored. Please try again or contact us.',
-    'save'            => 'Your submission could not be saved. Please try again.',
-    'too_fast'        => 'Please wait a moment and submit the form again.',
-    'invalid_request' => 'The form could not be submitted. Please try again.',
+
+    'security' =>
+        'Your session expired. Please refresh the page and try again.',
+
+    'required' =>
+        'Please complete all required fields and try again.',
+
+    'email' =>
+        'Please enter a valid email address.',
+
+    'interest' =>
+        'Please select an option from the list.',
+
+    'file_too_large' =>
+        'The uploaded bill is too large. Please choose a file under 10 MB.',
+
+    'file_type' =>
+        'Please upload a PDF, JPG, JPEG or PNG file.',
+
+    'upload_error' =>
+        'The bill could not be uploaded. Please try again.',
+
+    'upload_save' =>
+        'The bill could not be saved. Please try again.',
+
+    'storage' =>
+        'The bill could not be stored. Please try again or contact us.',
+
+    'save' =>
+        'Your submission could not be saved. Please try again.',
+
+    'too_fast' =>
+        'Please wait a moment and submit the form again.',
+
+    'invalid_request' =>
+        'The form could not be submitted. Please try again.',
+
 );
+
 ?>
-
-<!-- Bill Review Form -->
-
-<?php if ( 'success' === $wcp_form_status ) : ?>
-
-    <div class="form-message form-success" role="status">
-
-        <strong>
-            Thank you.
-        </strong>
-
-        We received your request and a WCP business specialist will follow up with you.
-
-    </div>
-
-<?php elseif ( 'error' === $wcp_form_status ) : ?>
-
-    <div class="form-message form-error" role="alert">
-
-        <?php
-        echo esc_html(
-            isset( $wcp_error_messages[ $wcp_form_reason ] )
-                ? $wcp_error_messages[ $wcp_form_reason ]
-                : 'Something went wrong. Please review the form and try again.'
-        );
-        ?>
-
-    </div>
-
-<?php endif; ?>
 
 
 <form
@@ -1268,6 +1265,9 @@ $wcp_error_messages = array(
     enctype="multipart/form-data"
 >
 
+
+    <!-- WordPress Form Handler -->
+
     <input
         type="hidden"
         name="action"
@@ -1276,10 +1276,12 @@ $wcp_error_messages = array(
 
 
     <?php
+
     wp_nonce_field(
         'wcp_bill_review_submit',
         'wcp_bill_review_nonce'
     );
+
     ?>
 
 
@@ -1297,7 +1299,7 @@ $wcp_error_messages = array(
     >
 
 
-    <!-- Spam honeypot -->
+    <!-- Spam Honeypot -->
 
     <div
         aria-hidden="true"
@@ -1327,6 +1329,8 @@ $wcp_error_messages = array(
     </div>
 
 
+    <!-- Form Heading -->
+
     <div class="form-heading">
 
         <h3>
@@ -1339,6 +1343,49 @@ $wcp_error_messages = array(
 
     </div>
 
+
+    <!-- Success / Error Message -->
+
+    <?php if ( 'success' === $wcp_form_status ) : ?>
+
+        <div
+            class="form-message form-success"
+            role="status"
+        >
+
+            <strong>
+                Thank you.
+            </strong>
+
+            We received your request and a WCP business specialist
+            will follow up with you.
+
+        </div>
+
+
+    <?php elseif ( 'error' === $wcp_form_status ) : ?>
+
+        <div
+            class="form-message form-error"
+            role="alert"
+        >
+
+            <?php
+
+            echo esc_html(
+                isset( $wcp_error_messages[ $wcp_form_reason ] )
+                    ? $wcp_error_messages[ $wcp_form_reason ]
+                    : 'Something went wrong. Please review the form and try again.'
+            );
+
+            ?>
+
+        </div>
+
+    <?php endif; ?>
+
+
+    <!-- Name / Business Name -->
 
     <div class="form-row">
 
@@ -1362,6 +1409,8 @@ $wcp_error_messages = array(
     </div>
 
 
+    <!-- Phone / Email -->
+
     <div class="form-row">
 
         <input
@@ -1383,6 +1432,8 @@ $wcp_error_messages = array(
 
     </div>
 
+
+    <!-- Interest -->
 
     <select
         name="interest"
@@ -1425,6 +1476,8 @@ $wcp_error_messages = array(
     </select>
 
 
+    <!-- Bill Upload -->
+
     <div class="bill-upload">
 
         <label for="bill-upload">
@@ -1459,6 +1512,8 @@ $wcp_error_messages = array(
     </div>
 
 
+    <!-- Message -->
+
     <textarea
         name="message"
         rows="4"
@@ -1466,13 +1521,19 @@ $wcp_error_messages = array(
     ></textarea>
 
 
+    <!-- Submit Button -->
+
     <button
         type="submit"
         class="btn btn-primary"
     >
+
         <?php echo esc_html( $review_button ); ?>
+
     </button>
 
+
+    <!-- Disclaimer -->
 
     <p class="form-disclaimer">
 
@@ -1485,6 +1546,7 @@ $wcp_error_messages = array(
 
     </p>
 
+
 </form>
 
 
@@ -1493,7 +1555,6 @@ $wcp_error_messages = array(
     </div>
 
 </section>
-
 
 <!-- =========================================================
      HOMEPAGE ADDITIONAL STYLES
