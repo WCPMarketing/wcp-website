@@ -864,7 +864,7 @@ $apply_privacy = $careers_field(
 
                 <form
                     class="lead-form careers-form"
-                    action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+                    action="<?php echo esc_url(admin_url('admin-post.php', 'relative')); ?>"
                     method="POST"
                     enctype="multipart/form-data"
                     style="
@@ -897,7 +897,7 @@ $apply_privacy = $careers_field(
                     <input
                         type="hidden"
                         name="redirect_to"
-                        value="<?php echo esc_url(get_permalink() . '#apply'); ?>"
+                        value="<?php echo esc_url(wp_make_link_relative(get_permalink()) . '#apply'); ?>"
                     >
 
 
@@ -1099,32 +1099,6 @@ $apply_privacy = $careers_field(
 
                         <small>
                             PDF, DOC or DOCX — max 10 MB
-                        </small>
-
-                    </div>
-
-
-                    <!-- COVER LETTER - ORIGINAL FIELD NAME PRESERVED -->
-
-                    <div class="careers-upload">
-
-                        <label for="careers-cover-letter">
-
-                            <strong>
-                                Cover letter
-                            </strong>
-
-                        </label>
-
-                        <input
-                            type="file"
-                            id="careers-cover-letter"
-                            name="cover_letter"
-                            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        >
-
-                        <small>
-                            Optional — PDF, DOC or DOCX — max 10 MB
                         </small>
 
                     </div>
