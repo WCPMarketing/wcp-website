@@ -1486,7 +1486,6 @@ $review_button = $internet_field(
 
                 <div class="review-benefits">
 
-
                     <?php foreach ($review_benefits as $benefit) : ?>
 
                         <div class="review-benefit">
@@ -1511,21 +1510,113 @@ $review_button = $internet_field(
 
                     <?php endforeach; ?>
 
-
                 </div>
 
             </div>
 
 
-
             <!-- Bill Review Form -->
+
+            <?php
+
+            $wcp_form_status = isset($_GET['wcp_form'])
+                ? sanitize_key(wp_unslash($_GET['wcp_form']))
+                : '';
+
+            $wcp_form_reason = isset($_GET['wcp_reason'])
+                ? sanitize_key(wp_unslash($_GET['wcp_reason']))
+                : '';
+
+            $wcp_error_messages = array(
+                'security'        => 'Your session expired. Please refresh the page and try again.',
+                'required'        => 'Please complete all required fields and try again.',
+                'email'           => 'Please enter a valid email address.',
+                'interest'        => 'Please select an option from the list.',
+                'file_too_large'  => 'The uploaded bill is too large. Please choose a file under 10 MB.',
+                'file_type'       => 'Please upload a PDF, JPG, JPEG or PNG file.',
+                'upload_error'    => 'The bill could not be uploaded. Please try again.',
+                'upload_save'     => 'The bill could not be saved. Please try again.',
+                'storage'         => 'The bill could not be stored. Please try again or contact us.',
+                'save'            => 'Your submission could not be saved. Please try again.',
+                'too_fast'        => 'Please wait a moment and submit the form again.',
+                'invalid_request' => 'The form could not be submitted. Please try again.',
+            );
+
+            ?>
+
 
             <form
                 class="lead-form bill-review-form"
-                action="https://formspree.io/f/xvkppvjl"
+                action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                 method="POST"
                 enctype="multipart/form-data"
             >
+
+                <input
+                    type="hidden"
+                    name="action"
+                    value="wcp_bill_review_submit"
+                >
+
+
+                <?php
+                wp_nonce_field(
+                    'wcp_bill_review_submit',
+                    'wcp_bill_review_nonce'
+                );
+                ?>
+
+
+                <input
+                    type="hidden"
+                    name="redirect_to"
+                    value="<?php echo esc_url(get_permalink() . '#contact'); ?>"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="form_source"
+                    value="Business Internet"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="wcp_started"
+                    value="<?php echo esc_attr(time()); ?>"
+                >
+
+
+                <!-- Spam Honeypot -->
+
+                <div
+                    aria-hidden="true"
+                    style="
+                        position:absolute;
+                        left:-9999px;
+                        width:1px;
+                        height:1px;
+                        overflow:hidden;
+                    "
+                >
+
+                    <label>
+
+                        Leave this field empty
+
+                        <input
+                            type="text"
+                            name="website"
+                            value=""
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+
+                    </label>
+
+                </div>
+
 
                 <div class="form-heading">
 
@@ -1539,6 +1630,36 @@ $review_button = $internet_field(
 
                 </div>
 
+
+                <!-- Success / Error Message -->
+
+                <?php if ('success' === $wcp_form_status) : ?>
+
+                    <div class="form-message form-success" role="status">
+
+                        <strong>
+                            Thank you.
+                        </strong>
+
+                        We received your request and a WCP business specialist will follow up with you.
+
+                    </div>
+
+                <?php elseif ('error' === $wcp_form_status) : ?>
+
+                    <div class="form-message form-error" role="alert">
+
+                        <?php
+                        echo esc_html(
+                            isset($wcp_error_messages[$wcp_form_reason])
+                                ? $wcp_error_messages[$wcp_form_reason]
+                                : 'Something went wrong. Please review the form and try again.'
+                        );
+                        ?>
+
+                    </div>
+
+                <?php endif; ?>
 
 
                 <div class="form-row">
@@ -1562,7 +1683,6 @@ $review_button = $internet_field(
                 </div>
 
 
-
                 <div class="form-row">
 
                     <input
@@ -1582,7 +1702,6 @@ $review_button = $internet_field(
                     >
 
                 </div>
-
 
 
                 <select
@@ -1617,7 +1736,6 @@ $review_button = $internet_field(
                 </select>
 
 
-
                 <div class="bill-upload">
 
                     <label for="bill-upload">
@@ -1633,7 +1751,7 @@ $review_button = $internet_field(
                             </strong>
 
                             <small>
-                                Optional — PDF, JPG or PNG
+                                Optional — PDF, JPG or PNG — max 10 MB
                             </small>
 
                         </span>
@@ -1651,13 +1769,11 @@ $review_button = $internet_field(
                 </div>
 
 
-
                 <textarea
                     name="message"
                     rows="4"
                     placeholder="Anything else you'd like us to know? (optional)"
                 ></textarea>
-
 
 
                 <button
@@ -1666,7 +1782,6 @@ $review_button = $internet_field(
                 >
                     <?php echo esc_html($review_button); ?>
                 </button>
-
 
 
                 <p class="form-disclaimer">
