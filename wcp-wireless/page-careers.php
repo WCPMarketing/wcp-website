@@ -837,9 +837,34 @@ $apply_privacy = $careers_field(
                 "
             >
 
+                <?php
+
+                $wcp_form_status = isset($_GET['wcp_form'])
+                    ? sanitize_key(wp_unslash($_GET['wcp_form']))
+                    : '';
+
+                $wcp_form_reason = isset($_GET['wcp_reason'])
+                    ? sanitize_key(wp_unslash($_GET['wcp_reason']))
+                    : '';
+
+                $wcp_error_messages = array(
+                    'security'        => 'Your session expired. Please refresh the page and try again.',
+                    'required'        => 'Please complete all required fields and try again.',
+                    'email'           => 'Please enter a valid email address.',
+                    'too_fast'        => 'Please wait a moment and submit the form again.',
+                    'resume_required' => 'Please upload your resume.',
+                    'file_too_large'  => 'The uploaded document is too large. Please choose a file under 10 MB.',
+                    'file_type'       => 'Please upload a PDF, DOC or DOCX file.',
+                    'upload_error'    => 'One of your documents could not be uploaded. Please try again.',
+                    'mail'            => 'Your application could not be sent. Please try again or contact WCP directly.',
+                    'invalid_request' => 'The application could not be submitted. Please try again.',
+                );
+
+                ?>
+
                 <form
                     class="lead-form careers-form"
-                    action="https://formspree.io/f/xnpqarvr"
+                    action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                     method="POST"
                     enctype="multipart/form-data"
                     style="
@@ -848,6 +873,76 @@ $apply_privacy = $careers_field(
                         margin-top:0;
                     "
                 >
+
+
+                    <!-- WORDPRESS FORM HANDLER -->
+
+                    <input
+                        type="hidden"
+                        name="action"
+                        value="wcp_careers_submit"
+                    >
+
+
+                    <?php
+
+                    wp_nonce_field(
+                        'wcp_careers_submit',
+                        'wcp_careers_nonce'
+                    );
+
+                    ?>
+
+
+                    <input
+                        type="hidden"
+                        name="redirect_to"
+                        value="<?php echo esc_url(get_permalink() . '#apply'); ?>"
+                    >
+
+
+                    <input
+                        type="hidden"
+                        name="form_source"
+                        value="Careers Page"
+                    >
+
+
+                    <input
+                        type="hidden"
+                        name="wcp_started"
+                        value="<?php echo esc_attr(time()); ?>"
+                    >
+
+
+                    <!-- SPAM HONEYPOT -->
+
+                    <div
+                        aria-hidden="true"
+                        style="
+                            position:absolute;
+                            left:-9999px;
+                            width:1px;
+                            height:1px;
+                            overflow:hidden;
+                        "
+                    >
+
+                        <label>
+
+                            Leave this field empty
+
+                            <input
+                                type="text"
+                                name="website"
+                                value=""
+                                tabindex="-1"
+                                autocomplete="off"
+                            >
+
+                        </label>
+
+                    </div>
 
 
                     <div>
@@ -871,7 +966,46 @@ $apply_privacy = $careers_field(
                     </div>
 
 
-                    <!-- POSITION -->
+                    <!-- SUCCESS / ERROR MESSAGE -->
+
+                    <?php if ('success' === $wcp_form_status) : ?>
+
+                        <div
+                            class="form-message form-success"
+                            role="status"
+                        >
+
+                            <strong>
+                                Thank you.
+                            </strong>
+
+                            We received your application and will review it shortly.
+
+                        </div>
+
+                    <?php elseif ('error' === $wcp_form_status) : ?>
+
+                        <div
+                            class="form-message form-error"
+                            role="alert"
+                        >
+
+                            <?php
+
+                            echo esc_html(
+                                isset($wcp_error_messages[$wcp_form_reason])
+                                    ? $wcp_error_messages[$wcp_form_reason]
+                                    : 'Something went wrong. Please review the form and try again.'
+                            );
+
+                            ?>
+
+                        </div>
+
+                    <?php endif; ?>
+
+
+                    <!-- POSITION - ORIGINAL FIELD NAME PRESERVED -->
 
                     <input
                         type="hidden"
@@ -880,7 +1014,7 @@ $apply_privacy = $careers_field(
                     >
 
 
-                    <!-- SUBJECT -->
+                    <!-- SUBJECT - ORIGINAL FIELD NAME PRESERVED -->
 
                     <input
                         type="hidden"
@@ -943,7 +1077,7 @@ $apply_privacy = $careers_field(
                     ></textarea>
 
 
-                    <!-- RESUME -->
+                    <!-- RESUME - ORIGINAL FIELD NAME PRESERVED -->
 
                     <div class="careers-upload">
 
@@ -964,13 +1098,13 @@ $apply_privacy = $careers_field(
                         >
 
                         <small>
-                            PDF, DOC or DOCX
+                            PDF, DOC or DOCX — max 10 MB
                         </small>
 
                     </div>
 
 
-                    <!-- COVER LETTER -->
+                    <!-- COVER LETTER - ORIGINAL FIELD NAME PRESERVED -->
 
                     <div class="careers-upload">
 
@@ -990,7 +1124,7 @@ $apply_privacy = $careers_field(
                         >
 
                         <small>
-                            Optional — PDF, DOC or DOCX
+                            Optional — PDF, DOC or DOCX — max 10 MB
                         </small>
 
                     </div>
