@@ -427,6 +427,105 @@ function wcp_handle_careers_submit() {
     }
 
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SAVE TO WCP SUBMISSIONS
+    |--------------------------------------------------------------------------
+    |
+    | The resume itself is not left in the public WordPress uploads folder.
+    | We save the filename in WCP Submissions and continue sending the actual
+    | resume as an email attachment.
+    |
+    */
+
+    $resume_filename =
+        $resume
+            ? basename($resume)
+            : '';
+
+
+    if (!function_exists('wcp_save_submission')) {
+
+        if (
+            $resume &&
+            file_exists($resume)
+        ) {
+            wp_delete_file($resume);
+        }
+
+
+        wcp_careers_redirect(
+            $redirect_to,
+            'error',
+            'save'
+        );
+    }
+
+
+    $submission_id =
+        wcp_save_submission(
+            array(
+
+                'form_source' =>
+                    $form_source,
+
+                'name' =>
+                    $name,
+
+                'business_name' =>
+                    '',
+
+                'email' =>
+                    $email,
+
+                'phone' =>
+                    $phone,
+
+                'interest' =>
+                    'Careers Application',
+
+                'message' =>
+                    $message,
+
+                'position' =>
+                    $position,
+
+                'source' =>
+                    'Careers Page',
+
+                'resume_filename' =>
+                    $resume_filename,
+
+                'resume_note' =>
+                    'Resume sent by email attachment; not stored publicly on the website.',
+
+                'email_status' =>
+                    'Pending',
+
+            )
+        );
+
+
+    if (is_wp_error($submission_id)) {
+
+        if (
+            $resume &&
+            file_exists($resume)
+        ) {
+            wp_delete_file($resume);
+        }
+
+
+        wcp_careers_redirect(
+            $redirect_to,
+            'error',
+            'save'
+        );
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | EMAIL RECIPIENT
@@ -572,6 +671,15 @@ function wcp_handle_careers_submit() {
     |--------------------------------------------------------------------------
     */
 
+    update_post_meta(
+        $submission_id,
+        '_wcp_email_status',
+        $sent
+            ? 'Sent'
+            : 'Failed'
+    );
+
+
     if (!$sent) {
 
         wcp_careers_redirect(
@@ -587,4 +695,3 @@ function wcp_handle_careers_submit() {
         'success'
     );
 }
-
