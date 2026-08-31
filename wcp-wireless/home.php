@@ -118,7 +118,7 @@ $hero_review_note = $home_field(
 |--------------------------------------------------------------------------
 */
 
-$credibility_items = array(
+$credibility = array(
 
     array(
         'number' => $home_field(
@@ -129,7 +129,6 @@ $credibility_items = array(
             'credibility_1_label',
             'Years in Business'
         ),
-        'icon' => 'calendar',
     ),
 
     array(
@@ -141,7 +140,6 @@ $credibility_items = array(
             'credibility_2_label',
             'Business Accounts Supported'
         ),
-        'icon' => 'building',
     ),
 
     array(
@@ -153,7 +151,6 @@ $credibility_items = array(
             'credibility_3_label',
             'Customers Served'
         ),
-        'icon' => 'people',
     ),
 
     array(
@@ -165,7 +162,6 @@ $credibility_items = array(
             'credibility_4_label',
             'Rogers Authorized Dealer'
         ),
-        'icon' => 'award',
     ),
 
 );
@@ -195,79 +191,118 @@ $services = array(
             'service_1_title',
             'Business Wireless'
         ),
+
         'text' => $home_field(
             'service_1_text',
             'Custom wireless plans for businesses of all sizes — with a dedicated account manager who knows your business by name.'
         ),
+
         'button' => $home_field(
             'service_1_button',
             'See Wireless Plans'
         ),
+
         'url' => home_url('/business-wireless/'),
     ),
+
 
     array(
         'title' => $home_field(
             'service_2_title',
             'Business Internet'
         ),
+
         'text' => $home_field(
             'service_2_text',
             'Reliable, fast internet with predictable pricing and local support — whichever way your business connects.'
         ),
+
         'button' => $home_field(
             'service_2_button',
             'See Internet Plans'
         ),
+
         'url' => home_url('/business-internet/'),
     ),
+
 
     array(
         'title' => $home_field(
             'service_3_title',
             'Business Phone'
         ),
+
         'text' => $home_field(
             'service_3_text',
             'Streamline business calls with an advanced cloud PBX solution — Teams integration, mobile access, and 24/7 managed support.'
         ),
+
         'button' => $home_field(
             'service_3_button',
             'See Phone Plans'
         ),
+
         'url' => home_url('/business-phone/'),
     ),
+
 
     array(
         'title' => $home_field(
             'service_4_title',
             'Point of Sale'
         ),
+
         'text' => $home_field(
             'service_4_text',
             'Rogers POS, powered by Clover — accept payments anywhere with transparent pricing and easy-to-use sales, inventory, and employee management tools.'
         ),
+
         'button' => $home_field(
             'service_4_button',
             'See POS Options'
         ),
+
         'url' => home_url('/business-pos/'),
     ),
+
 
     array(
         'title' => $home_field(
             'service_5_title',
             'Fleet Management'
         ),
+
         'text' => $home_field(
             'service_5_text',
             'Control costs, increase driver safety, and simplify compliance with best-in-class fleet monitoring for your vehicles and mobile assets.'
         ),
+
         'button' => $home_field(
             'service_5_button',
             'See Fleet Options'
         ),
+
         'url' => home_url('/fleet-management/'),
+    ),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROGERS BUSINESS MASTERCARD
+    |--------------------------------------------------------------------------
+    */
+
+    array(
+        'title' => 'Rogers Business Mastercard',
+
+        'text' =>
+            'Earn cash back on everyday business purchases and unlock added value when you have an eligible Rogers or Shaw business service.',
+
+        'button' =>
+            'See Mastercard Benefits',
+
+        'url' =>
+            home_url('/business-mastercard/'),
     ),
 
 );
@@ -303,6 +338,20 @@ $preferred_url = $home_field(
     'preferred_url',
     'https://portal.wcpwireless.com/lookup#Home'
 );
+
+
+/*
+ * Older versions of the field used wcpwireless.com/lookup.
+ * Automatically send that old value directly to the new portal.
+ */
+
+if (
+    $preferred_url === 'https://wcpwireless.com/lookup#Home' ||
+    $preferred_url === 'https://www.wcpwireless.com/lookup#Home'
+) {
+    $preferred_url =
+        'https://portal.wcpwireless.com/lookup#Home';
+}
 
 
 /*
@@ -354,56 +403,76 @@ $testimonials_intro = $home_field(
 $testimonials = array(
 
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-simcoe-it.png',
+
+        'alt' =>
+            'Simcoe IT Solutions',
+
         'quote' => $home_field(
             'testimonial_1_quote',
             'The WCP team made switching to Rogers Business very painless. I\'d definitely work with them again.'
         ),
-        'initials' => $home_field(
-            'testimonial_1_initials',
-            'RN'
-        ),
+
         'name' => $home_field(
             'testimonial_1_name',
             'Rob N.'
         ),
+
         'role' => $home_field(
             'testimonial_1_role',
             'President, Simcoe IT Solutions Inc.'
         ),
     ),
 
+
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-avaya.png',
+
+        'alt' =>
+            'Avaya',
+
         'quote' => $home_field(
             'testimonial_2_quote',
             'I highly recommend the WCP team. During recent contract negotiations with Rogers, they demonstrated strong professionalism and expertise, ensuring a fair and efficient outcome. They\'re approachable, responsive, and always willing to help — and their problem-solving ability means they quickly find practical solutions. Overall, a great experience.'
         ),
-        'initials' => $home_field(
-            'testimonial_2_initials',
-            'DB'
-        ),
+
         'name' => $home_field(
             'testimonial_2_name',
             'Debbie B.'
         ),
+
         'role' => $home_field(
             'testimonial_2_role',
             'Deals Desk Manager / Sales Operations Specialist, Avaya'
         ),
     ),
 
+
     array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-oak-valley-health.png',
+
+        'alt' =>
+            'Oak Valley Health',
+
         'quote' => $home_field(
             'testimonial_3_quote',
             'I\'ve worked with the WCP team for over 9 years now. They\'ve looked after our corporate plan for our employees at Markham Stouffville Hospital, keeping our staff up to date with current offers and promotions. Very knowledgeable at what they do.'
         ),
-        'initials' => $home_field(
-            'testimonial_3_initials',
-            'LE'
-        ),
+
         'name' => $home_field(
             'testimonial_3_name',
             'Lee E.'
         ),
+
         'role' => $home_field(
             'testimonial_3_role',
             'Network Analyst, OVH'
@@ -426,7 +495,7 @@ $google_review_url = $home_field(
 
 /*
 |--------------------------------------------------------------------------
-| BILL REVIEW FORM
+| BILL REVIEW
 |--------------------------------------------------------------------------
 */
 
@@ -449,32 +518,40 @@ $review_intro = $home_field(
 $review_benefits = array(
 
     array(
+
         'title' => $home_field(
             'review_1_title',
             'Review your current costs'
         ),
+
         'text' => $home_field(
             'review_1_text',
             'We\'ll look at what you\'re currently paying and what services you have.'
         ),
     ),
 
+
     array(
+
         'title' => $home_field(
             'review_2_title',
             'Identify opportunities'
         ),
+
         'text' => $home_field(
             'review_2_text',
             'We\'ll check available Rogers Business options that may better fit your needs.'
         ),
     ),
 
+
     array(
+
         'title' => $home_field(
             'review_3_title',
             'Talk to a real person'
         ),
+
         'text' => $home_field(
             'review_3_text',
             'Your review is handled by a WCP business specialist.'
@@ -508,13 +585,13 @@ $review_button = $home_field(
 
 <section
     class="hero hero-photo hero-sales"
-    style="--hero-img: url('<?php echo esc_url($hero_image); ?>');"
+    style="
+        --hero-img:url('<?php echo esc_url($hero_image); ?>');
+    "
 >
 
     <div class="container">
 
-
-        <!-- Hero Copy -->
 
         <div class="hero-copy">
 
@@ -568,10 +645,13 @@ $review_button = $home_field(
 
             </div>
 
+
         </div>
 
 
-        <!-- Hero Bill Review Card -->
+        <!-- =================================================
+             HERO BILL REVIEW
+        ================================================== -->
 
         <div class="bill-review-card">
 
@@ -647,6 +727,7 @@ $review_button = $home_field(
                 🔒 <?php echo esc_html($hero_review_note); ?>
             </p>
 
+
         </div>
 
 
@@ -666,14 +747,15 @@ $review_button = $home_field(
         <div class="credibility-grid">
 
 
-            <?php foreach ($credibility_items as $item) : ?>
+            <?php foreach ($credibility as $index => $item) : ?>
+
 
                 <div class="credibility-item">
 
                     <div class="credibility-icon">
 
 
-                        <?php if ($item['icon'] === 'calendar') : ?>
+                        <?php if ($index === 0) : ?>
 
                             <svg
                                 width="24"
@@ -686,6 +768,7 @@ $review_button = $home_field(
                                 stroke-linejoin="round"
                                 aria-hidden="true"
                             >
+
                                 <rect
                                     x="3"
                                     y="4"
@@ -695,10 +778,12 @@ $review_button = $home_field(
                                 />
 
                                 <path d="M16 2v4M8 2v4M3 10h18"/>
+
                             </svg>
 
 
-                        <?php elseif ($item['icon'] === 'building') : ?>
+                        <?php elseif ($index === 1) : ?>
+
 
                             <svg
                                 width="24"
@@ -711,11 +796,16 @@ $review_button = $home_field(
                                 stroke-linejoin="round"
                                 aria-hidden="true"
                             >
-                                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/>
+
+                                <path
+                                    d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"
+                                />
+
                             </svg>
 
 
-                        <?php elseif ($item['icon'] === 'people') : ?>
+                        <?php elseif ($index === 2) : ?>
+
 
                             <svg
                                 width="24"
@@ -728,7 +818,10 @@ $review_button = $home_field(
                                 stroke-linejoin="round"
                                 aria-hidden="true"
                             >
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+
+                                <path
+                                    d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                                />
 
                                 <circle
                                     cx="9"
@@ -736,11 +829,15 @@ $review_button = $home_field(
                                     r="4"
                                 />
 
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                <path
+                                    d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                                />
+
                             </svg>
 
 
                         <?php else : ?>
+
 
                             <svg
                                 width="24"
@@ -753,9 +850,17 @@ $review_button = $home_field(
                                 stroke-linejoin="round"
                                 aria-hidden="true"
                             >
-                                <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
-                                <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/>
+
+                                <path
+                                    d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+                                />
+
+                                <path
+                                    d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"
+                                />
+
                             </svg>
+
 
                         <?php endif; ?>
 
@@ -767,12 +872,13 @@ $review_button = $home_field(
                         <?php echo esc_html($item['number']); ?>
                     </span>
 
-
                     <p>
                         <?php echo esc_html($item['label']); ?>
                     </p>
 
+
                 </div>
+
 
             <?php endforeach; ?>
 
@@ -792,6 +898,7 @@ $review_button = $home_field(
 
     <div class="container">
 
+
         <h2 style="text-align:center;">
             <?php echo esc_html($services_heading); ?>
         </h2>
@@ -809,12 +916,13 @@ $review_button = $home_field(
         </p>
 
 
-        <div class="card-grid cols-5">
+        <div class="card-grid home-services-grid">
 
 
             <?php foreach ($services as $service) : ?>
 
-                <div class="card">
+
+                <div class="card home-service-card">
 
                     <h3>
                         <?php echo esc_html($service['title']); ?>
@@ -835,10 +943,12 @@ $review_button = $home_field(
 
                 </div>
 
+
             <?php endforeach; ?>
 
 
         </div>
+
 
     </div>
 
@@ -869,6 +979,7 @@ $review_button = $home_field(
         "
     >
 
+
         <div style="max-width:520px;">
 
 
@@ -878,7 +989,7 @@ $review_button = $home_field(
                     display:block;
                     font-size:11.5px;
                     font-weight:700;
-                    letter-spacing:0.08em;
+                    letter-spacing:.08em;
                     text-transform:uppercase;
                     color:var(--red);
                     margin-bottom:8px;
@@ -903,16 +1014,20 @@ $review_button = $home_field(
                 <?php echo esc_html($preferred_text); ?>
             </p>
 
+
         </div>
 
 
         <a
             href="<?php echo esc_url($preferred_url); ?>"
             class="btn btn-primary"
-            style="flex:0 0 auto;"
+            style="
+                flex:0 0 auto;
+            "
         >
             <?php echo esc_html($preferred_button); ?>
         </a>
+
 
     </div>
 
@@ -920,7 +1035,7 @@ $review_button = $home_field(
 
 
 <!-- =========================================================
-     STOREFRONT PHOTO
+     STOREFRONT
 ========================================================= -->
 
 <section class="photo-band">
@@ -962,6 +1077,7 @@ $review_button = $home_field(
 
     <div class="container">
 
+
         <img
             src="<?php echo esc_url(
                 get_template_directory_uri() .
@@ -987,6 +1103,7 @@ $review_button = $home_field(
             <?php echo esc_html($dealer_text); ?>
         </p>
 
+
     </div>
 
 </section>
@@ -1007,21 +1124,17 @@ $review_button = $home_field(
     <div class="container">
 
 
-        <h2 style="text-align:center;">
-            <?php echo esc_html($testimonials_heading); ?>
-        </h2>
+        <div class="home-testimonials-heading">
 
+            <h2>
+                <?php echo esc_html($testimonials_heading); ?>
+            </h2>
 
-        <p
-            class="lede"
-            style="
-                text-align:center;
-                margin-left:auto;
-                margin-right:auto;
-            "
-        >
-            <?php echo esc_html($testimonials_intro); ?>
-        </p>
+            <p class="lede">
+                <?php echo esc_html($testimonials_intro); ?>
+            </p>
+
+        </div>
 
 
         <div class="testimonial-grid">
@@ -1029,7 +1142,18 @@ $review_button = $home_field(
 
             <?php foreach ($testimonials as $testimonial) : ?>
 
-                <div class="testimonial-card">
+
+                <div class="testimonial-card home-testimonial-card">
+
+
+                    <div class="home-testimonial-logo">
+
+                        <img
+                            src="<?php echo esc_url($testimonial['logo']); ?>"
+                            alt="<?php echo esc_attr($testimonial['alt']); ?>"
+                        >
+
+                    </div>
 
 
                     <p class="testimonial-quote">
@@ -1037,28 +1161,21 @@ $review_button = $home_field(
                     </p>
 
 
-                    <div class="testimonial-footer">
+                    <div class="home-testimonial-person">
 
-                        <span class="testimonial-avatar">
-                            <?php echo esc_html($testimonial['initials']); ?>
-                        </span>
+                        <p class="testimonial-attribution">
+                            <?php echo esc_html($testimonial['name']); ?>
+                        </p>
 
-
-                        <div>
-
-                            <p class="testimonial-attribution">
-                                <?php echo esc_html($testimonial['name']); ?>
-                            </p>
-
-                            <p class="testimonial-role">
-                                <?php echo esc_html($testimonial['role']); ?>
-                            </p>
-
-                        </div>
+                        <p class="testimonial-role">
+                            <?php echo esc_html($testimonial['role']); ?>
+                        </p>
 
                     </div>
 
+
                 </div>
+
 
             <?php endforeach; ?>
 
@@ -1077,6 +1194,7 @@ $review_button = $home_field(
             </a>
 
         </div>
+
 
     </div>
 
@@ -1161,7 +1279,6 @@ $review_button = $home_field(
                 ? sanitize_key( wp_unslash( $_GET['wcp_reason'] ) )
                 : '';
 
-
             $wcp_error_messages = array(
 
                 'security' =>
@@ -1235,7 +1352,7 @@ $review_button = $home_field(
                 <input
                     type="hidden"
                     name="redirect_to"
-                    value="<?php echo esc_url( get_permalink() ); ?>"
+                    value="<?php echo esc_url( get_permalink() . '#contact' ); ?>"
                 >
 
 
@@ -1251,11 +1368,11 @@ $review_button = $home_field(
                 <div
                     aria-hidden="true"
                     style="
-                        position: absolute;
-                        left: -9999px;
-                        width: 1px;
-                        height: 1px;
-                        overflow: hidden;
+                        position:absolute;
+                        left:-9999px;
+                        width:1px;
+                        height:1px;
+                        overflow:hidden;
                     "
                 >
 
@@ -1321,19 +1438,9 @@ $review_button = $home_field(
                         <?php
 
                         echo esc_html(
-
-                            isset(
-                                $wcp_error_messages[
-                                    $wcp_form_reason
-                                ]
-                            )
-
-                            ? $wcp_error_messages[
-                                $wcp_form_reason
-                            ]
-
-                            : 'Something went wrong. Please review the form and try again.'
-
+                            isset( $wcp_error_messages[ $wcp_form_reason ] )
+                                ? $wcp_error_messages[ $wcp_form_reason ]
+                                : 'Something went wrong. Please review the form and try again.'
                         );
 
                         ?>
@@ -1343,7 +1450,7 @@ $review_button = $home_field(
                 <?php endif; ?>
 
 
-                <!-- Name / Business -->
+                <!-- Name / Business Name -->
 
                 <div class="form-row">
 
@@ -1480,7 +1587,7 @@ $review_button = $home_field(
                 ></textarea>
 
 
-                <!-- Submit -->
+                <!-- Submit Button -->
 
                 <button
                     type="submit"
@@ -1513,6 +1620,136 @@ $review_button = $home_field(
     </div>
 
 </section>
+
+<!-- =========================================================
+     HOMEPAGE ADDITIONAL STYLES
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SERVICES - 3 X 2
+========================================================= */
+
+.card-grid.home-services-grid {
+    display:grid !important;
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:18px !important;
+    align-items:stretch;
+}
+
+.card-grid.home-services-grid .home-service-card {
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+.card-grid.home-services-grid .home-service-card .btn-card {
+    margin-top:auto;
+    align-self:flex-start;
+}
+
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.home-testimonials-heading {
+    text-align:center;
+    margin-bottom:36px;
+}
+
+.home-testimonials-heading .lede {
+    max-width:620px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.home-testimonial-card {
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* COMPANY LOGOS */
+
+.home-testimonial-logo {
+    height:82px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:22px;
+    padding-bottom:18px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.home-testimonial-logo img {
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:220px;
+    max-height:64px;
+
+    object-fit:contain;
+}
+
+
+/* ALIGN TESTIMONIAL CONTENT */
+
+.home-testimonial-card .testimonial-quote {
+    flex-grow:1;
+}
+
+.home-testimonial-person {
+    margin-top:auto;
+    padding-top:18px;
+}
+
+.home-testimonial-person .testimonial-attribution {
+    margin-bottom:3px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:800px) {
+
+    .card-grid.home-services-grid {
+        grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:560px) {
+
+    .card-grid.home-services-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .home-testimonial-logo {
+        height:72px;
+    }
+
+    .home-testimonial-logo img {
+        max-width:190px;
+        max-height:56px;
+    }
+
+}
+
+</style>
 
 
 <?php get_footer(); ?>
