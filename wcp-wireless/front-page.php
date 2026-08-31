@@ -1205,252 +1205,287 @@ $review_button = $home_field(
      BILL REVIEW FORM
 ========================================================= -->
 
-<section
-    id="contact"
-    class="section form-section reveal"
+<?php
+$wcp_form_status = isset( $_GET['wcp_form'] )
+    ? sanitize_key( wp_unslash( $_GET['wcp_form'] ) )
+    : '';
+
+$wcp_form_reason = isset( $_GET['wcp_reason'] )
+    ? sanitize_key( wp_unslash( $_GET['wcp_reason'] ) )
+    : '';
+
+$wcp_error_messages = array(
+    'security'        => 'Your session expired. Please refresh the page and try again.',
+    'required'        => 'Please complete all required fields and try again.',
+    'email'           => 'Please enter a valid email address.',
+    'interest'        => 'Please select an option from the list.',
+    'file_too_large'  => 'The uploaded bill is too large. Please choose a file under 10 MB.',
+    'file_type'       => 'Please upload a PDF, JPG, JPEG or PNG file.',
+    'upload_error'    => 'The bill could not be uploaded. Please try again.',
+    'upload_save'     => 'The bill could not be saved. Please try again.',
+    'storage'         => 'The bill could not be stored. Please try again or contact us.',
+    'save'            => 'Your submission could not be saved. Please try again.',
+    'too_fast'        => 'Please wait a moment and submit the form again.',
+    'invalid_request' => 'The form could not be submitted. Please try again.',
+);
+?>
+
+<!-- Bill Review Form -->
+
+<?php if ( 'success' === $wcp_form_status ) : ?>
+
+    <div class="form-message form-success" role="status">
+
+        <strong>
+            Thank you.
+        </strong>
+
+        We received your request and a WCP business specialist will follow up with you.
+
+    </div>
+
+<?php elseif ( 'error' === $wcp_form_status ) : ?>
+
+    <div class="form-message form-error" role="alert">
+
+        <?php
+        echo esc_html(
+            isset( $wcp_error_messages[ $wcp_form_reason ] )
+                ? $wcp_error_messages[ $wcp_form_reason ]
+                : 'Something went wrong. Please review the form and try again.'
+        );
+        ?>
+
+    </div>
+
+<?php endif; ?>
+
+
+<form
+    class="lead-form bill-review-form"
+    action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>"
+    method="POST"
+    enctype="multipart/form-data"
 >
 
-    <div class="container">
-
-        <div class="review-form-layout">
-
-
-            <!-- LEFT -->
-
-            <div class="review-form-intro">
+    <input
+        type="hidden"
+        name="action"
+        value="wcp_bill_review_submit"
+    >
 
 
-                <span class="section-eyebrow">
-                    <?php echo esc_html($review_eyebrow); ?>
-                </span>
+    <?php
+    wp_nonce_field(
+        'wcp_bill_review_submit',
+        'wcp_bill_review_nonce'
+    );
+    ?>
 
 
-                <h2>
-                    <?php echo esc_html($review_heading); ?>
-                </h2>
+    <input
+        type="hidden"
+        name="redirect_to"
+        value="<?php echo esc_url( get_permalink() ); ?>"
+    >
 
 
-                <p class="lede">
-                    <?php echo esc_html($review_intro); ?>
-                </p>
+    <input
+        type="hidden"
+        name="wcp_started"
+        value="<?php echo esc_attr( time() ); ?>"
+    >
 
 
-                <div class="review-benefits">
+    <!-- Spam honeypot -->
 
+    <div
+        aria-hidden="true"
+        style="
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        "
+    >
 
-                    <?php foreach ($review_benefits as $benefit) : ?>
+        <label>
 
+            Leave this field empty
 
-                        <div class="review-benefit">
-
-                            <span>
-                                ✓
-                            </span>
-
-
-                            <div>
-
-                                <strong>
-                                    <?php echo esc_html($benefit['title']); ?>
-                                </strong>
-
-
-                                <p>
-                                    <?php echo esc_html($benefit['text']); ?>
-                                </p>
-
-                            </div>
-
-
-                        </div>
-
-
-                    <?php endforeach; ?>
-
-
-                </div>
-
-
-            </div>
-
-
-            <!-- FORM -->
-
-            <form
-                class="lead-form bill-review-form"
-                action="https://formspree.io/f/xvkppvjl"
-                method="POST"
-                enctype="multipart/form-data"
+            <input
+                type="text"
+                name="website"
+                value=""
+                tabindex="-1"
+                autocomplete="off"
             >
 
+        </label>
 
-                <div class="form-heading">
-
-                    <h3>
-                        <?php echo esc_html($review_form_heading); ?>
-                    </h3>
-
-                    <p>
-                        <?php echo esc_html($review_form_intro); ?>
-                    </p>
-
-                </div>
+    </div>
 
 
-                <div class="form-row">
+    <div class="form-heading">
 
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Your name"
-                        autocomplete="name"
-                        required
-                    >
+        <h3>
+            <?php echo esc_html( $review_form_heading ); ?>
+        </h3>
 
-                    <input
-                        type="text"
-                        name="business_name"
-                        placeholder="Business name"
-                        autocomplete="organization"
-                        required
-                    >
+        <p>
+            <?php echo esc_html( $review_form_intro ); ?>
+        </p>
 
-                </div>
+    </div>
 
 
-                <div class="form-row">
+    <div class="form-row">
 
-                    <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone number"
-                        autocomplete="tel"
-                        required
-                    >
-
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email address"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
+        <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            autocomplete="name"
+            required
+        >
 
 
-                <select
-                    name="interest"
-                    required
-                >
+        <input
+            type="text"
+            name="business_name"
+            placeholder="Business name"
+            autocomplete="organization"
+            required
+        >
 
-                    <option
-                        value=""
-                        disabled
-                        selected
-                    >
-                        What can we help you with?
-                    </option>
-
-                    <option value="Current bill review">
-                        Review my current wireless bill
-                    </option>
-
-                    <option value="New business wireless">
-                        New business wireless plans
-                    </option>
-
-                    <option value="Switching carrier">
-                        Switching from another carrier
-                    </option>
-
-                    <option value="Internet and phone">
-                        Business internet &amp; phone
-                    </option>
-
-                    <option value="Point of Sale">
-                        Point of Sale
-                    </option>
-
-                    <option value="Fleet Management">
-                        Fleet Management
-                    </option>
-
-                    <option value="Rogers Business Mastercard">
-                        Rogers Business Mastercard
-                    </option>
-
-                    <option value="Not sure">
-                        I'm not sure yet
-                    </option>
-
-                </select>
+    </div>
 
 
-                <div class="bill-upload">
+    <div class="form-row">
 
-                    <label for="bill-upload">
-
-                        <span class="upload-icon">
-                            ↑
-                        </span>
-
-
-                        <span class="upload-copy">
-
-                            <strong>
-                                Upload your current bill
-                            </strong>
-
-                            <small>
-                                Optional — PDF, JPG or PNG
-                            </small>
-
-                        </span>
+        <input
+            type="tel"
+            name="phone"
+            placeholder="Phone number"
+            autocomplete="tel"
+            required
+        >
 
 
-                    </label>
+        <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+        >
+
+    </div>
 
 
-                    <input
-                        type="file"
-                        id="bill-upload"
-                        name="current_bill"
-                        accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                    >
+    <select
+        name="interest"
+        required
+    >
+
+        <option
+            value=""
+            disabled
+            selected
+        >
+            What can we help you with?
+        </option>
 
 
-                </div>
+        <option value="Current bill review">
+            Review my current wireless bill
+        </option>
 
 
-                <textarea
-                    name="message"
-                    rows="4"
-                    placeholder="Anything else you'd like us to know? (optional)"
-                ></textarea>
+        <option value="New business wireless">
+            New business wireless plans
+        </option>
 
 
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                >
-                    <?php echo esc_html($review_button); ?>
-                </button>
+        <option value="Switching carrier">
+            Switching from another carrier
+        </option>
 
 
-                <p class="form-disclaimer">
-
-                    🔒 Your bill is kept private and used only to review your
-                    business services. No obligation. Prefer to talk?
-
-                    <a href="tel:+18338441977">
-                        Call 1-833-844-1977
-                    </a>
-
-                </p>
+        <option value="Internet and phone">
+            Business internet &amp; phone
+        </option>
 
 
-            </form>
+        <option value="Not sure">
+            I'm not sure yet
+        </option>
+
+    </select>
+
+
+    <div class="bill-upload">
+
+        <label for="bill-upload">
+
+            <span class="upload-icon">
+                ↑
+            </span>
+
+
+            <span class="upload-copy">
+
+                <strong>
+                    Upload your current bill
+                </strong>
+
+                <small>
+                    Optional — PDF, JPG or PNG — max 10 MB
+                </small>
+
+            </span>
+
+        </label>
+
+
+        <input
+            type="file"
+            id="bill-upload"
+            name="current_bill"
+            accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+        >
+
+    </div>
+
+
+    <textarea
+        name="message"
+        rows="4"
+        placeholder="Anything else you'd like us to know? (optional)"
+    ></textarea>
+
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+        <?php echo esc_html( $review_button ); ?>
+    </button>
+
+
+    <p class="form-disclaimer">
+
+        🔒 Your bill is kept private and used only to review your
+        business services. No obligation. Prefer to talk?
+
+        <a href="tel:+18338441977">
+            Call 1-833-844-1977
+        </a>
+
+    </p>
+
+</form>
 
 
         </div>
