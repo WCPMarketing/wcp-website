@@ -6512,5 +6512,12 @@ function wcp_global_phone_href() {
 
     return 'tel:+' . $digits;
 }
+/*
+|--------------------------------------------------------------------------
+| FORM HANDLERS & WCP SUBMISSIONS
+|--------------------------------------------------------------------------
+*/
+
+require_once get_template_directory() . '/wcp-submissions-helper.php';
 require_once get_template_directory() . '/careers-form-handler.php';
 require_once get_template_directory() . '/chatbot-form-handler.php';
