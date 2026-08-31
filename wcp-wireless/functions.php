@@ -55,12 +55,71 @@ function wcp_theme_assets() {
         true
     );
 
+    /*
+    |--------------------------------------------------------------------------
+    | CHATBOT
+    |--------------------------------------------------------------------------
+    |
+    | Use the chatbot file's modified time as the version so browsers,
+    | WordPress caches and the hosting/CDN do not keep serving an older
+    | chatbot.js after the file is replaced.
+    |
+    */
+
+    $wcp_chatbot_file =
+        get_template_directory() .
+        '/chatbot.js';
+
+    $wcp_chatbot_version =
+        file_exists($wcp_chatbot_file)
+            ? (string) filemtime($wcp_chatbot_file)
+            : '1.0.1';
+
+
     wp_enqueue_script(
         'wcp-chatbot',
         get_template_directory_uri() . '/chatbot.js',
         array(),
-        '1.0.0',
+        $wcp_chatbot_version,
         true
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CHATBOT WORDPRESS CONFIG
+    |--------------------------------------------------------------------------
+    |
+    | Pass the nonce directly with the enqueued script. Use only the path
+    | portion of admin-post.php so the request always stays on the same
+    | staging/production hostname currently being viewed.
+    |
+    */
+
+    $wcp_chatbot_endpoint =
+        wp_parse_url(
+            admin_url('admin-post.php'),
+            PHP_URL_PATH
+        );
+
+    if (!$wcp_chatbot_endpoint) {
+        $wcp_chatbot_endpoint =
+            '/wp-admin/admin-post.php';
+    }
+
+
+    wp_localize_script(
+        'wcp-chatbot',
+        'wcpChatbotConfig',
+        array(
+            'endpoint' =>
+                $wcp_chatbot_endpoint,
+
+            'nonce' =>
+                wp_create_nonce(
+                    'wcp_chatbot_submit'
+                ),
+        )
     );
 }
 
