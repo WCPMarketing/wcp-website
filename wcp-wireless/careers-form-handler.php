@@ -551,6 +551,34 @@ function wcp_handle_careers_submit() {
 
     /*
     |--------------------------------------------------------------------------
+    | ADDITIONAL CAREERS RECIPIENT
+    |--------------------------------------------------------------------------
+    |
+    | Keep the existing WordPress Administration Email Address and also send
+    | every careers application to sales@wcpwireless.com.
+    |
+    */
+
+    $recipients = is_array($recipient)
+        ? $recipient
+        : array($recipient);
+
+    $recipients[] = 'sales@wcpwireless.com';
+
+    $recipients = array_values(
+        array_unique(
+            array_filter(
+                array_map(
+                    'sanitize_email',
+                    $recipients
+                )
+            )
+        )
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
     | EMAIL SUBJECT
     |--------------------------------------------------------------------------
     */
@@ -636,7 +664,7 @@ function wcp_handle_careers_submit() {
     */
 
     $sent = wp_mail(
-        $recipient,
+        $recipients,
         $subject,
         $body,
         $headers,
