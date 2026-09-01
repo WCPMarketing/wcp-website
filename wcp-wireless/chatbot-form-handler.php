@@ -333,12 +333,13 @@ function wcp_handle_chatbot_submit() {
 
     /*
     |--------------------------------------------------------------------------
-    | EMAIL RECIPIENT
+    | EMAIL RECIPIENTS
     |--------------------------------------------------------------------------
     |
-    | By default, chatbot leads go to:
+    | Chatbot leads are sent to:
     |
-    | WordPress > Settings > General > Administration Email Address
+    | 1. WordPress > Settings > General > Administration Email Address
+    | 2. sales@wcpwireless.com
     |
     */
 
@@ -353,7 +354,33 @@ function wcp_handle_chatbot_submit() {
     );
 
 
-    if (!$recipient || !is_email($recipient)) {
+    $recipients = array();
+
+
+    if (
+        is_string($recipient) &&
+        is_email($recipient)
+    ) {
+        $recipients[] = $recipient;
+    }
+
+
+    $sales_recipient = sanitize_email(
+        'sales@wcpwireless.com'
+    );
+
+
+    if (is_email($sales_recipient)) {
+        $recipients[] = $sales_recipient;
+    }
+
+
+    $recipients = array_values(
+        array_unique($recipients)
+    );
+
+
+    if (empty($recipients)) {
 
         wcp_chatbot_error(
             'recipient',
@@ -420,7 +447,7 @@ function wcp_handle_chatbot_submit() {
     */
 
     $sent = wp_mail(
-        $recipient,
+        $recipients,
         $subject,
         $body,
         $headers
