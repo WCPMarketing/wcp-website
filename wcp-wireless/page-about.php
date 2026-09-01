@@ -348,15 +348,16 @@ $gallery_images = array(
         </h2>
 
 
-        <p
+        <div
             style="
                 max-width:700px;
                 font-size:17px;
                 color:var(--text);
+                line-height:1.7;
             "
         >
-            <?php echo esc_html($mission_text); ?>
-        </p>
+            <?php echo wpautop(esc_html($mission_text)); ?>
+        </div>
 
 
     </div>
@@ -444,9 +445,9 @@ $gallery_images = array(
                         </h3>
 
 
-                        <p>
-                            <?php echo esc_html($award_text); ?>
-                        </p>
+                        <div class="award-text">
+                            <?php echo wpautop(esc_html($award_text)); ?>
+                        </div>
 
 
                     </div>
@@ -491,15 +492,15 @@ $gallery_images = array(
         </p>
 
 
-        <p
+        <div
             style="
                 max-width:760px;
                 color:var(--text-muted);
                 line-height:1.7;
             "
         >
-            <?php echo esc_html($life_text); ?>
-        </p>
+            <?php echo wpautop(esc_html($life_text)); ?>
+        </div>
 
 
         <div class="about-gallery">
