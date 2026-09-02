@@ -3831,6 +3831,36 @@ function wcp_register_home_fields() {
 
 
     /*
+     * Testimonial 4
+     */
+
+    $add_textarea(
+        'testimonial_4_quote',
+        'Testimonial 4 Quote',
+        'We have been working with WCP for several years. It\'s always a pleasure working with them - they are pleasant and professional. Their customer service is top-notch and they go above and beyond to find the best solutions for our organization while recognizing our needs. They are responsive and easy to get in touch with which I appreciate. Highly recommend.',
+        9
+    );
+
+    $add_text(
+        'testimonial_4_initials',
+        'Testimonial 4 Initials',
+        'DH'
+    );
+
+    $add_text(
+        'testimonial_4_name',
+        'Testimonial 4 Name',
+        'Donna Hildebrand'
+    );
+
+    $add_text(
+        'testimonial_4_role',
+        'Testimonial 4 Company / Role',
+        'Executive Assist at Algonquin Family Health Team'
+    );
+
+
+    /*
      * Google Review CTA
      */
 
@@ -4434,6 +4464,30 @@ function wcp_register_business_fields() {
         'testimonial_3_role',
         'Testimonial 3 Role / Company',
         'Network Analyst, OVH'
+    );
+
+
+    /*
+     * Testimonial 4
+     */
+
+    $add_textarea(
+        'testimonial_4_quote',
+        'Testimonial 4 Quote',
+        'We have been working with WCP for several years. It\'s always a pleasure working with them - they are pleasant and professional. Their customer service is top-notch and they go above and beyond to find the best solutions for our organization while recognizing our needs. They are responsive and easy to get in touch with which I appreciate. Highly recommend.',
+        9
+    );
+
+    $add_text(
+        'testimonial_4_name',
+        'Testimonial 4 Name',
+        'Donna Hildebrand'
+    );
+
+    $add_text(
+        'testimonial_4_role',
+        'Testimonial 4 Role / Company',
+        'Executive Assistant at Algonquin Family Health Team'
     );
 
 
