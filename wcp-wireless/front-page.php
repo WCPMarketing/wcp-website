@@ -479,6 +479,32 @@ $testimonials = array(
         ),
     ),
 
+
+    array(
+
+        'logo' =>
+            get_template_directory_uri() .
+            '/images/testimonial-algonquin-family-health-team.png',
+
+        'alt' =>
+            'Algonquin Family Health Team',
+
+        'quote' => $home_field(
+            'testimonial_4_quote',
+            'We have been working with WCP for several years. It\'s always a pleasure working with them - they are pleasant and professional. Their customer service is top-notch and they go above and beyond to find the best solutions for our organization while recognizing our needs. They are responsive and easy to get in touch with which I appreciate. Highly recommend.'
+        ),
+
+        'name' => $home_field(
+            'testimonial_4_name',
+            'Donna Hildebrand'
+        ),
+
+        'role' => $home_field(
+            'testimonial_4_role',
+            'Executive Assistant at Algonquin Family Health Team'
+        ),
+    ),
+
 );
 
 
@@ -1671,6 +1697,14 @@ $review_button = $home_field(
 }
 
 
+/* FOUR TESTIMONIALS - BALANCED 2 X 2 GRID */
+
+.testimonial-grid {
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+}
+
+
 /* COMPANY LOGOS */
 
 .home-testimonial-logo {
@@ -1735,6 +1769,10 @@ $review_button = $home_field(
 @media (max-width:560px) {
 
     .card-grid.home-services-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .testimonial-grid {
         grid-template-columns:1fr !important;
     }
 
