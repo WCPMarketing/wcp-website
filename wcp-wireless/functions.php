@@ -6573,5 +6573,6 @@ function wcp_global_phone_href() {
 */
 
 require_once get_template_directory() . '/wcp-submissions-helper.php';
+require_once get_template_directory() . '/business-form-handler.php';
 require_once get_template_directory() . '/careers-form-handler.php';
 require_once get_template_directory() . '/chatbot-form-handler.php';
