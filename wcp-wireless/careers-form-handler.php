@@ -427,26 +427,93 @@ function wcp_handle_careers_submit() {
     }
 
 
+    $resume_filename =
+        isset($_FILES['resume']['name'])
+            ? sanitize_file_name(
+                wp_unslash(
+                    $_FILES['resume']['name']
+                )
+            )
+            : basename($resume);
+
+
+    $resume_type =
+        wp_check_filetype(
+            $resume_filename
+        );
+
+    $resume_mime =
+        !empty($resume_type['type'])
+            ? $resume_type['type']
+            : 'application/octet-stream';
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | COPY RESUME INTO PRIVATE WCP STORAGE
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        !function_exists(
+            'wcp_store_private_submission_file'
+        )
+    ) {
+
+        if (
+            $resume &&
+            file_exists($resume)
+        ) {
+            wp_delete_file($resume);
+        }
+
+
+        wcp_careers_redirect(
+            $redirect_to,
+            'error',
+            'save'
+        );
+    }
+
+
+    $private_resume =
+        wcp_store_private_submission_file(
+            $resume,
+            $resume_filename,
+            $resume_mime
+        );
+
+
+    if (is_wp_error($private_resume)) {
+
+        if (
+            $resume &&
+            file_exists($resume)
+        ) {
+            wp_delete_file($resume);
+        }
+
+
+        wcp_careers_redirect(
+            $redirect_to,
+            'error',
+            'save'
+        );
+    }
 
 
     /*
     |--------------------------------------------------------------------------
     | SAVE TO WCP SUBMISSIONS
     |--------------------------------------------------------------------------
-    |
-    | The resume itself is not left in the public WordPress uploads folder.
-    | We save the filename in WCP Submissions and continue sending the actual
-    | resume as an email attachment.
-    |
     */
 
-    $resume_filename =
-        $resume
-            ? basename($resume)
-            : '';
-
-
     if (!function_exists('wcp_save_submission')) {
+
+        wcp_discard_private_submission_file(
+            $private_resume
+        );
+
 
         if (
             $resume &&
@@ -499,7 +566,13 @@ function wcp_handle_careers_submit() {
                     $resume_filename,
 
                 'resume_note' =>
-                    'Resume sent by email attachment; not stored publicly on the website.',
+                    'Securely stored in WCP Submissions for administrator download.',
+
+                'attachment_filename' =>
+                    $resume_filename,
+
+                'attachment_note' =>
+                    'Securely stored in WCP Submissions for administrator download.',
 
                 'email_status' =>
                     'Pending',
@@ -510,12 +583,53 @@ function wcp_handle_careers_submit() {
 
     if (is_wp_error($submission_id)) {
 
+        wcp_discard_private_submission_file(
+            $private_resume
+        );
+
+
         if (
             $resume &&
             file_exists($resume)
         ) {
             wp_delete_file($resume);
         }
+
+
+        wcp_careers_redirect(
+            $redirect_to,
+            'error',
+            'save'
+        );
+    }
+
+
+    $attached =
+        wcp_attach_private_file_to_submission(
+            $submission_id,
+            $private_resume
+        );
+
+
+    if (is_wp_error($attached)) {
+
+        wcp_discard_private_submission_file(
+            $private_resume
+        );
+
+
+        if (
+            $resume &&
+            file_exists($resume)
+        ) {
+            wp_delete_file($resume);
+        }
+
+
+        wp_delete_post(
+            $submission_id,
+            true
+        );
 
 
         wcp_careers_redirect(
@@ -705,6 +819,23 @@ function wcp_handle_careers_submit() {
         $sent
             ? 'Sent'
             : 'Failed'
+    );
+
+
+    update_post_meta(
+        $submission_id,
+        '_wcp_resume_note',
+        $sent
+            ? 'Securely stored in WCP Submissions and also attached to the email notification.'
+            : 'Securely stored in WCP Submissions. The separate email notification failed.'
+    );
+
+    update_post_meta(
+        $submission_id,
+        '_wcp_attachment_note',
+        $sent
+            ? 'Securely stored in WCP Submissions and also attached to the email notification.'
+            : 'Securely stored in WCP Submissions. The separate email notification failed.'
     );
 
 
