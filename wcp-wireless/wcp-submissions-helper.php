@@ -206,6 +206,8 @@ function wcp_get_submissions_post_type() {
 | source
 | resume_filename
 | resume_note
+| attachment_filename
+| attachment_note
 | email_status
 |
 */
@@ -314,6 +316,8 @@ function wcp_save_submission($data) {
         'source',
         'resume_filename',
         'resume_note',
+        'attachment_filename',
+        'attachment_note',
         'email_status',
     );
 
@@ -432,6 +436,12 @@ function wcp_render_submission_details_meta_box($post) {
 
         'resume_note' =>
             'Resume Note',
+
+        'attachment_filename' =>
+            'Uploaded File',
+
+        'attachment_note' =>
+            'File Note',
 
         'email_status' =>
             'Email Status',
