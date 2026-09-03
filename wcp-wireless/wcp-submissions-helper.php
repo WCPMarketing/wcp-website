@@ -863,7 +863,7 @@ function wcp_download_submission_file() {
     if (
         !is_user_logged_in() ||
         !current_user_can(
-            'manage_options'
+            'edit_others_posts'
         )
     ) {
 
@@ -1205,6 +1205,466 @@ add_action(
 );
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| EDITOR READ-ONLY ACCESS
+|--------------------------------------------------------------------------
+|
+| Editors can view WCP Submissions and download secure uploaded files.
+| Only Administrators can modify or delete submission records.
+|
+*/
+
+function wcp_submission_user_is_read_only_editor() {
+
+    return
+        is_user_logged_in() &&
+        current_user_can('edit_others_posts') &&
+        !current_user_can('manage_options');
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| REMOVE EDITING CONTROLS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_make_submission_screen_read_only() {
+
+    if (
+        !is_admin() ||
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+        return;
+    }
+
+
+    remove_post_type_support(
+        $post_type,
+        'title'
+    );
+}
+
+add_action(
+    'admin_init',
+    'wcp_make_submission_screen_read_only',
+    20
+);
+
+
+function wcp_remove_submission_editor_meta_boxes() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+        return;
+    }
+
+
+    remove_meta_box(
+        'submitdiv',
+        $post_type,
+        'side'
+    );
+}
+
+add_action(
+    'add_meta_boxes',
+    'wcp_remove_submission_editor_meta_boxes',
+    100
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| LIST SCREEN ACTIONS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_submission_read_only_row_actions(
+    $actions,
+    $post
+) {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return $actions;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (
+        !$post_type ||
+        !$post ||
+        $post->post_type !== $post_type
+    ) {
+        return $actions;
+    }
+
+
+    unset(
+        $actions['trash'],
+        $actions['delete']
+    );
+
+
+    if (isset($actions['edit'])) {
+
+        $view_url =
+            get_edit_post_link(
+                $post->ID,
+                ''
+            );
+
+
+        if ($view_url) {
+
+            $actions['edit'] =
+                '<a href="' .
+                esc_url($view_url) .
+                '">View Details</a>';
+        }
+    }
+
+
+    return $actions;
+}
+
+add_filter(
+    'post_row_actions',
+    'wcp_submission_read_only_row_actions',
+    20,
+    2
+);
+
+
+function wcp_submission_read_only_bulk_actions(
+    $actions
+) {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return $actions;
+    }
+
+
+    unset(
+        $actions['edit'],
+        $actions['trash'],
+        $actions['delete']
+    );
+
+
+    return $actions;
+}
+
+
+function wcp_register_submission_bulk_action_filter() {
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+        return;
+    }
+
+
+    add_filter(
+        'bulk_actions-edit-' .
+            $post_type,
+        'wcp_submission_read_only_bulk_actions'
+    );
+}
+
+add_action(
+    'admin_init',
+    'wcp_register_submission_bulk_action_filter',
+    30
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| HIDE / BLOCK ADD NEW
+|--------------------------------------------------------------------------
+*/
+
+function wcp_hide_submission_add_new_for_editors() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+        return;
+    }
+
+
+    remove_submenu_page(
+        'edit.php?post_type=' .
+            $post_type,
+        'post-new.php?post_type=' .
+            $post_type
+    );
+}
+
+add_action(
+    'admin_menu',
+    'wcp_hide_submission_add_new_for_editors',
+    999
+);
+
+
+function wcp_block_submission_creation_for_editors() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $requested_post_type =
+        isset($_GET['post_type'])
+            ? sanitize_key(
+                wp_unslash(
+                    $_GET['post_type']
+                )
+            )
+            : '';
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (
+        $post_type &&
+        $requested_post_type === $post_type
+    ) {
+
+        wp_die(
+            'WCP Submissions are read-only for Editor accounts.',
+            'Read-only access',
+            array(
+                'response' => 403,
+            )
+        );
+    }
+}
+
+add_action(
+    'load-post-new.php',
+    'wcp_block_submission_creation_for_editors'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| SERVER-SIDE UPDATE PROTECTION
+|--------------------------------------------------------------------------
+*/
+
+function wcp_block_submission_updates_for_editors(
+    $post_id
+) {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (
+        !$post_type ||
+        get_post_type($post_id) !==
+            $post_type
+    ) {
+        return;
+    }
+
+
+    wp_die(
+        'WCP Submissions are read-only for Editor accounts.',
+        'Read-only access',
+        array(
+            'response' => 403,
+        )
+    );
+}
+
+add_action(
+    'pre_post_update',
+    'wcp_block_submission_updates_for_editors',
+    10,
+    1
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| SERVER-SIDE DELETE PROTECTION
+|--------------------------------------------------------------------------
+*/
+
+function wcp_protect_submission_delete_capability(
+    $caps,
+    $cap,
+    $user_id,
+    $args
+) {
+
+    if (
+        !in_array(
+            $cap,
+            array(
+                'delete_post',
+                'delete_page',
+            ),
+            true
+        ) ||
+        empty($args[0])
+    ) {
+        return $caps;
+    }
+
+
+    $post_id =
+        absint($args[0]);
+
+
+    if (!$post_id) {
+        return $caps;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (
+        !$post_type ||
+        get_post_type($post_id) !==
+            $post_type
+    ) {
+        return $caps;
+    }
+
+
+    $user =
+        get_userdata(
+            $user_id
+        );
+
+
+    if (
+        !$user ||
+        user_can(
+            $user,
+            'manage_options'
+        )
+    ) {
+        return $caps;
+    }
+
+
+    return array(
+        'do_not_allow',
+    );
+}
+
+add_filter(
+    'map_meta_cap',
+    'wcp_protect_submission_delete_capability',
+    20,
+    4
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| READ-ONLY NOTICE
+|--------------------------------------------------------------------------
+*/
+
+function wcp_submission_read_only_notice() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $screen =
+        function_exists('get_current_screen')
+            ? get_current_screen()
+            : null;
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (
+        !$screen ||
+        !$post_type ||
+        $screen->post_type !==
+            $post_type
+    ) {
+        return;
+    }
+
+
+    echo '<div class="notice notice-info"><p><strong>Read-only access:</strong> You can view WCP Submissions and download uploaded files, but only an Administrator can modify or delete submission records.</p></div>';
+}
+
+add_action(
+    'admin_notices',
+    'wcp_submission_read_only_notice'
+);
+
+
+
 /*
 |--------------------------------------------------------------------------
 | DELETE PRIVATE FILE WHEN SUBMISSION IS PERMANENTLY DELETED
@@ -1408,7 +1868,7 @@ function wcp_render_submission_details_meta_box($post) {
             esc_url($download_url) .
             '">Download File</a>';
 
-        echo '<p style="margin:10px 0 0;color:#646970;font-size:12px;">Only logged-in WordPress administrators can use this download link.</p>';
+        echo '<p style="margin:10px 0 0;color:#646970;font-size:12px;">Administrators and Editors can download this file. Editor access is read-only.</p>';
 
         echo '</div>';
     }
