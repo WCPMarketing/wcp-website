@@ -1665,6 +1665,660 @@ add_action(
 
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| EDITOR WCP SUBMISSIONS MENU
+|--------------------------------------------------------------------------
+|
+| Some existing WCP Submissions post types can be registered with
+| administrator-only menu capabilities. In that case, WordPress Editors do
+| not see the normal custom-post-type menu even though we want them to have
+| read-only access.
+|
+| This creates a dedicated read-only WCP Submissions screen for Editors.
+| Administrators continue using the normal WCP Submissions screen.
+|
+*/
+
+function wcp_register_editor_submissions_menu() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+        return;
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+        return;
+    }
+
+
+    /*
+     * Avoid showing a second WCP Submissions menu if the existing post type
+     * happens to be visible to this Editor.
+     */
+
+    remove_menu_page(
+        'edit.php?post_type=' .
+            $post_type
+    );
+
+
+    add_menu_page(
+        'WCP Submissions',
+        'WCP Submissions',
+        'edit_others_posts',
+        'wcp-submissions-editor',
+        'wcp_render_editor_submissions_page',
+        'dashicons-email-alt',
+        25
+    );
+}
+
+add_action(
+    'admin_menu',
+    'wcp_register_editor_submissions_menu',
+    1000
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| EDITOR SUBMISSIONS SCREEN
+|--------------------------------------------------------------------------
+*/
+
+function wcp_render_editor_submissions_page() {
+
+    if (
+        !wcp_submission_user_is_read_only_editor()
+    ) {
+
+        wp_die(
+            'You do not have permission to view WCP Submissions.',
+            'Access denied',
+            array(
+                'response' => 403,
+            )
+        );
+    }
+
+
+    $post_type =
+        wcp_get_submissions_post_type();
+
+
+    if (!$post_type) {
+
+        echo '<div class="wrap">';
+        echo '<h1>WCP Submissions</h1>';
+        echo '<div class="notice notice-error"><p>WCP Submissions could not be loaded.</p></div>';
+        echo '</div>';
+
+        return;
+    }
+
+
+    $submission_id =
+        isset($_GET['submission_id'])
+            ? absint(
+                $_GET['submission_id']
+            )
+            : 0;
+
+
+    if ($submission_id) {
+
+        wcp_render_editor_submission_details(
+            $post_type,
+            $submission_id
+        );
+
+        return;
+    }
+
+
+    $paged =
+        isset($_GET['wcp_page'])
+            ? max(
+                1,
+                absint(
+                    $_GET['wcp_page']
+                )
+            )
+            : 1;
+
+
+    $query =
+        new WP_Query(
+            array(
+
+                'post_type' =>
+                    $post_type,
+
+                'post_status' =>
+                    array(
+                        'private',
+                        'publish',
+                    ),
+
+                'posts_per_page' =>
+                    50,
+
+                'paged' =>
+                    $paged,
+
+                'orderby' =>
+                    'date',
+
+                'order' =>
+                    'DESC',
+
+                'no_found_rows' =>
+                    false,
+
+            )
+        );
+
+
+    echo '<div class="wrap">';
+
+    echo '<h1 class="wp-heading-inline">WCP Submissions</h1>';
+
+    echo '<p style="margin-top:12px;">Read-only access: you can view submissions and download uploaded files. Only an Administrator can modify or delete records.</p>';
+
+
+    if (!$query->have_posts()) {
+
+        echo '<div class="notice notice-info inline"><p>No submissions have been received yet.</p></div>';
+
+        echo '</div>';
+
+        wp_reset_postdata();
+
+        return;
+    }
+
+
+    echo '<table class="widefat fixed striped" style="margin-top:18px;">';
+
+    echo '<thead><tr>';
+
+    echo '<th style="width:25%;">Submission</th>';
+
+    echo '<th>Form Source</th>';
+
+    echo '<th>Name</th>';
+
+    echo '<th>Business</th>';
+
+    echo '<th>Email</th>';
+
+    echo '<th>Request / Interest</th>';
+
+    echo '<th style="width:145px;">Submitted</th>';
+
+    echo '</tr></thead>';
+
+    echo '<tbody>';
+
+
+    while ($query->have_posts()) {
+
+        $query->the_post();
+
+        $post_id =
+            get_the_ID();
+
+        $title =
+            get_the_title(
+                $post_id
+            );
+
+        $form_source =
+            get_post_meta(
+                $post_id,
+                '_wcp_form_source',
+                true
+            );
+
+        $name =
+            get_post_meta(
+                $post_id,
+                '_wcp_name',
+                true
+            );
+
+        $business_name =
+            get_post_meta(
+                $post_id,
+                '_wcp_business_name',
+                true
+            );
+
+        $email =
+            get_post_meta(
+                $post_id,
+                '_wcp_email',
+                true
+            );
+
+        $interest =
+            get_post_meta(
+                $post_id,
+                '_wcp_interest',
+                true
+            );
+
+
+        $view_url =
+            add_query_arg(
+                array(
+                    'page' =>
+                        'wcp-submissions-editor',
+
+                    'submission_id' =>
+                        $post_id,
+                ),
+                admin_url('admin.php')
+            );
+
+
+        echo '<tr>';
+
+        echo '<td>';
+
+        echo '<strong><a href="' .
+            esc_url($view_url) .
+            '">' .
+            esc_html(
+                $title !== ''
+                    ? $title
+                    : 'Submission #' .
+                        $post_id
+            ) .
+            '</a></strong>';
+
+        echo '<div class="row-actions"><span class="view"><a href="' .
+            esc_url($view_url) .
+            '">View Details</a></span></div>';
+
+        echo '</td>';
+
+
+        echo '<td>' .
+            esc_html(
+                $form_source
+            ) .
+            '</td>';
+
+
+        echo '<td>' .
+            esc_html(
+                $name
+            ) .
+            '</td>';
+
+
+        echo '<td>' .
+            esc_html(
+                $business_name
+            ) .
+            '</td>';
+
+
+        echo '<td>';
+
+        if (
+            $email !== '' &&
+            is_email($email)
+        ) {
+
+            echo '<a href="mailto:' .
+                esc_attr($email) .
+                '">' .
+                esc_html($email) .
+                '</a>';
+
+        } else {
+
+            echo esc_html($email);
+        }
+
+        echo '</td>';
+
+
+        echo '<td>' .
+            esc_html(
+                $interest
+            ) .
+            '</td>';
+
+
+        echo '<td>' .
+            esc_html(
+                get_the_date(
+                    'M j, Y g:i a',
+                    $post_id
+                )
+            ) .
+            '</td>';
+
+        echo '</tr>';
+    }
+
+
+    echo '</tbody>';
+
+    echo '</table>';
+
+
+    if ($query->max_num_pages > 1) {
+
+        echo '<div class="tablenav"><div class="tablenav-pages" style="margin:12px 0;">';
+
+        echo wp_kses_post(
+            paginate_links(
+                array(
+
+                    'base' =>
+                        add_query_arg(
+                            array(
+                                'page' =>
+                                    'wcp-submissions-editor',
+
+                                'wcp_page' =>
+                                    '%#%',
+                            ),
+                            admin_url('admin.php')
+                        ),
+
+                    'format' =>
+                        '',
+
+                    'current' =>
+                        $paged,
+
+                    'total' =>
+                        (int)
+                        $query->max_num_pages,
+
+                    'prev_text' =>
+                        '&laquo;',
+
+                    'next_text' =>
+                        '&raquo;',
+
+                )
+            )
+        );
+
+        echo '</div></div>';
+    }
+
+
+    echo '</div>';
+
+
+    wp_reset_postdata();
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| EDITOR SUBMISSION DETAILS
+|--------------------------------------------------------------------------
+*/
+
+function wcp_render_editor_submission_details(
+    $post_type,
+    $submission_id
+) {
+
+    $submission =
+        get_post(
+            $submission_id
+        );
+
+
+    if (
+        !$submission ||
+        $submission->post_type !==
+            $post_type
+    ) {
+
+        wp_die(
+            'Submission not found.',
+            'Not found',
+            array(
+                'response' => 404,
+            )
+        );
+    }
+
+
+    $back_url =
+        add_query_arg(
+            array(
+                'page' =>
+                    'wcp-submissions-editor',
+            ),
+            admin_url('admin.php')
+        );
+
+
+    echo '<div class="wrap">';
+
+    echo '<p><a href="' .
+        esc_url($back_url) .
+        '">&larr; Back to WCP Submissions</a></p>';
+
+    echo '<h1>' .
+        esc_html(
+            get_the_title(
+                $submission_id
+            )
+        ) .
+        '</h1>';
+
+    echo '<div class="notice notice-info inline"><p><strong>Read-only access:</strong> You can view this submission and download its uploaded file, but you cannot modify or delete it.</p></div>';
+
+
+    $private_file =
+        get_post_meta(
+            $submission_id,
+            '_wcp_private_file',
+            true
+        );
+
+    $private_original_name =
+        get_post_meta(
+            $submission_id,
+            '_wcp_private_original_name',
+            true
+        );
+
+
+    if ($private_file !== '') {
+
+        $download_url =
+            wcp_private_submission_download_url(
+                $submission_id
+            );
+
+
+        echo '<div style="margin:18px 0;padding:16px;background:#fff;border:1px solid #c3c4c7;border-radius:4px;max-width:900px;">';
+
+        echo '<h2 style="margin-top:0;">Secure Uploaded File</h2>';
+
+        echo '<p>' .
+            esc_html(
+                $private_original_name !== ''
+                    ? $private_original_name
+                    : 'Uploaded file'
+            ) .
+            '</p>';
+
+        echo '<p><a class="button button-primary" href="' .
+            esc_url($download_url) .
+            '">Download File</a></p>';
+
+        echo '</div>';
+    }
+
+
+    $fields = array(
+
+        'form_source' =>
+            'Form Source',
+
+        'name' =>
+            'Name',
+
+        'business_name' =>
+            'Business Name',
+
+        'email' =>
+            'Email',
+
+        'phone' =>
+            'Phone',
+
+        'interest' =>
+            'Request / Interest',
+
+        'position' =>
+            'Position',
+
+        'message' =>
+            'Message',
+
+        'page_url' =>
+            'Page',
+
+        'source' =>
+            'Source',
+
+        'resume_filename' =>
+            'Resume File',
+
+        'resume_note' =>
+            'Resume Note',
+
+        'attachment_filename' =>
+            'Uploaded File',
+
+        'attachment_note' =>
+            'File Note',
+
+        'email_status' =>
+            'Email Status',
+
+        'submitted_at' =>
+            'Submitted At',
+
+    );
+
+
+    echo '<table class="widefat striped" style="max-width:900px;margin-top:18px;">';
+
+
+    foreach (
+        $fields
+        as
+        $key => $label
+    ) {
+
+        $value =
+            get_post_meta(
+                $submission_id,
+                '_wcp_' .
+                    $key,
+                true
+            );
+
+
+        if ($value === '') {
+            continue;
+        }
+
+
+        echo '<tr>';
+
+        echo '<th style="width:190px;">' .
+            esc_html($label) .
+            '</th>';
+
+        echo '<td>';
+
+
+        if (
+            $key === 'email' &&
+            is_email($value)
+        ) {
+
+            echo '<a href="mailto:' .
+                esc_attr($value) .
+                '">' .
+                esc_html($value) .
+                '</a>';
+
+        } elseif (
+            $key === 'page_url' &&
+            filter_var(
+                $value,
+                FILTER_VALIDATE_URL
+            )
+        ) {
+
+            echo '<a href="' .
+                esc_url($value) .
+                '" target="_blank" rel="noopener noreferrer">' .
+                esc_html($value) .
+                '</a>';
+
+        } elseif (
+            in_array(
+                $key,
+                array(
+                    'message',
+                    'resume_note',
+                    'attachment_note',
+                ),
+                true
+            )
+        ) {
+
+            echo nl2br(
+                esc_html($value)
+            );
+
+        } else {
+
+            echo esc_html($value);
+        }
+
+
+        echo '</td>';
+
+        echo '</tr>';
+    }
+
+
+    echo '</table>';
+
+    echo '</div>';
+}
+
+
+
 /*
 |--------------------------------------------------------------------------
 | DELETE PRIVATE FILE WHEN SUBMISSION IS PERMANENTLY DELETED
