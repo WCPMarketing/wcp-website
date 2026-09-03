@@ -316,7 +316,22 @@ function wcp_process_standard_form_upload() {
     }
 
 
-    return $uploaded['file'];
+    return array(
+        'path' =>
+            $uploaded['file'],
+
+        'original_name' =>
+            sanitize_file_name(
+                isset($file['name'])
+                    ? wp_unslash($file['name'])
+                    : basename($uploaded['file'])
+            ),
+
+        'mime_type' =>
+            isset($uploaded['type'])
+                ? sanitize_text_field($uploaded['type'])
+                : 'application/octet-stream',
+    );
 }
 
 
@@ -590,12 +605,77 @@ function wcp_handle_bill_review_submit() {
     }
 
 
-    $attachment_filename =
-        $uploaded_file
-            ? basename(
-                $uploaded_file
-            )
+    $upload_path =
+        is_array($uploaded_file) &&
+        !empty($uploaded_file['path'])
+            ? $uploaded_file['path']
             : '';
+
+    $attachment_filename =
+        is_array($uploaded_file) &&
+        !empty($uploaded_file['original_name'])
+            ? $uploaded_file['original_name']
+            : '';
+
+    $attachment_mime =
+        is_array($uploaded_file) &&
+        !empty($uploaded_file['mime_type'])
+            ? $uploaded_file['mime_type']
+            : 'application/octet-stream';
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | COPY UPLOAD INTO PRIVATE WCP STORAGE
+    |--------------------------------------------------------------------------
+    */
+
+    $private_file = array();
+
+
+    if ($upload_path !== '') {
+
+        if (
+            !function_exists(
+                'wcp_store_private_submission_file'
+            )
+        ) {
+
+            if (file_exists($upload_path)) {
+                wp_delete_file($upload_path);
+            }
+
+
+            wcp_bill_review_redirect(
+                $redirect_to,
+                'error',
+                'storage'
+            );
+        }
+
+
+        $private_file =
+            wcp_store_private_submission_file(
+                $upload_path,
+                $attachment_filename,
+                $attachment_mime
+            );
+
+
+        if (is_wp_error($private_file)) {
+
+            if (file_exists($upload_path)) {
+                wp_delete_file($upload_path);
+            }
+
+
+            wcp_bill_review_redirect(
+                $redirect_to,
+                'error',
+                'storage'
+            );
+        }
+    }
 
 
     /*
@@ -611,13 +691,23 @@ function wcp_handle_bill_review_submit() {
     ) {
 
         if (
-            $uploaded_file &&
-            file_exists(
-                $uploaded_file
+            !empty($private_file) &&
+            function_exists(
+                'wcp_discard_private_submission_file'
             )
         ) {
+            wcp_discard_private_submission_file(
+                $private_file
+            );
+        }
+
+
+        if (
+            $upload_path !== '' &&
+            file_exists($upload_path)
+        ) {
             wp_delete_file(
-                $uploaded_file
+                $upload_path
             );
         }
 
@@ -666,7 +756,7 @@ function wcp_handle_bill_review_submit() {
 
                 'attachment_note' =>
                     $attachment_filename !== ''
-                        ? 'Processing email attachment.'
+                        ? 'Securely stored in WCP Submissions for administrator download.'
                         : '',
 
                 'email_status' =>
@@ -683,13 +773,23 @@ function wcp_handle_bill_review_submit() {
     ) {
 
         if (
-            $uploaded_file &&
-            file_exists(
-                $uploaded_file
+            !empty($private_file) &&
+            function_exists(
+                'wcp_discard_private_submission_file'
             )
         ) {
+            wcp_discard_private_submission_file(
+                $private_file
+            );
+        }
+
+
+        if (
+            $upload_path !== '' &&
+            file_exists($upload_path)
+        ) {
             wp_delete_file(
-                $uploaded_file
+                $upload_path
             );
         }
 
@@ -699,6 +799,47 @@ function wcp_handle_bill_review_submit() {
             'error',
             'save'
         );
+    }
+
+
+    if (!empty($private_file)) {
+
+        $attached =
+            wcp_attach_private_file_to_submission(
+                $submission_id,
+                $private_file
+            );
+
+
+        if (is_wp_error($attached)) {
+
+            wcp_discard_private_submission_file(
+                $private_file
+            );
+
+
+            if (
+                $upload_path !== '' &&
+                file_exists($upload_path)
+            ) {
+                wp_delete_file(
+                    $upload_path
+                );
+            }
+
+
+            wp_delete_post(
+                $submission_id,
+                true
+            );
+
+
+            wcp_bill_review_redirect(
+                $redirect_to,
+                'error',
+                'storage'
+            );
+        }
     }
 
 
@@ -836,9 +977,9 @@ function wcp_handle_bill_review_submit() {
 
     $attachments = array();
 
-    if ($uploaded_file) {
+    if ($upload_path !== '') {
         $attachments[] =
-            $uploaded_file;
+            $upload_path;
     }
 
 
@@ -883,8 +1024,8 @@ function wcp_handle_bill_review_submit() {
             $submission_id,
             '_wcp_attachment_note',
             $sent
-                ? 'File was attached to the email notification and then removed from temporary website storage.'
-                : 'Email notification failed. The file was removed from temporary website storage; contact the submitter if the document is needed.'
+                ? 'Securely stored in WCP Submissions and also attached to the email notification.'
+                : 'Securely stored in WCP Submissions. The separate email notification failed.'
         );
     }
 
@@ -896,14 +1037,14 @@ function wcp_handle_bill_review_submit() {
     */
 
     if (
-        $uploaded_file &&
+        $upload_path !== '' &&
         file_exists(
-            $uploaded_file
+            $upload_path
         )
     ) {
 
         wp_delete_file(
-            $uploaded_file
+            $upload_path
         );
     }
 
