@@ -27,6 +27,48 @@ add_action('after_setup_theme', 'wcp_theme_setup');
 
 /*
 |--------------------------------------------------------------------------
+| GOOGLE ANALYTICS 4
+|--------------------------------------------------------------------------
+|
+| Live GA4 property for wcpwireless.com.
+| Measurement ID: G-5S8YWZC25F
+|
+| Bob/chatbot events already use window.gtag when it is available, so
+| loading the Google tag here also enables those existing GA4 events.
+|
+*/
+
+function wcp_google_analytics() {
+
+    ?>
+    <!-- Google tag (gtag.js) -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-5S8YWZC25F"
+    ></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-5S8YWZC25F');
+    </script>
+    <?php
+}
+
+add_action(
+    'wp_head',
+    'wcp_google_analytics',
+    5
+);
+
+
+/*
+|--------------------------------------------------------------------------
 | LOAD CSS & JAVASCRIPT
 |--------------------------------------------------------------------------
 */
