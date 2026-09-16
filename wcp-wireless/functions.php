@@ -6751,6 +6751,9 @@ function wcp_portal_shortcut_redirects() {
         'lookup' =>
             'https://portal.wcpwireless.com/lookup#Home',
 
+        'ablookup' =>
+            'https://portal.wcpwireless.com/ablookup',
+
         'fblookup' =>
             'https://portal.wcpwireless.com/fblookup#Home',
 
