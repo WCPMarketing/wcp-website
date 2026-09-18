@@ -6763,6 +6763,9 @@ function wcp_portal_shortcut_redirects() {
         'joef' =>
             'https://portal.wcpwireless.com/joef',
 
+        'sm' =>
+            'https://portal.wcpwireless.com/sm',
+
         'fblookup' =>
             'https://portal.wcpwireless.com/fblookup#Home',
 
