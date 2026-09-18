@@ -6754,6 +6754,15 @@ function wcp_portal_shortcut_redirects() {
         'ablookup' =>
             'https://portal.wcpwireless.com/ablookup',
 
+        'publicsector' =>
+            'https://portal.wcpwireless.com/rppoffer',
+
+        'corerpp' =>
+            'https://portal.wcpwireless.com/corerpp',
+
+        'joef' =>
+            'https://portal.wcpwireless.com/joef',
+
         'fblookup' =>
             'https://portal.wcpwireless.com/fblookup#Home',
 
