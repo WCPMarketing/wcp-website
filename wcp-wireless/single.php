@@ -1,286 +1,113 @@
-<?php get_header(); ?>
-
-
-<?php if (have_posts()) : ?>
-
-    <?php while (have_posts()) : the_post(); ?>
-
-
-        <!-- Article Header -->
-
-        <section
-            class="section"
-            style="
-                padding-top:64px;
-                padding-bottom:40px;
-                background:var(--surface);
-            "
-        >
-            <div
-                class="container"
-                style="
-                    max-width:850px;
-                    margin:0 auto;
-                "
-            >
-
-                <p
-                    style="
-                        font-size:13px;
-                        color:var(--text-muted);
-                        margin-bottom:12px;
-                    "
-                >
-                    <?php echo esc_html(get_the_date()); ?>
-                </p>
-
-
-                <h1
-                    style="
-                        margin-bottom:18px;
-                        max-width:800px;
-                    "
-                >
-                    <?php the_title(); ?>
-                </h1>
-
-
-                <?php if (has_excerpt()) : ?>
-
-                    <p
-                        class="lede"
-                        style="
-                            max-width:760px;
-                            margin-bottom:0;
-                        "
-                    >
-                        <?php echo esc_html(get_the_excerpt()); ?>
-                    </p>
-
-                <?php endif; ?>
+.wcp-article-header h1 {
+    max-width:900px;
+    margin-bottom:18px;
+}
+
+.wcp-article-excerpt {
+    max-width:760px;
+    font-size:19px;
+    line-height:1.65;
+    margin-bottom:0;
+}
+
+.wcp-article-section .container {
+    max-width:980px;
+}
+
+.wcp-article-content {
+    max-width:780px;
+    margin:0 auto;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.wcp-article-content p,
+.wcp-article-content ul,
+.wcp-article-content ol,
+.wcp-article-content blockquote {
+    margin-bottom:1.4em;
+}
+
+.wcp-article-content h2,
+.wcp-article-content h3,
+.wcp-article-content h4 {
+    margin-top:1.8em;
+}
+
+.wcp-article-content img {
+    max-width:100%;
+    height:auto;
+    border-radius:10px;
+}
+
+.wcp-article-gallery {
+    margin:52px auto 0;
+    max-width:900px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:22px;
+}
+
+.wcp-article-gallery-item {
+    margin:0;
+}
+
+.wcp-article-gallery-item img {
+    display:block;
+    width:100%;
+    aspect-ratio:16 / 10;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.wcp-article-gallery-item figcaption {
+    color:var(--text-muted);
+    font-size:13px;
+    line-height:1.5;
+    margin-top:8px;
+}
+
+.wcp-article-gallery-item:last-child:nth-child(odd) {
+    grid-column:1 / -1;
+}
+
+.wcp-article-footer {
+    max-width:780px;
+    margin:48px auto 0;
+    padding-top:28px;
+    border-top:1px solid var(--border);
+}
+
+.wcp-page-links {
+    margin-top:30px;
+    font-weight:700;
+}
+
+@media (max-width:700px) {
+
+    .wcp-article-header {
+        padding:54px 0 46px;
+    }
+
+    .wcp-article-header.has-image {
+        min-height:400px;
+    }
+
+    .wcp-article-content {
+        font-size:16px;
+    }
+
+    .wcp-article-gallery {
+        grid-template-columns:1fr;
+    }
 
-
-            </div>
-        </section>
-
-
-
-        <!-- Featured Image -->
-
-        <?php if (has_post_thumbnail()) : ?>
-
-            <section
-                style="
-                    padding:0;
-                    background:var(--surface);
-                "
-            >
-
-                <div
-                    class="container"
-                    style="
-                        max-width:950px;
-                        margin:0 auto;
-                    "
-                >
+    .wcp-article-gallery-item:last-child:nth-child(odd) {
+        grid-column:auto;
+    }
 
-                    <?php
-                    the_post_thumbnail(
-                        'large',
-                        array(
-                            'style' => '
-                                width:100%;
-                                height:auto;
-                                max-height:520px;
-                                object-fit:cover;
-                                display:block;
-                                border-radius:12px;
-                            '
-                        )
-                    );
-                    ?>
+}
 
-                </div>
-
-            </section>
-
-        <?php endif; ?>
-
-
-
-        <!-- Article Content -->
-
-        <section
-            class="section"
-            style="
-                padding-top:56px;
-                padding-bottom:72px;
-            "
-        >
-
-            <div
-                class="container"
-                style="
-                    max-width:780px;
-                    margin:0 auto;
-                "
-            >
-
-                <article
-                    <?php post_class(); ?>
-                    id="post-<?php the_ID(); ?>"
-                >
-
-                    <div
-                        class="entry-content"
-                        style="
-                            font-size:17px;
-                            line-height:1.75;
-                        "
-                    >
-
-                        <?php the_content(); ?>
-
-                    </div>
-
-
-                    <?php
-                    wp_link_pages(
-                        array(
-                            'before' => '<div class="page-links">',
-                            'after'  => '</div>',
-                        )
-                    );
-                    ?>
-
-
-                    <!-- Categories -->
-
-                    <?php if (has_category()) : ?>
-
-                        <div
-                            style="
-                                margin-top:40px;
-                                padding-top:24px;
-                                border-top:1px solid var(--border);
-                                font-size:14px;
-                                color:var(--text-muted);
-                            "
-                        >
-
-                            <strong>
-                                Categories:
-                            </strong>
-
-                            <?php the_category(', '); ?>
-
-                        </div>
-
-                    <?php endif; ?>
-
-
-                </article>
-
-
-
-                <!-- Back to Blog -->
-
-                <div
-                    style="
-                        margin-top:48px;
-                        padding-top:32px;
-                        border-top:1px solid var(--border);
-                    "
-                >
-
-                    <?php
-                    $blog_page_id = get_option('page_for_posts');
-
-                    $blog_url = $blog_page_id
-                        ? get_permalink($blog_page_id)
-                        : home_url('/blog/');
-                    ?>
-
-                    <a
-                        href="<?php echo esc_url($blog_url); ?>"
-                        class="btn-card"
-                    >
-                        ← Back to Blog
-                    </a>
-
-                </div>
-
-
-
-                <!-- Previous / Next Article -->
-
-                <div
-                    style="
-                        display:flex;
-                        justify-content:space-between;
-                        gap:24px;
-                        margin-top:32px;
-                    "
-                >
-
-                    <div style="flex:1;">
-                        <?php previous_post_link(
-                            '%link',
-                            '← %title'
-                        ); ?>
-                    </div>
-
-
-                    <div
-                        style="
-                            flex:1;
-                            text-align:right;
-                        "
-                    >
-                        <?php next_post_link(
-                            '%link',
-                            '%title →'
-                        ); ?>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-    <?php endwhile; ?>
-
-<?php else : ?>
-
-
-    <section class="section">
-
-        <div class="container">
-
-            <h1>
-                Article not found
-            </h1>
-
-            <p>
-                The article you're looking for could not be found.
-            </p>
-
-            <a
-                href="<?php echo esc_url(home_url('/blog/')); ?>"
-                class="btn btn-primary"
-            >
-                Return to Blog
-            </a>
-
-        </div>
-
-    </section>
-
-
-<?php endif; ?>
+</style>
 
 
 <?php get_footer(); ?>
