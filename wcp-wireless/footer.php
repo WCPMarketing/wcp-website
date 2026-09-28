@@ -360,6 +360,11 @@ if (
                 </a>
 
 
+                <a href="<?php echo esc_url(home_url('/blog/')); ?>">
+                    Blog
+                </a>
+
+
             </div>
 
 
